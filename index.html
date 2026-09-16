@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta name="theme-color" content="#2563eb">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+  name="theme-color"
+  content="#2563eb">
 
 <title>Therapy Tracker</title>
 
-<!-- Excel and PDF support -->
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
 <style>
 
+/* =========================================================
+   THEME
+========================================================= */
+
 :root{
+
   --bg:#f4f7fb;
   --card:#ffffff;
   --text:#172033;
   --muted:#68758d;
+
   --primary:#2563eb;
-  --border:#e5eaf2;
+
+  --border:#e3e8f0;
 
   --green:#16a34a;
   --green-bg:#dcfce7;
@@ -32,11 +45,42 @@
   --orange:#ea580c;
   --orange-bg:#ffedd5;
 
+  --purple:#9333ea;
+  --purple-bg:#f3e8ff;
+
   --blue:#087bea;
   --blue-bg:#dbeafe;
 
-  --shadow:0 8px 25px rgba(30,50,90,.08);
+  --shadow:
+    0 7px 25px rgba(30,50,90,.08);
+
 }
+
+
+body.dark{
+
+  --bg:#0f172a;
+  --card:#172033;
+  --text:#f5f7fb;
+  --muted:#aab5c8;
+
+  --border:#2d3950;
+
+  --green-bg:#123b25;
+  --red-bg:#431c22;
+  --orange-bg:#482915;
+  --purple-bg:#35164d;
+  --blue-bg:#142f52;
+
+  --shadow:
+    0 7px 25px rgba(0,0,0,.30);
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -47,26 +91,23 @@ html{
 }
 
 body{
+
   margin:0;
+
   background:var(--bg);
+
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,
-  "Segoe UI",Roboto,Arial,sans-serif;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
   padding-bottom:95px;
-}
 
-body.dark{
-  --bg:#0f172a;
-  --card:#172033;
-  --text:#f5f7fb;
-  --muted:#aab5c8;
-  --border:#2d3950;
-  --shadow:0 8px 25px rgba(0,0,0,.28);
-
-  --green-bg:#123b25;
-  --red-bg:#431c22;
-  --orange-bg:#482915;
-  --blue-bg:#142f52;
 }
 
 button,
@@ -80,54 +121,109 @@ button{
   cursor:pointer;
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .header{
-  background:linear-gradient(145deg,#2f6af0,#1f5be5);
+
+  background:
+    linear-gradient(
+      145deg,
+      #2f6af0,
+      #1f5be5
+    );
+
   color:white;
+
   padding:
-    max(42px,env(safe-area-inset-top))
+    48px
     22px
     32px;
-  border-radius:0 0 42px 42px;
-  box-shadow:0 8px 25px rgba(37,99,235,.22);
+
+  border-radius:
+    0
+    0
+    40px
+    40px;
+
+  box-shadow:
+    0 8px 25px
+    rgba(37,99,235,.22);
+
 }
 
 .header-row{
+
   display:flex;
+
   justify-content:space-between;
-  gap:15px;
+
   align-items:flex-start;
+
+  gap:15px;
+
 }
 
 .title{
+
   font-size:38px;
+
   font-weight:800;
+
   margin:10px 0 12px;
+
 }
 
 .subtitle{
+
   font-size:19px;
-  opacity:.9;
+
   margin:0;
+
+  opacity:.92;
+
 }
 
-.theme-btn{
-  border:1px solid rgba(255,255,255,.4);
-  background:rgba(255,255,255,.15);
+.theme-button{
+
+  width:70px;
+
+  height:70px;
+
+  border:0;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.17);
+
   color:white;
-  border-radius:14px;
-  padding:10px 13px;
-  font-weight:700;
+
+  font-size:34px;
+
 }
 
-/* MAIN */
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container{
+
   max-width:900px;
-  margin:25px auto;
+
+  margin:22px auto;
+
   padding:0 16px;
+
 }
+
+
+/* =========================================================
+   VIEWS
+========================================================= */
 
 .view{
   display:none;
@@ -137,580 +233,1093 @@ button{
   display:block;
 }
 
-/* PROFILE */
 
-.profile-bar{
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-area{
+
   background:var(--card);
+
+  padding:15px;
+
+  border-radius:20px;
+
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:12px;
-  display:flex;
-  gap:10px;
-  margin-bottom:20px;
+
   box-shadow:var(--shadow);
+
+  margin-bottom:20px;
+
 }
 
-.profile-bar select{
+.profile-row{
+
+  display:flex;
+
+  gap:12px;
+
+}
+
+.profile-row select{
+
   flex:1;
+
+  font-size:18px;
+
+  min-height:55px;
+
 }
 
-/* INPUTS */
+.profile-add{
+
+  width:60px;
+
+  font-size:30px;
+
+  padding:0;
+
+}
+
+.profile-count{
+
+  color:var(--muted);
+
+  font-size:17px;
+
+  margin-top:12px;
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
 
 input,
 select,
 textarea{
+
   width:100%;
-  padding:13px;
+
+  border:
+    1px solid
+    var(--border);
+
   border-radius:12px;
-  border:1px solid var(--border);
+
   background:var(--card);
+
   color:var(--text);
+
+  padding:13px;
+
   outline:none;
+
 }
 
 label{
+
   display:block;
+
   font-weight:700;
+
   margin-bottom:7px;
+
 }
 
 .form-grid{
+
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+    repeat(2,1fr);
+
   gap:16px;
+
 }
 
-/* CARDS */
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:26px;
-  padding:25px;
-  margin-bottom:22px;
-  box-shadow:var(--shadow);
-}
-
-.card h2{
-  margin:0 0 20px;
-  font-size:28px;
-}
-
-/* DASHBOARD */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:17px;
-}
-
-.stat{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:25px;
-  box-shadow:var(--shadow);
-}
-
-.stat.clickable{
-  cursor:pointer;
-}
-
-.stat.clickable:active{
-  transform:scale(.98);
-}
-
-.stat-number{
-  font-size:45px;
-  font-weight:800;
-  line-height:1;
-}
-
-.stat-label{
-  color:var(--muted);
-  font-size:18px;
-  margin-top:10px;
-}
-
-/* SUMMARY */
-
-.summary-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:20px;
-  margin-bottom:15px;
-}
-
-.summary-title{
-  font-size:24px;
-  font-weight:800;
-  margin-bottom:15px;
-}
-
-.summary-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.summary-box{
-  text-align:center;
-  border-radius:18px;
-  padding:14px 5px;
-  cursor:pointer;
-  border:1px solid var(--border);
-}
-
-.summary-box:active{
-  transform:scale(.97);
-}
-
-.summary-number{
-  font-size:30px;
-  font-weight:800;
-}
-
-.summary-label{
-  font-size:14px;
-  color:var(--muted);
-  margin-top:4px;
-}
-
-.total-box{
-  background:#eaf0ff;
-}
-
-.attended-box{
-  background:#e9faef;
-}
-
-.missed-box{
-  background:#fff0f0;
-}
-
-.planned-box{
-  background:#fff3e5;
-}
-
-.dark .total-box{
-  background:#1b2948;
-}
-
-.dark .attended-box{
-  background:#123b25;
-}
-
-.dark .missed-box{
-  background:#431c22;
-}
-
-.dark .planned-box{
-  background:#482915;
-}
-
-/* COST */
-
-.cost-row{
-  display:flex;
-  justify-content:space-between;
-  padding:13px 0;
-  border-bottom:1px solid var(--border);
-  font-size:18px;
-}
-
-.cost-row:last-child{
-  border-bottom:0;
-}
-
-/* SESSION */
-
-.session{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-left:7px solid var(--primary);
-  border-radius:22px;
-  padding:20px;
-  margin:12px 0;
-  box-shadow:var(--shadow);
-}
-
-.session.attended{
-  border-left-color:var(--green);
-}
-
-.session.missed{
-  border-left-color:var(--red);
-}
-
-.session.planned{
-  border-left-color:var(--orange);
-}
-
-.session-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:flex-start;
-}
-
-.session-title{
-  font-size:23px;
-  font-weight:800;
-}
-
-.badge{
-  border-radius:999px;
-  padding:7px 12px;
-  font-weight:800;
-  white-space:nowrap;
-}
-
-.badge.attended{
-  color:#15803d;
-  background:var(--green-bg);
-}
-
-.badge.missed{
-  color:#b91c1c;
-  background:var(--red-bg);
-}
-
-.badge.planned{
-  color:#c2410c;
-  background:var(--orange-bg);
-}
-
-.session-meta{
-  color:var(--muted);
-  line-height:1.7;
-  font-size:16px;
-  margin:10px 0;
-}
-
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-}
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .btn{
+
   border:0;
+
   border-radius:13px;
+
   padding:11px 16px;
+
   font-weight:750;
+
   background:#edf1f7;
+
   color:var(--text);
+
 }
 
 .btn.primary{
+
   background:var(--primary);
+
   color:white;
+
 }
 
 .btn.success{
+
   background:var(--green-bg);
+
   color:var(--green);
+
 }
 
 .btn.danger{
+
   background:var(--red-bg);
+
   color:var(--red);
+
 }
 
 .btn.orange{
+
   background:var(--orange-bg);
+
   color:var(--orange);
+
+}
+
+.btn.purple{
+
+  background:var(--purple-bg);
+
+  color:var(--purple);
+
 }
 
 .btn.small{
+
   padding:9px 13px;
+
 }
 
-/* CALENDAR */
 
-.calendar-head{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:20px;
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:26px;
+
+  padding:24px;
+
+  margin-bottom:22px;
+
+  box-shadow:var(--shadow);
+
 }
 
-.calendar-head h2{
-  flex:1;
+.card h2{
+
+  margin:
+    0
+    0
+    20px;
+
+  font-size:28px;
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:16px;
+
+}
+
+.stat{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:25px;
+
+  padding:25px;
+
+  box-shadow:var(--shadow);
+
+}
+
+.stat.clickable{
+
+  cursor:pointer;
+
+}
+
+.stat:active{
+
+  transform:scale(.98);
+
+}
+
+.stat-number{
+
+  font-size:45px;
+
+  font-weight:800;
+
+  line-height:1;
+
+}
+
+.stat-label{
+
+  font-size:18px;
+
+  color:var(--muted);
+
+  margin-top:10px;
+
+}
+
+
+/* =========================================================
+   THERAPY SUMMARY
+========================================================= */
+
+.summary-card{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:23px;
+
+  padding:20px;
+
+  margin-bottom:15px;
+
+}
+
+.summary-title{
+
+  font-size:24px;
+
+  font-weight:800;
+
+  margin-bottom:16px;
+
+}
+
+.summary-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap:8px;
+
+}
+
+.summary-box{
+
+  border-radius:17px;
+
+  padding:13px 4px;
+
   text-align:center;
+
+  cursor:pointer;
+
+  border:
+    1px solid
+    var(--border);
+
+}
+
+.summary-box:active{
+
+  transform:scale(.96);
+
+}
+
+.summary-number{
+
+  font-size:27px;
+
+  font-weight:800;
+
+}
+
+.summary-label{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-top:4px;
+
+}
+
+.summary-total{
+
+  background:#eaf0ff;
+
+}
+
+.summary-attended{
+
+  background:var(--green-bg);
+
+}
+
+.summary-missed{
+
+  background:var(--red-bg);
+
+}
+
+.summary-planned{
+
+  background:var(--orange-bg);
+
+}
+
+.summary-rescheduled{
+
+  background:var(--purple-bg);
+
+}
+
+
+/* =========================================================
+   COST
+========================================================= */
+
+.cost-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:13px 0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  font-size:17px;
+
+}
+
+.cost-row:last-child{
+
+  border-bottom:0;
+
+}
+
+
+/* =========================================================
+   SESSION CARD
+========================================================= */
+
+.session{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-left:
+    7px solid
+    var(--primary);
+
+  border-radius:22px;
+
+  padding:20px;
+
+  margin:12px 0;
+
+  box-shadow:var(--shadow);
+
+}
+
+.session.attended{
+
+  border-left-color:
+    var(--green);
+
+}
+
+.session.missed{
+
+  border-left-color:
+    var(--red);
+
+}
+
+.session.planned{
+
+  border-left-color:
+    var(--orange);
+
+}
+
+.session.rescheduled{
+
+  border-left-color:
+    var(--purple);
+
+}
+
+.session-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  gap:10px;
+
+}
+
+.session-title{
+
+  font-size:22px;
+
+  font-weight:800;
+
+}
+
+.badge{
+
+  border-radius:999px;
+
+  padding:7px 12px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+
+}
+
+.badge.attended{
+
+  color:#15803d;
+
+  background:var(--green-bg);
+
+}
+
+.badge.missed{
+
+  color:#b91c1c;
+
+  background:var(--red-bg);
+
+}
+
+.badge.planned{
+
+  color:#c2410c;
+
+  background:var(--orange-bg);
+
+}
+
+.badge.rescheduled{
+
+  color:#7e22ce;
+
+  background:var(--purple-bg);
+
+}
+
+.session-meta{
+
+  color:var(--muted);
+
+  font-size:16px;
+
+  line-height:1.7;
+
+  margin:10px 0;
+
+}
+
+.actions{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:8px;
+
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+.calendar-header{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:20px;
+
+}
+
+.calendar-header h2{
+
+  flex:1;
+
+  text-align:center;
+
   margin:0;
+
 }
 
 .calendar-grid{
+
   display:grid;
-  grid-template-columns:repeat(7,1fr);
+
+  grid-template-columns:
+    repeat(7,1fr);
+
   gap:7px;
+
 }
 
 .weekday{
+
   text-align:center;
+
   color:var(--muted);
+
   font-weight:700;
+
   padding:7px 0;
+
 }
 
-.day{
-  min-height:66px;
-  border:1px solid var(--border);
+.calendar-day{
+
+  min-height:70px;
+
+  border:
+    1px solid
+    var(--border);
+
   border-radius:15px;
+
   background:var(--card);
+
   color:var(--blue);
+
   display:flex;
+
   flex-direction:column;
-  align-items:center;
+
   justify-content:center;
-  padding:5px;
+
+  align-items:center;
+
+  padding:4px;
+
+  position:relative;
+
 }
 
-.day.weekend{
+.calendar-day.weekend{
+
   background:var(--blue-bg);
+
   color:#0872d1;
+
 }
 
-.day.other-month{
-  opacity:.28;
+.calendar-day.other-month{
+
+  opacity:.27;
+
 }
 
-.day.today{
-  outline:3px solid var(--primary);
+.calendar-day.today{
+
+  outline:
+    3px solid
+    var(--primary);
+
 }
 
-.day.selected{
-  outline:3px solid var(--primary);
+.calendar-day.selected{
+
+  outline:
+    3px solid
+    var(--primary);
+
 }
 
 .day-number{
+
   font-size:18px;
+
   font-weight:700;
+
 }
 
 .markers{
+
   display:flex;
-  gap:3px;
-  min-height:22px;
+
+  gap:4px;
+
+  min-height:23px;
+
   align-items:center;
+
 }
 
 .marker{
+
   font-size:18px;
+
   font-weight:900;
+
 }
 
 .marker.attended{
+
   color:var(--green);
+
 }
 
 .marker.missed{
+
   color:var(--red);
+
 }
 
 .marker.planned{
+
   color:var(--orange);
+
 }
 
-.legend{
+.marker.rescheduled{
+
+  color:var(--purple);
+
+}
+
+.calendar-legend{
+
   display:flex;
+
   flex-wrap:wrap;
+
   gap:13px;
+
   color:var(--muted);
+
   font-size:14px;
+
   margin-top:18px;
+
 }
 
-/* MODAL */
 
-.modal-bg{
+/* =========================================================
+   SELECTED DATE
+========================================================= */
+
+.selected-date-box{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-left:
+    7px solid
+    var(--primary);
+
+  border-radius:22px;
+
+  padding:20px;
+
+}
+
+.selected-date-title{
+
+  font-size:23px;
+
+  font-weight:800;
+
+  margin-bottom:10px;
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal-background{
+
   display:none;
+
   position:fixed;
-  inset:0;
+
   z-index:100;
-  background:rgba(0,0,0,.55);
+
+  inset:0;
+
+  background:
+    rgba(0,0,0,.55);
+
   padding:18px;
+
   overflow:auto;
+
 }
 
-.modal-bg.show{
+.modal-background.show{
+
   display:block;
+
 }
 
 .modal{
+
   max-width:720px;
+
   margin:35px auto;
+
   background:var(--card);
+
   color:var(--text);
+
   border-radius:25px;
+
   padding:23px;
-  box-shadow:0 20px 70px rgba(0,0,0,.3);
+
+  box-shadow:
+    0 20px 70px
+    rgba(0,0,0,.30);
+
 }
 
-.modal-head{
+.modal-header{
+
   display:flex;
+
   justify-content:space-between;
-  gap:10px;
+
   align-items:center;
-  margin-bottom:15px;
+
+  gap:10px;
+
+  margin-bottom:18px;
+
 }
 
-.modal-head h2{
+.modal-header h2{
+
   margin:0;
+
 }
 
-.close{
+.close-button{
+
   border:0;
-  border-radius:12px;
-  padding:9px 12px;
+
   background:#edf1f7;
+
+  color:#172033;
+
+  border-radius:12px;
+
+  padding:9px 12px;
+
+  font-weight:700;
+
 }
 
-/* BOTTOM NAV */
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
 
 .bottom-nav{
+
   position:fixed;
+
   z-index:50;
-  left:0;
-  right:0;
+
   bottom:0;
+
+  left:0;
+
+  right:0;
+
   height:90px;
+
   background:var(--card);
-  border-top:1px solid var(--border);
+
+  border-top:
+    1px solid
+    var(--border);
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  box-shadow:0 -5px 20px rgba(0,0,0,.07);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  box-shadow:
+    0 -5px 20px
+    rgba(0,0,0,.07);
+
 }
 
-.nav-btn{
+.nav-button{
+
   border:0;
+
   background:none;
+
   color:var(--muted);
+
   font-weight:700;
+
 }
 
-.nav-btn.active{
+.nav-button.active{
+
   color:var(--primary);
+
 }
 
 .nav-icon{
+
   display:block;
+
   font-size:26px;
+
   margin-bottom:4px;
+
 }
 
-/* EMPTY */
+
+/* =========================================================
+   EMPTY
+========================================================= */
 
 .empty{
+
   text-align:center;
+
   color:var(--muted);
+
   padding:25px;
+
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:620px){
 
   .header{
-    padding-top:45px;
-    border-radius:0 0 35px 35px;
+
+    padding:
+      45px
+      20px
+      30px;
+
+    border-radius:
+      0
+      0
+      35px
+      35px;
+
   }
 
   .title{
+
     font-size:35px;
+
   }
 
   .subtitle{
+
     font-size:18px;
+
+  }
+
+  .theme-button{
+
+    width:62px;
+
+    height:62px;
+
+    font-size:30px;
+
   }
 
   .container{
-    padding:0 13px;
-  }
 
-  .card{
-    padding:20px;
-    border-radius:22px;
+    padding:0 13px;
+
   }
 
   .stats{
-    gap:13px;
+
+    gap:12px;
+
   }
 
   .stat{
+
     padding:21px;
-    border-radius:22px;
+
   }
 
   .stat-number{
+
     font-size:39px;
+
   }
 
   .stat-label{
+
     font-size:16px;
+
   }
 
   .summary-grid{
-    gap:6px;
+
+    grid-template-columns:
+      repeat(5,1fr);
+
+    gap:5px;
+
   }
 
   .summary-box{
-    padding:12px 3px;
+
+    padding:11px 2px;
+
   }
 
   .summary-number{
-    font-size:25px;
+
+    font-size:23px;
+
   }
 
   .summary-label{
-    font-size:12px;
+
+    font-size:10px;
+
   }
 
   .form-grid{
+
     grid-template-columns:1fr;
+
   }
 
-  .session-title{
-    font-size:20px;
-  }
+  .calendar-day{
 
-  .day{
-    min-height:56px;
+    min-height:57px;
+
     border-radius:11px;
+
   }
 
   .weekday{
+
     font-size:13px;
+
   }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
 
 <header class="header">
 
   <div class="header-row">
 
     <div>
-      <div class="title">Therapy Tracker</div>
+
+      <div class="title">
+        Therapy Tracker
+      </div>
 
       <p class="subtitle">
-        Track your sessions &amp; attendance
+        Track therapy visits, attendance and expenses
       </p>
+
     </div>
 
+
     <button
-      class="theme-btn"
-      id="themeBtn"
+      class="theme-button"
+      id="themeButton"
       onclick="toggleTheme()">
-      🌙 Dark
+
+      🌙
+
     </button>
 
   </div>
@@ -720,26 +1329,46 @@ label{
 
 <main class="container">
 
-<!-- ======================================================
-     HOME
-====================================================== -->
 
-<section id="homeView" class="view active">
+<!-- =======================================================
+     HOME
+======================================================= -->
+
+<section
+  id="homeView"
+  class="view active">
+
 
   <!-- PROFILE -->
 
-  <div class="profile-bar">
+  <div class="profile-area">
 
-    <select
-      id="profileSelect"
-      onchange="changeProfile(this.value)">
-    </select>
+    <div class="profile-row">
 
-    <button
-      class="btn primary"
-      onclick="openProfileModal()">
-      ＋ Profile
-    </button>
+      <select
+        id="profileSelect"
+        onchange="changeProfile(this.value)">
+      </select>
+
+
+      <button
+        class="btn primary profile-add"
+        onclick="openProfileModal()">
+
+        +
+
+      </button>
+
+    </div>
+
+
+    <div
+      class="profile-count"
+      id="profileCount">
+
+      0 sessions in this profile
+
+    </div>
 
   </div>
 
@@ -748,9 +1377,10 @@ label{
 
   <div class="stats">
 
+
     <div
       class="stat clickable"
-      onclick="openFilteredRecords('all')">
+      onclick="openStatusRecords('all')">
 
       <div
         class="stat-number"
@@ -767,7 +1397,7 @@ label{
 
     <div
       class="stat clickable"
-      onclick="openFilteredRecords('attended')">
+      onclick="openStatusRecords('attended')">
 
       <div
         class="stat-number"
@@ -784,7 +1414,7 @@ label{
 
     <div
       class="stat clickable"
-      onclick="openFilteredRecords('missed')">
+      onclick="openStatusRecords('missed')">
 
       <div
         class="stat-number"
@@ -801,7 +1431,7 @@ label{
 
     <div
       class="stat clickable"
-      onclick="openFilteredRecords('planned')">
+      onclick="openStatusRecords('planned')">
 
       <div
         class="stat-number"
@@ -816,6 +1446,23 @@ label{
     </div>
 
 
+    <div
+      class="stat clickable"
+      onclick="openStatusRecords('rescheduled')">
+
+      <div
+        class="stat-number"
+        id="rescheduledCount">
+        0
+      </div>
+
+      <div class="stat-label">
+        Rescheduled
+      </div>
+
+    </div>
+
+
     <div class="stat">
 
       <div
@@ -825,7 +1472,7 @@ label{
       </div>
 
       <div class="stat-label">
-        Attendance
+        Attendance Rate
       </div>
 
     </div>
@@ -848,9 +1495,11 @@ label{
   </div>
 
 
-  <!-- THERAPY SUMMARY -->
+  <!-- =====================================================
+       THERAPY SUMMARY
+  ===================================================== -->
 
-  <div class="card" style="margin-top:22px">
+  <div class="card">
 
     <h2>
       Therapy Summary
@@ -861,7 +1510,9 @@ label{
   </div>
 
 
-  <!-- THERAPY COST -->
+  <!-- =====================================================
+       THERAPY COST
+  ===================================================== -->
 
   <div class="card">
 
@@ -874,7 +1525,9 @@ label{
   </div>
 
 
-  <!-- NEXT SESSION -->
+  <!-- =====================================================
+       NEXT SESSION
+  ===================================================== -->
 
   <div class="card">
 
@@ -887,7 +1540,9 @@ label{
   </div>
 
 
-  <!-- RECENT -->
+  <!-- =====================================================
+       RECENT
+  ===================================================== -->
 
   <div class="card">
 
@@ -899,14 +1554,17 @@ label{
 
   </div>
 
+
 </section>
 
 
-<!-- ======================================================
+<!-- =======================================================
      ADD / EDIT
-====================================================== -->
+======================================================= -->
 
-<section id="addView" class="view">
+<section
+  id="addView"
+  class="view">
 
   <div class="card">
 
@@ -914,15 +1572,19 @@ label{
       Add Therapy Session
     </h2>
 
+
     <form
       id="sessionForm"
       onsubmit="saveSession(event)">
+
 
       <input
         type="hidden"
         id="editId">
 
+
       <div class="form-grid">
+
 
         <div>
 
@@ -930,7 +1592,9 @@ label{
             Profile
           </label>
 
-          <select id="formProfile"></select>
+          <select
+            id="formProfile">
+          </select>
 
         </div>
 
@@ -1023,7 +1687,7 @@ label{
         <div>
 
           <label>
-            Cost / session (₹)
+            Cost / Session (₹)
           </label>
 
           <input
@@ -1058,6 +1722,10 @@ label{
               Missed
             </option>
 
+            <option value="rescheduled">
+              Rescheduled
+            </option>
+
           </select>
 
         </div>
@@ -1072,10 +1740,10 @@ label{
           <textarea
             id="notes"
             rows="3"
-            placeholder="Optional notes">
-          </textarea>
+            placeholder="Optional notes"></textarea>
 
         </div>
+
 
       </div>
 
@@ -1084,20 +1752,28 @@ label{
         class="actions"
         style="margin-top:18px">
 
+
         <button
           type="submit"
           class="btn primary">
+
           Save Session
+
         </button>
+
 
         <button
           type="button"
           class="btn"
           onclick="resetForm()">
+
           Clear
+
         </button>
 
+
       </div>
+
 
     </form>
 
@@ -1106,11 +1782,14 @@ label{
 </section>
 
 
-<!-- ======================================================
+<!-- =======================================================
      HISTORY
-====================================================== -->
+======================================================= -->
 
-<section id="historyView" class="view">
+<section
+  id="historyView"
+  class="view">
+
 
   <div class="card">
 
@@ -1120,6 +1799,7 @@ label{
 
 
     <div class="form-grid">
+
 
       <div>
 
@@ -1161,9 +1841,14 @@ label{
             Planned
           </option>
 
+          <option value="rescheduled">
+            Rescheduled
+          </option>
+
         </select>
 
       </div>
+
 
     </div>
 
@@ -1172,25 +1857,37 @@ label{
       class="actions"
       style="margin-top:16px">
 
+
       <button
         class="btn success"
         onclick="exportExcel()">
+
         ⬇ Excel
+
       </button>
+
 
       <button
         class="btn orange"
         onclick="exportPDF()">
+
         ⬇ PDF
+
       </button>
+
 
       <button
         class="btn"
         onclick="backupJSON()">
+
         Backup
+
       </button>
 
-      <label class="btn">
+
+      <label
+        class="btn"
+        style="cursor:pointer">
 
         Restore
 
@@ -1202,6 +1899,7 @@ label{
 
       </label>
 
+
     </div>
 
   </div>
@@ -1209,32 +1907,47 @@ label{
 
   <div id="historyList"></div>
 
+
 </section>
 
 
-<!-- ======================================================
+<!-- =======================================================
      CALENDAR
-====================================================== -->
+======================================================= -->
 
-<section id="calendarView" class="view">
+<section
+  id="calendarView"
+  class="view">
+
 
   <div class="card">
 
-    <div class="calendar-head">
+
+    <div class="calendar-header">
+
 
       <button
         class="btn"
         onclick="changeMonth(-1)">
+
         ‹
+
       </button>
 
-      <h2 id="monthTitle"></h2>
+
+      <h2
+        id="monthTitle">
+      </h2>
+
 
       <button
         class="btn"
         onclick="changeMonth(1)">
+
         ›
+
       </button>
+
 
     </div>
 
@@ -1245,7 +1958,7 @@ label{
     </div>
 
 
-    <div class="legend">
+    <div class="calendar-legend">
 
       <span>
         🟢 ✓ Attended
@@ -1260,41 +1973,54 @@ label{
       </span>
 
       <span>
+        🟣 ↻ Rescheduled
+      </span>
+
+      <span>
         🔵 Weekend
       </span>
 
     </div>
+
 
   </div>
 
 
   <div class="card">
 
-    <h2 id="selectedDateTitle">
+    <h2
+      id="selectedDateTitle">
       Selected Date
     </h2>
 
+
     <div
-      id="selectedDateRecords"
-      class="empty">
-      Select a date.
+      id="selectedDateRecords">
+
+      <div class="empty">
+        Select a date from the calendar.
+      </div>
+
     </div>
 
   </div>
 
+
 </section>
+
 
 </main>
 
 
-<!-- ======================================================
+<!-- =======================================================
      BOTTOM NAV
-====================================================== -->
+======================================================= -->
 
 <nav class="bottom-nav">
 
+
   <button
-    class="nav-btn active"
+    class="nav-button active"
     data-view="homeView"
     onclick="switchView('homeView',this)">
 
@@ -1308,7 +2034,7 @@ label{
 
 
   <button
-    class="nav-btn"
+    class="nav-button"
     data-view="addView"
     onclick="switchView('addView',this)">
 
@@ -1322,7 +2048,7 @@ label{
 
 
   <button
-    class="nav-btn"
+    class="nav-button"
     data-view="historyView"
     onclick="switchView('historyView',this)">
 
@@ -1336,7 +2062,7 @@ label{
 
 
   <button
-    class="nav-btn"
+    class="nav-button"
     data-view="calendarView"
     onclick="switchView('calendarView',this)">
 
@@ -1348,37 +2074,44 @@ label{
 
   </button>
 
+
 </nav>
 
 
-<!-- ======================================================
+<!-- =======================================================
      PROFILE MODAL
-====================================================== -->
+======================================================= -->
 
 <div
-  class="modal-bg"
+  class="modal-background"
   id="profileModal">
+
 
   <div class="modal">
 
-    <div class="modal-head">
+
+    <div class="modal-header">
 
       <h2>
         Add Profile
       </h2>
 
+
       <button
-        class="close"
+        class="close-button"
         onclick="closeProfileModal()">
+
         ✕
+
       </button>
 
     </div>
 
 
     <label>
-      Profile name
+      Profile Name
     </label>
+
 
     <input
       id="newProfileName"
@@ -1389,51 +2122,66 @@ label{
       class="actions"
       style="margin-top:18px">
 
+
       <button
         class="btn primary"
         onclick="addProfile()">
+
         Add Profile
+
       </button>
+
 
       <button
         class="btn"
         onclick="closeProfileModal()">
+
         Cancel
+
       </button>
 
+
     </div>
+
 
   </div>
 
 </div>
 
 
-<!-- ======================================================
-     RECORD FILTER MODAL
-====================================================== -->
+<!-- =======================================================
+     RECORDS MODAL
+======================================================= -->
 
 <div
-  class="modal-bg"
+  class="modal-background"
   id="recordsModal">
+
 
   <div class="modal">
 
-    <div class="modal-head">
 
-      <h2 id="recordsTitle">
+    <div class="modal-header">
+
+      <h2
+        id="recordsTitle">
         Records
       </h2>
 
+
       <button
-        class="close"
+        class="close-button"
         onclick="closeRecordsModal()">
+
         ✕
+
       </button>
 
     </div>
 
 
     <div id="recordsBody"></div>
+
 
   </div>
 
@@ -1443,7 +2191,7 @@ label{
 <script>
 
 /* ==========================================================
-   STORAGE
+   STORAGE KEYS
 ========================================================== */
 
 const SESSION_KEY =
@@ -1458,45 +2206,62 @@ const CURRENT_PROFILE_KEY =
 const THEME_KEY =
   "therapyTheme";
 
-const UPGRADE_BACKUP_KEY =
+const BACKUP_KEY =
   "therapySessions_backup_before_upgrade";
 
 
-let sessions = [];
+/* ==========================================================
+   GLOBAL VARIABLES
+========================================================== */
 
-let profiles = [];
+let sessions=[];
 
-let currentProfileId = "";
+let profiles=[];
 
-let calendarDate = new Date();
+let currentProfileId="";
 
-let selectedDate = null;
+let calendarDate=
+  new Date();
+
+let selectedCalendarDate=null;
 
 
 /* ==========================================================
-   HELPERS
+   ID
 ========================================================== */
 
-function uid(){
+function createId(){
 
-  return Date.now().toString(36)
-    + Math.random().toString(36).substring(2,9);
+  return Date.now()
+    .toString(36)
+    +
+    Math.random()
+      .toString(36)
+      .substring(2,9);
 
 }
 
 
-function readJSON(key,fallback){
+/* ==========================================================
+   SAFE JSON READ
+========================================================== */
+
+function readStorage(
+  key,
+  fallback
+){
 
   try{
 
-    const value =
+    const value=
       localStorage.getItem(key);
 
-    return value
-      ? JSON.parse(value)
-      : fallback;
+    if(!value)
+      return fallback;
 
-  }catch(e){
+    return JSON.parse(value);
+
+  }catch(error){
 
     return fallback;
 
@@ -1505,7 +2270,16 @@ function readJSON(key,fallback){
 }
 
 
+/* ==========================================================
+   SAVE
+========================================================== */
+
 function saveSessions(){
+
+  /*
+     IMPORTANT:
+     No localStorage.clear().
+  */
 
   localStorage.setItem(
     SESSION_KEY,
@@ -1525,185 +2299,81 @@ function saveProfiles(){
 }
 
 
-function escapeHTML(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function money(value){
-
-  return "₹" +
-    Number(value || 0)
-      .toLocaleString("en-IN");
-
-}
-
-
-function statusText(status){
-
-  if(status === "attended")
-    return "✓ Attended";
-
-  if(status === "missed")
-    return "✕ Missed";
-
-  return "• Planned";
-
-}
-
-
-function dateObject(session){
-
-  if(!session.date)
-    return null;
-
-  const d =
-    new Date(
-      session.date +
-      (session.time
-        ? "T" + session.time
-        : "T00:00")
-    );
-
-  return isNaN(d.getTime())
-    ? null
-    : d;
-
-}
-
-
-function formatDate(session){
-
-  const d =
-    dateObject(session);
-
-  if(!d)
-    return session.date || "";
-
-  return d.toLocaleDateString(
-    "en-IN",
-    {
-      day:"2-digit",
-      month:"short",
-      year:"numeric"
-    }
-  );
-
-}
-
-
-function formatTime(session){
-
-  if(!session.time)
-    return "";
-
-  const parts =
-    session.time.split(":");
-
-  const hour =
-    Number(parts[0]);
-
-  const minute =
-    parts[1] || "00";
-
-  if(isNaN(hour))
-    return session.time;
-
-  const ampm =
-    hour >= 12
-      ? "PM"
-      : "AM";
-
-  const h =
-    hour % 12 || 12;
-
-  return (
-    String(h).padStart(2,"0")
-    + ":" +
-    minute +
-    " " +
-    ampm
-  );
-
-}
-
-
-function dateKey(date){
-
-  return date.getFullYear()
-    + "-"
-    + String(date.getMonth()+1).padStart(2,"0")
-    + "-"
-    + String(date.getDate()).padStart(2,"0");
-
-}
-
-
 /* ==========================================================
-   DATA INITIALIZATION
+   INITIALIZE
 ========================================================== */
 
 function initializeData(){
 
-  /*
-     IMPORTANT:
-     We NEVER clear therapySessions.
-  */
+  const storedSessions=
+    readStorage(
+      SESSION_KEY,
+      []
+    );
 
-  const existing =
-    readJSON(SESSION_KEY,[]);
 
-  sessions =
-    Array.isArray(existing)
-      ? existing
+  sessions=
+    Array.isArray(
+      storedSessions
+    )
+      ? storedSessions
       : [];
 
 
   /*
-     Make a safety backup before adding
-     profile fields or other missing fields.
+     FIRST UPGRADE:
+     Create a safety copy.
+
+     This does NOT remove the original data.
   */
 
   if(
     sessions.length &&
-    !localStorage.getItem(UPGRADE_BACKUP_KEY)
+    !localStorage.getItem(
+      BACKUP_KEY
+    )
   ){
 
     localStorage.setItem(
-      UPGRADE_BACKUP_KEY,
-      JSON.stringify(sessions)
+      BACKUP_KEY,
+      JSON.stringify(
+        sessions
+      )
     );
 
   }
 
 
-  profiles =
-    readJSON(PROFILE_KEY,[]);
+  let storedProfiles=
+    readStorage(
+      PROFILE_KEY,
+      []
+    );
 
-  if(!Array.isArray(profiles))
-    profiles=[];
+
+  profiles=
+    Array.isArray(
+      storedProfiles
+    )
+      ? storedProfiles
+      : [];
 
 
   /*
-     If profile information did not exist
-     in the old application, create one
-     default profile.
+     If old application had no profiles,
+     all old sessions stay under
+     Default Profile.
   */
 
   if(!profiles.length){
 
     profiles=[
+
       {
         id:"default",
         name:"Default Profile"
       }
+
     ];
 
     saveProfiles();
@@ -1711,146 +2381,160 @@ function initializeData(){
   }
 
 
-  profiles =
+  profiles=
     profiles.map(
-      (p,index)=>({
+      (
+        profile,
+        index
+      )=>({
 
         id:String(
-          p.id ||
-          p.profileId ||
-          ("profile_"+index+"_"+uid())
+          profile.id ||
+          profile.profileId ||
+          (
+            "profile_" +
+            index +
+            "_" +
+            createId()
+          )
         ),
 
         name:String(
-          p.name ||
-          p.profileName ||
-          ("Profile "+(index+1))
+          profile.name ||
+          profile.profileName ||
+          (
+            "Profile " +
+            (index+1)
+          )
         )
 
       })
     );
 
 
-  const defaultProfile =
+  const defaultProfileId=
     profiles[0].id;
 
 
   /*
-     Upgrade old records WITHOUT deleting them.
+     Upgrade existing records.
+
+     Existing data is NEVER deleted.
   */
 
-  sessions =
-    sessions.map(session=>{
+  sessions=
+    sessions.map(
+      oldSession=>{
 
-      const s={
-        ...session
-      };
-
-
-      if(!s.id){
-
-        s.id=uid();
-
-      }
+        const s={
+          ...oldSession
+        };
 
 
-      if(!s.profileId){
+        if(!s.id){
 
-        s.profileId =
-          defaultProfile;
+          s.id=
+            createId();
 
-      }
-
-
-      /*
-         Support older field names.
-      */
-
-      if(!s.therapy){
-
-        s.therapy =
-          s.therapyType ||
-          s.type ||
-          "Occupational Therapy";
-
-      }
+        }
 
 
-      if(!s.date){
+        if(!s.profileId){
 
-        s.date =
-          s.sessionDate ||
-          "";
+          s.profileId=
+            defaultProfileId;
 
-      }
-
-
-      if(!s.time){
-
-        s.time =
-          s.sessionTime ||
-          "";
-
-      }
+        }
 
 
-      if(!s.therapist){
+        /*
+           Support old field names.
+        */
 
-        s.therapist =
-          s.doctor ||
-          s.provider ||
-          "";
+        if(!s.therapy){
 
-      }
+          s.therapy=
+            s.therapyType ||
+            s.type ||
+            s.therapyName ||
+            "Occupational Therapy";
+
+        }
 
 
-      if(
-        s.cost === undefined ||
-        s.cost === null
-      ){
+        if(!s.date){
 
-        s.cost =
+          s.date=
+            s.sessionDate ||
+            s.visitDate ||
+            "";
+
+        }
+
+
+        if(!s.time){
+
+          s.time=
+            s.sessionTime ||
+            "";
+
+        }
+
+
+        if(!s.therapist){
+
+          s.therapist=
+            s.doctor ||
+            s.provider ||
+            s.therapistName ||
+            "";
+
+        }
+
+
+        if(
+          s.cost===undefined ||
+          s.cost===null
+        ){
+
+          s.cost=
+            Number(
+              s.amount ||
+              s.price ||
+              0
+            );
+
+        }
+
+
+        s.cost=
           Number(
-            s.amount ||
-            s.price ||
-            0
+            s.cost || 0
           );
 
+
+        s.notes=
+          s.notes || "";
+
+
+        s.status=
+          normalizeStatus(
+            s.status,
+            s.date,
+            s.time
+          );
+
+
+        return s;
+
       }
-
-
-      s.cost =
-        Number(s.cost || 0);
-
-
-      if(!s.notes){
-
-        s.notes="";
-
-      }
-
-
-      /*
-         Keep existing status whenever it exists.
-      */
-
-      s.status =
-        normalizeStatus(
-          s.status,
-          s.date,
-          s.time
-        );
-
-
-      return s;
-
-    });
+    );
 
 
   saveSessions();
 
 
-  currentProfileId =
+  currentProfileId=
     localStorage.getItem(
       CURRENT_PROFILE_KEY
     );
@@ -1858,11 +2542,13 @@ function initializeData(){
 
   if(
     !profiles.some(
-      p=>p.id === currentProfileId
+      p =>
+        String(p.id) ===
+        String(currentProfileId)
     )
   ){
 
-    currentProfileId =
+    currentProfileId=
       profiles[0].id;
 
   }
@@ -1876,14 +2562,20 @@ function initializeData(){
 }
 
 
+/* ==========================================================
+   STATUS NORMALIZATION
+========================================================== */
+
 function normalizeStatus(
   status,
   date,
   time
 ){
 
-  const value =
-    String(status || "")
+  const value=
+    String(
+      status || ""
+    )
       .toLowerCase()
       .trim();
 
@@ -1891,11 +2583,11 @@ function normalizeStatus(
   if(
     [
       "attended",
+      "attend",
       "present",
       "completed",
       "complete",
-      "done",
-      "attend"
+      "done"
     ].includes(value)
   ){
 
@@ -1907,6 +2599,7 @@ function normalizeStatus(
   if(
     [
       "missed",
+      "miss",
       "absent",
       "not attended",
       "cancelled",
@@ -1922,6 +2615,7 @@ function normalizeStatus(
   if(
     [
       "planned",
+      "plan",
       "upcoming",
       "scheduled",
       "pending"
@@ -1933,24 +2627,42 @@ function normalizeStatus(
   }
 
 
+  if(
+    [
+      "rescheduled",
+      "reschedule",
+      "re-scheduled"
+    ].includes(value)
+  ){
+
+    return "rescheduled";
+
+  }
+
+
   /*
-     Only old records WITHOUT status
-     need automatic interpretation.
+     Only records with no status
+     are automatically interpreted.
   */
 
   if(date){
 
-    const d =
+    const d=
       new Date(
-        date +
-        (time
-          ? "T"+time
-          : "T23:59")
+        date+
+        (
+          time
+            ? "T"+time
+            : "T23:59"
+        )
       );
 
+
     if(
-      !isNaN(d.getTime()) &&
-      d > new Date()
+      !isNaN(
+        d.getTime()
+      ) &&
+      d>new Date()
     ){
 
       return "planned";
@@ -1966,7 +2678,7 @@ function normalizeStatus(
 
 
 /* ==========================================================
-   CURRENT PROFILE
+   CURRENT PROFILE RECORDS
 ========================================================== */
 
 function currentSessions(){
@@ -1980,18 +2692,262 @@ function currentSessions(){
 }
 
 
-function profileName(){
+/* ==========================================================
+   PROFILE NAME
+========================================================== */
 
-  const p =
+function getCurrentProfileName(){
+
+  const profile=
     profiles.find(
       p =>
         String(p.id) ===
         String(currentProfileId)
     );
 
-  return p
-    ? p.name
+
+  return profile
+    ? profile.name
     : "Profile";
+
+}
+
+
+/* ==========================================================
+   MONEY
+========================================================== */
+
+function money(value){
+
+  return "₹"+
+    Number(
+      value || 0
+    )
+      .toLocaleString(
+        "en-IN"
+      );
+
+}
+
+
+/* ==========================================================
+   DATE
+========================================================== */
+
+function getDateObject(
+  session
+){
+
+  if(!session.date)
+    return null;
+
+
+  const d=
+    new Date(
+      session.date+
+      (
+        session.time
+          ? "T"+session.time
+          : "T00:00"
+      )
+    );
+
+
+  return isNaN(
+    d.getTime()
+  )
+    ? null
+    : d;
+
+}
+
+
+function formatDate(
+  session
+){
+
+  const d=
+    getDateObject(
+      session
+    );
+
+
+  if(!d)
+    return session.date || "";
+
+
+  return d.toLocaleDateString(
+    "en-IN",
+    {
+      day:"2-digit",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function formatTime(
+  session
+){
+
+  if(!session.time)
+    return "";
+
+
+  const parts=
+    session.time.split(":");
+
+
+  const hour=
+    Number(parts[0]);
+
+
+  const minute=
+    parts[1] || "00";
+
+
+  if(
+    isNaN(hour)
+  ){
+
+    return session.time;
+
+  }
+
+
+  const ampm=
+    hour>=12
+      ? "PM"
+      : "AM";
+
+
+  const h=
+    hour%12 || 12;
+
+
+  return (
+    String(h)
+      .padStart(2,"0")
+    +
+    ":"+
+    minute+
+    " "+
+    ampm
+  );
+
+}
+
+
+/* ==========================================================
+   STATUS LABEL
+========================================================== */
+
+function statusLabel(
+  status
+){
+
+  if(status==="attended")
+    return "✓ Attended";
+
+  if(status==="missed")
+    return "✕ Missed";
+
+  if(status==="planned")
+    return "• Planned";
+
+  if(status==="rescheduled")
+    return "↻ Rescheduled";
+
+  return status;
+
+}
+
+
+/* ==========================================================
+   ESCAPE HTML
+========================================================== */
+
+function escapeHTML(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+    .replace(
+      /[&<>"']/g,
+      char=>({
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      })[char]
+    );
+
+}
+
+
+/* ==========================================================
+   THEME
+========================================================== */
+
+function loadTheme(){
+
+  const theme=
+    localStorage.getItem(
+      THEME_KEY
+    ) || "light";
+
+
+  document.body.classList.toggle(
+    "dark",
+    theme==="dark"
+  );
+
+
+  document.getElementById(
+    "themeButton"
+  ).textContent=
+    theme==="dark"
+      ? "☀️"
+      : "🌙";
+
+}
+
+
+function toggleTheme(){
+
+  const dark=
+    !document.body.classList.contains(
+      "dark"
+    );
+
+
+  document.body.classList.toggle(
+    "dark",
+    dark
+  );
+
+
+  localStorage.setItem(
+    THEME_KEY,
+    dark
+      ? "dark"
+      : "light"
+  );
+
+
+  document.getElementById(
+    "themeButton"
+  ).textContent=
+    dark
+      ? "☀️"
+      : "🌙";
 
 }
 
@@ -2002,57 +2958,86 @@ function profileName(){
 
 function renderProfiles(){
 
-  const selects=[
+  const mainSelect=
     document.getElementById(
       "profileSelect"
-    ),
+    );
+
+
+  const formSelect=
     document.getElementById(
       "formProfile"
-    )
-  ];
+    );
 
 
-  selects.forEach(select=>{
+  [
+    mainSelect,
+    formSelect
+  ].forEach(
+    select=>{
 
-    if(!select)
-      return;
-
-    select.innerHTML="";
+      if(!select)
+        return;
 
 
-    profiles.forEach(profile=>{
+      select.innerHTML="";
 
-      const option =
-        document.createElement(
-          "option"
-        );
 
-      option.value =
-        profile.id;
+      profiles.forEach(
+        profile=>{
 
-      option.textContent =
-        profile.name;
+          const option=
+            document.createElement(
+              "option"
+            );
 
-      select.appendChild(
-        option
+
+          option.value=
+            profile.id;
+
+
+          option.textContent=
+            profile.name;
+
+
+          select.appendChild(
+            option
+          );
+
+        }
       );
 
-    });
+
+      select.value=
+        currentProfileId;
+
+    }
+  );
 
 
-    select.value =
-      currentProfileId;
-
-  });
+  document.getElementById(
+    "profileCount"
+  ).textContent=
+    currentSessions().length+
+    (
+      currentSessions().length===1
+        ? " session"
+        : " sessions"
+    )+
+    " in this profile";
 
 }
 
 
-function changeProfile(id){
+function changeProfile(
+  id
+){
 
   if(
     !profiles.some(
-      p=>String(p.id)===String(id)
+      p =>
+        String(p.id)===
+        String(id)
     )
   ){
 
@@ -2061,12 +3046,15 @@ function changeProfile(id){
   }
 
 
-  currentProfileId=id;
+  currentProfileId=
+    id;
+
 
   localStorage.setItem(
     CURRENT_PROFILE_KEY,
     id
   );
+
 
   resetForm();
 
@@ -2081,9 +3069,12 @@ function openProfileModal(){
     "newProfileName"
   ).value="";
 
+
   document.getElementById(
     "profileModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -2092,19 +3083,22 @@ function closeProfileModal(){
 
   document.getElementById(
     "profileModal"
-  ).classList.remove("show");
+  ).classList.remove(
+    "show"
+  );
 
 }
 
 
 function addProfile(){
 
-  const input =
+  const input=
     document.getElementById(
       "newProfileName"
     );
 
-  const name =
+
+  const name=
     input.value.trim();
 
 
@@ -2120,18 +3114,25 @@ function addProfile(){
 
 
   const profile={
-    id:uid(),
+
+    id:createId(),
+
     name:name
+
   };
 
 
-  profiles.push(profile);
+  profiles.push(
+    profile
+  );
+
 
   saveProfiles();
 
 
-  currentProfileId =
+  currentProfileId=
     profile.id;
+
 
   localStorage.setItem(
     CURRENT_PROFILE_KEY,
@@ -2141,67 +3142,8 @@ function addProfile(){
 
   closeProfileModal();
 
-  renderProfiles();
 
   renderAll();
-
-}
-
-
-/* ==========================================================
-   THEME
-========================================================== */
-
-function loadTheme(){
-
-  const theme =
-    localStorage.getItem(
-      THEME_KEY
-    ) || "light";
-
-
-  document.body.classList.toggle(
-    "dark",
-    theme==="dark"
-  );
-
-
-  document.getElementById(
-    "themeBtn"
-  ).textContent =
-    theme==="dark"
-      ? "☀️ Light"
-      : "🌙 Dark";
-
-}
-
-
-function toggleTheme(){
-
-  const dark =
-    !document.body.classList.contains(
-      "dark"
-    );
-
-
-  document.body.classList.toggle(
-    "dark",
-    dark
-  );
-
-
-  localStorage.setItem(
-    THEME_KEY,
-    dark ? "dark" : "light"
-  );
-
-
-  document.getElementById(
-    "themeBtn"
-  ).textContent =
-    dark
-      ? "☀️ Light"
-      : "🌙 Dark";
 
 }
 
@@ -2227,11 +3169,13 @@ function switchView(
 
   document.getElementById(
     viewId
-  ).classList.add("active");
+  ).classList.add(
+    "active"
+  );
 
 
   document.querySelectorAll(
-    ".nav-btn"
+    ".nav-button"
   ).forEach(
     btn =>
       btn.classList.remove(
@@ -2248,23 +3192,36 @@ function switchView(
 
   }else{
 
-    const btn =
+    const nav=
       document.querySelector(
-        `.nav-btn[data-view="${viewId}"]`
+        `.nav-button[data-view="${viewId}"]`
       );
 
-    if(btn)
-      btn.classList.add("active");
+
+    if(nav)
+      nav.classList.add(
+        "active"
+      );
 
   }
 
 
-  if(viewId==="historyView")
+  if(
+    viewId==="historyView"
+  ){
+
     renderHistory();
 
+  }
 
-  if(viewId==="calendarView")
+
+  if(
+    viewId==="calendarView"
+  ){
+
     renderCalendar();
+
+  }
 
 
   window.scrollTo({
@@ -2276,99 +3233,164 @@ function switchView(
 
 
 /* ==========================================================
-   HOME DASHBOARD
+   HOME
 ========================================================== */
 
 function renderHome(){
 
-  const arr =
+  const records=
     currentSessions();
 
 
-  const total =
-    arr.length;
+  const total=
+    records.length;
 
-  const attended =
-    arr.filter(
-      s=>s.status==="attended"
+
+  const attended=
+    records.filter(
+      s =>
+        s.status==="attended"
     ).length;
 
-  const missed =
-    arr.filter(
-      s=>s.status==="missed"
+
+  const missed=
+    records.filter(
+      s =>
+        s.status==="missed"
     ).length;
 
-  const planned =
-    arr.filter(
-      s=>s.status==="planned"
+
+  const planned=
+    records.filter(
+      s =>
+        s.status==="planned"
+    ).length;
+
+
+  const rescheduled=
+    records.filter(
+      s =>
+        s.status==="rescheduled"
     ).length;
 
 
   /*
-     Attendance excludes planned sessions.
+     Planned and rescheduled are excluded
+     from attendance calculation.
   */
 
-  const denominator =
-    attended + missed;
+  const denominator=
+    attended+
+    missed;
 
 
-  const attendance =
+  const rate=
     denominator
       ? Math.round(
-          attended /
-          denominator *
+          attended/
+          denominator*
           100
         )
       : 0;
 
 
-  const cost =
-    arr.reduce(
-      (sum,s)=>
-        sum + Number(s.cost || 0),
+  const totalCost=
+    records.reduce(
+      (
+        sum,
+        s
+      ) =>
+        sum+
+        Number(
+          s.cost || 0
+        ),
       0
     );
 
 
   document.getElementById(
     "totalCount"
-  ).textContent=total;
+  ).textContent=
+    total;
 
 
   document.getElementById(
     "attendedCount"
-  ).textContent=attended;
+  ).textContent=
+    attended;
 
 
   document.getElementById(
     "missedCount"
-  ).textContent=missed;
+  ).textContent=
+    missed;
 
 
   document.getElementById(
     "plannedCount"
-  ).textContent=planned;
+  ).textContent=
+    planned;
+
+
+  document.getElementById(
+    "rescheduledCount"
+  ).textContent=
+    rescheduled;
 
 
   document.getElementById(
     "attendanceRate"
   ).textContent=
-    attendance+"%";
+    rate+"%";
 
 
   document.getElementById(
     "totalCost"
   ).textContent=
-    money(cost);
+    money(
+      totalCost
+    );
 
 
-  renderTherapySummary(arr);
+  renderTherapySummary(
+    records
+  );
 
-  renderTherapyCost(arr);
 
-  renderNextSession(arr);
+  renderTherapyCost(
+    records
+  );
 
-  renderRecent(arr);
+
+  renderNextSession(
+    records
+  );
+
+
+  renderRecentSessions(
+    records
+  );
+
+}
+
+
+/* ==========================================================
+   THERAPY NAMES
+========================================================== */
+
+function getTherapyNames(
+  records
+){
+
+  return [
+    ...new Set(
+      records.map(
+        s =>
+          s.therapy ||
+          "Other"
+      )
+    )
+  ];
 
 }
 
@@ -2377,75 +3399,80 @@ function renderHome(){
    THERAPY SUMMARY
 ========================================================== */
 
-function getTherapyNames(arr){
+function renderTherapySummary(
+  records
+){
 
-  const names =
-    [
-      ...new Set(
-        arr.map(
-          s=>s.therapy ||
-             "Other"
-        )
-      )
-    ];
-
-
-  return names;
-
-}
-
-
-function renderTherapySummary(arr){
-
-  const box =
+  const container=
     document.getElementById(
       "therapySummary"
     );
 
 
-  if(!arr.length){
+  if(!records.length){
 
-    box.innerHTML =
-      `<div class="empty">
+    container.innerHTML=
+      `
+      <div class="empty">
         No therapy sessions yet.
-      </div>`;
+      </div>
+      `;
 
     return;
 
   }
 
 
-  const therapies =
-    getTherapyNames(arr);
+  const therapies=
+    getTherapyNames(
+      records
+    );
 
 
-  box.innerHTML =
+  container.innerHTML=
     therapies.map(
       therapy=>{
 
-        const records =
-          arr.filter(
+        const therapyRecords=
+          records.filter(
             s =>
-              (s.therapy || "Other")
-              === therapy
+              (
+                s.therapy ||
+                "Other"
+              )===
+              therapy
           );
 
 
-        const attended =
-          records.filter(
-            s=>s.status==="attended"
+        const attended=
+          therapyRecords.filter(
+            s =>
+              s.status===
+              "attended"
           ).length;
 
 
-        const missed =
-          records.filter(
-            s=>s.status==="missed"
+        const missed=
+          therapyRecords.filter(
+            s =>
+              s.status===
+              "missed"
           ).length;
 
 
-        const planned =
-          records.filter(
-            s=>s.status==="planned"
+        const planned=
+          therapyRecords.filter(
+            s =>
+              s.status===
+              "planned"
+          ).length;
+
+
+        const rescheduled=
+          therapyRecords.filter(
+            s =>
+              s.status===
+              "rescheduled"
           ).length;
 
 
@@ -2454,20 +3481,26 @@ function renderTherapySummary(arr){
         <div class="summary-card">
 
           <div class="summary-title">
-            ${escapeHTML(therapy)}
+
+            ${escapeHTML(
+              therapy
+            )}
+
           </div>
+
 
           <div class="summary-grid">
 
+
             <div
-              class="summary-box total-box"
+              class="summary-box summary-total"
               onclick='openTherapyRecords(
                 ${JSON.stringify(therapy)},
                 "all"
               )'>
 
               <div class="summary-number">
-                ${records.length}
+                ${therapyRecords.length}
               </div>
 
               <div class="summary-label">
@@ -2478,7 +3511,7 @@ function renderTherapySummary(arr){
 
 
             <div
-              class="summary-box attended-box"
+              class="summary-box summary-attended"
               onclick='openTherapyRecords(
                 ${JSON.stringify(therapy)},
                 "attended"
@@ -2496,7 +3529,7 @@ function renderTherapySummary(arr){
 
 
             <div
-              class="summary-box missed-box"
+              class="summary-box summary-missed"
               onclick='openTherapyRecords(
                 ${JSON.stringify(therapy)},
                 "missed"
@@ -2514,7 +3547,7 @@ function renderTherapySummary(arr){
 
 
             <div
-              class="summary-box planned-box"
+              class="summary-box summary-planned"
               onclick='openTherapyRecords(
                 ${JSON.stringify(therapy)},
                 "planned"
@@ -2529,6 +3562,25 @@ function renderTherapySummary(arr){
               </div>
 
             </div>
+
+
+            <div
+              class="summary-box summary-rescheduled"
+              onclick='openTherapyRecords(
+                ${JSON.stringify(therapy)},
+                "rescheduled"
+              )'>
+
+              <div class="summary-number">
+                ${rescheduled}
+              </div>
+
+              <div class="summary-label">
+                Rescheduled
+              </div>
+
+            </div>
+
 
           </div>
 
@@ -2546,141 +3598,202 @@ function renderTherapySummary(arr){
    THERAPY COST
 ========================================================== */
 
-function renderTherapyCost(arr){
+function renderTherapyCost(
+  records
+){
 
-  const box =
+  const container=
     document.getElementById(
       "therapyCost"
     );
 
 
-  if(!arr.length){
+  if(!records.length){
 
-    box.innerHTML =
-      `<div class="empty">
+    container.innerHTML=
+      `
+      <div class="empty">
         No cost records yet.
-      </div>`;
+      </div>
+      `;
 
     return;
 
   }
 
 
-  box.innerHTML =
-    getTherapyNames(arr)
-      .map(
-        therapy=>{
+  container.innerHTML=
+    getTherapyNames(
+      records
+    ).map(
+      therapy=>{
 
-          const records =
-            arr.filter(
-              s =>
-                (s.therapy || "Other")
-                === therapy
-            );
-
-
-          const attended =
-            records.filter(
-              s=>s.status==="attended"
-            );
+        const list=
+          records.filter(
+            s =>
+              (
+                s.therapy ||
+                "Other"
+              )===
+              therapy
+          );
 
 
-          const missed =
-            records.filter(
-              s=>s.status==="missed"
-            );
+        const attended=
+          list.filter(
+            s =>
+              s.status===
+              "attended"
+          );
 
 
-          const planned =
-            records.filter(
-              s=>s.status==="planned"
-            );
+        const missed=
+          list.filter(
+            s =>
+              s.status===
+              "missed"
+          );
 
 
-          const rate =
-            records.length
-              ? Math.max(
-                  ...records.map(
-                    s=>Number(s.cost||0)
-                  )
+        const planned=
+          list.filter(
+            s =>
+              s.status===
+              "planned"
+          );
+
+
+        const rescheduled=
+          list.filter(
+            s =>
+              s.status===
+              "rescheduled"
+          );
+
+
+        const rate=
+          list.length
+            ? Math.max(
+                ...list.map(
+                  s =>
+                    Number(
+                      s.cost || 0
+                    )
                 )
-              : 0;
+              )
+            : 0;
 
 
-          const attendedCost =
-            attended.reduce(
-              (sum,s)=>
-                sum + Number(s.cost||0),
-              0
-            );
+        function totalCost(
+          arr
+        ){
+
+          return arr.reduce(
+            (
+              sum,
+              s
+            ) =>
+              sum+
+              Number(
+                s.cost || 0
+              ),
+            0
+          );
+
+        }
 
 
-          const missedCost =
-            missed.reduce(
-              (sum,s)=>
-                sum + Number(s.cost||0),
-              0
-            );
+        return `
 
+        <div class="summary-card">
 
-          const plannedCost =
-            planned.reduce(
-              (sum,s)=>
-                sum + Number(s.cost||0),
-              0
-            );
+          <div class="summary-title">
 
-
-          return `
-
-          <div class="summary-card">
-
-            <div class="summary-title">
-              ${escapeHTML(therapy)}
-            </div>
-
-            <div class="cost-row">
-              <span>
-                Rate / session
-              </span>
-              <strong>
-                ${money(rate)}
-              </strong>
-            </div>
-
-            <div class="cost-row">
-              <span>
-                Attended (${attended.length})
-              </span>
-              <strong>
-                ${money(attendedCost)}
-              </strong>
-            </div>
-
-            <div class="cost-row">
-              <span>
-                Planned (${planned.length})
-              </span>
-              <strong>
-                ${money(plannedCost)}
-              </strong>
-            </div>
-
-            <div class="cost-row">
-              <span>
-                Missed (${missed.length})
-              </span>
-              <strong>
-                ${money(missedCost)}
-              </strong>
-            </div>
+            ${escapeHTML(
+              therapy
+            )}
 
           </div>
 
-          `;
 
-        }
-      ).join("");
+          <div class="cost-row">
+
+            <span>
+              Rate / session
+            </span>
+
+            <strong>
+              ${money(rate)}
+            </strong>
+
+          </div>
+
+
+          <div class="cost-row">
+
+            <span>
+              Attended (${attended.length})
+            </span>
+
+            <strong>
+              ${money(
+                totalCost(attended)
+              )}
+            </strong>
+
+          </div>
+
+
+          <div class="cost-row">
+
+            <span>
+              Planned (${planned.length})
+            </span>
+
+            <strong>
+              ${money(
+                totalCost(planned)
+              )}
+            </strong>
+
+          </div>
+
+
+          <div class="cost-row">
+
+            <span>
+              Missed (${missed.length})
+            </span>
+
+            <strong>
+              ${money(
+                totalCost(missed)
+              )}
+            </strong>
+
+          </div>
+
+
+          <div class="cost-row">
+
+            <span>
+              Rescheduled (${rescheduled.length})
+            </span>
+
+            <strong>
+              ${money(
+                totalCost(rescheduled)
+              )}
+            </strong>
+
+          </div>
+
+        </div>
+
+        `;
+
+      }
+    ).join("");
 
 }
 
@@ -2689,147 +3802,236 @@ function renderTherapyCost(arr){
    NEXT SESSION
 ========================================================== */
 
-function renderNextSession(arr){
+function renderNextSession(
+  records
+){
 
-  const now =
+  const now=
     new Date();
 
 
-  const upcoming =
-    arr
+  const upcoming=
+    records
       .filter(
         s =>
-          s.status==="planned" &&
-          dateObject(s) &&
-          dateObject(s)>=now
+
+          (
+            s.status===
+            "planned" ||
+            s.status===
+            "rescheduled"
+          )
+
+          &&
+
+          getDateObject(s)
+
+          &&
+
+          getDateObject(s)>=now
       )
       .sort(
-        (a,b)=>
-          dateObject(a)-dateObject(b)
+        (
+          a,
+          b
+        ) =>
+          getDateObject(a) -
+          getDateObject(b)
       );
 
 
   document.getElementById(
     "nextSession"
-  ).innerHTML =
+  ).innerHTML=
     upcoming.length
       ? sessionHTML(
           upcoming[0]
         )
-      : `<div class="empty">
+      :
+        `
+        <div class="empty">
           No upcoming sessions.
-        </div>`;
+        </div>
+        `;
 
 }
 
 
 /* ==========================================================
-   RECENT SESSIONS
+   RECENT
 ========================================================== */
 
-function renderRecent(arr){
+function renderRecentSessions(
+  records
+){
 
-  const sorted =
-    [...arr].sort(
-      (a,b)=>
-        (dateObject(b)?.getTime()||0)
-        -
-        (dateObject(a)?.getTime()||0)
-    );
+  const sorted=
+    [...records]
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          (
+            getDateObject(b)
+              ?.getTime() ||
+            0
+          )
+          -
+          (
+            getDateObject(a)
+              ?.getTime() ||
+            0
+          )
+      );
 
 
   document.getElementById(
     "recentSessions"
-  ).innerHTML =
+  ).innerHTML=
     sorted
       .slice(0,5)
-      .map(sessionHTML)
+      .map(
+        sessionHTML
+      )
       .join("")
       ||
-      `<div class="empty">
+      `
+      <div class="empty">
         No sessions recorded.
-      </div>`;
+      </div>
+      `;
 
 }
 
 
 /* ==========================================================
-   SESSION CARD
+   SESSION HTML
 ========================================================== */
 
-function sessionHTML(s){
+function sessionHTML(
+  s
+){
 
   return `
 
   <div class="session ${s.status}">
 
-    <div class="session-head">
+
+    <div class="session-header">
+
 
       <div class="session-title">
+
         ${escapeHTML(
           s.therapy ||
           "Therapy"
         )}
+
       </div>
 
-      <span class="badge ${s.status}">
-        ${statusText(s.status)}
+
+      <span
+        class="badge ${s.status}">
+
+        ${statusLabel(
+          s.status
+        )}
+
       </span>
+
 
     </div>
 
 
     <div class="session-meta">
 
-      📅 ${escapeHTML(
+      📅
+      ${escapeHTML(
         formatDate(s)
       )}
 
-      ${s.time
-        ? `<br>🕐 ${escapeHTML(
-            formatTime(s)
-          )}`
-        : ""}
+      ${
+        s.time
+          ? `
+            <br>
+            🕐
+            ${escapeHTML(
+              formatTime(s)
+            )}
+          `
+          : ""
+      }
 
-      ${s.therapist
-        ? `<br>👤 ${escapeHTML(
-            s.therapist
-          )}`
-        : ""}
+
+      ${
+        s.therapist
+          ? `
+            <br>
+            👤
+            ${escapeHTML(
+              s.therapist
+            )}
+          `
+          : ""
+      }
+
 
       <br>
-      💰 ${money(s.cost)}
 
-      ${s.notes
-        ? `<br>📝 ${escapeHTML(
-            s.notes
-          )}`
-        : ""}
+      💰
+      ${money(
+        s.cost
+      )}
+
+
+      ${
+        s.notes
+          ? `
+            <br>
+            📝
+            ${escapeHTML(
+              s.notes
+            )}
+          `
+          : ""
+      }
 
     </div>
 
 
     <div class="actions">
 
+
       <button
         class="btn small"
         onclick="editSession('${s.id}')">
+
         Edit
+
       </button>
+
 
       <button
         class="btn small"
         onclick="copySession('${s.id}')">
+
         Copy
+
       </button>
+
 
       <button
         class="btn small danger"
         onclick="deleteSession('${s.id}')">
+
         Delete
+
       </button>
 
+
     </div>
+
 
   </div>
 
@@ -2839,12 +4041,14 @@ function sessionHTML(s){
 
 
 /* ==========================================================
-   CLICKABLE DASHBOARD FILTER
+   DASHBOARD FILTER
 ========================================================== */
 
-function openFilteredRecords(status){
+function openStatusRecords(
+  status
+){
 
-  const records =
+  const records=
     currentSessions()
       .filter(
         s =>
@@ -2853,31 +4057,41 @@ function openFilteredRecords(status){
       );
 
 
-  const title =
+  openRecordsModal(
+
     status==="all"
       ? "All Sessions"
-      : statusText(status);
+      : statusLabel(status),
 
-
-  openRecordsModal(
-    title,
     records
+
   );
 
 }
 
+
+/* ==========================================================
+   THERAPY FILTER
+========================================================== */
 
 function openTherapyRecords(
   therapy,
   status
 ){
 
-  const records =
+  const records=
     currentSessions()
       .filter(
         s =>
-          (s.therapy || "Other")
-          === therapy &&
+
+          (
+            s.therapy ||
+            "Other"
+          )===
+          therapy
+
+          &&
+
           (
             status==="all" ||
             s.status===status
@@ -2885,23 +4099,26 @@ function openTherapyRecords(
       );
 
 
-  const title =
-    therapy +
-    " — " +
+  openRecordsModal(
+
+    therapy+
+    " — "+
     (
       status==="all"
         ? "All"
-        : statusText(status)
-    );
+        : statusLabel(status)
+    ),
 
-
-  openRecordsModal(
-    title,
     records
+
   );
 
 }
 
+
+/* ==========================================================
+   RECORD MODAL
+========================================================== */
 
 function openRecordsModal(
   title,
@@ -2910,33 +4127,53 @@ function openRecordsModal(
 
   document.getElementById(
     "recordsTitle"
-  ).textContent=title;
+  ).textContent=
+    title;
 
 
-  const sorted =
-    [...records].sort(
-      (a,b)=>
-        (dateObject(b)?.getTime()||0)
-        -
-        (dateObject(a)?.getTime()||0)
-    );
+  const sorted=
+    [...records]
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          (
+            getDateObject(b)
+              ?.getTime() ||
+            0
+          )
+          -
+          (
+            getDateObject(a)
+              ?.getTime() ||
+            0
+          )
+      );
 
 
   document.getElementById(
     "recordsBody"
-  ).innerHTML =
+  ).innerHTML=
     sorted.length
-      ? sorted.map(
-          sessionHTML
-        ).join("")
-      : `<div class="empty">
+      ? sorted
+          .map(
+            sessionHTML
+          )
+          .join("")
+      :
+        `
+        <div class="empty">
           No matching records.
-        </div>`;
+        </div>
+        `;
 
 
   document.getElementById(
     "recordsModal"
-  ).classList.add("show");
+  ).classList.add(
+    "show"
+  );
 
 }
 
@@ -2953,18 +4190,14 @@ function closeRecordsModal(){
 
 
 /* ==========================================================
-   FORM
+   FORM RESET
 ========================================================== */
 
 function resetForm(){
 
-  const form =
-    document.getElementById(
-      "sessionForm"
-    );
-
-
-  form.reset();
+  document.getElementById(
+    "sessionForm"
+  ).reset();
 
 
   document.getElementById(
@@ -2974,46 +4207,52 @@ function resetForm(){
 
   document.getElementById(
     "formTitle"
-  ).textContent =
+  ).textContent=
     "Add Therapy Session";
 
 
   document.getElementById(
     "formProfile"
-  ).value =
+  ).value=
     currentProfileId;
 
 
   document.getElementById(
     "status"
-  ).value =
+  ).value=
     "planned";
 
 
-  const today =
+  const today=
     new Date();
 
 
   document.getElementById(
     "date"
-  ).value =
+  ).value=
     dateKey(today);
 
 
   document.getElementById(
     "time"
-  ).value =
+  ).value=
     "19:30";
 
 }
 
 
-function saveSession(event){
+/* ==========================================================
+   SAVE SESSION
+========================================================== */
+
+function saveSession(
+  event
+){
 
   event.preventDefault();
 
 
-  const id =
+  const id=
     document.getElementById(
       "editId"
     ).value;
@@ -3022,7 +4261,8 @@ function saveSession(event){
   const record={
 
     id:
-      id || uid(),
+      id ||
+      createId(),
 
     profileId:
       document.getElementById(
@@ -3071,10 +4311,10 @@ function saveSession(event){
 
   if(id){
 
-    const index =
+    const index=
       sessions.findIndex(
         s =>
-          String(s.id) ===
+          String(s.id)===
           String(id)
       );
 
@@ -3082,9 +4322,8 @@ function saveSession(event){
     if(index>=0){
 
       /*
-         Preserve any old fields
-         that are not part of the
-         new form.
+         Preserve any fields
+         from older records.
       */
 
       sessions[index]={
@@ -3103,16 +4342,10 @@ function saveSession(event){
   }
 
 
-  /*
-     IMPORTANT:
-     Only save the updated array.
-     No localStorage.clear().
-  */
-
   saveSessions();
 
 
-  currentProfileId =
+  currentProfileId=
     record.profileId;
 
 
@@ -3137,12 +4370,14 @@ function saveSession(event){
    EDIT
 ========================================================== */
 
-function editSession(id){
+function editSession(
+  id
+){
 
-  const s =
+  const s=
     sessions.find(
       x =>
-        String(x.id) ===
+        String(x.id)===
         String(id)
     );
 
@@ -3158,45 +4393,58 @@ function editSession(id){
 
   document.getElementById(
     "editId"
-  ).value=s.id;
+  ).value=
+    s.id;
 
 
   document.getElementById(
     "formTitle"
-  ).textContent =
+  ).textContent=
     "Edit Therapy Session";
 
 
   document.getElementById(
     "formProfile"
-  ).value =
+  ).value=
     s.profileId;
 
 
-  const therapySelect =
+  const therapySelect=
     document.getElementById(
       "therapy"
     );
 
 
+  /*
+     If an old record contains
+     a custom therapy name,
+     keep it.
+  */
+
   if(
+    s.therapy &&
     ![
       ...therapySelect.options
     ].some(
-      o=>o.value===s.therapy
+      option =>
+        option.value===
+        s.therapy
     )
   ){
 
-    const option =
+    const option=
       document.createElement(
         "option"
       );
 
-    option.value =
+
+    option.value=
       s.therapy;
 
-    option.textContent =
+
+    option.textContent=
       s.therapy;
+
 
     therapySelect.appendChild(
       option
@@ -3205,44 +4453,50 @@ function editSession(id){
   }
 
 
-  therapySelect.value =
-    s.therapy;
+  therapySelect.value=
+    s.therapy ||
+    "Occupational Therapy";
 
 
   document.getElementById(
     "date"
-  ).value =
+  ).value=
     s.date || "";
 
 
   document.getElementById(
     "time"
-  ).value =
-    s.time || "19:30";
+  ).value=
+    s.time ||
+    "19:30";
 
 
   document.getElementById(
     "therapist"
-  ).value =
-    s.therapist || "";
+  ).value=
+    s.therapist ||
+    "";
 
 
   document.getElementById(
     "cost"
-  ).value =
-    s.cost || 0;
+  ).value=
+    s.cost ||
+    0;
 
 
   document.getElementById(
     "status"
-  ).value =
-    s.status || "planned";
+  ).value=
+    s.status ||
+    "planned";
 
 
   document.getElementById(
     "notes"
-  ).value =
-    s.notes || "";
+  ).value=
+    s.notes ||
+    "";
 
 }
 
@@ -3251,12 +4505,14 @@ function editSession(id){
    COPY
 ========================================================== */
 
-function copySession(id){
+function copySession(
+  id
+){
 
-  const s =
+  const s=
     sessions.find(
       x =>
-        String(x.id) ===
+        String(x.id)===
         String(id)
     );
 
@@ -3277,62 +4533,64 @@ function copySession(id){
 
   document.getElementById(
     "formTitle"
-  ).textContent =
+  ).textContent=
     "Copy Therapy Session";
 
 
   document.getElementById(
     "formProfile"
-  ).value =
+  ).value=
     s.profileId;
 
 
   document.getElementById(
     "therapy"
-  ).value =
+  ).value=
     s.therapy ||
     "Occupational Therapy";
 
 
   document.getElementById(
     "date"
-  ).value =
-    s.date || "";
+  ).value=
+    s.date ||
+    dateKey(
+      new Date()
+    );
 
 
   document.getElementById(
     "time"
-  ).value =
-    s.time || "19:30";
+  ).value=
+    s.time ||
+    "19:30";
 
 
   document.getElementById(
     "therapist"
-  ).value =
-    s.therapist || "";
+  ).value=
+    s.therapist ||
+    "";
 
 
   document.getElementById(
     "cost"
-  ).value =
-    s.cost || 0;
+  ).value=
+    s.cost ||
+    0;
 
-
-  /*
-     Copied record is planned
-     by default.
-  */
 
   document.getElementById(
     "status"
-  ).value =
+  ).value=
     "planned";
 
 
   document.getElementById(
     "notes"
-  ).value =
-    s.notes || "";
+  ).value=
+    s.notes ||
+    "";
 
 }
 
@@ -3341,17 +4599,19 @@ function copySession(id){
    DELETE
 ========================================================== */
 
-function deleteSession(id){
+function deleteSession(
+  id
+){
 
-  const s =
+  const session=
     sessions.find(
-      x =>
-        String(x.id) ===
+      s =>
+        String(s.id)===
         String(id)
     );
 
 
-  if(!s)
+  if(!session)
     return;
 
 
@@ -3367,14 +4627,14 @@ function deleteSession(id){
 
 
   /*
-     Delete ONLY the selected record.
-     Other records remain untouched.
+     Only the selected record
+     is removed.
   */
 
-  sessions =
+  sessions=
     sessions.filter(
-      x =>
-        String(x.id) !==
+      s =>
+        String(s.id)!==
         String(id)
     );
 
@@ -3392,24 +4652,25 @@ function deleteSession(id){
 
 function renderHistory(){
 
-  const search =
+  const search=
     (
       document.getElementById(
         "historySearch"
-      )?.value || ""
+      )?.value ||
+      ""
     )
       .toLowerCase()
       .trim();
 
 
-  const status =
+  const status=
     document.getElementById(
       "historyStatus"
     )?.value ||
     "all";
 
 
-  let records =
+  let records=
     currentSessions()
       .filter(
         s =>
@@ -3420,7 +4681,7 @@ function renderHistory(){
 
   if(search){
 
-    records =
+    records=
       records.filter(
         s =>
           [
@@ -3438,37 +4699,81 @@ function renderHistory(){
 
 
   records.sort(
-    (a,b)=>
-      (dateObject(b)?.getTime()||0)
+    (
+      a,
+      b
+    ) =>
+      (
+        getDateObject(b)
+          ?.getTime() ||
+        0
+      )
       -
-      (dateObject(a)?.getTime()||0)
+      (
+        getDateObject(a)
+          ?.getTime() ||
+        0
+      )
   );
 
 
   document.getElementById(
     "historyList"
-  ).innerHTML =
+  ).innerHTML=
     records.length
-      ? records.map(
-          sessionHTML
-        ).join("")
-      : `<div class="card empty">
+      ? records
+          .map(
+            sessionHTML
+          )
+          .join("")
+      :
+        `
+        <div class="card empty">
           No matching sessions.
-        </div>`;
+        </div>
+        `;
 
 }
 
 
 /* ==========================================================
-   CALENDAR
+   CALENDAR DATE KEY
 ========================================================== */
 
-function changeMonth(amount){
+function dateKey(
+  date
+){
 
-  calendarDate =
+  return date.getFullYear()
+    +
+    "-"
+    +
+    String(
+      date.getMonth()+1
+    ).padStart(2,"0")
+    +
+    "-"
+    +
+    String(
+      date.getDate()
+    ).padStart(2,"0");
+
+}
+
+
+/* ==========================================================
+   CHANGE MONTH
+========================================================== */
+
+function changeMonth(
+  amount
+){
+
+  calendarDate=
     new Date(
       calendarDate.getFullYear(),
-      calendarDate.getMonth()+amount,
+      calendarDate.getMonth()+
+      amount,
       1
     );
 
@@ -3478,19 +4783,23 @@ function changeMonth(amount){
 }
 
 
+/* ==========================================================
+   CALENDAR
+========================================================== */
+
 function renderCalendar(){
 
-  const year =
+  const year=
     calendarDate.getFullYear();
 
 
-  const month =
+  const month=
     calendarDate.getMonth();
 
 
   document.getElementById(
     "monthTitle"
-  ).textContent =
+  ).textContent=
     new Date(
       year,
       month,
@@ -3504,7 +4813,7 @@ function renderCalendar(){
     );
 
 
-  const grid =
+  const grid=
     document.getElementById(
       "calendarGrid"
     );
@@ -3521,16 +4830,20 @@ function renderCalendar(){
   ];
 
 
-  grid.innerHTML =
-    weekdays.map(
-      day =>
-        `<div class="weekday">
-          ${day}
-        </div>`
-    ).join("");
+  grid.innerHTML=
+    weekdays
+      .map(
+        day =>
+          `
+          <div class="weekday">
+            ${day}
+          </div>
+          `
+      )
+      .join("");
 
 
-  const first =
+  const firstDay=
     new Date(
       year,
       month,
@@ -3538,11 +4851,11 @@ function renderCalendar(){
     );
 
 
-  const start =
-    first.getDay();
+  const start=
+    firstDay.getDay();
 
 
-  const days =
+  const daysInMonth=
     new Date(
       year,
       month+1,
@@ -3550,7 +4863,7 @@ function renderCalendar(){
     ).getDate();
 
 
-  const previousMonthDays =
+  const previousDays=
     new Date(
       year,
       month,
@@ -3558,7 +4871,7 @@ function renderCalendar(){
     ).getDate();
 
 
-  const today =
+  const today=
     dateKey(
       new Date()
     );
@@ -3570,39 +4883,47 @@ function renderCalendar(){
     i++
   ){
 
-    let number =
+    let number=
       i-start+1;
 
-    let d;
 
-    let other=false;
+    let date;
+
+    let otherMonth=false;
 
 
     if(number<1){
 
-      d =
+      date=
         new Date(
           year,
           month-1,
-          previousMonthDays+number
+          previousDays+
+          number
         );
 
-      other=true;
+      otherMonth=true;
 
-    }else if(number>days){
+    }
+    else if(
+      number>
+      daysInMonth
+    ){
 
-      d =
+      date=
         new Date(
           year,
           month+1,
-          number-days
+          number-
+          daysInMonth
         );
 
-      other=true;
+      otherMonth=true;
 
-    }else{
+    }
+    else{
 
-      d =
+      date=
         new Date(
           year,
           month,
@@ -3612,103 +4933,144 @@ function renderCalendar(){
     }
 
 
-    const key =
-      dateKey(d);
+    const key=
+      dateKey(
+        date
+      );
 
 
-    const weekend =
-      d.getDay()===0 ||
-      d.getDay()===6;
+    const weekend=
+      date.getDay()===0 ||
+      date.getDay()===6;
 
 
-    const records =
+    const records=
       currentSessions()
         .filter(
-          s=>s.date===key
+          s =>
+            s.date===
+            key
         );
 
 
     /*
-       IMPORTANT:
-       Status marker uses the
-       actual status.
+       Status markers.
 
-       Missed = RED X
-       Attended = GREEN CHECK
-       Planned = ORANGE DOT
+       Attended    = GREEN CHECK
+       Missed      = RED X
+       Planned     = ORANGE DOT
+       Rescheduled = PURPLE ARROW
+
+       Weekend background = BLUE
     */
 
-    const markers =
-      records.map(
-        s => {
+    const markers=
+      records
+        .map(
+          session=>{
 
-          if(
-            s.status==="attended"
-          ){
+            if(
+              session.status===
+              "attended"
+            ){
 
-            return `
-              <span
-                class="marker attended">
-                ✓
-              </span>
-            `;
+              return `
+                <span
+                  class="marker attended">
+                  ✓
+                </span>
+              `;
+
+            }
+
+
+            if(
+              session.status===
+              "missed"
+            ){
+
+              return `
+                <span
+                  class="marker missed">
+                  ✕
+                </span>
+              `;
+
+            }
+
+
+            if(
+              session.status===
+              "planned"
+            ){
+
+              return `
+                <span
+                  class="marker planned">
+                  •
+                </span>
+              `;
+
+            }
+
+
+            if(
+              session.status===
+              "rescheduled"
+            ){
+
+              return `
+                <span
+                  class="marker rescheduled">
+                  ↻
+                </span>
+              `;
+
+            }
+
+
+            return "";
 
           }
+        )
+        .join("");
 
 
-          if(
-            s.status==="missed"
-          ){
-
-            return `
-              <span
-                class="marker missed">
-                ✕
-              </span>
-            `;
-
-          }
-
-
-          return `
-            <span
-              class="marker planned">
-              •
-            </span>
-          `;
-
-        }
-      ).join("");
-
-
-    const classes =
+    const classes=
       [
-        "day",
-        other
+        "calendar-day",
+
+        otherMonth
           ? "other-month"
           : "",
+
         weekend
           ? "weekend"
           : "",
+
         key===today
           ? "today"
           : "",
-        key===selectedDate
+
+        key===
+        selectedCalendarDate
           ? "selected"
           : ""
+
       ]
         .filter(Boolean)
         .join(" ");
 
 
-    grid.innerHTML += `
+    grid.innerHTML+=`
 
       <button
+        type="button"
         class="${classes}"
-        onclick="selectDate('${key}')">
+        onclick="selectCalendarDate('${key}')">
 
         <span class="day-number">
-          ${d.getDate()}
+          ${date.getDate()}
         </span>
 
         <span class="markers">
@@ -3722,8 +5084,13 @@ function renderCalendar(){
   }
 
 
-  if(selectedDate)
+  if(
+    selectedCalendarDate
+  ){
+
     renderSelectedDate();
+
+  }
 
 }
 
@@ -3732,62 +5099,221 @@ function renderCalendar(){
    SELECT CALENDAR DATE
 ========================================================== */
 
-function selectDate(key){
+function selectCalendarDate(
+  key
+){
 
-  selectedDate=key;
+  selectedCalendarDate=
+    key;
+
+
+  const records=
+    currentSessions()
+      .filter(
+        s =>
+          s.date===
+          key
+      );
+
 
   renderCalendar();
 
   renderSelectedDate();
 
+
+  /*
+     IMPORTANT:
+     If no session exists,
+     ask user whether to add one.
+  */
+
+  if(!records.length){
+
+    const answer=
+      confirm(
+        "No therapy session is added for this date.\n\nDo you want to add a session for "+formatCalendarDate(key)+"?"
+      );
+
+
+    if(answer){
+
+      openAddForDate(
+        key
+      );
+
+    }
+
+  }
+
 }
 
 
-function renderSelectedDate(){
+/* ==========================================================
+   CALENDAR DATE DISPLAY
+========================================================== */
 
-  if(!selectedDate)
-    return;
+function formatCalendarDate(
+  key
+){
 
-
-  const d =
+  const d=
     new Date(
-      selectedDate+
+      key+
       "T00:00"
     );
 
 
-  document.getElementById(
-    "selectedDateTitle"
-  ).textContent =
-    "Selected Date — " +
-    d.toLocaleDateString(
-      "en-IN",
-      {
-        day:"2-digit",
-        month:"short",
-        year:"numeric"
-      }
-    );
+  return d.toLocaleDateString(
+    "en-IN",
+    {
+      day:"2-digit",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
+}
 
 
-  const records =
+/* ==========================================================
+   SELECTED DATE
+========================================================== */
+
+function renderSelectedDate(){
+
+  if(!selectedCalendarDate){
+
+    return;
+
+  }
+
+
+  const records=
     currentSessions()
       .filter(
         s =>
-          s.date===selectedDate
+          s.date===
+          selectedCalendarDate
       );
 
 
   document.getElementById(
-    "selectedDateRecords"
-  ).innerHTML =
-    records.length
-      ? records.map(
+    "selectedDateTitle"
+  ).textContent=
+    "Selected Date — "+
+    formatCalendarDate(
+      selectedCalendarDate
+    );
+
+
+  if(records.length){
+
+    document.getElementById(
+      "selectedDateRecords"
+    ).innerHTML=
+      records
+        .map(
           sessionHTML
-        ).join("")
-      : `<div class="empty">
-          No sessions on this date.
-        </div>`;
+        )
+        .join("")
+        +
+        `
+        <div
+          class="actions"
+          style="margin-top:12px">
+
+          <button
+            class="btn primary"
+            onclick="openAddForDate('${selectedCalendarDate}')">
+
+            ＋ Add Another Session
+
+          </button>
+
+        </div>
+        `;
+
+  }
+  else{
+
+    document.getElementById(
+      "selectedDateRecords"
+    ).innerHTML=
+      `
+      <div class="selected-date-box">
+
+        <div class="selected-date-title">
+
+          ${formatCalendarDate(
+            selectedCalendarDate
+          )}
+
+        </div>
+
+        <div class="empty">
+
+          No therapy sessions on this date.
+
+        </div>
+
+
+        <div
+          class="actions"
+          style="justify-content:center">
+
+          <button
+            class="btn primary"
+            onclick="openAddForDate('${selectedCalendarDate}')">
+
+            ＋ Add Session
+
+          </button>
+
+        </div>
+
+      </div>
+      `;
+
+  }
+
+}
+
+
+/* ==========================================================
+   OPEN ADD FOR SELECTED DATE
+========================================================== */
+
+function openAddForDate(
+  key
+){
+
+  resetForm();
+
+
+  document.getElementById(
+    "date"
+  ).value=
+    key;
+
+
+  document.getElementById(
+    "formProfile"
+  ).value=
+    currentProfileId;
+
+
+  document.getElementById(
+    "formTitle"
+  ).textContent=
+    "Add Session — "+
+    formatCalendarDate(
+      key
+    );
+
+
+  switchView(
+    "addView"
+  );
 
 }
 
@@ -3798,16 +5324,16 @@ function renderSelectedDate(){
 
 function exportExcel(){
 
-  const records =
+  const records=
     currentSessions();
 
 
-  const rows =
+  const rows=
     records.map(
-      s => ({
+      s=>({
 
         Profile:
-          profileName(),
+          getCurrentProfileName(),
 
         Therapy:
           s.therapy || "",
@@ -3825,7 +5351,9 @@ function exportExcel(){
           s.status || "",
 
         Cost:
-          Number(s.cost || 0),
+          Number(
+            s.cost || 0
+          ),
 
         Notes:
           s.notes || ""
@@ -3839,13 +5367,13 @@ function exportExcel(){
     "undefined"
   ){
 
-    const worksheet =
+    const worksheet=
       XLSX.utils.json_to_sheet(
         rows
       );
 
 
-    const workbook =
+    const workbook=
       XLSX.utils.book_new();
 
 
@@ -3858,25 +5386,18 @@ function exportExcel(){
 
     XLSX.writeFile(
       workbook,
-      "Therapy_Tracker_" +
+      "Therapy_Tracker_"+
       safeFileName(
-        profileName()
-      ) +
+        getCurrentProfileName()
+      )+
       ".xlsx"
     );
 
-
-  }else{
-
-    /*
-       Fallback if CDN is unavailable.
-    */
-
-    const csv =
-      rowsToCSV(rows);
+  }
+  else{
 
     downloadFile(
-      csv,
+      rowsToCSV(rows),
       "Therapy_Tracker.csv",
       "text/csv"
     );
@@ -3887,18 +5408,18 @@ function exportExcel(){
 
 
 /* ==========================================================
-   PDF EXPORT
+   PDF
 ========================================================== */
 
 function exportPDF(){
 
   if(
-    typeof window.jspdf ===
+    typeof window.jspdf===
     "undefined"
   ){
 
     alert(
-      "PDF library is unavailable. Please open the app with internet and try again."
+      "PDF support is unavailable. Please open the app with internet once and try again."
     );
 
     return;
@@ -3908,28 +5429,42 @@ function exportPDF(){
 
   const {
     jsPDF
-  } =
+  }=
     window.jspdf;
 
 
-  const doc =
+  const doc=
     new jsPDF();
 
 
-  const records =
+  const records=
     [...currentSessions()]
       .sort(
-        (a,b)=>
-          (dateObject(a)?.getTime()||0)
+        (
+          a,
+          b
+        ) =>
+          (
+            getDateObject(a)
+              ?.getTime() ||
+            0
+          )
           -
-          (dateObject(b)?.getTime()||0)
+          (
+            getDateObject(b)
+              ?.getTime() ||
+            0
+          )
       );
 
 
   let y=18;
 
 
-  doc.setFontSize(20);
+  doc.setFontSize(
+    20
+  );
+
 
   doc.text(
     "Therapy Tracker",
@@ -3941,11 +5476,14 @@ function exportPDF(){
   y+=9;
 
 
-  doc.setFontSize(11);
+  doc.setFontSize(
+    11
+  );
+
 
   doc.text(
-    "Profile: " +
-    profileName(),
+    "Profile: "+
+    getCurrentProfileName(),
     14,
     y
   );
@@ -3954,33 +5492,49 @@ function exportPDF(){
   y+=8;
 
 
-  const attended =
+  const attended=
     records.filter(
-      s=>s.status==="attended"
+      s =>
+        s.status===
+        "attended"
     ).length;
 
 
-  const missed =
+  const missed=
     records.filter(
-      s=>s.status==="missed"
+      s =>
+        s.status===
+        "missed"
     ).length;
 
 
-  const planned =
+  const planned=
     records.filter(
-      s=>s.status==="planned"
+      s =>
+        s.status===
+        "planned"
+    ).length;
+
+
+  const rescheduled=
+    records.filter(
+      s =>
+        s.status===
+        "rescheduled"
     ).length;
 
 
   doc.text(
-    "Total: " +
-    records.length +
-    "   Attended: " +
-    attended +
-    "   Missed: " +
-    missed +
-    "   Planned: " +
-    planned,
+    "Total: "+
+    records.length+
+    "   Attended: "+
+    attended+
+    "   Missed: "+
+    missed+
+    "   Planned: "+
+    planned+
+    "   Rescheduled: "+
+    rescheduled,
     14,
     y
   );
@@ -3990,29 +5544,44 @@ function exportPDF(){
 
 
   records.forEach(
-    (s,index)=>{
+    (
+      s,
+      index
+    )=>{
 
-      const line =
+      const line=
         (
           index+1
-        ) +
-        ". " +
-        s.date +
-        " " +
-        (s.time || "") +
-        " | " +
-        (s.therapy || "") +
-        " | " +
-        statusText(
+        )+
+        ". "+
+        s.date+
+        " "+
+        (
+          s.time ||
+          ""
+        )+
+        " | "+
+        (
+          s.therapy ||
+          ""
+        )+
+        " | "+
+        statusLabel(
           s.status
-        ) +
-        " | " +
-        (s.therapist || "-") +
-        " | Rs." +
-        (s.cost || 0);
+        )+
+        " | "+
+        (
+          s.therapist ||
+          "-"
+        )+
+        " | Rs."+
+        (
+          s.cost ||
+          0
+        );
 
 
-      const lines =
+      const lines=
         doc.splitTextToSize(
           line,
           180
@@ -4021,7 +5590,7 @@ function exportPDF(){
 
       if(
         y+
-        lines.length*6 >
+        lines.length*6>
         285
       ){
 
@@ -4039,7 +5608,7 @@ function exportPDF(){
       );
 
 
-      y +=
+      y+=
         lines.length*6+
         2;
 
@@ -4048,10 +5617,10 @@ function exportPDF(){
 
 
   doc.save(
-    "Therapy_Tracker_" +
+    "Therapy_Tracker_"+
     safeFileName(
-      profileName()
-    ) +
+      getCurrentProfileName()
+    )+
     ".pdf"
   );
 
@@ -4059,14 +5628,14 @@ function exportPDF(){
 
 
 /* ==========================================================
-   BACKUP
+   JSON BACKUP
 ========================================================== */
 
 function backupJSON(){
 
-  const data={
+  const backup={
 
-    version:3,
+    version:4,
 
     exportedAt:
       new Date()
@@ -4082,42 +5651,49 @@ function backupJSON(){
 
 
   downloadFile(
+
     JSON.stringify(
-      data,
+      backup,
       null,
       2
     ),
+
     "Therapy_Tracker_Backup.json",
+
     "application/json"
+
   );
 
 }
 
 
 /* ==========================================================
-   RESTORE
+   JSON RESTORE
 ========================================================== */
 
-function restoreJSON(event){
+function restoreJSON(
+  event
+){
 
-  const file =
-    event.target.files?.[0];
+  const file=
+    event.target
+      .files?.[0];
 
 
   if(!file)
     return;
 
 
-  const reader =
+  const reader=
     new FileReader();
 
 
-  reader.onload =
+  reader.onload=
     function(){
 
       try{
 
-        const data =
+        const data=
           JSON.parse(
             reader.result
           );
@@ -4136,28 +5712,30 @@ function restoreJSON(event){
         }
 
 
-        if(
-          !confirm(
-            "Restore this backup? Existing records will NOT be deleted. Backup records will be added."
-          )
-        ){
+        const answer=
+          confirm(
+            "Restore this backup?\n\nExisting records will NOT be deleted. Backup records will be added."
+          );
 
+
+        if(!answer)
           return;
 
-        }
 
-
-        const existingIds =
+        const existingIds=
           new Set(
             sessions.map(
-              s=>String(s.id)
+              s =>
+                String(
+                  s.id
+                )
             )
           );
 
 
-        const imported =
+        const imported=
           data.sessions.map(
-            s => {
+            s=>{
 
               const copy={
                 ...s
@@ -4167,11 +5745,14 @@ function restoreJSON(event){
               if(
                 !copy.id ||
                 existingIds.has(
-                  String(copy.id)
+                  String(
+                    copy.id
+                  )
                 )
               ){
 
-                copy.id=uid();
+                copy.id=
+                  createId();
 
               }
 
@@ -4193,13 +5774,14 @@ function restoreJSON(event){
           )
         ){
 
-          const names =
+          const names=
             new Set(
               profiles.map(
                 p =>
                   String(
                     p.name
-                  ).toLowerCase()
+                  )
+                    .toLowerCase()
               )
             );
 
@@ -4212,17 +5794,20 @@ function restoreJSON(event){
                 !names.has(
                   String(
                     p.name
-                  ).toLowerCase()
+                  )
+                    .toLowerCase()
                 )
               ){
 
                 profiles.push({
 
-                  id:uid(),
+                  id:
+                    createId(),
 
-                  name:String(
-                    p.name
-                  )
+                  name:
+                    String(
+                      p.name
+                    )
 
                 });
 
@@ -4243,14 +5828,15 @@ function restoreJSON(event){
 
 
         alert(
-          "Backup restored successfully. Existing data was not deleted."
+          "Backup restored successfully. Existing data was preserved."
         );
 
 
-      }catch(error){
+      }
+      catch(error){
 
         alert(
-          "Could not restore the backup file."
+          "Could not restore this backup file."
         );
 
       }
@@ -4261,37 +5847,44 @@ function restoreJSON(event){
     };
 
 
-  reader.readAsText(file);
+  reader.readAsText(
+    file
+  );
 
 }
 
 
 /* ==========================================================
-   CSV FALLBACK
+   CSV
 ========================================================== */
 
-function rowsToCSV(rows){
+function rowsToCSV(
+  rows
+){
 
   if(!rows.length)
     return "No records";
 
 
-  const keys =
+  const keys=
     Object.keys(
       rows[0]
     );
 
 
-  function quote(value){
+  function quote(
+    value
+  ){
 
-    return '"' +
+    return '"'+
       String(
-        value ?? ""
+        value ??
+        ""
       )
-      .replace(
-        /"/g,
-        '""'
-      ) +
+        .replace(
+          /"/g,
+          '""'
+        )+
       '"';
 
   }
@@ -4301,9 +5894,11 @@ function rowsToCSV(rows){
 
 
   lines.push(
-    keys.map(
-      quote
-    ).join(",")
+    keys
+      .map(
+        quote
+      )
+      .join(",")
   );
 
 
@@ -4311,25 +5906,29 @@ function rowsToCSV(rows){
     row=>{
 
       lines.push(
-        keys.map(
-          key =>
-            quote(
-              row[key]
-            )
-        ).join(",")
+        keys
+          .map(
+            key =>
+              quote(
+                row[key]
+              )
+          )
+          .join(",")
       );
 
     }
   );
 
 
-  return lines.join("\n");
+  return lines.join(
+    "\n"
+  );
 
 }
 
 
 /* ==========================================================
-   FILE DOWNLOAD
+   DOWNLOAD
 ========================================================== */
 
 function downloadFile(
@@ -4338,7 +5937,7 @@ function downloadFile(
   type
 ){
 
-  const blob =
+  const blob=
     new Blob(
       [content],
       {
@@ -4347,31 +5946,43 @@ function downloadFile(
     );
 
 
-  const url =
+  const url=
     URL.createObjectURL(
       blob
     );
 
 
-  const a =
+  const link=
     document.createElement(
       "a"
     );
 
 
-  a.href=url;
+  link.href=
+    url;
 
-  a.download=filename;
 
-  document.body.appendChild(a);
+  link.download=
+    filename;
 
-  a.click();
 
-  a.remove();
+  document.body.appendChild(
+    link
+  );
+
+
+  link.click();
+
+
+  link.remove();
 
 
   setTimeout(
-    ()=>URL.revokeObjectURL(url),
+    ()=>{
+      URL.revokeObjectURL(
+        url
+      );
+    },
     1000
   );
 
@@ -4382,9 +5993,13 @@ function downloadFile(
    SAFE FILE NAME
 ========================================================== */
 
-function safeFileName(name){
+function safeFileName(
+  name
+){
 
-  return String(name)
+  return String(
+    name
+  )
     .replace(
       /[^a-z0-9_-]+/gi,
       "_"
@@ -4394,7 +6009,7 @@ function safeFileName(name){
 
 
 /* ==========================================================
-   RENDER EVERYTHING
+   RENDER ALL
 ========================================================== */
 
 function renderAll(){
@@ -4411,7 +6026,7 @@ function renderAll(){
 
 
 /* ==========================================================
-   START
+   START APPLICATION
 ========================================================== */
 
 document.addEventListener(
