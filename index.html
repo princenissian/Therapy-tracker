@@ -11,21 +11,33 @@
 
 <meta name="theme-color" content="#2563eb">
 
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes">
 
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="default">
 
 <title>Attendance Tracker</title>
 
+
 <style>
+
+/* =====================================================
+   THEME
+===================================================== */
 
 :root{
   --blue:#2563eb;
   --blue2:#1d4ed8;
+
   --bg:#f4f7fb;
   --card:#ffffff;
+
   --text:#172033;
   --muted:#68758d;
+
   --border:#dfe6f1;
 
   --green:#16a34a;
@@ -42,23 +54,41 @@
 
   --weekend:#dbeafe;
 
-  --shadow:0 4px 16px rgba(25,45,80,.07);
+  --shadow:
+    0 4px 16px rgba(25,45,80,.07);
 }
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 *{
   box-sizing:border-box;
+
   -webkit-tap-highlight-color:transparent;
 }
 
+
 html{
   scroll-behavior:smooth;
+
+  /*
+    Prevent horizontal pinch zoom / gesture problems.
+  */
   touch-action:pan-y;
+
+  -webkit-text-size-adjust:100%;
 }
+
 
 body{
   margin:0;
+
   background:var(--bg);
+
   color:var(--text);
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -69,34 +99,37 @@ body{
 
   font-size:16px;
 
-  /*
-    Prevent accidental browser zoom.
-    Inputs remain 16px so iPhone Safari does not
-    automatically zoom when the user taps them.
-  */
   touch-action:pan-y;
+
   overscroll-behavior-x:none;
 }
 
-body,
-button,
-input,
-select,
-textarea{
-  -webkit-text-size-adjust:100%;
-}
 
 button,
 input,
 select,
 textarea{
   font:inherit;
+
+  -webkit-text-size-adjust:100%;
 }
+
 
 button{
   cursor:pointer;
+
   touch-action:manipulation;
 }
+
+
+/*
+  VERY IMPORTANT FOR iPHONE:
+
+  Inputs below 16px can cause Safari
+  to automatically zoom into the page.
+
+  Therefore all form controls stay at 16px.
+*/
 
 input,
 select,
@@ -104,55 +137,79 @@ textarea{
   font-size:16px !important;
 }
 
-/* HEADER */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .app-header{
-  background:linear-gradient(
-    135deg,
-    var(--blue),
-    var(--blue2)
-  );
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
 
   color:#fff;
 
   padding:
-    24px
-    18px
-    22px;
+    23px
+    16px
+    21px;
 
   border-radius:
-    0 0 30px 30px;
+    0 0 28px 28px;
 
   box-shadow:
-    0 5px 18px rgba(37,99,235,.18);
+    0 5px 18px
+    rgba(37,99,235,.18);
 }
 
+
 .header-row{
+
   max-width:1050px;
+
   margin:auto;
 
   display:flex;
+
   justify-content:space-between;
+
   gap:15px;
+
   align-items:center;
 }
 
+
 h1{
-  font-size:28px;
+
+  font-size:27px;
+
   line-height:1.1;
+
   margin:0 0 7px;
+
   font-weight:800;
 }
 
+
 .subtitle{
-  font-size:15px;
+
+  font-size:14px;
+
   line-height:1.4;
+
   opacity:.92;
 }
 
+
 .theme-btn{
-  min-width:64px;
-  min-height:58px;
+
+  min-width:62px;
+
+  min-height:55px;
 
   border:
     1px solid
@@ -165,41 +222,67 @@ h1{
 
   color:#fff;
 
-  font-size:13px;
+  font-size:12px;
+
   font-weight:700;
 }
+
 
 .theme-btn span{
   display:block;
 }
 
+
 .theme-btn span:first-child{
-  font-size:23px;
+
+  font-size:22px;
+
   line-height:24px;
 }
 
-/* MAIN */
+
+/* =====================================================
+   MAIN
+===================================================== */
 
 .container{
+
   max-width:1050px;
-  margin:16px auto 95px;
-  padding:0 14px;
+
+  margin:
+    15px
+    auto
+    92px;
+
+  padding:
+    0 13px;
 }
 
+
 .card{
+
   background:var(--card);
-  border:1px solid var(--border);
+
+  border:
+    1px solid
+    var(--border);
+
   border-radius:18px;
 
   box-shadow:var(--shadow);
 
-  padding:16px;
-  margin-bottom:14px;
+  padding:15px;
+
+  margin-bottom:13px;
 }
 
-/* PROFILE */
+
+/* =====================================================
+   PROFILE
+===================================================== */
 
 .profile-row{
+
   display:grid;
 
   grid-template-columns:
@@ -212,112 +295,165 @@ h1{
   align-items:center;
 }
 
-.profile-select{
-  width:100%;
-  height:46px;
 
-  border:2px solid var(--border);
+.profile-select{
+
+  width:100%;
+
+  height:45px;
+
+  border:
+    2px solid
+    var(--border);
+
   border-radius:12px;
 
   background:var(--card);
+
   color:var(--text);
 
-  padding:0 11px;
+  padding:
+    0 10px;
 }
 
+
 .btn{
-  min-height:42px;
+
+  min-height:41px;
 
   border:0;
+
   border-radius:11px;
 
-  padding:9px 13px;
+  padding:
+    9px 13px;
 
   font-weight:700;
+
   font-size:14px;
 
   background:#edf2f7;
+
   color:var(--text);
 
   touch-action:manipulation;
 }
 
+
 .btn-primary{
+
   background:var(--blue);
+
   color:#fff;
 }
 
+
 .btn-danger{
+
   background:var(--redbg);
+
   color:var(--red);
 }
 
+
 .btn-small{
+
   min-height:38px;
-  padding:8px 11px;
+
+  padding:
+    8px 11px;
+
   font-size:13px;
 }
+
 
 .profile-count{
+
   color:var(--muted);
+
   font-size:13px;
-  margin-top:10px;
+
+  margin-top:9px;
 }
 
-/* MODE */
+
+/* =====================================================
+   MODE
+===================================================== */
 
 .mode-wrap{
+
   display:grid;
 
   grid-template-columns:
     150px
     minmax(0,1fr);
 
-  gap:10px;
+  gap:9px;
 
   align-items:center;
 
-  margin-top:14px;
+  margin-top:13px;
 }
 
+
 .mode-label{
+
   font-size:14px;
+
   font-weight:700;
 }
 
-.mode-select{
-  height:46px;
 
-  border:2px solid var(--border);
+.mode-select{
+
+  width:100%;
+
+  height:45px;
+
+  border:
+    2px solid
+    var(--border);
+
   border-radius:12px;
 
-  padding:0 11px;
+  padding:
+    0 10px;
 
   background:var(--card);
+
   color:var(--text);
 }
 
-/* STATS */
+
+/* =====================================================
+   DASHBOARD STATS
+===================================================== */
 
 .grid{
+
   display:grid;
 
   grid-template-columns:
     repeat(2,minmax(0,1fr));
 
-  gap:10px;
+  gap:9px;
 }
 
+
 .stat{
-  min-height:98px;
 
-  padding:15px;
+  min-height:92px;
 
-  border-radius:17px;
+  padding:14px;
+
+  border-radius:15px;
 
   background:var(--card);
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 
   box-shadow:var(--shadow);
 
@@ -326,134 +462,206 @@ h1{
   touch-action:manipulation;
 }
 
+
 .stat .value{
-  font-size:30px;
+
+  font-size:28px;
+
   font-weight:800;
+
   line-height:1.05;
 }
 
+
 .stat .label{
-  font-size:13px;
+
+  font-size:12px;
+
   color:var(--muted);
+
   margin-top:7px;
 }
 
-/* SECTIONS */
+
+/* =====================================================
+   SECTION
+===================================================== */
 
 .section-title{
+
   font-size:20px;
-  margin:2px 0 13px;
+
+  margin:
+    2px
+    0
+    12px;
+
   font-weight:800;
 }
 
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
 .summary-grid{
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:7px;
 }
 
-.summary-box{
-  padding:12px 6px;
 
-  border-radius:14px;
+.summary-box{
+
+  padding:
+    11px 5px;
+
+  border-radius:13px;
 
   text-align:center;
 
   cursor:pointer;
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 
   touch-action:manipulation;
 }
 
+
 .summary-box b{
-  font-size:23px;
+
+  font-size:22px;
+
   display:block;
 }
 
+
 .summary-box span{
+
   color:var(--muted);
-  font-size:12px;
+
+  font-size:11px;
 }
+
 
 .summary-total{
   background:#eef2ff;
 }
 
+
 .summary-att{
   background:#ecfdf3;
 }
+
 
 .summary-missed{
   background:#fff1f2;
 }
 
+
 .summary-planned{
   background:#eff6ff;
 }
 
-/* COST */
+
+/* =====================================================
+   COST
+===================================================== */
 
 .cost-row{
+
   display:flex;
+
   justify-content:space-between;
 
-  border-bottom:1px solid var(--border);
+  border-bottom:
+    1px solid
+    var(--border);
 
-  padding:9px 0;
+  padding:
+    9px 0;
 
   font-size:14px;
 }
+
 
 .cost-row:last-child{
   border-bottom:0;
 }
 
-/* NEXT */
+
+/* =====================================================
+   NEXT SESSION
+===================================================== */
 
 .next-box{
+
   color:var(--muted);
 
   text-align:center;
 
-  padding:17px 5px;
+  padding:
+    17px 5px;
 
   font-size:14px;
 }
 
-/* RECORD */
+
+/* =====================================================
+   RECORD
+===================================================== */
 
 .record{
-  border:1px solid var(--border);
 
-  border-left:5px solid var(--blue);
+  border:
+    1px solid
+    var(--border);
+
+  border-left:
+    5px solid
+    var(--blue);
 
   border-radius:15px;
 
   padding:14px;
 
-  margin:9px 0;
+  margin:
+    9px 0;
 
   background:var(--card);
 }
 
+
 .record-head{
+
   display:flex;
 
   justify-content:space-between;
 
-  gap:10px;
+  gap:9px;
 
   align-items:flex-start;
 }
 
+
 .record-title{
+
   font-size:17px;
+
   font-weight:800;
 }
 
+
 .badge{
-  padding:5px 9px;
+
+  padding:
+    5px 9px;
 
   border-radius:999px;
 
@@ -464,27 +672,41 @@ h1{
   white-space:nowrap;
 }
 
+
 .attended{
+
   color:#166534;
+
   background:var(--greenbg);
 }
 
+
 .missed{
+
   color:#b91c1c;
+
   background:var(--redbg);
 }
 
+
 .planned{
+
   color:#c2410c;
+
   background:var(--orangebg);
 }
 
+
 .rescheduled{
+
   color:#6d28d9;
+
   background:var(--purplebg);
 }
 
+
 .meta{
+
   color:var(--muted);
 
   line-height:1.6;
@@ -494,7 +716,9 @@ h1{
   font-size:13px;
 }
 
+
 .actions{
+
   display:flex;
 
   gap:7px;
@@ -504,70 +728,87 @@ h1{
   flex-wrap:wrap;
 }
 
-/* CALENDAR */
+
+/* =====================================================
+   CALENDAR
+===================================================== */
 
 .calendar-head{
+
   display:flex;
 
   justify-content:space-between;
 
   align-items:center;
 
-  margin-bottom:14px;
+  margin-bottom:13px;
 }
 
+
 .month-title{
-  font-size:20px;
+
+  font-size:19px;
+
   font-weight:800;
 }
 
+
 .cal-btn{
-  width:44px;
-  height:44px;
+
+  width:43px;
+
+  height:43px;
 
   border:0;
 
-  border-radius:12px;
+  border-radius:11px;
 
   background:#edf2f7;
 
   color:var(--blue);
 
-  font-size:26px;
+  font-size:25px;
 
   touch-action:manipulation;
 }
 
+
 .weekdays,
 .calendar{
+
   display:grid;
 
   grid-template-columns:
     repeat(7,minmax(0,1fr));
 
-  gap:5px;
+  gap:4px;
 }
 
+
 .weekday{
+
   text-align:center;
 
   color:var(--muted);
 
   font-weight:700;
 
-  padding:4px 0;
+  padding:
+    3px 0;
 
-  font-size:11px;
+  font-size:10px;
 }
 
+
 .day{
-  min-height:62px;
+
+  min-height:59px;
 
   border:
     1.5px solid
     var(--border);
 
-  border-radius:11px;
+  border-radius:10px;
 
   background:var(--card);
 
@@ -579,23 +820,32 @@ h1{
 
   color:var(--blue);
 
+  width:100%;
+
   appearance:none;
 
   -webkit-appearance:none;
 
-  width:100%;
+  touch-action:manipulation;
 }
 
+
 .day.empty{
+
   border-color:transparent;
+
   background:transparent;
 }
 
+
 .day.weekend{
+
   background:var(--weekend);
 }
 
+
 .day.selected{
+
   outline:
     3px solid
     var(--blue);
@@ -603,63 +853,89 @@ h1{
   outline-offset:-3px;
 }
 
+
 .day-number{
+
   font-weight:700;
-  font-size:15px;
+
+  font-size:14px;
 }
 
-.marker{
-  margin-top:6px;
 
-  font-size:18px;
+.marker{
+
+  margin-top:5px;
+
+  font-size:17px;
 
   font-weight:900;
 
   line-height:1;
 }
 
+
 .marker.attended{
+
   color:var(--green);
+
   background:none;
 }
+
 
 .marker.missed{
+
   color:var(--red);
+
   background:none;
 }
+
 
 .marker.planned{
+
   color:var(--orange);
+
   background:none;
 }
+
 
 .marker.rescheduled{
+
   color:var(--purple);
+
   background:none;
 }
 
+
 .legend{
+
   display:flex;
 
-  gap:10px;
+  gap:9px;
 
   flex-wrap:wrap;
 
-  margin-top:12px;
+  margin-top:10px;
 
   color:var(--muted);
 
-  font-size:12px;
+  font-size:11px;
 }
 
+
 .legend i{
+
   font-style:normal;
+
   font-weight:800;
 }
 
-/* FORM */
+
+/* =====================================================
+   FORM
+===================================================== */
 
 .form-grid{
+
   display:grid;
 
   grid-template-columns:
@@ -668,7 +944,9 @@ h1{
   gap:11px;
 }
 
+
 label{
+
   font-size:13px;
 
   font-weight:700;
@@ -678,10 +956,22 @@ label{
   margin-bottom:5px;
 }
 
+
+/*
+  IMPORTANT:
+
+  Do NOT use appearance:none on date/time.
+  Safari's native date/time picker must remain
+  available.
+*/
+
 input,
 select,
 textarea{
+
   width:100%;
+
+  min-height:44px;
 
   border:
     2px solid
@@ -689,57 +979,58 @@ textarea{
 
   border-radius:11px;
 
-  padding:10px;
+  padding:
+    10px;
 
   background:var(--card);
 
   color:var(--text);
 
-  min-height:44px;
-
-  /*
-    16px is important for iPhone Safari.
-    It prevents Safari from automatically zooming
-    into the input.
-  */
   font-size:16px !important;
-
-  -webkit-appearance:none;
-  appearance:none;
 }
 
-/*
-  Keep the native iPhone date/time picker available.
-  Tapping these controls will open Apple's native
-  date/time wheel/scroll picker.
-*/
 
 input[type="date"],
 input[type="time"]{
+
   min-height:48px;
 
-  padding-left:12px;
-  padding-right:12px;
+  /*
+    Keep native iPhone date/time picker.
+  */
+
+  appearance:auto;
+
+  -webkit-appearance:auto;
 }
 
+
 textarea{
-  min-height:82px;
+
+  min-height:80px;
 
   resize:vertical;
 }
 
+
 .full{
+
   grid-column:1/-1;
 }
 
-/* MODAL */
+
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal{
+
   position:fixed;
 
   inset:0;
 
-  background:rgba(0,0,0,.5);
+  background:
+    rgba(0,0,0,.50);
 
   display:none;
 
@@ -752,39 +1043,60 @@ textarea{
   padding:0;
 }
 
+
 .modal.show{
+
   display:flex;
 }
 
-.sheet{
-  width:min(700px,100%);
 
-  max-height:
-    92vh;
+.sheet{
+
+  width:min(
+    700px,
+    100%
+  );
+
+  max-height:92vh;
 
   overflow-y:auto;
 
   overflow-x:hidden;
+
+  -webkit-overflow-scrolling:touch;
 
   background:var(--card);
 
   color:var(--text);
 
   border-radius:
-    22px 22px 0 0;
+    21px
+    21px
+    0
+    0;
 
-  padding:18px;
+  padding:
+    17px;
 
-  -webkit-overflow-scrolling:touch;
+  /*
+    Prevent page-level zoom/scroll behind modal.
+  */
 }
 
+
 .sheet h2{
-  margin:0 0 15px;
+
+  margin:
+    0
+    0
+    15px;
 
   font-size:21px;
 }
 
+
 .modal-actions{
+
   display:flex;
 
   gap:9px;
@@ -792,17 +1104,25 @@ textarea{
   margin-top:16px;
 }
 
+
 .modal-actions .btn{
+
   flex:1;
 }
 
-/* BOTTOM NAV */
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
 
 .bottom-nav{
+
   position:fixed;
 
   left:0;
+
   right:0;
+
   bottom:0;
 
   height:70px;
@@ -824,7 +1144,9 @@ textarea{
     env(safe-area-inset-bottom);
 }
 
+
 .nav-btn{
+
   border:0;
 
   background:transparent;
@@ -838,11 +1160,15 @@ textarea{
   touch-action:manipulation;
 }
 
+
 .nav-btn.active{
+
   color:var(--blue);
 }
 
+
 .nav-icon{
+
   font-size:21px;
 
   display:block;
@@ -850,22 +1176,29 @@ textarea{
   margin-bottom:1px;
 }
 
-/* TOAST */
+
+/* =====================================================
+   TOAST
+===================================================== */
 
 .toast{
+
   position:fixed;
 
   left:50%;
 
-  bottom:82px;
+  bottom:80px;
 
-  transform:translateX(-50%);
+  transform:
+    translateX(-50%);
 
   background:#111827;
 
   color:#fff;
 
-  padding:10px 14px;
+  padding:
+    10px
+    14px;
 
   border-radius:11px;
 
@@ -880,187 +1213,76 @@ textarea{
   text-align:center;
 }
 
+
 .toast.show{
+
   display:block;
 }
 
+
 .hidden{
+
   display:none !important;
 }
 
-/* DARK MODE */
+
+/* =====================================================
+   DARK MODE
+===================================================== */
 
 body.dark{
+
   --bg:#0b1220;
+
   --card:#111a2b;
+
   --text:#eef3ff;
+
   --muted:#aab5ca;
+
   --border:#293750;
+
   --weekend:#172b4d;
-  --shadow:0 4px 16px rgba(0,0,0,.25);
+
+  --shadow:
+    0 4px 16px
+    rgba(0,0,0,.25);
 }
+
 
 body.dark
 .btn:not(.btn-primary):not(.btn-danger),
 body.dark .cal-btn{
+
   background:#1b263a;
+
   color:var(--text);
 }
 
-/* MOBILE */
 
-@media(max-width:650px){
-
-  body{
-    font-size:16px;
-  }
-
-  .app-header{
-    padding:
-      22px
-      15px
-      20px;
-
-    border-radius:
-      0 0 28px 28px;
-  }
-
-  h1{
-    font-size:26px;
-  }
-
-  .subtitle{
-    font-size:14px;
-  }
-
-  .theme-btn{
-    min-width:60px;
-    min-height:54px;
-  }
-
-  .container{
-    padding:
-      0 12px;
-
-    margin-top:13px;
-
-    margin-bottom:88px;
-  }
-
-  .card{
-    padding:14px;
-
-    border-radius:17px;
-  }
-
-  .profile-row{
-    grid-template-columns:
-      minmax(0,1fr)
-      auto;
-  }
-
-  .profile-edit{
-    grid-column:1;
-  }
-
-  .profile-add{
-    grid-column:2;
-    grid-row:1;
-  }
-
-  .mode-wrap{
-    grid-template-columns:1fr;
-    gap:5px;
-  }
-
-  .mode-label{
-    margin-top:3px;
-  }
-
-  .grid{
-    gap:8px;
-  }
-
-  .stat{
-    min-height:92px;
-
-    padding:14px;
-
-    border-radius:15px;
-  }
-
-  .stat .value{
-    font-size:28px;
-  }
-
-  .stat .label{
-    font-size:12px;
-  }
-
-  .summary-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .summary-box b{
-    font-size:22px;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .full{
-    grid-column:auto;
-  }
-
-  .sheet{
-    padding:
-      17px
-      15px
-      calc(17px + env(safe-area-inset-bottom));
-  }
-
-  .calendar{
-    gap:4px;
-  }
-
-  .weekdays{
-    gap:4px;
-  }
-
-  .day{
-    min-height:60px;
-    border-radius:10px;
-  }
-
-  .day-number{
-    font-size:14px;
-  }
-
-  .marker{
-    font-size:17px;
-  }
-
-  .month-title{
-    font-size:19px;
-  }
-
-}
+/* =====================================================
+   DESKTOP
+===================================================== */
 
 @media(min-width:651px){
 
   .modal{
+
     align-items:center;
   }
 
+
   .sheet{
-    border-radius:22px;
+
+    border-radius:21px;
   }
 
 }
 
-/* PRINT */
+
+/* =====================================================
+   PRINT
+===================================================== */
 
 @media print{
 
@@ -1073,21 +1295,32 @@ body.dark .cal-btn{
   .modal,
   .legend,
   #calendarSection{
+
     display:none !important;
   }
 
+
   body{
+
     background:#fff;
   }
 
+
   .container{
+
     margin:0;
+
     max-width:none;
   }
 
+
   .card{
+
     box-shadow:none;
-    border:1px solid #ccc;
+
+    border:
+      1px solid
+      #ccc;
   }
 
 }
@@ -1098,6 +1331,11 @@ body.dark .cal-btn{
 
 
 <body>
+
+
+<!-- ===================================================
+     HEADER
+=================================================== -->
 
 <header class="app-header">
 
@@ -1120,6 +1358,7 @@ body.dark .cal-btn{
 
     </div>
 
+
     <button
       class="theme-btn"
       id="themeBtn"
@@ -1139,7 +1378,9 @@ body.dark .cal-btn{
 <main class="container">
 
 
-<!-- PROFILE -->
+<!-- ===================================================
+     PROFILE
+=================================================== -->
 
 <section class="card">
 
@@ -1150,6 +1391,7 @@ body.dark .cal-btn{
       class="profile-select">
     </select>
 
+
     <button
       class="btn profile-edit"
       id="editProfileBtn"
@@ -1158,6 +1400,7 @@ body.dark .cal-btn{
       ✎ Edit
 
     </button>
+
 
     <button
       class="btn btn-primary profile-add"
@@ -1170,6 +1413,7 @@ body.dark .cal-btn{
 
   </div>
 
+
   <div
     class="profile-count"
     id="profileCount">
@@ -1181,6 +1425,7 @@ body.dark .cal-btn{
     <div class="mode-label">
       Attendance Mode
     </div>
+
 
     <select
       id="modeSelect"
@@ -1221,11 +1466,11 @@ body.dark .cal-btn{
 </section>
 
 
-<!-- STATS -->
+<!-- ===================================================
+     DASHBOARD
+=================================================== -->
 
-<section
-  class="grid"
-  id="statsGrid">
+<section class="grid">
 
   <div
     class="stat"
@@ -1344,7 +1589,9 @@ body.dark .cal-btn{
 </section>
 
 
-<!-- SUMMARY -->
+<!-- ===================================================
+     SUMMARY
+=================================================== -->
 
 <section class="card">
 
@@ -1352,15 +1599,20 @@ body.dark .cal-btn{
     Therapy / Attendance Summary
   </div>
 
+
   <div class="summary-grid">
 
     <div
       class="summary-box summary-total"
       data-filter="all">
 
-      <b id="sumTotal">0</b>
+      <b id="sumTotal">
+        0
+      </b>
 
-      <span>Total</span>
+      <span>
+        Total
+      </span>
 
     </div>
 
@@ -1369,9 +1621,13 @@ body.dark .cal-btn{
       class="summary-box summary-att"
       data-filter="attended">
 
-      <b id="sumAttended">0</b>
+      <b id="sumAttended">
+        0
+      </b>
 
-      <span>Attended</span>
+      <span>
+        Attended
+      </span>
 
     </div>
 
@@ -1380,9 +1636,13 @@ body.dark .cal-btn{
       class="summary-box summary-missed"
       data-filter="missed">
 
-      <b id="sumMissed">0</b>
+      <b id="sumMissed">
+        0
+      </b>
 
-      <span>Missed</span>
+      <span>
+        Missed
+      </span>
 
     </div>
 
@@ -1391,9 +1651,13 @@ body.dark .cal-btn{
       class="summary-box summary-planned"
       data-filter="planned">
 
-      <b id="sumPlanned">0</b>
+      <b id="sumPlanned">
+        0
+      </b>
 
-      <span>Planned</span>
+      <span>
+        Planned
+      </span>
 
     </div>
 
@@ -1402,7 +1666,9 @@ body.dark .cal-btn{
 </section>
 
 
-<!-- COST -->
+<!-- ===================================================
+     COST
+=================================================== -->
 
 <section class="card">
 
@@ -1410,31 +1676,58 @@ body.dark .cal-btn{
     Cost Summary
   </div>
 
-  <div class="cost-row">
-    <span>Attended</span>
-    <b id="costAttended">₹0</b>
-  </div>
 
   <div class="cost-row">
-    <span>Planned</span>
-    <b id="costPlanned">₹0</b>
+
+    <span>
+      Attended
+    </span>
+
+    <b id="costAttended">
+      ₹0
+    </b>
+
   </div>
 
+
   <div class="cost-row">
-    <span>Total</span>
-    <b id="costTotal">₹0</b>
+
+    <span>
+      Planned
+    </span>
+
+    <b id="costPlanned">
+      ₹0
+    </b>
+
+  </div>
+
+
+  <div class="cost-row">
+
+    <span>
+      Total
+    </span>
+
+    <b id="costTotal">
+      ₹0
+    </b>
+
   </div>
 
 </section>
 
 
-<!-- NEXT -->
+<!-- ===================================================
+     NEXT SESSION
+=================================================== -->
 
 <section class="card">
 
   <div class="section-title">
     Next Session
   </div>
+
 
   <div
     class="next-box"
@@ -1447,7 +1740,9 @@ body.dark .cal-btn{
 </section>
 
 
-<!-- HISTORY -->
+<!-- ===================================================
+     HISTORY
+=================================================== -->
 
 <section class="card">
 
@@ -1455,12 +1750,16 @@ body.dark .cal-btn{
     Recent Sessions
   </div>
 
-  <div id="recentList"></div>
+
+  <div id="recentList">
+  </div>
 
 </section>
 
 
-<!-- CALENDAR -->
+<!-- ===================================================
+     CALENDAR
+=================================================== -->
 
 <section
   class="card"
@@ -1518,28 +1817,38 @@ body.dark .cal-btn{
   <div class="legend">
 
     <span>
-      <i style="color:var(--green)">✓</i>
+      <i style="color:var(--green)">
+        ✓
+      </i>
       Attended
     </span>
 
     <span>
-      <i style="color:var(--red)">×</i>
+      <i style="color:var(--red)">
+        ×
+      </i>
       Missed
     </span>
 
     <span>
-      <i style="color:var(--orange)">●</i>
+      <i style="color:var(--orange)">
+        ●
+      </i>
       Planned
     </span>
 
     <span>
-      <i style="color:var(--purple)">↻</i>
+      <i style="color:var(--purple)">
+        ↻
+      </i>
       Rescheduled
     </span>
 
     <span>
-      <i style="color:var(--blue)">■</i>
-      Saturday/Sunday
+      <i style="color:var(--blue)">
+        ■
+      </i>
+      Weekend
     </span>
 
   </div>
@@ -1547,13 +1856,16 @@ body.dark .cal-btn{
 </section>
 
 
-<!-- EXPORT -->
+<!-- ===================================================
+     EXPORT
+=================================================== -->
 
 <section class="card">
 
   <div class="section-title">
     Export / Backup
   </div>
+
 
   <div class="actions">
 
@@ -1610,7 +1922,9 @@ body.dark .cal-btn{
 </main>
 
 
-<!-- BOTTOM NAV -->
+<!-- ===================================================
+     BOTTOM NAV
+=================================================== -->
 
 <nav class="bottom-nav">
 
@@ -1619,7 +1933,10 @@ body.dark .cal-btn{
     data-nav="home"
     type="button">
 
-    <span class="nav-icon">⌂</span>
+    <span class="nav-icon">
+      ⌂
+    </span>
+
     Home
 
   </button>
@@ -1630,7 +1947,10 @@ body.dark .cal-btn{
     data-nav="add"
     type="button">
 
-    <span class="nav-icon">＋</span>
+    <span class="nav-icon">
+      ＋
+    </span>
+
     Add
 
   </button>
@@ -1641,7 +1961,10 @@ body.dark .cal-btn{
     data-nav="history"
     type="button">
 
-    <span class="nav-icon">☷</span>
+    <span class="nav-icon">
+      ☷
+    </span>
+
     History
 
   </button>
@@ -1652,7 +1975,10 @@ body.dark .cal-btn{
     data-nav="calendar"
     type="button">
 
-    <span class="nav-icon">▣</span>
+    <span class="nav-icon">
+      ▣
+    </span>
+
     Calendar
 
   </button>
@@ -1660,7 +1986,9 @@ body.dark .cal-btn{
 </nav>
 
 
-<!-- SESSION MODAL -->
+<!-- ===================================================
+     SESSION MODAL
+=================================================== -->
 
 <div
   class="modal"
@@ -1738,7 +2066,15 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- DATE SCROLL/WHEEL -->
+        <!--
+          NATIVE IPHONE DATE PICKER
+
+          Tapping this field opens the
+          iPhone date wheel/calendar picker.
+
+          The field remains editable when
+          copying a session.
+        -->
 
         <div>
 
@@ -1749,13 +2085,14 @@ body.dark .cal-btn{
           <input
             type="date"
             id="fDate"
-            required
-            inputmode="none">
+            required>
 
         </div>
 
 
-        <!-- TIME SCROLL/WHEEL -->
+        <!--
+          NATIVE IPHONE TIME PICKER
+        -->
 
         <div>
 
@@ -1765,8 +2102,7 @@ body.dark .cal-btn{
 
           <input
             type="time"
-            id="fTime"
-            inputmode="none">
+            id="fTime">
 
         </div>
 
@@ -1838,8 +2174,7 @@ body.dark .cal-btn{
 
           <input
             type="date"
-            id="fRescheduledDate"
-            inputmode="none">
+            id="fRescheduledDate">
 
         </div>
 
@@ -1889,7 +2224,9 @@ body.dark .cal-btn{
 </div>
 
 
-<!-- PROFILE MODAL -->
+<!-- ===================================================
+     PROFILE MODAL
+=================================================== -->
 
 <div
   class="modal"
@@ -1912,6 +2249,7 @@ body.dark .cal-btn{
       <label>
         Profile Name
       </label>
+
 
       <input
         id="profileName"
@@ -1961,40 +2299,56 @@ body.dark .cal-btn{
 "use strict";
 
 
+/* =====================================================
+   STORAGE
+===================================================== */
+
+
 /*
-========================================================
-DATA SAFETY
-========================================================
+  THIS IS THE CURRENT DATABASE KEY.
 
-IMPORTANT:
-
-1. NEVER call localStorage.clear()
-2. Existing DB is preserved.
-3. Existing records are normalized safely.
-4. Legacy records are merged instead of replacing data.
-5. A safety snapshot is created before migration.
-========================================================
+  Existing data in this key is retained.
 */
-
 
 const DBKEY =
   "attendanceTrackerData_v3";
 
 
-const SAFETYKEY =
-  "attendanceTrackerData_safety_backup";
+/*
+  Safety snapshot.
 
+  This is NEVER used to replace the main database.
+*/
+
+const SAFETYKEY =
+  "attendanceTrackerData_before_cleanup";
+
+
+/*
+  Known older storage keys.
+
+  We only inspect known tracker keys.
+  We do NOT scan unrelated website storage.
+*/
 
 const OLD_KEYS = [
 
   "therapyTrackerData",
+
   "therapyTracker",
+
   "therapyData",
+
   "therapy-tracker",
+
   "therapy_sessions",
+
   "sessions",
+
   "attendanceTracker",
+
   "attendanceData",
+
   "trackerData"
 
 ];
@@ -2003,11 +2357,17 @@ const OLD_KEYS = [
 const MODE_NAMES = {
 
   therapy:"Therapy",
+
   tuition:"Tuition",
+
   school:"School",
+
   class:"Class",
+
   gym:"Gym",
+
   office:"Office / RTO",
+
   other:"Other"
 
 };
@@ -2031,9 +2391,9 @@ let selectedDate = null;
 let currentFilter = "all";
 
 
-/* =========================
-   BASIC HELPERS
-========================= */
+/* =====================================================
+   HELPERS
+===================================================== */
 
 function uid(){
 
@@ -2049,18 +2409,28 @@ function uid(){
 }
 
 
-function esc(s){
+function esc(value){
 
-  return String(s ?? "")
+  return String(value ?? "")
     .replace(
       /[&<>"']/g,
-      m => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#39;"
-      }[m])
+      function(m){
+
+        return {
+
+          "&":"&amp;",
+
+          "<":"&lt;",
+
+          ">":"&gt;",
+
+          '"':"&quot;",
+
+          "'":"&#39;"
+
+        }[m];
+
+      }
     );
 
 }
@@ -2069,11 +2439,21 @@ function esc(s){
 function localDate(d){
 
   return (
+
     d.getFullYear() +
+
     "-" +
-    String(d.getMonth()+1).padStart(2,"0") +
+
+    String(
+      d.getMonth()+1
+    ).padStart(2,"0") +
+
     "-" +
-    String(d.getDate()).padStart(2,"0")
+
+    String(
+      d.getDate()
+    ).padStart(2,"0")
+
   );
 
 }
@@ -2081,7 +2461,9 @@ function localDate(d){
 
 function todayISO(){
 
-  return localDate(new Date());
+  return localDate(
+    new Date()
+  );
 
 }
 
@@ -2089,28 +2471,48 @@ function todayISO(){
 function addOneDay(dateString){
 
   if(!dateString){
+
     return todayISO();
+
   }
 
-  const p =
+
+  const parts =
     String(dateString)
       .slice(0,10)
       .split("-");
 
-  if(p.length !== 3){
+
+  if(parts.length !== 3){
+
     return todayISO();
+
   }
+
 
   const d =
     new Date(
-      Number(p[0]),
-      Number(p[1])-1,
-      Number(p[2])
+      Number(parts[0]),
+      Number(parts[1])-1,
+      Number(parts[2])
     );
+
+
+  if(
+    Number.isNaN(
+      d.getTime()
+    )
+  ){
+
+    return todayISO();
+
+  }
+
 
   d.setDate(
     d.getDate()+1
   );
+
 
   return localDate(d);
 
@@ -2120,7 +2522,9 @@ function addOneDay(dateString){
 function money(n){
 
   return (
+
     "₹" +
+
     Number(n || 0)
       .toLocaleString(
         "en-IN",
@@ -2128,31 +2532,46 @@ function money(n){
           maximumFractionDigits:2
         }
       )
+
   );
 
 }
 
 
-function toast(msg){
+function toast(message){
 
   const t =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
-  t.textContent = msg;
 
-  t.classList.add("show");
+  t.textContent =
+    message;
+
+
+  t.classList.add(
+    "show"
+  );
+
 
   setTimeout(
-    () => t.classList.remove("show"),
+    function(){
+
+      t.classList.remove(
+        "show"
+      );
+
+    },
     2200
   );
 
 }
 
 
-/* =========================
+/* =====================================================
    EMPTY DATABASE
-========================= */
+===================================================== */
 
 function emptyDB(){
 
@@ -2161,161 +2580,205 @@ function emptyDB(){
     version:4,
 
     profiles:[
+
       {
         id:"default",
+
         name:"Default Profile"
+
       }
+
     ],
 
     sessions:[],
 
-    activeProfileId:"default",
+    activeProfileId:
+      "default",
 
-    activeMode:"therapy",
+    activeMode:
+      "therapy",
 
-    theme:"light"
+    theme:
+      "light"
 
   };
 
 }
 
 
-/* =========================
-   STATUS NORMALIZATION
-========================= */
+/* =====================================================
+   NORMALIZE STATUS
+===================================================== */
 
-function normaliseStatus(s){
+function normaliseStatus(value){
 
-  s =
-    String(s || "")
-      .toLowerCase();
+  const s =
+    String(value || "")
+      .toLowerCase()
+      .trim();
+
 
   if(
     s.includes("miss") ||
     s === "absent"
   ){
+
     return "missed";
+
   }
+
 
   if(
     s.includes("plan") ||
     s.includes("upcoming")
   ){
+
     return "planned";
+
   }
+
 
   if(
     s.includes("resched")
   ){
+
     return "rescheduled";
+
   }
+
 
   return "attended";
 
 }
 
 
-/* =========================
-   MODE NORMALIZATION
-========================= */
+/* =====================================================
+   NORMALIZE MODE
+===================================================== */
 
-function normaliseMode(s){
+function normaliseMode(value){
 
-  s =
-    String(s || "")
-      .toLowerCase();
+  const s =
+    String(value || "")
+      .toLowerCase()
+      .trim();
+
 
   if(
     s.includes("tuition") ||
     s.includes("tution")
   ){
+
     return "tuition";
+
   }
+
 
   if(
     s.includes("school")
   ){
+
     return "school";
+
   }
 
+
   if(
-    s === "class" ||
     s.includes("class")
   ){
+
     return "class";
+
   }
+
 
   if(
     s.includes("gym")
   ){
+
     return "gym";
+
   }
+
 
   if(
     s.includes("office") ||
     s.includes("rto")
   ){
+
     return "office";
+
   }
+
 
   if(
     s.includes("other")
   ){
+
     return "other";
+
   }
+
 
   if(
     s.includes("therapy") ||
     s.includes("occupational") ||
     s.includes("physio")
   ){
+
     return "therapy";
+
   }
+
 
   return "therapy";
 
 }
 
 
-/* =========================
-   SAFE VALUE PICKER
-========================= */
+/* =====================================================
+   PICK FIRST AVAILABLE VALUE
+===================================================== */
 
-function pick(o,...keys){
+function pick(
+  object,
+  ...keys
+){
 
   for(
-    const k of keys
+    const key of keys
   ){
 
     if(
-      o &&
-      o[k] != null &&
-      o[k] !== ""
+      object &&
+      object[key] != null &&
+      object[key] !== ""
     ){
 
-      return o[k];
+      return object[key];
 
     }
 
   }
+
 
   return "";
 
 }
 
 
-/* =========================
-   SESSION NORMALIZATION
-========================= */
+/* =====================================================
+   NORMALIZE SESSION
+===================================================== */
 
 function normaliseSession(
-  o,
+  object,
   fallbackProfileId
 ){
 
   if(
-    !o ||
-    typeof o !== "object"
+    !object ||
+    typeof object !== "object"
   ){
 
     return null;
@@ -2323,9 +2786,9 @@ function normaliseSession(
   }
 
 
-  const date =
+  const rawDate =
     pick(
-      o,
+      object,
       "date",
       "sessionDate",
       "visitDate",
@@ -2334,72 +2797,106 @@ function normaliseSession(
     );
 
 
-  if(!date){
+  if(!rawDate){
+
     return null;
+
   }
 
 
-  const d =
-    String(date)
+  const date =
+    String(rawDate)
       .slice(0,10);
+
+
+  if(
+    !/^\d{4}-\d{2}-\d{2}$/
+      .test(date)
+  ){
+
+    return null;
+
+  }
 
 
   return {
 
     id:String(
-      pick(o,"id","_id") ||
+      pick(
+        object,
+        "id",
+        "_id"
+      ) ||
       uid()
     ),
 
+
     profileId:String(
+
       pick(
-        o,
+        object,
         "profileId",
         "profile",
         "personId"
       ) ||
+
       fallbackProfileId ||
+
       "default"
+
     ),
 
-    mode:normaliseMode(
-      pick(
-        o,
-        "mode",
-        "category",
-        "attendanceMode"
-      ) ||
-      "therapy"
-    ),
+
+    mode:
+      normaliseMode(
+        pick(
+          object,
+          "mode",
+          "category",
+          "type",
+          "attendanceMode"
+        ) ||
+        "therapy"
+      ),
+
 
     title:String(
+
       pick(
-        o,
+        object,
         "title",
         "therapy",
         "therapyName",
         "sessionType",
-        "type",
         "name"
       ) ||
+
       "Therapy Session"
+
     ),
 
-    date:d,
+
+    date,
+
 
     time:String(
+
       pick(
-        o,
+        object,
         "time",
         "sessionTime",
         "startTime"
       ) ||
+
       ""
+
     ),
 
+
     person:String(
+
       pick(
-        o,
+        object,
         "person",
         "therapist",
         "trainer",
@@ -2407,52 +2904,74 @@ function normaliseSession(
         "doctor",
         "provider"
       ) ||
+
       ""
+
     ),
 
-    status:normaliseStatus(
-      pick(
-        o,
-        "status",
-        "attendance",
-        "result"
-      ) ||
-      "attended"
-    ),
+
+    status:
+      normaliseStatus(
+        pick(
+          object,
+          "status",
+          "attendance",
+          "result"
+        ) ||
+        "attended"
+      ),
+
 
     cost:Number(
+
       pick(
-        o,
+        object,
         "cost",
         "amount",
         "price",
         "fee"
       ) ||
+
       0
+
     ),
 
+
     rescheduledDate:String(
+
       pick(
-        o,
+        object,
         "rescheduledDate",
         "newDate"
       ) ||
+
       ""
+
     ),
 
+
     notes:String(
+
       pick(
-        o,
+        object,
         "notes",
         "remark",
         "remarks",
         "comments"
       ) ||
+
       ""
+
     ),
 
+
     createdAt:
-      pick(o,"createdAt") ||
+
+      pick(
+        object,
+        "createdAt"
+      ) ||
+
       Date.now()
 
   };
@@ -2460,142 +2979,503 @@ function normaliseSession(
 }
 
 
-/* =========================
-   LEGACY COLLECTION
-========================= */
+/* =====================================================
+   DUPLICATE FINGERPRINT
+===================================================== */
 
-function collectLegacy(){
 
-  let records = [];
+/*
+  IMPORTANT:
 
-  let profiles = [];
+  TITLE IS NOT USED.
 
-  const keys =
-    new Set(OLD_KEYS);
+  Therefore:
+
+  Therapy Session
+  Occupational Therapy
+
+  on the SAME:
+  profile
+  mode
+  date
+  time
+  person
+  status
+  cost
+  rescheduled date
+  notes
+
+  is treated as one session.
+
+  This fixes the duplicate shown
+  in your screenshot.
+*/
+
+function duplicateKey(s){
+
+  return [
+
+    String(s.profileId || ""),
+
+    String(s.mode || ""),
+
+    String(s.date || ""),
+
+    String(s.time || ""),
+
+    String(s.person || "")
+      .trim()
+      .toLowerCase(),
+
+    String(s.status || ""),
+
+    String(
+      Number(s.cost || 0)
+    ),
+
+    String(
+      s.rescheduledDate || ""
+    ),
+
+    String(
+      s.notes || ""
+    )
+      .trim()
+      .toLowerCase()
+
+  ].join("|");
+
+}
+
+
+/* =====================================================
+   CHOOSE BETTER TITLE
+===================================================== */
+
+function chooseTitle(
+  first,
+  second
+){
+
+  const a =
+    String(
+      first.title || ""
+    ).trim();
+
+
+  const b =
+    String(
+      second.title || ""
+    ).trim();
+
+
+  if(!a){
+    return b;
+  }
+
+
+  if(!b){
+    return a;
+  }
+
+
+  const generic = [
+
+    "therapy session",
+
+    "session",
+
+    "appointment",
+
+    "attendance"
+
+  ];
+
+
+  const ag =
+    generic.includes(
+      a.toLowerCase()
+    );
+
+
+  const bg =
+    generic.includes(
+      b.toLowerCase()
+    );
 
 
   /*
-    Also inspect every localStorage key.
-    This helps recover data from previous
-    versions of the application.
+    Prefer the more descriptive title.
   */
 
-  for(
-    let i=0;
-    i<localStorage.length;
-    i++
+  if(
+    ag &&
+    !bg
   ){
 
-    const k =
-      localStorage.key(i);
+    return b;
 
-    if(k){
-      keys.add(k);
+  }
+
+
+  if(
+    bg &&
+    !ag
+  ){
+
+    return a;
+
+  }
+
+
+  /*
+    If both are meaningful,
+    keep the first existing title.
+  */
+
+  return a;
+
+}
+
+
+/* =====================================================
+   MERGE TWO DUPLICATES
+===================================================== */
+
+function mergeDuplicate(
+  existing,
+  incoming
+){
+
+  const merged = {
+
+    ...existing
+
+  };
+
+
+  merged.title =
+    chooseTitle(
+      existing,
+      incoming
+    );
+
+
+  /*
+    Keep notes from both if different.
+  */
+
+  const n1 =
+    String(
+      existing.notes || ""
+    ).trim();
+
+
+  const n2 =
+    String(
+      incoming.notes || ""
+    ).trim();
+
+
+  if(
+    n1 &&
+    n2 &&
+    n1 !== n2
+  ){
+
+    merged.notes =
+      n1 +
+      " | " +
+      n2;
+
+  }
+
+  else if(!n1 && n2){
+
+    merged.notes =
+      n2;
+
+  }
+
+
+  /*
+    Preserve a useful person name.
+  */
+
+  if(
+    !merged.person &&
+    incoming.person
+  ){
+
+    merged.person =
+      incoming.person;
+
+  }
+
+
+  /*
+    Preserve time.
+  */
+
+  if(
+    !merged.time &&
+    incoming.time
+  ){
+
+    merged.time =
+      incoming.time;
+
+  }
+
+
+  /*
+    Preserve rescheduled date.
+  */
+
+  if(
+    !merged.rescheduledDate &&
+    incoming.rescheduledDate
+  ){
+
+    merged.rescheduledDate =
+      incoming.rescheduledDate;
+
+  }
+
+
+  /*
+    Preserve earliest creation time.
+  */
+
+  merged.createdAt =
+    Math.min(
+
+      Number(
+        existing.createdAt ||
+        Date.now()
+      ),
+
+      Number(
+        incoming.createdAt ||
+        Date.now()
+      )
+
+    );
+
+
+  return merged;
+
+}
+
+
+/* =====================================================
+   DEDUPLICATE SESSIONS
+===================================================== */
+
+function deduplicateSessions(
+  input
+){
+
+  const map =
+    new Map();
+
+
+  for(
+    const session of input
+  ){
+
+    if(!session){
+      continue;
+    }
+
+
+    const key =
+      duplicateKey(
+        session
+      );
+
+
+    if(!map.has(key)){
+
+      map.set(
+        key,
+        session
+      );
+
+    }
+
+    else{
+
+      const old =
+        map.get(key);
+
+
+      map.set(
+
+        key,
+
+        mergeDuplicate(
+          old,
+          session
+        )
+
+      );
+
     }
 
   }
 
 
-  keys.forEach(k => {
+  return [
+    ...map.values()
+  ];
+
+}
+
+
+/* =====================================================
+   LEGACY DATA COLLECTION
+===================================================== */
+
+function collectLegacy(){
+
+  const records = [];
+
+  const profiles = [];
+
+
+  for(
+    const key of OLD_KEYS
+  ){
 
     /*
-      NEVER read our current DB
-      as legacy.
+      Never process current DB here.
     */
 
-    if(k === DBKEY){
-      return;
+    if(
+      key === DBKEY
+    ){
+
+      continue;
+
     }
 
 
     try{
 
       const raw =
-        localStorage.getItem(k);
+        localStorage.getItem(
+          key
+        );
+
 
       if(!raw){
-        return;
+
+        continue;
+
       }
 
 
-      const x =
+      const parsed =
         JSON.parse(raw);
 
 
-      if(Array.isArray(x)){
+      if(
+        Array.isArray(
+          parsed
+        )
+      ){
 
-        x.forEach(o => {
+        parsed.forEach(
+          item => {
 
-          if(
-            o &&
-            typeof o === "object" &&
-            (
-              o.date ||
-              o.sessionDate ||
-              o.visitDate
-            )
-          ){
+            if(
+              item &&
+              typeof item === "object" &&
+              (
+                item.date ||
+                item.sessionDate ||
+                item.visitDate
+              )
+            ){
 
-            records.push(o);
+              records.push(
+                item
+              );
+
+            }
 
           }
-
-        });
+        );
 
       }
 
 
       else if(
-        x &&
-        typeof x === "object"
+        parsed &&
+        typeof parsed === "object"
       ){
 
         if(
-          Array.isArray(x.sessions)
+          Array.isArray(
+            parsed.sessions
+          )
         ){
 
           records.push(
-            ...x.sessions
+            ...parsed.sessions
           );
 
         }
 
+
         if(
-          Array.isArray(x.records)
+          Array.isArray(
+            parsed.records
+          )
         ){
 
           records.push(
-            ...x.records
+            ...parsed.records
           );
 
         }
 
+
         if(
-          Array.isArray(x.appointments)
+          Array.isArray(
+            parsed.appointments
+          )
         ){
 
           records.push(
-            ...x.appointments
+            ...parsed.appointments
           );
 
         }
 
+
         if(
-          Array.isArray(x.data)
+          Array.isArray(
+            parsed.data
+          )
         ){
 
           records.push(
-            ...x.data
+            ...parsed.data
           );
 
         }
 
+
         if(
-          Array.isArray(x.profiles)
+          Array.isArray(
+            parsed.profiles
+          )
         ){
 
           profiles.push(
-            ...x.profiles
+            ...parsed.profiles
           );
 
         }
@@ -2604,16 +3484,16 @@ function collectLegacy(){
 
     }
 
-    catch(e){
+    catch(error){
 
       /*
-        Ignore invalid legacy
-        storage without deleting it.
+        Invalid old storage is ignored,
+        never deleted.
       */
 
     }
 
-  });
+  }
 
 
   return {
@@ -2624,426 +3504,438 @@ function collectLegacy(){
 }
 
 
-/* =========================
-   DATA SIGNATURE
-========================= */
-
-function sessionSignature(s){
-
-  return [
-
-    String(s.profileId || ""),
-    String(s.mode || ""),
-    String(s.date || ""),
-    String(s.time || ""),
-    String(s.title || ""),
-    String(s.person || ""),
-    String(s.status || ""),
-    String(s.cost || 0),
-    String(s.notes || "")
-
-  ].join("|");
-
-}
-
-
-/* =========================
-   SAFE LOAD
-========================= */
+/* =====================================================
+   LOAD DATABASE
+===================================================== */
 
 function loadDB(){
 
-  let base =
+  const blank =
     emptyDB();
 
 
-  let parsed = null;
+  let current =
+    null;
 
 
   try{
 
-    parsed =
+    current =
       JSON.parse(
-        localStorage.getItem(DBKEY) ||
+        localStorage.getItem(
+          DBKEY
+        ) ||
         "null"
       );
 
   }
 
-  catch(e){
+  catch(error){
 
-    parsed = null;
+    current = null;
 
   }
 
 
   /*
-    SAFETY SNAPSHOT
-
-    If a current database exists,
-    save a copy before changing
-    anything.
+    ---------------------------------------------------
+    IF CURRENT DATABASE EXISTS
+    ---------------------------------------------------
   */
 
   if(
-    parsed &&
-    typeof parsed === "object"
+    current &&
+    typeof current === "object"
   ){
+
+    /*
+      FIRST:
+      Make a safety copy.
+
+      This lets the user recover the exact
+      database from before cleanup if needed.
+    */
 
     try{
 
       localStorage.setItem(
+
         SAFETYKEY,
-        JSON.stringify(parsed)
+
+        JSON.stringify(
+          current
+        )
+
       );
 
     }
 
-    catch(e){}
-
-  }
+    catch(error){}
 
 
-  /*
-    Start with current DB if available.
-  */
+    const base = {
 
-  if(
-    parsed &&
-    typeof parsed === "object"
-  ){
+      ...blank,
 
-    base = {
-      ...base,
-      ...parsed
+      ...current
+
     };
 
 
     if(
-      !Array.isArray(base.profiles) ||
+      !Array.isArray(
+        base.profiles
+      ) ||
       !base.profiles.length
     ){
 
       base.profiles =
-        emptyDB().profiles;
+        blank.profiles;
 
     }
 
 
     if(
-      !Array.isArray(base.sessions)
+      !Array.isArray(
+        base.sessions
+      )
     ){
 
       base.sessions = [];
 
     }
 
-  }
+
+    /*
+      Normalize current sessions.
+    */
+
+    const normalized = [];
 
 
-  /*
-    Collect old records.
+    base.sessions.forEach(
+      session => {
 
-    IMPORTANT:
-    They are MERGED, not used to replace
-    the current database.
-  */
-
-  const legacy =
-    collectLegacy();
+        const n =
+          normaliseSession(
+            session,
+            base.profiles[0].id
+          );
 
 
-  /*
-    Existing profiles
-  */
+        if(n){
 
-  const profileMap =
-    new Map();
+          /*
+            If old profile no longer exists,
+            retain the session by attaching it
+            to the first available profile.
+          */
 
+          if(
+            !base.profiles.some(
+              p =>
+                String(p.id) ===
+                String(n.profileId)
+            )
+          ){
 
-  base.profiles.forEach(p => {
+            n.profileId =
+              base.profiles[0].id;
 
-    if(!p || !p.id){
-      return;
-    }
-
-    const id =
-      String(p.id);
-
-    const name =
-      String(
-        p.name ||
-        p.profileName ||
-        "Profile"
-      ).trim();
-
-    profileMap.set(
-      id,
-      {
-        id,
-        name:name || "Profile"
-      }
-    );
-
-  });
+          }
 
 
-  /*
-    Add legacy profiles
-    without replacing current ones.
-  */
+          normalized.push(
+            n
+          );
 
-  legacy.profiles.forEach(p => {
-
-    const name =
-      String(
-        p.name ||
-        p.profileName ||
-        p.title ||
-        ""
-      ).trim();
-
-    if(!name){
-      return;
-    }
-
-
-    const existing =
-      [...profileMap.values()]
-        .find(
-          q =>
-            q.name.toLowerCase() ===
-            name.toLowerCase()
-        );
-
-
-    if(!existing){
-
-      const id =
-        String(
-          p.id ||
-          uid()
-        );
-
-      profileMap.set(
-        id,
-        {
-          id,
-          name
         }
-      );
 
-    }
-
-  });
-
-
-  /*
-    Guarantee Default Profile.
-  */
-
-  if(!profileMap.size){
-
-    profileMap.set(
-      "default",
-      {
-        id:"default",
-        name:"Default Profile"
       }
     );
 
-  }
+
+    /*
+      DEDUPLICATE CURRENT RECORDS.
+
+      This is what fixes the duplicates
+      already visible in your screenshot.
+    */
+
+    base.sessions =
+      deduplicateSessions(
+        normalized
+      );
 
 
-  base.profiles =
-    [...profileMap.values()];
+    /*
+      Make sure default profile exists.
+    */
 
-
-  const defaultProfileId =
-    base.profiles[0].id;
-
-
-  /*
-    Normalize CURRENT sessions first.
-    This prevents older records from
-    disappearing because of format changes.
-  */
-
-  const normalizedCurrent = [];
-
-
-  (base.sessions || []).forEach(
-    s => {
-
-      const n =
-        normaliseSession(
-          s,
-          s.profileId ||
-          defaultProfileId
-        );
-
-      if(!n){
-        return;
-      }
-
-
-      /*
-        Keep profile if it exists.
-        Otherwise assign first profile.
-      */
-
-      if(
-        !base.profiles.some(
-          p =>
-            String(p.id) ===
-            String(n.profileId)
-        )
-      ){
-
-        n.profileId =
-          defaultProfileId;
-
-      }
-
-
-      normalizedCurrent.push(n);
-
-    }
-  );
-
-
-  /*
-    Add legacy records only when
-    they aren't already present.
-  */
-
-  const seen =
-    new Set(
-      normalizedCurrent.map(
-        sessionSignature
+    if(
+      !base.profiles.some(
+        p =>
+          p &&
+          p.id
       )
-    );
+    ){
 
+      base.profiles = [
+        {
+          id:"default",
+          name:"Default Profile"
+        }
+      ];
 
-  legacy.records.forEach(o => {
-
-    const n =
-      normaliseSession(
-        o,
-        defaultProfileId
-      );
-
-
-    if(!n){
-      return;
     }
 
 
     /*
-      If legacy profile doesn't exist,
-      attach it to Default Profile
-      rather than losing the record.
+      Fix invalid active profile.
     */
 
     if(
       !base.profiles.some(
         p =>
           String(p.id) ===
-          String(n.profileId)
+          String(
+            base.activeProfileId
+          )
       )
     ){
 
-      n.profileId =
-        defaultProfileId;
+      base.activeProfileId =
+        base.profiles[0].id;
 
     }
 
 
-    const sig =
-      sessionSignature(n);
+    /*
+      Fix invalid mode.
+    */
 
+    if(
+      !MODE_NAMES[
+        base.activeMode
+      ]
+    ){
 
-    if(!seen.has(sig)){
-
-      normalizedCurrent.push(n);
-
-      seen.add(sig);
+      base.activeMode =
+        "therapy";
 
     }
 
-  });
+
+    /*
+      Fix invalid theme.
+    */
+
+    if(
+      base.theme !== "dark" &&
+      base.theme !== "light"
+    ){
+
+      base.theme =
+        "light";
+
+    }
 
 
-  base.sessions =
-    normalizedCurrent;
+    base.version =
+      4;
 
 
-  /*
-    Make sure active profile exists.
-  */
+    /*
+      Save cleaned database.
 
-  if(
-    !base.profiles.some(
-      p =>
-        String(p.id) ===
-        String(base.activeProfileId)
-    )
-  ){
-
-    base.activeProfileId =
-      base.profiles[0].id;
-
-  }
-
-
-  if(
-    !MODE_NAMES[base.activeMode]
-  ){
-
-    base.activeMode =
-      "therapy";
-
-  }
-
-
-  if(
-    base.theme !== "dark" &&
-    base.theme !== "light"
-  ){
-
-    base.theme =
-      "light";
-
-  }
-
-
-  base.version = 4;
-
-
-  /*
-    Save the safely normalized
-    database.
-
-    This DOES NOT clear anything.
-  */
-
-  try{
+      NO DATA CLEAR.
+    */
 
     localStorage.setItem(
+
       DBKEY,
-      JSON.stringify(base)
+
+      JSON.stringify(
+        base
+      )
+
     );
+
+
+    return base;
 
   }
 
-  catch(e){
 
-    console.error(
-      "Unable to save database",
-      e
-    );
+  /*
+    ---------------------------------------------------
+    NO CURRENT DATABASE:
+    RECOVER LEGACY DATA
+    ---------------------------------------------------
+  */
 
-  }
+  const legacy =
+    collectLegacy();
+
+
+  const profileMap =
+    new Map();
+
+
+  /*
+    Default profile.
+  */
+
+  profileMap.set(
+
+    "default",
+
+    {
+      id:"default",
+      name:"Default Profile"
+    }
+
+  );
+
+
+  /*
+    Add legacy profiles.
+  */
+
+  legacy.profiles.forEach(
+    p => {
+
+      const name =
+        String(
+          p?.name ||
+          p?.profileName ||
+          p?.title ||
+          ""
+        ).trim();
+
+
+      if(!name){
+        return;
+      }
+
+
+      const existing =
+        [...profileMap.values()]
+          .find(
+            x =>
+              x.name
+                .toLowerCase() ===
+              name.toLowerCase()
+          );
+
+
+      if(!existing){
+
+        profileMap.set(
+
+          String(
+            p.id ||
+            uid()
+          ),
+
+          {
+            id:String(
+              p.id ||
+              uid()
+            ),
+
+            name
+
+          }
+
+        );
+
+      }
+
+    }
+  );
+
+
+  const profiles =
+    [
+      ...profileMap.values()
+    ];
+
+
+  const defaultProfileId =
+    profiles[0].id;
+
+
+  const recovered =
+    legacy.records
+
+      .map(
+        x =>
+          normaliseSession(
+            x,
+            defaultProfileId
+          )
+      )
+
+      .filter(Boolean);
+
+
+  /*
+    Fix invalid legacy profile IDs.
+  */
+
+  recovered.forEach(
+    s => {
+
+      if(
+        !profiles.some(
+          p =>
+            String(p.id) ===
+            String(s.profileId)
+        )
+      ){
+
+        s.profileId =
+          defaultProfileId;
+
+      }
+
+    }
+  );
+
+
+  const base = {
+
+    version:4,
+
+    profiles,
+
+    sessions:
+      deduplicateSessions(
+        recovered
+      ),
+
+    activeProfileId:
+      defaultProfileId,
+
+    activeMode:
+      "therapy",
+
+    theme:
+      "light"
+
+  };
+
+
+  localStorage.setItem(
+
+    DBKEY,
+
+    JSON.stringify(
+      base
+    )
+
+  );
 
 
   return base;
@@ -3051,29 +3943,48 @@ function loadDB(){
 }
 
 
-/* =========================
+/* =====================================================
    SAVE
-========================= */
+===================================================== */
 
 function saveDB(){
 
   db.activeProfileId =
     activeProfileId;
 
+
   db.activeMode =
     activeMode;
+
+
+  /*
+    Safety against accidental duplicate creation.
+
+    This does NOT remove legitimate sessions with
+    different date/time/person/status/etc.
+  */
+
+  db.sessions =
+    deduplicateSessions(
+      db.sessions
+    );
 
 
   try{
 
     localStorage.setItem(
+
       DBKEY,
-      JSON.stringify(db)
+
+      JSON.stringify(
+        db
+      )
+
     );
 
   }
 
-  catch(e){
+  catch(error){
 
     alert(
       "Unable to save data. Please create a JSON backup."
@@ -3084,43 +3995,57 @@ function saveDB(){
 }
 
 
-/* =========================
-   CURRENT PROFILE
-========================= */
+/* =====================================================
+   PROFILE
+===================================================== */
 
-function profile(){
+function currentProfile(){
 
   return (
+
     db.profiles.find(
+
       p =>
         String(p.id) ===
         String(activeProfileId)
-    ) ||
+
+    )
+
+    ||
+
     db.profiles[0]
+
   );
 
 }
 
 
-/* =========================
+/* =====================================================
    CURRENT SESSIONS
-========================= */
+===================================================== */
 
 function sessions(){
 
   return db.sessions.filter(
+
     s =>
+
       String(s.profileId) ===
-      String(activeProfileId) &&
-      s.mode === activeMode
+      String(activeProfileId)
+
+      &&
+
+      s.mode ===
+      activeMode
+
   );
 
 }
 
 
-/* =========================
+/* =====================================================
    RENDER
-========================= */
+===================================================== */
 
 function render(){
 
@@ -3134,12 +4059,19 @@ function render(){
   document.getElementById(
     "appSubtitle"
   ).textContent =
+
     activeMode === "therapy"
-      ? "Track therapy visits, attendance and expenses"
-      : "Track " +
-        MODE_NAMES[activeMode]
-          .toLowerCase() +
-        " attendance, sessions and expenses";
+
+      ?
+
+      "Track therapy visits, attendance and expenses"
+
+      :
+
+      "Track " +
+      MODE_NAMES[activeMode]
+        .toLowerCase() +
+      " attendance, sessions and expenses";
 
 
   renderProfiles();
@@ -3165,62 +4097,73 @@ function render(){
 }
 
 
-/* =========================
-   PROFILES
-========================= */
+/* =====================================================
+   PROFILES RENDER
+===================================================== */
 
 function renderProfiles(){
 
-  const sel =
+  const select =
     document.getElementById(
       "profileSelect"
     );
 
 
-  sel.innerHTML =
+  select.innerHTML =
+
     db.profiles
+
       .map(
+
         p =>
-          `<option value="${esc(p.id)}">${esc(p.name)}</option>`
+
+          `<option value="${esc(p.id)}">
+            ${esc(p.name)}
+          </option>`
+
       )
+
       .join("");
 
 
-  sel.value =
+  select.value =
     activeProfileId;
 
 
   document.getElementById(
     "profileCount"
   ).textContent =
+
     sessions().length +
+
     " records in this profile / mode";
 
 }
 
 
-/* =========================
+/* =====================================================
    STATS
-========================= */
+===================================================== */
 
 function renderStats(){
 
-  const a =
+  const list =
     sessions();
 
 
   const count =
-    k =>
-      a.filter(
+    status =>
+      list.filter(
         s =>
-          s.status === k
+          s.status ===
+          status
       ).length;
 
 
   document.getElementById(
     "totalCount"
   ).textContent =
-    a.length;
+    list.length;
 
 
   document.getElementById(
@@ -3255,6 +4198,7 @@ function renderStats(){
   document.getElementById(
     "attendanceRate"
   ).textContent =
+
     (
       denominator
         ? Math.round(
@@ -3263,46 +4207,58 @@ function renderStats(){
             100
           )
         : 0
-    ) + "%";
+    ) +
+
+    "%";
 
 
   document.getElementById(
     "totalCost"
   ).textContent =
+
     money(
-      a.reduce(
-        (x,s) =>
-          x +
-          Number(s.cost || 0),
+
+      list.reduce(
+
+        (total,s) =>
+
+          total +
+          Number(
+            s.cost || 0
+          ),
+
         0
+
       )
+
     );
 
 }
 
 
-/* =========================
+/* =====================================================
    SUMMARY
-========================= */
+===================================================== */
 
 function renderSummary(){
 
-  const a =
+  const list =
     sessions();
 
 
   const count =
-    k =>
-      a.filter(
+    status =>
+      list.filter(
         s =>
-          s.status === k
+          s.status ===
+          status
       ).length;
 
 
   document.getElementById(
     "sumTotal"
   ).textContent =
-    a.length;
+    list.length;
 
 
   document.getElementById(
@@ -3325,40 +4281,50 @@ function renderSummary(){
 }
 
 
-/* =========================
+/* =====================================================
    COST
-========================= */
+===================================================== */
 
 function renderCost(){
 
-  const a =
+  const list =
     sessions();
 
 
   const attended =
-    a
+    list
+
       .filter(
         s =>
-          s.status === "attended"
+          s.status ===
+          "attended"
       )
+
       .reduce(
-        (x,s) =>
-          x +
-          Number(s.cost || 0),
+        (total,s) =>
+          total +
+          Number(
+            s.cost || 0
+          ),
         0
       );
 
 
   const planned =
-    a
+    list
+
       .filter(
         s =>
-          s.status === "planned"
+          s.status ===
+          "planned"
       )
+
       .reduce(
-        (x,s) =>
-          x +
-          Number(s.cost || 0),
+        (total,s) =>
+          total +
+          Number(
+            s.cost || 0
+          ),
         0
       );
 
@@ -3379,130 +4345,147 @@ function renderCost(){
     "costTotal"
   ).textContent =
     money(
-      attended + planned
+      attended +
+      planned
     );
 
 }
 
 
-/* =========================
+/* =====================================================
    SORT
-========================= */
+===================================================== */
 
-function sortSessions(a){
+function sortSessions(list){
 
-  return [...a].sort(
-    (x,y) =>
+  return [...list].sort(
+
+    (a,b) =>
+
       (
-        y.date +
-        y.time
-      ).localeCompare(
-        x.date +
-        x.time
+        String(b.date) +
+        String(b.time || "")
       )
+
+      .localeCompare(
+
+        String(a.date) +
+        String(a.time || "")
+
+      )
+
   );
 
 }
 
 
-/* =========================
-   DATE FORMAT
-========================= */
+/* =====================================================
+   FORMAT DATE
+===================================================== */
 
-function formatDate(x){
+function formatDate(value){
 
-  if(!x){
+  if(!value){
     return "";
-  }
-
-
-  const p =
-    String(x)
-      .slice(0,10)
-      .split("-");
-
-
-  if(p.length !== 3){
-    return x;
   }
 
 
   const d =
     new Date(
-      Number(p[0]),
-      Number(p[1])-1,
-      Number(p[2])
+      String(value)
+        .slice(0,10) +
+      "T00:00:00"
     );
 
 
+  if(
+    Number.isNaN(
+      d.getTime()
+    )
+  ){
+
+    return value;
+
+  }
+
+
   return d.toLocaleDateString(
+
     "en-IN",
+
     {
       day:"2-digit",
       month:"short",
       year:"numeric"
     }
+
   );
 
 }
 
 
-/* =========================
-   TIME FORMAT
-========================= */
+/* =====================================================
+   FORMAT TIME
+===================================================== */
 
-function formatTime(x){
+function formatTime(value){
 
-  if(!x){
+  if(!value){
     return "";
   }
 
 
   const parts =
-    String(x)
+    String(value)
       .split(":");
 
 
   if(parts.length < 2){
-    return x;
+
+    return value;
+
   }
 
 
-  let h =
+  let hour =
     Number(parts[0]);
 
-  const m =
+
+  const minute =
     parts[1];
 
 
   const suffix =
-    h >= 12
+    hour >= 12
       ? "PM"
       : "AM";
 
 
-  h =
-    h % 12 || 12;
+  hour =
+    hour % 12 ||
+    12;
 
 
   return (
-    h +
+
+    hour +
     ":" +
-    m +
+    minute +
     " " +
     suffix
+
   );
 
 }
 
 
-/* =========================
+/* =====================================================
    RECORD HTML
-========================= */
+===================================================== */
 
 function recordHTML(s){
 
-  const icon = {
+  const icons = {
 
     attended:"✓",
 
@@ -3512,7 +4495,20 @@ function recordHTML(s){
 
     rescheduled:"↻"
 
-  }[s.status] || "";
+  };
+
+
+  const labels = {
+
+    attended:"Attended",
+
+    missed:"Missed",
+
+    planned:"Planned",
+
+    rescheduled:"Rescheduled"
+
+  };
 
 
   return `
@@ -3524,30 +4520,62 @@ function recordHTML(s){
       <div>
 
         <div class="record-title">
+
           ${esc(s.title)}
+
         </div>
+
 
         <div class="meta">
 
-          📅 ${esc(formatDate(s.date))}
+          📅 ${esc(
+            formatDate(
+              s.date
+            )
+          )}
+
 
           ${
             s.time
-              ? "<br>🕒 " +
-                esc(formatTime(s.time))
-              : ""
+
+            ?
+
+            "<br>🕒 " +
+            esc(
+              formatTime(
+                s.time
+              )
+            )
+
+            :
+
+            ""
+
           }
+
 
           ${
             s.person
-              ? "<br>👤 " +
-                esc(s.person)
-              : ""
+
+            ?
+
+            "<br>👤 " +
+            esc(
+              s.person
+            )
+
+            :
+
+            ""
+
           }
+
 
           <br>
 
-          💰 ${money(s.cost)}
+          💰 ${money(
+            s.cost
+          )}
 
         </div>
 
@@ -3557,14 +4585,9 @@ function recordHTML(s){
       <span
         class="badge ${s.status}">
 
-        ${icon}
+        ${icons[s.status] || ""}
 
-        ${
-          s.status
-            .charAt(0)
-            .toUpperCase() +
-          s.status.slice(1)
-        }
+        ${labels[s.status] || s.status}
 
       </span>
 
@@ -3573,32 +4596,57 @@ function recordHTML(s){
 
     ${
       s.rescheduledDate
-        ? `
-        <div class="meta">
-          ↪ Rescheduled to
-          ${esc(
-            formatDate(
-              s.rescheduledDate
-            )
-          )}
-        </div>
-        `
-        : ""
+
+      ?
+
+      `
+
+      <div class="meta">
+
+        ↪ Rescheduled to
+        ${esc(
+          formatDate(
+            s.rescheduledDate
+          )
+        )}
+
+      </div>
+
+      `
+
+      :
+
+      ""
+
     }
 
 
     ${
       s.notes
-        ? `
-        <div class="meta">
-          📝 ${esc(s.notes)}
-        </div>
-        `
-        : ""
+
+      ?
+
+      `
+
+      <div class="meta">
+
+        📝 ${esc(
+          s.notes
+        )}
+
+      </div>
+
+      `
+
+      :
+
+      ""
+
     }
 
 
     <div class="actions">
+
 
       <button
         class="btn btn-small"
@@ -3629,6 +4677,7 @@ function recordHTML(s){
 
       </button>
 
+
     </div>
 
   </div>
@@ -3638,13 +4687,13 @@ function recordHTML(s){
 }
 
 
-/* =========================
+/* =====================================================
    RECENT
-========================= */
+===================================================== */
 
 function renderRecent(){
 
-  let a =
+  let list =
     sortSessions(
       sessions()
     );
@@ -3655,11 +4704,13 @@ function renderRecent(){
     "all"
   ){
 
-    a =
-      a.filter(
+    list =
+      list.filter(
+
         s =>
           s.status ===
           currentFilter
+
       );
 
   }
@@ -3668,27 +4719,34 @@ function renderRecent(){
   document.getElementById(
     "recentList"
   ).innerHTML =
-    a.length
 
-      ? a
-          .slice(0,30)
-          .map(recordHTML)
-          .join("")
+    list.length
+
+      ?
+
+      list
+        .slice(0,30)
+        .map(recordHTML)
+        .join("")
 
       :
 
-        `
-        <div class="next-box">
-          No records for this selection.
-        </div>
-        `;
+      `
+
+      <div class="next-box">
+
+        No records for this selection.
+
+      </div>
+
+      `;
 
 }
 
 
-/* =========================
+/* =====================================================
    NEXT SESSION
-========================= */
+===================================================== */
 
 function renderNext(){
 
@@ -3696,92 +4754,132 @@ function renderNext(){
     new Date();
 
 
-  const a =
+  const list =
+
     sessions()
 
       .filter(
+
         s =>
-          s.status === "planned" ||
-          s.status === "rescheduled"
+
+          s.status ===
+          "planned"
+
+          ||
+
+          s.status ===
+          "rescheduled"
+
       )
 
       .filter(
+
         s => {
 
           const dt =
             new Date(
+
               s.date +
+
               "T" +
+
               (
                 s.time ||
                 "00:00"
               )
+
             );
+
 
           return dt >= now;
 
         }
+
       )
 
       .sort(
-        (x,y) =>
+
+        (a,b) =>
+
           (
-            x.date +
-            x.time
-          ).localeCompare(
-            y.date +
-            y.time
+            a.date +
+            a.time
           )
+
+          .localeCompare(
+
+            b.date +
+            b.time
+
+          )
+
       );
 
 
   document.getElementById(
     "nextSession"
   ).innerHTML =
-    a.length
-      ? recordHTML(a[0])
-      : "No upcoming sessions.";
+
+    list.length
+
+      ?
+
+      recordHTML(
+        list[0]
+      )
+
+      :
+
+      "No upcoming sessions.";
 
 }
 
 
-/* =========================
+/* =====================================================
    CALENDAR
-========================= */
+===================================================== */
 
 function renderCalendar(){
 
-  const y =
-    currentMonth.getFullYear();
+  const year =
+    currentMonth
+      .getFullYear();
 
-  const m =
-    currentMonth.getMonth();
+
+  const month =
+    currentMonth
+      .getMonth();
 
 
   document.getElementById(
     "monthTitle"
   ).textContent =
-    currentMonth.toLocaleDateString(
-      "en-IN",
-      {
-        month:"long",
-        year:"numeric"
-      }
-    );
+
+    currentMonth
+      .toLocaleDateString(
+
+        "en-IN",
+
+        {
+          month:"long",
+          year:"numeric"
+        }
+
+      );
 
 
   const first =
     new Date(
-      y,
-      m,
+      year,
+      month,
       1
     );
 
 
   const days =
     new Date(
-      y,
-      m + 1,
+      year,
+      month + 1,
       0
     ).getDate();
 
@@ -3790,7 +4888,7 @@ function renderCalendar(){
     first.getDay();
 
 
-  let out = "";
+  let output = "";
 
 
   for(
@@ -3799,40 +4897,50 @@ function renderCalendar(){
     i++
   ){
 
-    out +=
+    output +=
       `<div class="day empty"></div>`;
 
   }
 
 
   for(
-    let d=1;
-    d<=days;
-    d++
+    let day=1;
+    day<=days;
+    day++
   ){
 
     const date =
-      y +
+
+      year +
+
       "-" +
-      String(m+1)
-        .padStart(2,"0") +
+
+      String(
+        month+1
+      ).padStart(2,"0") +
+
       "-" +
-      String(d)
-        .padStart(2,"0");
+
+      String(
+        day
+      ).padStart(2,"0");
 
 
-    const dow =
+    const weekday =
       new Date(
-        y,
-        m,
-        d
+        year,
+        month,
+        day
       ).getDay();
 
 
     const daySessions =
       sessions().filter(
+
         s =>
-          s.date === date
+          s.date ===
+          date
+
       );
 
 
@@ -3848,11 +4956,15 @@ function renderCalendar(){
     */
 
     if(
+
       daySessions.some(
+
         s =>
           s.status ===
           "missed"
+
       )
+
     ){
 
       marker =
@@ -3861,11 +4973,15 @@ function renderCalendar(){
     }
 
     else if(
+
       daySessions.some(
+
         s =>
           s.status ===
           "rescheduled"
+
       )
+
     ){
 
       marker =
@@ -3874,11 +4990,15 @@ function renderCalendar(){
     }
 
     else if(
+
       daySessions.some(
+
         s =>
           s.status ===
           "planned"
+
       )
+
     ){
 
       marker =
@@ -3887,11 +5007,15 @@ function renderCalendar(){
     }
 
     else if(
+
       daySessions.some(
+
         s =>
           s.status ===
           "attended"
+
       )
+
     ){
 
       marker =
@@ -3900,30 +5024,51 @@ function renderCalendar(){
     }
 
 
-    const cls =
+    const classes =
+
       "day " +
+
       (
-        dow === 0 ||
-        dow === 6
-          ? "weekend "
-          : ""
+
+        weekday === 0 ||
+        weekday === 6
+
+        ?
+
+        "weekend "
+
+        :
+
+        ""
+
       ) +
+
       (
+
         selectedDate === date
-          ? "selected "
-          : ""
+
+        ?
+
+        "selected "
+
+        :
+
+        ""
+
       );
 
 
-    out += `
+    output += `
 
       <button
-        class="${cls}"
+        class="${classes}"
         type="button"
         onclick="selectCalendarDate('${date}')">
 
         <div class="day-number">
-          ${d}
+
+          ${day}
+
         </div>
 
         ${marker}
@@ -3938,14 +5083,14 @@ function renderCalendar(){
   document.getElementById(
     "calendar"
   ).innerHTML =
-    out;
+    output;
 
 }
 
 
-/* =========================
+/* =====================================================
    CALENDAR DATE CLICK
-========================= */
+===================================================== */
 
 window.selectCalendarDate =
 function(date){
@@ -3957,14 +5102,17 @@ function(date){
   renderCalendar();
 
 
-  const a =
+  const list =
     sessions().filter(
+
       s =>
-        s.date === date
+        s.date ===
+        date
+
     );
 
 
-  if(a.length){
+  if(list.length){
 
     currentFilter =
       "all";
@@ -3974,7 +5122,7 @@ function(date){
       "recentList"
     ).innerHTML =
 
-      a
+      list
         .map(recordHTML)
         .join("")
 
@@ -4002,8 +5150,11 @@ function(date){
     document.getElementById(
       "recentList"
     ).scrollIntoView({
+
       behavior:"smooth",
+
       block:"start"
+
     });
 
   }
@@ -4011,14 +5162,22 @@ function(date){
   else{
 
     if(
+
       confirm(
+
         "No session is recorded on " +
+
         formatDate(date) +
+
         ". Do you want to add a session?"
+
       )
+
     ){
 
-      openSessionModal(date);
+      openSessionModal(
+        date
+      );
 
     }
 
@@ -4027,23 +5186,23 @@ function(date){
 };
 
 
-/* =========================
-   OPEN SESSION MODAL
-========================= */
+/* =====================================================
+   OPEN SESSION
+===================================================== */
 
 function openSessionModal(
-  date = "",
-  existing = null,
-  copyMode = false
+
+  date="",
+
+  existing=null,
+
+  copyMode=false
+
 ){
 
-  const modal =
-    document.getElementById(
-      "sessionModal"
-    );
-
-
-  modal.classList.add(
+  document.getElementById(
+    "sessionModal"
+  ).classList.add(
     "show"
   );
 
@@ -4053,19 +5212,44 @@ function openSessionModal(
   ).textContent =
 
     copyMode
-      ? "Copy Session"
-      : existing
-        ? "Edit Session"
-        : "Add Session";
 
+      ?
+
+      "Copy Session"
+
+      :
+
+      existing
+
+        ?
+
+        "Edit Session"
+
+        :
+
+        "Add Session";
+
+
+  /*
+    Edit has an ID.
+
+    Add and Copy have NO ID.
+    Therefore Save will create a new record.
+  */
 
   document.getElementById(
     "editId"
   ).value =
 
     copyMode
-      ? ""
-      : existing
+
+      ?
+
+      ""
+
+      :
+
+      existing
         ? existing.id
         : "";
 
@@ -4089,11 +5273,10 @@ function openSessionModal(
 
 
   /*
-    COPY MODE:
-    Date is already calculated
-    as the NEXT DAY.
+    COPY:
+    Date is already the next day.
 
-    The input remains fully editable.
+    The user can still change it.
   */
 
   document.getElementById(
@@ -4125,15 +5308,8 @@ function openSessionModal(
     "fStatus"
   ).value =
 
-    copyMode
-      ? (
-          existing?.status ||
-          "planned"
-        )
-      : (
-          existing?.status ||
-          "planned"
-        );
+    existing?.status ||
+    "planned";
 
 
   document.getElementById(
@@ -4145,8 +5321,7 @@ function openSessionModal(
 
 
   /*
-    A copied record should not
-    carry the old rescheduled date.
+    Do not copy previous rescheduled date.
   */
 
   document.getElementById(
@@ -4154,11 +5329,15 @@ function openSessionModal(
   ).value =
 
     copyMode
-      ? ""
-      : (
-          existing?.rescheduledDate ||
-          ""
-        );
+
+      ?
+
+      ""
+
+      :
+
+      existing?.rescheduledDate ||
+      "";
 
 
   document.getElementById(
@@ -4170,24 +5349,30 @@ function openSessionModal(
 
 
   /*
-    On Copy, focus date so the user
-    immediately knows it can be changed.
+    In Copy mode, open the date field
+    as the first important field.
+
+    User can tap it and select any date.
   */
 
   if(copyMode){
 
     setTimeout(
-      () => {
+
+      function(){
 
         const dateInput =
           document.getElementById(
             "fDate"
           );
 
+
         dateInput.focus();
 
       },
-      150
+
+      120
+
     );
 
   }
@@ -4195,43 +5380,59 @@ function openSessionModal(
 }
 
 
-/* =========================
+/* =====================================================
    DEFAULT TITLE
-========================= */
+===================================================== */
 
 function defaultTitle(mode){
 
   return (
+
     MODE_NAMES[mode] ||
+
     "Session"
+
   ) +
+
   " Session";
 
 }
 
 
-/* =========================
-   EDIT
-========================= */
+/* =====================================================
+   EDIT SESSION
+===================================================== */
 
 window.editSession =
 function(id){
 
-  const s =
+  const session =
     db.sessions.find(
-      x =>
-        String(x.id) ===
+
+      s =>
+        String(s.id) ===
         String(id)
+
     );
 
 
-  if(!s){
+  if(!session){
+
+    alert(
+      "Session not found."
+    );
+
     return;
+
   }
 
 
+  activeProfileId =
+    session.profileId;
+
+
   activeMode =
-    s.mode;
+    session.mode;
 
 
   saveDB();
@@ -4240,26 +5441,32 @@ function(id){
 
 
   openSessionModal(
+
     "",
-    s,
+
+    session,
+
     false
+
   );
 
 };
 
 
-/* =========================
-   COPY
-========================= */
+/* =====================================================
+   COPY SESSION
+===================================================== */
 
 window.copySession =
 function(id){
 
   const original =
     db.sessions.find(
-      x =>
-        String(x.id) ===
+
+      s =>
+        String(s.id) ===
         String(id)
+
     );
 
 
@@ -4275,19 +5482,24 @@ function(id){
 
 
   /*
-    IMPORTANT:
+    -------------------------------------------------
+    COPY BEHAVIOUR
+    -------------------------------------------------
 
     Original:
-      16 Sep
+      16 Sep 2026
 
     Copy:
-      17 Sep
+      17 Sep 2026
 
-    All other information is copied.
+    All other details copied.
 
-    New ID is NOT copied.
+    ID is blank.
 
-    The date field remains editable.
+    Therefore Save creates NEW record.
+
+    Date remains editable.
+    -------------------------------------------------
   */
 
   const copied = {
@@ -4296,52 +5508,49 @@ function(id){
 
     id:"",
 
+
+    /*
+      THIS IS THE IMPORTANT FIX:
+      automatically move date by ONE DAY.
+    */
+
     date:
       addOneDay(
         original.date
       ),
 
-    /*
-      Keep original time
-    */
 
     time:
-      original.time || "",
+      original.time ||
+      "",
 
-    /*
-      Keep person
-    */
 
     person:
-      original.person || "",
+      original.person ||
+      "",
 
-    /*
-      Keep original status
-    */
 
     status:
       original.status ||
       "planned",
 
-    /*
-      Keep cost
-    */
 
     cost:
-      original.cost || 0,
+      original.cost ||
+      0,
+
 
     /*
-      Clear rescheduled date
+      Do not copy old rescheduled date.
     */
 
-    rescheduledDate:"",
+    rescheduledDate:
+      "",
 
-    /*
-      Keep notes
-    */
 
     notes:
-      original.notes || ""
+      original.notes ||
+      ""
 
   };
 
@@ -4361,30 +5570,42 @@ function(id){
 
 
   /*
-    Open as NEW record.
+    IMPORTANT:
+    Third parameter TRUE means COPY MODE.
+
+    The modal opens as a NEW record.
   */
 
   openSessionModal(
+
     copied.date,
+
     copied,
+
     true
+
   );
 
 };
 
 
-/* =========================
+/* =====================================================
    DELETE
-========================= */
+===================================================== */
 
 window.deleteSession =
 function(id){
 
   if(
+
     !confirm(
+
       "Delete this record?\n\n" +
+
       "Your other records will not be changed."
+
     )
+
   ){
 
     return;
@@ -4394,15 +5615,18 @@ function(id){
 
   db.sessions =
     db.sessions.filter(
+
       s =>
         String(s.id) !==
         String(id)
+
     );
 
 
   saveDB();
 
   render();
+
 
   toast(
     "Record deleted"
@@ -4411,17 +5635,21 @@ function(id){
 };
 
 
-/* =========================
+/* =====================================================
    SAVE SESSION
-========================= */
+===================================================== */
 
 document
-  .getElementById("sessionForm")
+  .getElementById(
+    "sessionForm"
+  )
   .addEventListener(
-    "submit",
-    function(e){
 
-      e.preventDefault();
+    "submit",
+
+    function(event){
+
+      event.preventDefault();
 
 
       const id =
@@ -4439,7 +5667,8 @@ document
       const title =
         document.getElementById(
           "fTitle"
-        ).value.trim();
+        ).value
+        .trim();
 
 
       if(
@@ -4462,49 +5691,63 @@ document
           id ||
           uid(),
 
+
         profileId:
           activeProfileId,
+
 
         mode:
           document.getElementById(
             "fMode"
           ).value,
 
+
         title,
 
+
         date,
+
 
         time:
           document.getElementById(
             "fTime"
           ).value,
 
+
         person:
           document.getElementById(
             "fPerson"
-          ).value.trim(),
+          ).value
+          .trim(),
+
 
         status:
           document.getElementById(
             "fStatus"
           ).value,
 
+
         cost:
           Number(
             document.getElementById(
               "fCost"
-            ).value || 0
+            ).value ||
+            0
           ),
+
 
         rescheduledDate:
           document.getElementById(
             "fRescheduledDate"
           ).value,
 
+
         notes:
           document.getElementById(
             "fNotes"
-          ).value.trim(),
+          ).value
+          .trim(),
+
 
         createdAt:
           Date.now()
@@ -4513,38 +5756,41 @@ document
 
 
       /*
-        EDIT existing
+        EDIT
       */
 
       if(id){
 
-        const i =
+        const index =
           db.sessions.findIndex(
+
             s =>
               String(s.id) ===
               String(id)
+
           );
 
 
-        if(i >= 0){
+        if(index >= 0){
 
-          db.sessions[i] = {
+          /*
+            Preserve original creation time.
+          */
 
-            ...db.sessions[i],
+          data.createdAt =
+            db.sessions[index]
+              .createdAt ||
+            data.createdAt;
 
-            ...data,
 
-            /*
-              Preserve original
-              creation timestamp.
-            */
+          db.sessions[index] =
+            {
 
-            createdAt:
-              db.sessions[i]
-                .createdAt ||
-              data.createdAt
+              ...db.sessions[index],
 
-          };
+              ...data
+
+            };
 
         }
 
@@ -4568,6 +5814,19 @@ document
         data.mode;
 
 
+      /*
+        Dedupe after save.
+
+        This protects against accidental
+        duplicate creation.
+      */
+
+      db.sessions =
+        deduplicateSessions(
+          db.sessions
+        );
+
+
       saveDB();
 
       closeSession();
@@ -4576,56 +5835,62 @@ document
 
 
       toast(
+
         id
-          ? "Session updated"
-          : "New session added"
+
+          ?
+
+          "Session updated"
+
+          :
+
+          "New session added"
+
       );
 
     }
+
   );
 
 
-/* =========================
+/* =====================================================
    CLOSE SESSION
-========================= */
+===================================================== */
 
 function closeSession(){
 
-  document
-    .getElementById(
-      "sessionModal"
-    )
-    .classList.remove(
-      "show"
-    );
+  document.getElementById(
+    "sessionModal"
+  ).classList.remove(
+    "show"
+  );
 
 }
 
 
-document
-  .getElementById(
-    "closeSession"
-  )
-  .onclick =
+document.getElementById(
+  "closeSession"
+).onclick =
   closeSession;
 
 
-/* =========================
+/* =====================================================
    PROFILE SELECT
-========================= */
+===================================================== */
 
-document
-  .getElementById(
-    "profileSelect"
-  )
-  .onchange =
-  e => {
+document.getElementById(
+  "profileSelect"
+).onchange =
+
+  function(event){
 
     activeProfileId =
-      e.target.value;
+      event.target.value;
+
 
     currentFilter =
       "all";
+
 
     saveDB();
 
@@ -4634,22 +5899,23 @@ document
   };
 
 
-/* =========================
+/* =====================================================
    MODE SELECT
-========================= */
+===================================================== */
 
-document
-  .getElementById(
-    "modeSelect"
-  )
-  .onchange =
-  e => {
+document.getElementById(
+  "modeSelect"
+).onchange =
+
+  function(event){
 
     activeMode =
-      e.target.value;
+      event.target.value;
+
 
     currentFilter =
       "all";
+
 
     saveDB();
 
@@ -4658,294 +5924,342 @@ document
   };
 
 
-/* =========================
+/* =====================================================
    PROFILE BUTTONS
-========================= */
+===================================================== */
 
-document
-  .getElementById(
-    "addProfileBtn"
-  )
-  .onclick =
-  () =>
+document.getElementById(
+  "addProfileBtn"
+).onclick =
+
+  function(){
+
     openProfileModal();
 
+  };
 
-document
-  .getElementById(
-    "editProfileBtn"
-  )
-  .onclick =
-  () =>
+
+document.getElementById(
+  "editProfileBtn"
+).onclick =
+
+  function(){
+
     openProfileModal(
-      profile()
+      currentProfile()
     );
 
+  };
 
-/* =========================
+
+/* =====================================================
    PROFILE MODAL
-========================= */
+===================================================== */
 
 function openProfileModal(
-  p = null
+  profile=null
 ){
 
-  document
-    .getElementById(
-      "profileModal"
-    )
-    .classList.add(
-      "show"
-    );
+  document.getElementById(
+    "profileModal"
+  ).classList.add(
+    "show"
+  );
 
 
-  document
-    .getElementById(
-      "profileModalTitle"
-    )
-    .textContent =
-    p
-      ? "Edit Profile"
-      : "Add Profile";
+  document.getElementById(
+    "profileModalTitle"
+  ).textContent =
+
+    profile
+
+      ?
+
+      "Edit Profile"
+
+      :
+
+      "Add Profile";
 
 
-  document
-    .getElementById(
-      "profileId"
-    )
-    .value =
-    p?.id || "";
+  document.getElementById(
+    "profileId"
+  ).value =
+
+    profile?.id ||
+    "";
 
 
-  document
-    .getElementById(
-      "profileName"
-    )
-    .value =
-    p?.name || "";
+  document.getElementById(
+    "profileName"
+  ).value =
+
+    profile?.name ||
+    "";
 
 
   setTimeout(
-    () =>
-      document
-        .getElementById(
-          "profileName"
-        )
-        .focus(),
+
+    function(){
+
+      document.getElementById(
+        "profileName"
+      ).focus();
+
+    },
+
     100
+
   );
 
 }
 
 
-document
-  .getElementById(
-    "closeProfile"
-  )
-  .onclick =
-  () =>
-    document
-      .getElementById(
-        "profileModal"
-      )
-      .classList.remove(
-        "show"
-      );
+/* =====================================================
+   CLOSE PROFILE
+===================================================== */
+
+document.getElementById(
+  "closeProfile"
+).onclick =
+
+  function(){
+
+    document.getElementById(
+      "profileModal"
+    ).classList.remove(
+      "show"
+    );
+
+  };
 
 
-/* =========================
+/* =====================================================
    SAVE PROFILE
-========================= */
+===================================================== */
 
-document
-  .getElementById(
-    "profileForm"
-  )
-  .addEventListener(
-    "submit",
-    function(e){
+document.getElementById(
+  "profileForm"
+).addEventListener(
 
-      e.preventDefault();
+  "submit",
 
+  function(event){
 
-      const id =
-        document
-          .getElementById(
-            "profileId"
-          )
-          .value;
+    event.preventDefault();
 
 
-      const name =
-        document
-          .getElementById(
-            "profileName"
-          )
-          .value
-          .trim();
+    const id =
+      document.getElementById(
+        "profileId"
+      ).value;
 
 
-      if(!name){
-        return;
-      }
+    const name =
+      document.getElementById(
+        "profileName"
+      ).value
+      .trim();
 
 
-      if(id){
+    if(!name){
 
-        const p =
-          db.profiles.find(
-            x =>
-              String(x.id) ===
-              String(id)
-          );
-
-
-        if(p){
-          p.name =
-            name;
-        }
-
-      }
-
-      else{
-
-        const p = {
-
-          id:uid(),
-
-          name
-
-        };
-
-
-        db.profiles.push(
-          p
-        );
-
-
-        activeProfileId =
-          p.id;
-
-      }
-
-
-      saveDB();
-
-
-      document
-        .getElementById(
-          "profileModal"
-        )
-        .classList.remove(
-          "show"
-        );
-
-
-      render();
-
-
-      toast(
-        "Profile saved"
-      );
+      return;
 
     }
-  );
 
 
-/* =========================
-   FILTER BUTTONS
-========================= */
+    if(id){
+
+      const p =
+        db.profiles.find(
+
+          x =>
+            String(x.id) ===
+            String(id)
+
+        );
+
+
+      if(p){
+
+        p.name =
+          name;
+
+      }
+
+    }
+
+    else{
+
+      const p = {
+
+        id:
+          uid(),
+
+        name
+
+      };
+
+
+      db.profiles.push(
+        p
+      );
+
+
+      activeProfileId =
+        p.id;
+
+    }
+
+
+    saveDB();
+
+
+    document.getElementById(
+      "profileModal"
+    ).classList.remove(
+      "show"
+    );
+
+
+    render();
+
+
+    toast(
+      "Profile saved"
+    );
+
+  }
+
+);
+
+
+/* =====================================================
+   FILTER
+===================================================== */
 
 document
   .querySelectorAll(
     "[data-filter]"
   )
   .forEach(
-    el =>
-      el.addEventListener(
+
+    function(element){
+
+      element.addEventListener(
+
         "click",
-        () => {
+
+        function(){
 
           currentFilter =
-            el.dataset.filter;
+            element.dataset.filter;
 
 
           renderRecent();
 
 
-          document
-            .getElementById(
-              "recentList"
-            )
-            .scrollIntoView({
-              behavior:"smooth",
-              block:"start"
-            });
+          document.getElementById(
+            "recentList"
+          ).scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"start"
+
+          });
 
         }
-      )
+
+      );
+
+    }
+
   );
 
 
-/* =========================
-   CALENDAR MONTH
-========================= */
+/* =====================================================
+   CALENDAR NAVIGATION
+===================================================== */
 
-document
-  .getElementById(
-    "prevMonth"
-  )
-  .onclick =
-  () => {
+document.getElementById(
+  "prevMonth"
+).onclick =
+
+  function(){
 
     currentMonth =
+
       new Date(
-        currentMonth.getFullYear(),
-        currentMonth.getMonth()-1,
+
+        currentMonth
+          .getFullYear(),
+
+        currentMonth
+          .getMonth() - 1,
+
         1
+
       );
+
 
     renderCalendar();
 
   };
 
 
-document
-  .getElementById(
-    "nextMonth"
-  )
-  .onclick =
-  () => {
+document.getElementById(
+  "nextMonth"
+).onclick =
+
+  function(){
 
     currentMonth =
+
       new Date(
-        currentMonth.getFullYear(),
-        currentMonth.getMonth()+1,
+
+        currentMonth
+          .getFullYear(),
+
+        currentMonth
+          .getMonth() + 1,
+
         1
+
       );
+
 
     renderCalendar();
 
   };
 
 
-/* =========================
+/* =====================================================
    THEME
-========================= */
+===================================================== */
 
-document
-  .getElementById(
-    "themeBtn"
-  )
-  .onclick =
-  () => {
+document.getElementById(
+  "themeBtn"
+).onclick =
+
+  function(){
 
     db.theme =
+
       document.body
         .classList
-        .toggle("dark")
-        ? "dark"
-        : "light";
+        .toggle(
+          "dark"
+        )
+
+      ?
+
+      "dark"
+
+      :
+
+      "light";
 
 
     saveDB();
@@ -4958,7 +6272,8 @@ document
 function applyTheme(){
 
   const dark =
-    db.theme === "dark";
+    db.theme ===
+    "dark";
 
 
   document.body
@@ -4972,146 +6287,197 @@ function applyTheme(){
   document.getElementById(
     "themeIcon"
   ).textContent =
+
     dark
-      ? "☀️"
-      : "🌙";
+
+      ?
+
+      "☀️"
+
+      :
+
+      "🌙";
 
 
   document.getElementById(
     "themeText"
   ).textContent =
+
     dark
-      ? "Light"
-      : "Dark";
+
+      ?
+
+      "Light"
+
+      :
+
+      "Dark";
 
 }
 
 
-/* =========================
-   BOTTOM NAV
-========================= */
+/* =====================================================
+   BOTTOM NAVIGATION
+===================================================== */
 
 document
   .querySelectorAll(
     ".nav-btn"
   )
   .forEach(
-    b => {
 
-      b.onclick =
-      () => {
+    function(button){
 
-        document
-          .querySelectorAll(
-            ".nav-btn"
-          )
-          .forEach(
-            x =>
-              x.classList.remove(
-                "active"
-              )
+      button.onclick =
+
+        function(){
+
+          document
+            .querySelectorAll(
+              ".nav-btn"
+            )
+            .forEach(
+
+              x =>
+                x.classList.remove(
+                  "active"
+                )
+
+            );
+
+
+          button.classList.add(
+            "active"
           );
 
 
-        b.classList.add(
-          "active"
-        );
+          const navigation =
+            button.dataset.nav;
 
 
-        const n =
-          b.dataset.nav;
+          if(
+            navigation ===
+            "add"
+          ){
+
+            openSessionModal();
+
+          }
 
 
-        if(n === "add"){
+          if(
+            navigation ===
+            "history"
+          ){
 
-          openSessionModal();
-
-        }
-
-
-        if(n === "history"){
-
-          document
-            .getElementById(
+            document.getElementById(
               "recentList"
-            )
-            .scrollIntoView({
+            ).scrollIntoView({
+
               behavior:"smooth",
+
               block:"start"
+
             });
 
-        }
+          }
 
 
-        if(n === "calendar"){
+          if(
+            navigation ===
+            "calendar"
+          ){
 
-          document
-            .getElementById(
+            document.getElementById(
               "calendarSection"
-            )
-            .scrollIntoView({
+            ).scrollIntoView({
+
               behavior:"smooth",
+
               block:"start"
+
             });
 
-        }
+          }
 
 
-        if(n === "home"){
+          if(
+            navigation ===
+            "home"
+          ){
 
-          window.scrollTo({
-            top:0,
-            behavior:"smooth"
-          });
+            window.scrollTo({
 
-        }
+              top:0,
 
-      };
+              behavior:"smooth"
+
+            });
+
+          }
+
+        };
 
     }
+
   );
 
 
-/* =========================
-   EXPORT EXCEL
-========================= */
+/* =====================================================
+   EXPORT CSV
+===================================================== */
 
-document
-  .getElementById(
-    "exportExcel"
-  )
-  .onclick =
-  () => {
+document.getElementById(
+  "exportExcel"
+).onclick =
 
-    const a =
+  function(){
+
+    const list =
       sessions();
 
 
-    let rows = [
+    const rows = [
 
       [
+
         "Profile",
+
         "Mode",
+
         "Title",
+
         "Date",
+
         "Time",
+
         "Person",
+
         "Status",
+
         "Cost",
+
         "Rescheduled Date",
+
         "Notes"
+
       ]
 
     ];
 
 
-    a.forEach(
+    list.forEach(
+
       s =>
+
         rows.push([
 
-          profile().name,
+          currentProfile()
+            .name,
 
-          MODE_NAMES[s.mode],
+          MODE_NAMES[
+            s.mode
+          ],
 
           s.title,
 
@@ -5130,44 +6496,69 @@ document
           s.notes
 
         ])
+
     );
 
 
-    const escCSV =
-      v =>
-        `"${String(v ?? "")
-          .replace(/"/g,'""')}"`;
+    const csvEscape =
+      value =>
+
+        '"' +
+
+        String(
+          value ?? ""
+        )
+        .replace(
+          /"/g,
+          '""'
+        ) +
+
+        '"';
 
 
     const csv =
+
       rows
+
         .map(
-          r =>
-            r
-              .map(escCSV)
+
+          row =>
+
+            row
+              .map(
+                csvEscape
+              )
               .join(",")
+
         )
+
         .join("\r\n");
 
 
     const blob =
       new Blob(
+
         [
           "\ufeff" +
           csv
         ],
+
         {
           type:
             "text/csv;charset=utf-8"
         }
+
       );
 
 
     downloadBlob(
+
       blob,
+
       "attendance-tracker-" +
       todayISO() +
       ".csv"
+
     );
 
 
@@ -5178,29 +6569,30 @@ document
   };
 
 
-/* =========================
+/* =====================================================
    PRINT / PDF
-========================= */
+===================================================== */
 
-document
-  .getElementById(
-    "printPdf"
-  )
-  .onclick =
-  () =>
+document.getElementById(
+  "printPdf"
+).onclick =
+
+  function(){
+
     window.print();
 
+  };
 
-/* =========================
-   JSON BACKUP
-========================= */
 
-document
-  .getElementById(
-    "backupData"
-  )
-  .onclick =
-  () => {
+/* =====================================================
+   BACKUP JSON
+===================================================== */
+
+document.getElementById(
+  "backupData"
+).onclick =
+
+  function(){
 
     const backup = {
 
@@ -5213,9 +6605,9 @@ document
     };
 
 
-    downloadBlob(
-
+    const blob =
       new Blob(
+
         [
           JSON.stringify(
             backup,
@@ -5223,11 +6615,18 @@ document
             2
           )
         ],
+
         {
           type:
             "application/json"
         }
-      ),
+
+      );
+
+
+    downloadBlob(
+
+      blob,
 
       "attendance-tracker-backup.json"
 
@@ -5241,60 +6640,59 @@ document
   };
 
 
-/* =========================
-   RESTORE
-========================= */
+/* =====================================================
+   RESTORE JSON
+===================================================== */
 
-document
-  .getElementById(
-    "restoreData"
-  )
-  .onclick =
-  () =>
-    document
-      .getElementById(
-        "restoreInput"
-      )
-      .click();
+document.getElementById(
+  "restoreData"
+).onclick =
 
+  function(){
 
-document
-  .getElementById(
-    "restoreInput"
-  )
-  .onchange =
-  e => {
+    document.getElementById(
+      "restoreInput"
+    ).click();
 
-    const f =
-      e.target.files[0];
+  };
 
 
-    if(!f){
+document.getElementById(
+  "restoreInput"
+).onchange =
+
+  function(event){
+
+    const file =
+      event.target.files[0];
+
+
+    if(!file){
+
       return;
+
     }
 
 
-    const r =
+    const reader =
       new FileReader();
 
 
-    r.onload =
-      () => {
+    reader.onload =
+
+      function(){
 
         try{
 
-          const x =
+          const imported =
             JSON.parse(
-              r.result
+              reader.result
             );
 
 
           if(
             !Array.isArray(
-              x.sessions
-            ) ||
-            !Array.isArray(
-              x.profiles
+              imported.sessions
             )
           ){
 
@@ -5306,126 +6704,142 @@ document
 
 
           /*
-            Create safety backup
-            BEFORE restore.
+            Safety backup before restore.
           */
 
           try{
 
             localStorage.setItem(
+
               SAFETYKEY,
-              JSON.stringify(db)
+
+              JSON.stringify(
+                db
+              )
+
             );
 
           }
 
-          catch(e){}
+          catch(error){}
 
 
           /*
-            Merge profiles.
+            Merge imported profiles.
           */
 
-          x.profiles.forEach(
-            p => {
+          if(
+            Array.isArray(
+              imported.profiles
+            )
+          ){
 
-              if(
-                !p ||
-                !p.name
-              ){
-                return;
-              }
+            imported.profiles
+              .forEach(
+
+                p => {
+
+                  if(
+                    !p ||
+                    !p.name
+                  ){
+
+                    return;
+
+                  }
 
 
-              const exists =
-                db.profiles.some(
-                  q =>
-                    String(q.id) ===
-                      String(p.id) ||
+                  const exists =
+                    db.profiles.some(
 
-                    q.name
-                      .toLowerCase() ===
-                      String(
+                      existing =>
+
+                        String(
+                          existing.id
+                        ) ===
+                        String(
+                          p.id
+                        )
+
+                        ||
+
+                        existing.name
+                          .toLowerCase() ===
+                        String(
+                          p.name
+                        )
+                          .toLowerCase()
+
+                    );
+
+
+                  if(!exists){
+
+                    db.profiles.push({
+
+                      id:String(
+                        p.id ||
+                        uid()
+                      ),
+
+                      name:String(
                         p.name
                       )
-                      .toLowerCase()
-                );
 
+                    });
 
-              if(!exists){
+                  }
 
-                db.profiles.push({
+                }
 
-                  id:
-                    String(
-                      p.id ||
-                      uid()
-                    ),
+              );
 
-                  name:
-                    String(
-                      p.name
-                    )
-
-                });
-
-              }
-
-            }
-          );
+          }
 
 
           /*
-            Merge sessions.
+            Normalize imported sessions.
           */
 
-          const ids =
-            new Set(
-              db.sessions.map(
-                sessionSignature
+          const importedSessions =
+
+            imported.sessions
+
+              .map(
+
+                s =>
+
+                  normaliseSession(
+
+                    s,
+
+                    s.profileId ||
+                    db.profiles[0].id
+
+                  )
+
               )
+
+              .filter(Boolean);
+
+
+          /*
+            Add only new records.
+          */
+
+          db.sessions =
+
+            deduplicateSessions(
+
+              [
+
+                ...db.sessions,
+
+                ...importedSessions
+
+              ]
+
             );
-
-
-          let added = 0;
-
-
-          x.sessions.forEach(
-            s => {
-
-              const n =
-                normaliseSession(
-                  s,
-                  s.profileId ||
-                  db.profiles[0].id
-                );
-
-
-              if(!n){
-                return;
-              }
-
-
-              const sig =
-                sessionSignature(
-                  n
-                );
-
-
-              if(!ids.has(sig)){
-
-                db.sessions.push(
-                  n
-                );
-
-                ids.add(sig);
-
-                added++;
-
-              }
-
-            }
-          );
 
 
           saveDB();
@@ -5434,13 +6848,12 @@ document
 
 
           toast(
-            added +
-            " records restored"
+            "Backup restored safely"
           );
 
         }
 
-        catch(err){
+        catch(error){
 
           alert(
             "Invalid backup file."
@@ -5451,72 +6864,85 @@ document
       };
 
 
-    r.readAsText(f);
+    reader.readAsText(
+      file
+    );
 
 
-    e.target.value = "";
+    event.target.value =
+      "";
 
   };
 
 
-/* =========================
+/* =====================================================
    DOWNLOAD
-========================= */
+===================================================== */
 
 function downloadBlob(
   blob,
-  name
+  filename
 ){
 
-  const a =
+  const link =
     document.createElement(
       "a"
     );
 
 
-  a.href =
+  const url =
     URL.createObjectURL(
       blob
     );
 
 
-  a.download =
-    name;
+  link.href =
+    url;
+
+
+  link.download =
+    filename;
 
 
   document.body.appendChild(
-    a
+    link
   );
 
 
-  a.click();
+  link.click();
 
 
-  a.remove();
+  link.remove();
 
 
   setTimeout(
-    () =>
+
+    function(){
+
       URL.revokeObjectURL(
-        a.href
-      ),
+        url
+      );
+
+    },
+
     1000
+
   );
 
 }
 
 
-/* =========================
-   GLOBAL FUNCTION
-========================= */
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 window.openSessionModal =
   openSessionModal;
 
 
-/* =========================
-   START APP
-========================= */
+/* =====================================================
+   START
+===================================================== */
 
 db =
   loadDB();
@@ -5537,6 +6963,7 @@ render();
 
 
 })();
+
 </script>
 
 </body>
