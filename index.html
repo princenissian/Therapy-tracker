@@ -24,14 +24,12 @@
   box-sizing:border-box
 }
 
-
 body{
   margin:0;
   background:#f5f7fb;
   color:#172033;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
-
 
 header{
   background:#2563eb;
@@ -40,32 +38,27 @@ header{
   border-radius:0 0 24px 24px
 }
 
-
 h1{
   margin:0;
   font-size:25px
 }
-
 
 header p{
   margin:5px 0 0;
   opacity:.9
 }
 
-
 main{
   max-width:720px;
   margin:auto;
-  padding:16px 16px 110px
+  padding:16px 16px 115px
 }
-
 
 .cards{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px
 }
-
 
 .card,
 .panel,
@@ -76,29 +69,24 @@ main{
   box-shadow:0 3px 14px #0000000b
 }
 
-
 .num{
   font-size:27px;
   font-weight:700
 }
-
 
 .small{
   font-size:13px;
   color:#667085
 }
 
-
 .panel{
   margin-top:18px
 }
-
 
 .panel h2{
   font-size:18px;
   margin:0 0 12px
 }
-
 
 button{
   border:0;
@@ -109,37 +97,31 @@ button{
   cursor:pointer
 }
 
-
 .primary{
   background:#2563eb;
   color:#fff;
   width:100%
 }
 
-
 .light{
   background:#e8eefc;
   color:#174ea6
 }
-
 
 .copy{
   background:#ecfdf3;
   color:#166534
 }
 
-
 .edit{
   background:#fef3c7;
   color:#92400e
 }
 
-
 .danger{
   background:#fee2e2;
   color:#991b1b
 }
-
 
 .cancel{
   background:#f1f5f9;
@@ -148,14 +130,12 @@ button{
   margin-top:8px
 }
 
-
 label{
   display:block;
   font-size:13px;
   color:#667085;
   margin:10px 0 5px
 }
-
 
 input,
 select,
@@ -168,12 +148,10 @@ textarea{
   background:#fff
 }
 
-
 textarea{
   min-height:75px;
   resize:vertical
 }
-
 
 .session{
   margin:9px 0;
@@ -182,12 +160,10 @@ textarea{
   gap:10px
 }
 
-
 .session-info{
   flex:1;
   min-width:0
 }
-
 
 .session-type{
   font-size:16px;
@@ -195,17 +171,14 @@ textarea{
   margin-bottom:4px
 }
 
-
 .therapist{
   margin-top:3px
 }
-
 
 .notes{
   margin-top:4px;
   line-height:1.4
 }
-
 
 .badge{
   height:max-content;
@@ -216,30 +189,25 @@ textarea{
   white-space:nowrap
 }
 
-
 .attended{
   background:#dcfce7;
   color:#166534
 }
-
 
 .missed{
   background:#fee2e2;
   color:#991b1b
 }
 
-
 .planned{
   background:#dbeafe;
   color:#1d4ed8
 }
 
-
 .rescheduled{
   background:#fef3c7;
   color:#92400e
 }
-
 
 .actions{
   display:flex;
@@ -248,12 +216,10 @@ textarea{
   margin-top:10px
 }
 
-
 .actions button{
   padding:7px 9px;
   font-size:12px
 }
-
 
 .edit-banner{
   background:#fff7ed;
@@ -266,7 +232,6 @@ textarea{
   font-weight:600
 }
 
-
 .copy-banner{
   background:#ecfdf5;
   border:1px solid #bbf7d0;
@@ -278,10 +243,16 @@ textarea{
   font-weight:600
 }
 
+.type-help{
+  font-size:12px;
+  color:#667085;
+  margin-top:5px
+}
 
-/* =========================
+
+/* ==================================================
    THERAPY SUMMARY
-========================= */
+================================================== */
 
 .summary-card{
   background:#fff;
@@ -291,20 +262,17 @@ textarea{
   box-shadow:0 3px 14px #0000000b
 }
 
-
 .summary-title{
   font-weight:700;
   font-size:16px;
   margin-bottom:10px
 }
 
-
 .summary-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:7px
 }
-
 
 .summary-item{
   background:#f8fafc;
@@ -313,12 +281,10 @@ textarea{
   text-align:center
 }
 
-
 .summary-number{
   font-size:18px;
   font-weight:700
 }
-
 
 .summary-label{
   font-size:10px;
@@ -326,33 +292,236 @@ textarea{
   margin-top:2px
 }
 
-
 .summary-total{
   background:#eef2ff
 }
-
 
 .summary-attended{
   background:#ecfdf3
 }
 
-
 .summary-missed{
   background:#fef2f2
 }
-
 
 .summary-planned{
   background:#eff6ff
 }
 
 
-.type-help{
-  font-size:12px;
+/* ==================================================
+   COST SUMMARY
+================================================== */
+
+.cost-card{
+  background:#fff;
+  border-radius:16px;
+  padding:15px;
+  margin-top:10px;
+  box-shadow:0 3px 14px #0000000b
+}
+
+.cost-title{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:8px
+}
+
+.cost-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid #eef0f4;
+  font-size:14px
+}
+
+.cost-row:last-child{
+  border-bottom:0
+}
+
+.cost-value{
+  font-weight:700
+}
+
+.total-cost{
+  font-size:18px;
+  font-weight:700;
+  margin-top:8px
+}
+
+
+/* ==================================================
+   CALENDAR
+================================================== */
+
+.calendar-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:12px
+}
+
+.calendar-header h2{
+  margin:0;
+  font-size:18px
+}
+
+.month-button{
+  background:#e8eefc;
+  color:#174ea6;
+  padding:8px 12px
+}
+
+.calendar-weekdays,
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px
+}
+
+.calendar-weekday{
+  text-align:center;
+  font-size:11px;
+  font-weight:700;
   color:#667085;
+  padding:5px 0
+}
+
+.calendar-weekday.weekend{
+  color:#2563eb
+}
+
+.calendar-day{
+  min-height:58px;
+  border:1px solid #eef0f4;
+  background:#fff;
+  border-radius:10px;
+  padding:5px 3px;
+  text-align:center;
+  cursor:pointer;
+  position:relative
+}
+
+.calendar-day.empty-day{
+  background:transparent;
+  border:0;
+  cursor:default
+}
+
+.calendar-number{
+  font-size:14px;
+  font-weight:700
+}
+
+.calendar-day.weekend .calendar-number{
+  color:#2563eb
+}
+
+.calendar-day.today-day{
+  border:2px solid #2563eb
+}
+
+.calendar-day.selected-day{
+  box-shadow:0 0 0 2px #93c5fd inset
+}
+
+.calendar-markers{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:2px;
   margin-top:5px
 }
 
+.marker{
+  width:17px;
+  height:17px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  font-weight:800
+}
+
+.marker.attended-marker{
+  background:#dcfce7;
+  color:#166534
+}
+
+.marker.missed-marker{
+  background:#fee2e2;
+  color:#991b1b
+}
+
+.marker.planned-marker{
+  background:#dbeafe;
+  color:#1d4ed8
+}
+
+.marker.rescheduled-marker{
+  background:#fef3c7;
+  color:#92400e
+}
+
+.calendar-legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+  font-size:11px;
+  color:#667085
+}
+
+.legend-item{
+  display:flex;
+  align-items:center;
+  gap:4px
+}
+
+.legend-dot{
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+  font-weight:800
+}
+
+.legend-attended{
+  background:#dcfce7;
+  color:#166534
+}
+
+.legend-missed{
+  background:#fee2e2;
+  color:#991b1b
+}
+
+.legend-planned{
+  background:#dbeafe;
+  color:#1d4ed8
+}
+
+.legend-weekend{
+  color:#2563eb;
+  font-weight:700
+}
+
+.selected-date-title{
+  font-weight:700;
+  font-size:16px;
+  margin-bottom:8px
+}
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
 
 nav{
   position:fixed;
@@ -363,27 +532,25 @@ nav{
   border-top:1px solid #e5e7eb;
   display:flex;
   justify-content:space-around;
-  padding:8px 4px calc(8px + env(safe-area-inset-bottom));
+  padding:8px 2px calc(8px + env(safe-area-inset-bottom));
   z-index:4
 }
-
 
 nav button{
   background:none;
   color:#667085;
-  min-width:30%
+  min-width:23%;
+  padding:7px 3px;
+  font-size:12px
 }
-
 
 nav .active{
   color:#2563eb
 }
 
-
 .hidden{
   display:none
 }
-
 
 .empty{
   text-align:center;
@@ -425,9 +592,7 @@ Track your sessions & attendance
 
 <div class="card">
 
-<div
-  class="num"
-  id="total">
+<div class="num" id="total">
 0
 </div>
 
@@ -440,9 +605,7 @@ Total sessions
 
 <div class="card">
 
-<div
-  class="num"
-  id="attended">
+<div class="num" id="attended">
 0
 </div>
 
@@ -455,9 +618,7 @@ Attended
 
 <div class="card">
 
-<div
-  class="num"
-  id="missed">
+<div class="num" id="missed">
 0
 </div>
 
@@ -470,9 +631,7 @@ Missed
 
 <div class="card">
 
-<div
-  class="num"
-  id="rate">
+<div class="num" id="rate">
 0%
 </div>
 
@@ -508,6 +667,27 @@ No therapy sessions recorded
 
 
 <!-- ==================================================
+     COST SUMMARY
+================================================== -->
+
+<div class="panel">
+
+<h2>
+💰 Therapy Cost
+</h2>
+
+<div id="costSummary">
+
+<div class="empty">
+No therapy cost data
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
      NEXT SESSION
 ================================================== -->
 
@@ -517,9 +697,7 @@ No therapy sessions recorded
 Next session
 </h2>
 
-<div
-  id="next"
-  class="empty">
+<div id="next" class="empty">
 
 No upcoming sessions
 
@@ -550,9 +728,7 @@ Recent visits
      ADD / EDIT
 ================================================== -->
 
-<section
-  id="add"
-  class="hidden">
+<section id="add" class="hidden">
 
 
 <div class="panel">
@@ -608,9 +784,7 @@ Therapy / Session type
 </label>
 
 
-<select
-  id="type"
-  required>
+<select id="type" required>
 
 <option value="">
 Select therapy type
@@ -743,9 +917,7 @@ Cancel
      HISTORY
 ================================================== -->
 
-<section
-  id="history"
-  class="hidden">
+<section id="history" class="hidden">
 
 
 <div class="panel">
@@ -755,6 +927,159 @@ Session history
 </h2>
 
 <div id="all"></div>
+
+</div>
+
+
+</section>
+
+
+<!-- ==================================================
+     CALENDAR
+================================================== -->
+
+<section id="calendar" class="hidden">
+
+
+<div class="panel">
+
+
+<div class="calendar-header">
+
+<button
+  type="button"
+  class="month-button"
+  id="previousMonth">
+
+‹
+
+</button>
+
+
+<h2 id="calendarMonth">
+Month
+</h2>
+
+
+<button
+  type="button"
+  class="month-button"
+  id="nextMonth">
+
+›
+
+</button>
+
+</div>
+
+
+<div class="calendar-weekdays">
+
+<div class="calendar-weekday">
+Sun
+</div>
+
+<div class="calendar-weekday">
+Mon
+</div>
+
+<div class="calendar-weekday">
+Tue
+</div>
+
+<div class="calendar-weekday">
+Wed
+</div>
+
+<div class="calendar-weekday">
+Thu
+</div>
+
+<div class="calendar-weekday weekend">
+Fri
+</div>
+
+<div class="calendar-weekday weekend">
+Sat
+</div>
+
+</div>
+
+
+<div
+  id="calendarGrid"
+  class="calendar-grid">
+</div>
+
+
+<div class="calendar-legend">
+
+<div class="legend-item">
+
+<span class="legend-dot legend-attended">
+✓
+</span>
+
+Attended
+
+</div>
+
+
+<div class="legend-item">
+
+<span class="legend-dot legend-missed">
+✕
+</span>
+
+Missed
+
+</div>
+
+
+<div class="legend-item">
+
+<span class="legend-dot legend-planned">
+•
+</span>
+
+Planned
+
+</div>
+
+
+<div class="legend-item">
+
+<span class="legend-weekend">
+Weekend
+</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="panel">
+
+
+<h2>
+Selected date
+</h2>
+
+
+<div
+  id="selectedDate"
+  class="empty">
+
+Tap a calendar date to view sessions.
+
+</div>
+
+
+<div id="selectedSessions"></div>
+
 
 </div>
 
@@ -799,6 +1124,16 @@ Add
 
 📋<br>
 History
+
+</button>
+
+
+<button
+  type="button"
+  data-page="calendar">
+
+📅<br>
+Calendar
 
 </button>
 
@@ -856,10 +1191,50 @@ let sessions =
 
 
 /* ==================================================
+   THERAPY RATES
+================================================== */
+
+const THERAPY_RATES = {
+
+  "Occupational Therapy": 450,
+
+  "Physiotherapy": 0,
+
+  "Speech Therapy": 350,
+
+  "ABA Therapy": 0,
+
+  "Behavioral Therapy": 0,
+
+  "Physical Therapy": 0,
+
+  "Cognitive Therapy": 0,
+
+  "Sensory Therapy": 0,
+
+  "Feeding Therapy": 0,
+
+  "Other": 0
+
+};
+
+
+/* ==================================================
    EDIT MODE
 ================================================== */
 
 let editingId = null;
+
+
+/* ==================================================
+   CALENDAR STATE
+================================================== */
+
+let calendarDate =
+  new Date();
+
+let selectedCalendarDate =
+  today();
 
 
 /* ==================================================
@@ -900,6 +1275,31 @@ function today(){
 
 
   return `${year}-${month}-${day}`;
+
+}
+
+
+/* ==================================================
+   DATE KEY
+================================================== */
+
+function dateKey(
+  year,
+  month,
+  day
+){
+
+  return (
+
+    year +
+    "-" +
+    String(month + 1)
+      .padStart(2,"0") +
+    "-" +
+    String(day)
+      .padStart(2,"0")
+
+  );
 
 }
 
@@ -988,7 +1388,8 @@ function show(page){
   [
     "home",
     "add",
-    "history"
+    "history",
+    "calendar"
   ].forEach(id => {
 
     el(id).classList.toggle(
@@ -1027,6 +1428,22 @@ document
     button.addEventListener(
       "click",
       function(){
+
+        /*
+          When Add is tapped from
+          navigation, always open a
+          fresh Add form.
+        */
+
+        if(
+          this.dataset.page ===
+          "add"
+        ){
+
+          resetForm();
+
+        }
+
 
         show(
           this.dataset.page
@@ -1189,6 +1606,82 @@ function isDuplicate(
 
     }
   );
+
+}
+
+
+/* ==================================================
+   GET RATE
+================================================== */
+
+function getRate(type){
+
+  const normalized =
+    String(
+      type || ""
+    ).trim();
+
+
+  if(
+    Object.prototype.hasOwnProperty.call(
+      THERAPY_RATES,
+      normalized
+    )
+  ){
+
+    return THERAPY_RATES[
+      normalized
+    ];
+
+  }
+
+
+  /*
+    Support old records
+    containing "OT".
+  */
+
+  if(
+    normalized.toLowerCase() ===
+    "ot"
+  ){
+
+    return 450;
+
+  }
+
+
+  if(
+    normalized.toLowerCase() ===
+    "speech"
+  ){
+
+    return 350;
+
+  }
+
+
+  if(
+    normalized.toLowerCase()
+      .includes("speech")
+  ){
+
+    return 350;
+
+  }
+
+
+  if(
+    normalized.toLowerCase()
+      .includes("occupational")
+  ){
+
+    return 450;
+
+  }
+
+
+  return 0;
 
 }
 
@@ -1413,10 +1906,6 @@ No therapy sessions recorded
   }
 
 
-  /*
-    Group sessions by therapy type
-  */
-
   const groups = {};
 
 
@@ -1522,15 +2011,11 @@ ${esc(type)}
 <div class="summary-item summary-total">
 
 <div class="summary-number">
-
 ${g.total}
-
 </div>
 
 <div class="summary-label">
-
 Total
-
 </div>
 
 </div>
@@ -1539,15 +2024,11 @@ Total
 <div class="summary-item summary-attended">
 
 <div class="summary-number">
-
 ${g.attended}
-
 </div>
 
 <div class="summary-label">
-
 Attended
-
 </div>
 
 </div>
@@ -1556,15 +2037,11 @@ Attended
 <div class="summary-item summary-missed">
 
 <div class="summary-number">
-
 ${g.missed}
-
 </div>
 
 <div class="summary-label">
-
 Missed
-
 </div>
 
 </div>
@@ -1573,15 +2050,11 @@ Missed
 <div class="summary-item summary-planned">
 
 <div class="summary-number">
-
 ${g.planned}
-
 </div>
 
 <div class="summary-label">
-
 Planned
-
 </div>
 
 </div>
@@ -1621,14 +2094,630 @@ Rescheduled: ${g.rescheduled}
 
 
 /* ==================================================
-   RENDER
+   COST SUMMARY
+================================================== */
+
+function renderCostSummary(){
+
+  const container =
+    el("costSummary");
+
+
+  if(!sessions.length){
+
+    container.innerHTML = `
+
+<div class="empty">
+
+No therapy cost data
+
+</div>
+
+`;
+
+    return;
+
+  }
+
+
+  const groups = {};
+
+
+  let attendedTotal = 0;
+
+  let plannedTotal = 0;
+
+  let missedTotal = 0;
+
+
+  sessions.forEach(
+    session => {
+
+      const type =
+        String(
+          session.type ||
+          "Other"
+        ).trim();
+
+
+      const rate =
+        getRate(type);
+
+
+      if(!groups[type]){
+
+        groups[type] = {
+
+          rate:rate,
+          attended:0,
+          planned:0,
+          missed:0,
+          attendedAmount:0,
+          plannedAmount:0,
+          missedAmount:0
+
+        };
+
+      }
+
+
+      if(
+        session.status ===
+        "Attended"
+      ){
+
+        groups[type].attended++;
+
+        groups[type].attendedAmount +=
+          rate;
+
+        attendedTotal +=
+          rate;
+
+      }
+
+
+      if(
+        session.status ===
+        "Planned"
+      ){
+
+        groups[type].planned++;
+
+        groups[type].plannedAmount +=
+          rate;
+
+        plannedTotal +=
+          rate;
+
+      }
+
+
+      if(
+        session.status ===
+        "Missed"
+      ){
+
+        groups[type].missed++;
+
+        groups[type].missedAmount +=
+          rate;
+
+        missedTotal +=
+          rate;
+
+      }
+
+    }
+  );
+
+
+  const types =
+    Object.keys(groups)
+      .sort();
+
+
+  container.innerHTML =
+
+    types.map(
+      type => {
+
+        const g =
+          groups[type];
+
+
+        return `
+
+<div class="cost-card">
+
+
+<div class="cost-title">
+
+${esc(type)}
+
+</div>
+
+
+<div class="cost-row">
+
+<span>
+Rate / session
+</span>
+
+<span class="cost-value">
+
+₹${g.rate}
+
+</span>
+
+</div>
+
+
+<div class="cost-row">
+
+<span>
+Attended (${g.attended})
+</span>
+
+<span class="cost-value">
+
+₹${g.attendedAmount}
+
+</span>
+
+</div>
+
+
+<div class="cost-row">
+
+<span>
+Planned (${g.planned})
+</span>
+
+<span class="cost-value">
+
+₹${g.plannedAmount}
+
+</span>
+
+</div>
+
+
+<div class="cost-row">
+
+<span>
+Missed (${g.missed})
+</span>
+
+<span class="cost-value">
+
+₹${g.missedAmount}
+
+</span>
+
+</div>
+
+
+</div>
+
+`;
+
+      }
+    ).join("")
+
+
+    +
+
+`
+
+<div class="cost-card">
+
+
+<div class="cost-title">
+
+Overall Cost
+
+</div>
+
+
+<div class="cost-row">
+
+<span>
+Attended value
+</span>
+
+<span class="cost-value">
+₹${attendedTotal}
+</span>
+
+</div>
+
+
+<div class="cost-row">
+
+<span>
+Planned value
+</span>
+
+<span class="cost-value">
+₹${plannedTotal}
+</span>
+
+</div>
+
+
+<div class="cost-row">
+
+<span>
+Missed value
+</span>
+
+<span class="cost-value">
+₹${missedTotal}
+</span>
+
+</div>
+
+
+<div class="total-cost">
+
+Attended Total: ₹${attendedTotal}
+
+</div>
+
+
+</div>
+
+`;
+
+}
+
+
+/* ==================================================
+   CALENDAR
+================================================== */
+
+function renderCalendar(){
+
+  const year =
+    calendarDate.getFullYear();
+
+
+  const month =
+    calendarDate.getMonth();
+
+
+  const monthName =
+    calendarDate.toLocaleDateString(
+      "en-IN",
+      {
+        month:"long",
+        year:"numeric"
+      }
+    );
+
+
+  el("calendarMonth")
+    .textContent =
+    monthName;
+
+
+  const grid =
+    el("calendarGrid");
+
+
+  grid.innerHTML = "";
+
+
+  const firstDay =
+    new Date(
+      year,
+      month,
+      1
+    ).getDay();
+
+
+  const daysInMonth =
+    new Date(
+      year,
+      month + 1,
+      0
+    ).getDate();
+
+
+  /*
+    Empty cells before
+    the first day.
+  */
+
+  for(
+    let i = 0;
+    i < firstDay;
+    i++
+  ){
+
+    const empty =
+      document.createElement(
+        "div"
+      );
+
+
+    empty.className =
+      "calendar-day empty-day";
+
+
+    grid.appendChild(
+      empty
+    );
+
+  }
+
+
+  for(
+    let day = 1;
+    day <= daysInMonth;
+    day++
+  ){
+
+    const key =
+      dateKey(
+        year,
+        month,
+        day
+      );
+
+
+    const dateObject =
+      new Date(
+        year,
+        month,
+        day
+      );
+
+
+    const isWeekend =
+      dateObject.getDay() === 0 ||
+      dateObject.getDay() === 6;
+
+
+    const isToday =
+      key === today();
+
+
+    const isSelected =
+      key ===
+      selectedCalendarDate;
+
+
+    const daySessions =
+      sessions.filter(
+        session =>
+          session.date ===
+          key
+      );
+
+
+    const dayElement =
+      document.createElement(
+        "div"
+      );
+
+
+    dayElement.className =
+      "calendar-day" +
+
+      (
+        isWeekend
+          ? " weekend"
+          : ""
+      ) +
+
+      (
+        isToday
+          ? " today-day"
+          : ""
+      ) +
+
+      (
+        isSelected
+          ? " selected-day"
+          : ""
+      );
+
+
+    let markers = "";
+
+
+    daySessions.forEach(
+      session => {
+
+        const status =
+          String(
+            session.status ||
+            "Planned"
+          );
+
+
+        if(
+          status ===
+          "Attended"
+        ){
+
+          markers +=
+            `<span class="marker attended-marker">✓</span>`;
+
+        }
+
+        else if(
+          status ===
+          "Missed"
+        ){
+
+          markers +=
+            `<span class="marker missed-marker">✕</span>`;
+
+        }
+
+        else if(
+          status ===
+          "Rescheduled"
+        ){
+
+          markers +=
+            `<span class="marker rescheduled-marker">↻</span>`;
+
+        }
+
+        else{
+
+          markers +=
+            `<span class="marker planned-marker">•</span>`;
+
+        }
+
+      }
+    );
+
+
+    dayElement.innerHTML = `
+
+<div class="calendar-number">
+
+${day}
+
+</div>
+
+
+<div class="calendar-markers">
+
+${markers}
+
+</div>
+
+`;
+
+
+    dayElement.addEventListener(
+      "click",
+      function(){
+
+        selectedCalendarDate =
+          key;
+
+
+        renderCalendar();
+
+
+        renderSelectedCalendarDate();
+
+      }
+    );
+
+
+    grid.appendChild(
+      dayElement
+    );
+
+  }
+
+
+  renderSelectedCalendarDate();
+
+}
+
+
+/* ==================================================
+   SELECTED CALENDAR DATE
+================================================== */
+
+function renderSelectedCalendarDate(){
+
+  const date =
+    selectedCalendarDate;
+
+
+  if(!date){
+
+    el("selectedDate")
+      .textContent =
+      "Tap a calendar date.";
+
+    el("selectedSessions")
+      .innerHTML = "";
+
+    return;
+
+  }
+
+
+  el("selectedDate")
+    .textContent =
+    formatDate(
+      date,
+      ""
+    );
+
+
+  const selected =
+    sessions
+      .filter(
+        x =>
+          x.date ===
+          date
+      )
+      .sort(
+        (a,b) => {
+
+          return (
+            (a.time || "")
+              .localeCompare(
+                b.time || ""
+              )
+          );
+
+        }
+      );
+
+
+  el("selectedSessions")
+    .innerHTML =
+
+    selected.length
+
+      ?
+
+      selected
+        .map(
+          x =>
+            card(
+              x,
+              true
+            )
+        )
+        .join("")
+
+      :
+
+`
+
+<div class="empty">
+
+No sessions on this date.
+
+</div>
+
+`;
+
+}
+
+
+/* ==================================================
+   MAIN RENDER
 ================================================== */
 
 function render(){
 
-  /* =========================
-     OVERALL COUNTS
-  ========================= */
+  /* Overall counts */
 
   const total =
     sessions.length;
@@ -1686,16 +2775,17 @@ function render(){
     ) + "%";
 
 
-  /* =========================
-     THERAPY SUMMARY
-  ========================= */
+  /* Therapy summary */
 
   renderTherapySummary();
 
 
-  /* =========================
-     SORT
-  ========================= */
+  /* Cost */
+
+  renderCostSummary();
+
+
+  /* Sort */
 
   const sorted =
     [...sessions].sort(
@@ -1719,9 +2809,7 @@ function render(){
     );
 
 
-  /* =========================
-     NEXT SESSION
-  ========================= */
+  /* Next */
 
   const now =
     new Date();
@@ -1757,18 +2845,19 @@ function render(){
 
 
   el("next").innerHTML =
+
     upcoming
 
       ?
 
-`<div>
+`
 
 ${card(
   upcoming,
   false
 )}
 
-</div>`
+`
 
       :
 
@@ -1783,9 +2872,7 @@ No upcoming sessions
 `;
 
 
-  /* =========================
-     RECENT
-  ========================= */
+  /* Recent */
 
   const recent =
     [...sorted]
@@ -1794,6 +2881,7 @@ No upcoming sessions
 
 
   el("recent").innerHTML =
+
     recent.length
 
       ?
@@ -1821,9 +2909,7 @@ No visits yet
 `;
 
 
-  /* =========================
-     HISTORY
-  ========================= */
+  /* History */
 
   const history =
     [...sorted]
@@ -1831,6 +2917,7 @@ No visits yet
 
 
   el("all").innerHTML =
+
     history.length
 
       ?
@@ -1856,6 +2943,11 @@ No sessions recorded
 </div>
 
 `;
+
+
+  /* Calendar */
+
+  renderCalendar();
 
 }
 
@@ -1995,7 +3087,7 @@ function editSession(id){
 
 
 /* ==================================================
-   COPY PREVIOUS SESSION
+   COPY SESSION
 ================================================== */
 
 function copySession(id){
@@ -2020,12 +3112,9 @@ function copySession(id){
 
 
   /*
-    IMPORTANT:
-
-    Copy creates a NEW session.
-
-    Previous date + 1 day
-    Status = Planned
+    New session:
+    previous date + 1 day
+    status = Planned
   */
 
   editingId = null;
@@ -2131,10 +3220,6 @@ el("sessionForm")
           .trim();
 
 
-      /* =========================
-         VALIDATION
-      ========================= */
-
       if(
         !date ||
         !type
@@ -2149,9 +3234,12 @@ el("sessionForm")
       }
 
 
-      /* =========================
-         DUPLICATE CHECK
-      ========================= */
+      /*
+        Duplicate protection.
+
+        During Edit, the current
+        session is ignored.
+      */
 
       if(
         isDuplicate(
@@ -2177,9 +3265,9 @@ el("sessionForm")
       }
 
 
-      /* =========================
-         EDIT EXISTING
-      ========================= */
+      /* ==================================================
+         EDIT
+      ================================================== */
 
       if(
         editingId !== null
@@ -2246,15 +3334,15 @@ el("sessionForm")
       }
 
 
-      /* =========================
-         CREATE NEW SESSION
-      ========================= */
+      /* ==================================================
+         NEW SESSION
+      ================================================== */
 
       const session = {
 
         id:
           Date.now()
-          .toString() +
+            .toString() +
           Math.random()
             .toString(36)
             .slice(2),
@@ -2320,7 +3408,43 @@ el("cancelEdit")
 
 
 /* ==================================================
-   HISTORY ACTIONS
+   CALENDAR MONTH NAVIGATION
+================================================== */
+
+el("previousMonth")
+  .addEventListener(
+    "click",
+    function(){
+
+      calendarDate.setMonth(
+        calendarDate.getMonth() - 1
+      );
+
+
+      renderCalendar();
+
+    }
+  );
+
+
+el("nextMonth")
+  .addEventListener(
+    "click",
+    function(){
+
+      calendarDate.setMonth(
+        calendarDate.getMonth() + 1
+      );
+
+
+      renderCalendar();
+
+    }
+  );
+
+
+/* ==================================================
+   HISTORY / CALENDAR ACTIONS
 ================================================== */
 
 document.addEventListener(
@@ -2328,9 +3452,7 @@ document.addEventListener(
   function(event){
 
 
-    /* =========================
-       MARK ATTENDED
-    ========================= */
+    /* Mark attended */
 
     const attendButton =
       event.target.closest(
@@ -2362,6 +3484,7 @@ document.addEventListener(
               :
 
               x
+
         );
 
 
@@ -2376,9 +3499,7 @@ document.addEventListener(
     }
 
 
-    /* =========================
-       EDIT
-    ========================= */
+    /* Edit */
 
     const editButton =
       event.target.closest(
@@ -2398,9 +3519,7 @@ document.addEventListener(
     }
 
 
-    /* =========================
-       COPY
-    ========================= */
+    /* Copy */
 
     const copyButton =
       event.target.closest(
@@ -2420,9 +3539,7 @@ document.addEventListener(
     }
 
 
-    /* =========================
-       DELETE
-    ========================= */
+    /* Delete */
 
     const deleteButton =
       event.target.closest(
@@ -2469,6 +3586,14 @@ document.addEventListener(
 
 el("date").value =
   today();
+
+
+selectedCalendarDate =
+  today();
+
+
+calendarDate =
+  new Date();
 
 
 render();
