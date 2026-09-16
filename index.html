@@ -1,0 +1,46 @@
+<!doctype html><html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2563eb"><link rel="manifest" href="manifest.json"><title>Therapy Tracker</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#172033;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:#2563eb;color:#fff;padding:24px 18px;border-radius:0 0 24px 24px}h1{margin:0;font-size:25px}header p{margin:5px 0 0;opacity:.9}
+main{max-width:720px;margin:auto;padding:16px 16px 90px}.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card,.panel,.session{background:#fff;border-radius:16px;padding:15px;box-shadow:0 3px 14px #0000000b}.num{font-size:27px;font-weight:700}.small{font-size:13px;color:#667085}.panel{margin-top:18px}.panel h2{font-size:18px;margin:0 0 12px}
+button{border:0;border-radius:11px;padding:11px 14px;font-size:15px;font-weight:650;cursor:pointer}.primary{background:#2563eb;color:#fff;width:100%}.light{background:#e8eefc;color:#174ea6}.danger{background:#fee2e2;color:#991b1b}
+label{display:block;font-size:13px;color:#667085;margin:10px 0 5px}input,select,textarea{width:100%;padding:12px;border:1px solid #d7dce5;border-radius:10px;font-size:16px;background:#fff}textarea{min-height:75px}
+.session{margin:9px 0;display:flex;justify-content:space-between;gap:10px}.session strong{display:block}.badge{height:max-content;padding:6px 9px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}.attended{background:#dcfce7;color:#166534}.missed{background:#fee2e2;color:#991b1b}.planned{background:#dbeafe;color:#1d4ed8}.rescheduled{background:#fef3c7;color:#92400e}
+.actions{display:flex;gap:7px;margin-top:9px}.actions button{padding:7px 9px;font-size:12px}nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));z-index:4}nav button{background:none;color:#667085}nav .active{color:#2563eb}
+.hidden{display:none}.empty{text-align:center;color:#667085;padding:20px}
+</style></head><body>
+<header><h1>Therapy Tracker</h1><p>Track your sessions & attendance</p></header>
+<main>
+<section id="home">
+<div class="cards"><div class="card"><div class="num" id="total">0</div><div class="small">Total sessions</div></div><div class="card"><div class="num" id="attended">0</div><div class="small">Attended</div></div><div class="card"><div class="num" id="missed">0</div><div class="small">Missed</div></div><div class="card"><div class="num" id="rate">0%</div><div class="small">Attendance</div></div></div>
+<div class="panel"><h2>Next session</h2><div id="next" class="empty">No upcoming sessions</div></div>
+<div class="panel"><h2>Recent visits</h2><div id="recent"></div></div>
+</section>
+<section id="add" class="hidden"><div class="panel"><h2>Add therapy session</h2>
+<form id="form"><label>Date</label><input id="date" type="date" required><label>Time</label><input id="time" type="time"><label>Therapy / Session type</label><input id="type" placeholder="Physiotherapy" required><label>Therapist</label><input id="therapist" placeholder="Therapist name"><label>Status</label><select id="status"><option>Planned</option><option>Attended</option><option>Missed</option><option>Rescheduled</option></select><label>Notes</label><textarea id="notes" placeholder="Exercises, observations, follow-up..."></textarea><button class="primary">Save session</button></form></div></section>
+<section id="history" class="hidden"><div class="panel"><h2>Session history</h2><div id="all"></div></div></section>
+</main>
+<nav><button class="active" onclick="show('home',this)">🏠<br>Home</button><button onclick="show('add',this)">➕<br>Add</button><button onclick="show('history',this)">📋<br>History</button></nav>
+<script>
+let sessions=JSON.parse(localStorage.getItem('therapySessions')||'[]');
+const save=()=>localStorage.setItem('therapySessions',JSON.stringify(sessions));
+function show(id,btn){['home','add','history'].forEach(x=>document.getElementById(x).classList.toggle('hidden',x!==id));document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');render();}
+function render(){
+ const total=sessions.length, a=sessions.filter(x=>x.status==='Attended').length, m=sessions.filter(x=>x.status==='Missed').length;
+ document.getElementById('total').textContent=total;document.getElementById('attended').textContent=a;document.getElementById('missed').textContent=m;
+ document.getElementById('rate').textContent=(a+m?Math.round(a/(a+m)*100):0)+'%';
+ const sorted=[...sessions].sort((x,y)=>(x.date+x.time).localeCompare(y.date+y.time));
+ const upcoming=sorted.find(x=>x.status==='Planned' && (x.date+x.time)>=new Date().toISOString().slice(0,16).replace('T',''));
+ document.getElementById('next').innerHTML=upcoming?card(upcoming,false):'<div class="empty">No upcoming sessions</div>';
+ document.getElementById('recent').innerHTML=sorted.slice(-5).reverse().map(x=>card(x,false)).join('')||'<div class="empty">No visits yet</div>';
+ document.getElementById('all').innerHTML=sorted.slice().reverse().map(x=>card(x,true)).join('')||'<div class="empty">No sessions recorded</div>';
+}
+function card(x,del){return `<div class="session"><div><strong>${esc(x.type)}</strong><div class="small">${x.date}${x.time?' • '+x.time:''}</div><div class="meta">${esc(x.therapist||'')} ${x.notes?'• '+esc(x.notes):''}</div>${del?`<div class="actions"><button class="light" onclick="setStatus('${x.id}','Attended')">Attended</button><button class="danger" onclick="removeSession('${x.id}')">Delete</button></div>`:''}</div><span class="badge ${x.status.toLowerCase()}">${x.status}</span></div>`}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function setStatus(id,status){sessions=sessions.map(x=>x.id===id?{...x,status}:x);save();render()}
+function removeSession(id){if(confirm('Delete this session?')){sessions=sessions.filter(x=>x.id!==id);save();render()}}
+document.getElementById('form').onsubmit=e=>{e.preventDefault();sessions.push({id:Date.now().toString(),date:date.value,time:time.value,type:type.value,therapist:therapist.value,status:status.value,notes:notes.value});save();e.target.reset();show('home',document.querySelector('nav button'));};
+date.value=new Date().toISOString().slice(0,10);render();
+</script></body></html>
