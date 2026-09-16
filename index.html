@@ -1,14 +1,29 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#2563eb">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+  name="theme-color"
+  content="#2563eb">
+
 <link rel="manifest" href="manifest.json">
+
 <title>Therapy Tracker</title>
 
+
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box
+}
+
 
 body{
   margin:0;
@@ -17,6 +32,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
+
 header{
   background:#2563eb;
   color:#fff;
@@ -24,21 +40,25 @@ header{
   border-radius:0 0 24px 24px
 }
 
+
 h1{
   margin:0;
   font-size:25px
 }
+
 
 header p{
   margin:5px 0 0;
   opacity:.9
 }
 
+
 main{
   max-width:720px;
   margin:auto;
-  padding:16px 16px 100px
+  padding:16px 16px 110px
 }
+
 
 .cards{
   display:grid;
@@ -46,31 +66,39 @@ main{
   gap:12px
 }
 
-.card,.panel,.session{
+
+.card,
+.panel,
+.session{
   background:#fff;
   border-radius:16px;
   padding:15px;
   box-shadow:0 3px 14px #0000000b
 }
 
+
 .num{
   font-size:27px;
   font-weight:700
 }
+
 
 .small{
   font-size:13px;
   color:#667085
 }
 
+
 .panel{
   margin-top:18px
 }
+
 
 .panel h2{
   font-size:18px;
   margin:0 0 12px
 }
+
 
 button{
   border:0;
@@ -81,21 +109,45 @@ button{
   cursor:pointer
 }
 
+
 .primary{
   background:#2563eb;
   color:#fff;
   width:100%
 }
 
+
 .light{
   background:#e8eefc;
   color:#174ea6
 }
 
+
+.copy{
+  background:#ecfdf3;
+  color:#166534
+}
+
+
+.edit{
+  background:#fef3c7;
+  color:#92400e
+}
+
+
 .danger{
   background:#fee2e2;
   color:#991b1b
 }
+
+
+.cancel{
+  background:#f1f5f9;
+  color:#475569;
+  width:100%;
+  margin-top:8px
+}
+
 
 label{
   display:block;
@@ -104,7 +156,10 @@ label{
   margin:10px 0 5px
 }
 
-input,select,textarea{
+
+input,
+select,
+textarea{
   width:100%;
   padding:12px;
   border:1px solid #d7dce5;
@@ -113,9 +168,12 @@ input,select,textarea{
   background:#fff
 }
 
+
 textarea{
-  min-height:75px
+  min-height:75px;
+  resize:vertical
 }
+
 
 .session{
   margin:9px 0;
@@ -124,9 +182,30 @@ textarea{
   gap:10px
 }
 
-.session strong{
-  display:block
+
+.session-info{
+  flex:1;
+  min-width:0
 }
+
+
+.session-type{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:4px
+}
+
+
+.therapist{
+  margin-top:3px
+}
+
+
+.notes{
+  margin-top:4px;
+  line-height:1.4
+}
+
 
 .badge{
   height:max-content;
@@ -137,36 +216,143 @@ textarea{
   white-space:nowrap
 }
 
+
 .attended{
   background:#dcfce7;
   color:#166534
 }
+
 
 .missed{
   background:#fee2e2;
   color:#991b1b
 }
 
+
 .planned{
   background:#dbeafe;
   color:#1d4ed8
 }
+
 
 .rescheduled{
   background:#fef3c7;
   color:#92400e
 }
 
+
 .actions{
   display:flex;
+  flex-wrap:wrap;
   gap:7px;
-  margin-top:9px
+  margin-top:10px
 }
+
 
 .actions button{
   padding:7px 9px;
   font-size:12px
 }
+
+
+.edit-banner{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#9a3412;
+  border-radius:11px;
+  padding:10px 12px;
+  margin-bottom:12px;
+  font-size:13px;
+  font-weight:600
+}
+
+
+.copy-banner{
+  background:#ecfdf5;
+  border:1px solid #bbf7d0;
+  color:#166534;
+  border-radius:11px;
+  padding:10px 12px;
+  margin-bottom:12px;
+  font-size:13px;
+  font-weight:600
+}
+
+
+/* =========================
+   THERAPY SUMMARY
+========================= */
+
+.summary-card{
+  background:#fff;
+  border-radius:16px;
+  padding:15px;
+  margin-top:10px;
+  box-shadow:0 3px 14px #0000000b
+}
+
+
+.summary-title{
+  font-weight:700;
+  font-size:16px;
+  margin-bottom:10px
+}
+
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px
+}
+
+
+.summary-item{
+  background:#f8fafc;
+  border-radius:10px;
+  padding:8px 5px;
+  text-align:center
+}
+
+
+.summary-number{
+  font-size:18px;
+  font-weight:700
+}
+
+
+.summary-label{
+  font-size:10px;
+  color:#667085;
+  margin-top:2px
+}
+
+
+.summary-total{
+  background:#eef2ff
+}
+
+
+.summary-attended{
+  background:#ecfdf3
+}
+
+
+.summary-missed{
+  background:#fef2f2
+}
+
+
+.summary-planned{
+  background:#eff6ff
+}
+
+
+.type-help{
+  font-size:12px;
+  color:#667085;
+  margin-top:5px
+}
+
 
 nav{
   position:fixed;
@@ -181,182 +367,441 @@ nav{
   z-index:4
 }
 
+
 nav button{
   background:none;
   color:#667085;
   min-width:30%
 }
 
+
 nav .active{
   color:#2563eb
 }
 
+
 .hidden{
   display:none
 }
+
 
 .empty{
   text-align:center;
   color:#667085;
   padding:20px
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
-  <h1>Therapy Tracker</h1>
-  <p>Track your sessions & attendance</p>
+
+<h1>Therapy Tracker</h1>
+
+<p>
+Track your sessions & attendance
+</p>
+
 </header>
+
 
 <main>
 
-<!-- HOME -->
+
+<!-- ==================================================
+     HOME
+================================================== -->
+
 <section id="home">
 
-  <div class="cards">
 
-    <div class="card">
-      <div class="num" id="total">0</div>
-      <div class="small">Total sessions</div>
-    </div>
+<div class="cards">
 
-    <div class="card">
-      <div class="num" id="attended">0</div>
-      <div class="small">Attended</div>
-    </div>
 
-    <div class="card">
-      <div class="num" id="missed">0</div>
-      <div class="small">Missed</div>
-    </div>
+<div class="card">
 
-    <div class="card">
-      <div class="num" id="rate">0%</div>
-      <div class="small">Attendance</div>
-    </div>
+<div
+  class="num"
+  id="total">
+0
+</div>
 
-  </div>
+<div class="small">
+Total sessions
+</div>
 
-  <div class="panel">
-    <h2>Next session</h2>
-    <div id="next" class="empty">
-      No upcoming sessions
-    </div>
-  </div>
+</div>
 
-  <div class="panel">
-    <h2>Recent visits</h2>
-    <div id="recent"></div>
-  </div>
+
+<div class="card">
+
+<div
+  class="num"
+  id="attended">
+0
+</div>
+
+<div class="small">
+Attended
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div
+  class="num"
+  id="missed">
+0
+</div>
+
+<div class="small">
+Missed
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div
+  class="num"
+  id="rate">
+0%
+</div>
+
+<div class="small">
+Attendance
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ==================================================
+     THERAPY SUMMARY
+================================================== -->
+
+<div class="panel">
+
+<h2>
+Therapy Summary
+</h2>
+
+<div id="therapySummary">
+
+<div class="empty">
+No therapy sessions recorded
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     NEXT SESSION
+================================================== -->
+
+<div class="panel">
+
+<h2>
+Next session
+</h2>
+
+<div
+  id="next"
+  class="empty">
+
+No upcoming sessions
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     RECENT VISITS
+================================================== -->
+
+<div class="panel">
+
+<h2>
+Recent visits
+</h2>
+
+<div id="recent"></div>
+
+</div>
+
 
 </section>
 
 
-<!-- ADD -->
-<section id="add" class="hidden">
+<!-- ==================================================
+     ADD / EDIT
+================================================== -->
 
-  <div class="panel">
+<section
+  id="add"
+  class="hidden">
 
-    <h2>Add therapy session</h2>
 
-    <form id="sessionForm">
+<div class="panel">
 
-      <label>Date</label>
-      <input id="date" type="date" required>
 
-      <label>Time</label>
-      <input id="time" type="time">
+<h2 id="formTitle">
+Add therapy session
+</h2>
 
-      <label>Therapy / Session type</label>
-      <input
-        id="type"
-        placeholder="Physiotherapy"
-        required
-      >
 
-      <label>Therapist</label>
-      <input
-        id="therapist"
-        placeholder="Therapist name"
-      >
+<div
+  id="editBanner"
+  class="edit-banner hidden">
 
-      <label>Status</label>
+✏️ You are editing an existing session.
 
-      <select id="status">
-        <option>Planned</option>
-        <option>Attended</option>
-        <option>Missed</option>
-        <option>Rescheduled</option>
-      </select>
+</div>
 
-      <label>Notes</label>
 
-      <textarea
-        id="notes"
-        placeholder="Exercises, observations, follow-up..."
-      ></textarea>
+<div
+  id="copyBanner"
+  class="copy-banner hidden">
 
-      <button
-        type="submit"
-        class="primary">
-        Save session
-      </button>
+📋 Previous session copied. The date has been moved to the next day. You can change it before saving.
 
-    </form>
+</div>
 
-  </div>
+
+<form id="sessionForm">
+
+
+<label>
+Date
+</label>
+
+<input
+  id="date"
+  type="date"
+  required>
+
+
+<label>
+Time
+</label>
+
+<input
+  id="time"
+  type="time">
+
+
+<label>
+Therapy / Session type
+</label>
+
+
+<select
+  id="type"
+  required>
+
+<option value="">
+Select therapy type
+</option>
+
+<option value="Occupational Therapy">
+Occupational Therapy
+</option>
+
+<option value="Physiotherapy">
+Physiotherapy
+</option>
+
+<option value="Speech Therapy">
+Speech Therapy
+</option>
+
+<option value="ABA Therapy">
+ABA Therapy
+</option>
+
+<option value="Behavioral Therapy">
+Behavioral Therapy
+</option>
+
+<option value="Physical Therapy">
+Physical Therapy
+</option>
+
+<option value="Cognitive Therapy">
+Cognitive Therapy
+</option>
+
+<option value="Sensory Therapy">
+Sensory Therapy
+</option>
+
+<option value="Feeding Therapy">
+Feeding Therapy
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+
+<div class="type-help">
+Select the type of therapy session.
+</div>
+
+
+<label>
+Therapist
+</label>
+
+<input
+  id="therapist"
+  placeholder="Therapist name">
+
+
+<label>
+Status
+</label>
+
+
+<select id="status">
+
+<option value="Planned">
+Planned
+</option>
+
+<option value="Attended">
+Attended
+</option>
+
+<option value="Missed">
+Missed
+</option>
+
+<option value="Rescheduled">
+Rescheduled
+</option>
+
+</select>
+
+
+<label>
+Notes
+</label>
+
+
+<textarea
+  id="notes"
+  placeholder="Exercises, observations, follow-up...">
+</textarea>
+
+
+<button
+  type="submit"
+  class="primary"
+  id="saveButton">
+
+Save session
+
+</button>
+
+
+<button
+  type="button"
+  class="cancel hidden"
+  id="cancelEdit">
+
+Cancel
+
+</button>
+
+
+</form>
+
+
+</div>
+
 
 </section>
 
 
-<!-- HISTORY -->
-<section id="history" class="hidden">
+<!-- ==================================================
+     HISTORY
+================================================== -->
 
-  <div class="panel">
+<section
+  id="history"
+  class="hidden">
 
-    <h2>Session history</h2>
 
-    <div id="all"></div>
+<div class="panel">
 
-  </div>
+<h2>
+Session history
+</h2>
+
+<div id="all"></div>
+
+</div>
+
 
 </section>
+
 
 </main>
 
 
-<!-- NAVIGATION -->
+<!-- ==================================================
+     NAVIGATION
+================================================== -->
+
 <nav>
 
-  <button
-    type="button"
-    class="active"
-    data-page="home">
 
-    🏠<br>
-    Home
+<button
+  type="button"
+  class="active"
+  data-page="home">
 
-  </button>
+🏠<br>
+Home
 
-  <button
-    type="button"
-    data-page="add">
+</button>
 
-    ➕<br>
-    Add
 
-  </button>
+<button
+  type="button"
+  data-page="add">
 
-  <button
-    type="button"
-    data-page="history">
+➕<br>
+Add
 
-    📋<br>
-    History
+</button>
 
-  </button>
+
+<button
+  type="button"
+  data-page="history">
+
+📋<br>
+History
+
+</button>
+
 
 </nav>
 
@@ -366,11 +811,12 @@ nav .active{
 "use strict";
 
 
-/* =========================
+/* ==================================================
    STORAGE
-========================= */
+================================================== */
 
-const STORAGE_KEY = "therapySessions";
+const STORAGE_KEY =
+  "therapySessions";
 
 
 function loadSessions(){
@@ -379,14 +825,19 @@ function loadSessions(){
 
     const data =
       JSON.parse(
-        localStorage.getItem(STORAGE_KEY) || "[]"
+        localStorage.getItem(
+          STORAGE_KEY
+        ) || "[]"
       );
+
 
     return Array.isArray(data)
       ? data.filter(Boolean)
       : [];
 
-  }catch(error){
+  }
+
+  catch(error){
 
     console.error(
       "Unable to load sessions:",
@@ -400,12 +851,20 @@ function loadSessions(){
 }
 
 
-let sessions = loadSessions();
+let sessions =
+  loadSessions();
 
 
-/* =========================
+/* ==================================================
+   EDIT MODE
+================================================== */
+
+let editingId = null;
+
+
+/* ==================================================
    HELPER
-========================= */
+================================================== */
 
 function el(id){
 
@@ -414,9 +873,101 @@ function el(id){
 }
 
 
-/* =========================
-   SAVE DATA
-========================= */
+/* ==================================================
+   TODAY
+================================================== */
+
+function today(){
+
+  const d =
+    new Date();
+
+
+  const year =
+    d.getFullYear();
+
+
+  const month =
+    String(
+      d.getMonth() + 1
+    ).padStart(2,"0");
+
+
+  const day =
+    String(
+      d.getDate()
+    ).padStart(2,"0");
+
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+/* ==================================================
+   ADD DAYS
+================================================== */
+
+function addDays(
+  dateString,
+  days
+){
+
+  if(!dateString){
+
+    return today();
+
+  }
+
+
+  const parts =
+    dateString.split("-");
+
+
+  if(parts.length !== 3){
+
+    return today();
+
+  }
+
+
+  const d =
+    new Date(
+      Number(parts[0]),
+      Number(parts[1]) - 1,
+      Number(parts[2])
+    );
+
+
+  d.setDate(
+    d.getDate() + days
+  );
+
+
+  const year =
+    d.getFullYear();
+
+
+  const month =
+    String(
+      d.getMonth() + 1
+    ).padStart(2,"0");
+
+
+  const day =
+    String(
+      d.getDate()
+    ).padStart(2,"0");
+
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
 
 function saveSessions(){
 
@@ -428,13 +979,17 @@ function saveSessions(){
 }
 
 
-/* =========================
+/* ==================================================
    NAVIGATION
-========================= */
+================================================== */
 
 function show(page){
 
-  ["home","add","history"].forEach(id => {
+  [
+    "home",
+    "add",
+    "history"
+  ].forEach(id => {
 
     el(id).classList.toggle(
       "hidden",
@@ -445,7 +1000,9 @@ function show(page){
 
 
   document
-    .querySelectorAll("nav button")
+    .querySelectorAll(
+      "nav button"
+    )
     .forEach(button => {
 
       button.classList.toggle(
@@ -461,10 +1018,10 @@ function show(page){
 }
 
 
-/* Connect Home / Add / History buttons */
-
 document
-  .querySelectorAll("nav button")
+  .querySelectorAll(
+    "nav button"
+  )
   .forEach(button => {
 
     button.addEventListener(
@@ -481,11 +1038,14 @@ document
   });
 
 
-/* =========================
+/* ==================================================
    DATE FORMAT
-========================= */
+================================================== */
 
-function formatDate(date,time){
+function formatDate(
+  date,
+  time
+){
 
   if(!date){
 
@@ -500,7 +1060,8 @@ function formatDate(date,time){
       : date + "T00:00";
 
 
-  const d = new Date(value);
+  const d =
+    new Date(value);
 
 
   if(
@@ -510,7 +1071,11 @@ function formatDate(date,time){
   ){
 
     return date +
-      (time ? " • " + time : "");
+      (
+        time
+          ? " • " + time
+          : ""
+      );
 
   }
 
@@ -532,9 +1097,9 @@ function formatDate(date,time){
 }
 
 
-/* =========================
-   ESCAPE TEXT
-========================= */
+/* ==================================================
+   ESCAPE
+================================================== */
 
 function esc(value){
 
@@ -560,9 +1125,77 @@ function esc(value){
 }
 
 
-/* =========================
+/* ==================================================
+   DUPLICATE CHECK
+================================================== */
+
+function isDuplicate(
+  date,
+  time,
+  type,
+  ignoreId = null
+){
+
+  const normalizedDate =
+    String(date || "")
+      .trim();
+
+
+  const normalizedTime =
+    String(time || "")
+      .trim();
+
+
+  const normalizedType =
+    String(type || "")
+      .trim()
+      .toLowerCase();
+
+
+  return sessions.some(
+    session => {
+
+      if(
+        ignoreId !== null &&
+        String(session.id) ===
+        String(ignoreId)
+      ){
+
+        return false;
+
+      }
+
+
+      return (
+
+        String(session.date || "")
+          .trim() ===
+        normalizedDate
+
+        &&
+
+        String(session.time || "")
+          .trim() ===
+        normalizedTime
+
+        &&
+
+        String(session.type || "")
+          .trim()
+          .toLowerCase() ===
+        normalizedType
+
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
    SESSION CARD
-========================= */
+================================================== */
 
 function card(
   session,
@@ -577,119 +1210,425 @@ function card(
 
 
   const validStatuses = [
+
     "Attended",
     "Missed",
     "Planned",
     "Rescheduled"
+
   ];
 
 
   const safeStatus =
-    validStatuses.includes(status)
+    validStatuses.includes(
+      status
+    )
       ? status
       : "Planned";
 
 
   return `
 
-    <div class="session">
+<div class="session">
 
-      <div>
-
-        <strong>
-          ${esc(
-            session.type ||
-            "Therapy Session"
-          )}
-        </strong>
-
-        <div class="small">
-          ${esc(
-            formatDate(
-              session.date,
-              session.time
-            )
-          )}
-        </div>
-
-        <div class="small">
-
-          ${esc(
-            session.therapist || ""
-          )}
-
-          ${
-            session.notes
-              ? " • " +
-                esc(session.notes)
-              : ""
-          }
-
-        </div>
+<div class="session-info">
 
 
-        ${
-          showActions
+<div class="session-type">
 
-          ?
+${esc(
+  session.type ||
+  "Therapy Session"
+)}
 
-          `
-
-          <div class="actions">
-
-            <button
-              type="button"
-              class="light"
-              data-attend="${esc(session.id)}">
-
-              Mark Attended
-
-            </button>
+</div>
 
 
-            <button
-              type="button"
-              class="danger"
-              data-delete="${esc(session.id)}">
+<div class="small">
 
-              Delete
+${esc(
+  formatDate(
+    session.date,
+    session.time
+  )
+)}
 
-            </button>
-
-          </div>
-
-          `
-
-          :
-
-          ""
-
-        }
-
-      </div>
+</div>
 
 
-      <span
-        class="badge ${safeStatus.toLowerCase()}">
+${
+  session.therapist
 
-        ${esc(safeStatus)}
+    ?
 
-      </span>
+`<div class="small therapist">
 
-    </div>
+👤 ${esc(
+  session.therapist
+)}
 
-  `;
+</div>`
+
+    :
+
+""
+}
+
+
+${
+  session.notes
+
+    ?
+
+`<div class="small notes">
+
+📝 ${esc(
+  session.notes
+)}
+
+</div>`
+
+    :
+
+""
+}
+
+
+${
+  showActions
+
+  ?
+
+`
+
+<div class="actions">
+
+
+${
+  safeStatus === "Planned" ||
+  safeStatus === "Rescheduled"
+
+  ?
+
+`<button
+  type="button"
+  class="light"
+  data-attend="${esc(session.id)}">
+
+✓ Mark Attended
+
+</button>`
+
+  :
+
+""
+}
+
+
+<button
+  type="button"
+  class="edit"
+  data-edit="${esc(session.id)}">
+
+✏️ Edit
+
+</button>
+
+
+<button
+  type="button"
+  class="copy"
+  data-copy="${esc(session.id)}">
+
+📋 Copy
+
+</button>
+
+
+<button
+  type="button"
+  class="danger"
+  data-delete="${esc(session.id)}">
+
+🗑 Delete
+
+</button>
+
+
+</div>
+
+`
+
+  :
+
+  ""
 
 }
 
 
-/* =========================
+</div>
+
+
+<span
+  class="badge ${safeStatus.toLowerCase()}">
+
+${esc(
+  safeStatus
+)}
+
+</span>
+
+
+</div>
+
+`;
+
+}
+
+
+/* ==================================================
+   THERAPY SUMMARY
+================================================== */
+
+function renderTherapySummary(){
+
+  const container =
+    el("therapySummary");
+
+
+  if(!sessions.length){
+
+    container.innerHTML = `
+
+<div class="empty">
+
+No therapy sessions recorded
+
+</div>
+
+`;
+
+    return;
+
+  }
+
+
+  /*
+    Group sessions by therapy type
+  */
+
+  const groups = {};
+
+
+  sessions.forEach(
+    session => {
+
+      const type =
+        String(
+          session.type ||
+          "Other"
+        ).trim();
+
+
+      if(!groups[type]){
+
+        groups[type] = {
+
+          total:0,
+          attended:0,
+          missed:0,
+          planned:0,
+          rescheduled:0
+
+        };
+
+      }
+
+
+      groups[type].total++;
+
+
+      if(
+        session.status ===
+        "Attended"
+      ){
+
+        groups[type].attended++;
+
+      }
+
+
+      if(
+        session.status ===
+        "Missed"
+      ){
+
+        groups[type].missed++;
+
+      }
+
+
+      if(
+        session.status ===
+        "Planned"
+      ){
+
+        groups[type].planned++;
+
+      }
+
+
+      if(
+        session.status ===
+        "Rescheduled"
+      ){
+
+        groups[type].rescheduled++;
+
+      }
+
+    }
+  );
+
+
+  const types =
+    Object.keys(groups)
+      .sort();
+
+
+  container.innerHTML =
+    types.map(
+      type => {
+
+        const g =
+          groups[type];
+
+
+        return `
+
+<div class="summary-card">
+
+
+<div class="summary-title">
+
+${esc(type)}
+
+</div>
+
+
+<div class="summary-grid">
+
+
+<div class="summary-item summary-total">
+
+<div class="summary-number">
+
+${g.total}
+
+</div>
+
+<div class="summary-label">
+
+Total
+
+</div>
+
+</div>
+
+
+<div class="summary-item summary-attended">
+
+<div class="summary-number">
+
+${g.attended}
+
+</div>
+
+<div class="summary-label">
+
+Attended
+
+</div>
+
+</div>
+
+
+<div class="summary-item summary-missed">
+
+<div class="summary-number">
+
+${g.missed}
+
+</div>
+
+<div class="summary-label">
+
+Missed
+
+</div>
+
+</div>
+
+
+<div class="summary-item summary-planned">
+
+<div class="summary-number">
+
+${g.planned}
+
+</div>
+
+<div class="summary-label">
+
+Planned
+
+</div>
+
+</div>
+
+
+</div>
+
+
+${
+  g.rescheduled > 0
+
+  ?
+
+`<div
+  class="small"
+  style="margin-top:8px">
+
+Rescheduled: ${g.rescheduled}
+
+</div>`
+
+  :
+
+""
+}
+
+
+</div>
+
+`;
+
+      }
+    )
+    .join("");
+
+}
+
+
+/* ==================================================
    RENDER
-========================= */
+================================================== */
 
 function render(){
 
-  /* COUNTS */
+  /* =========================
+     OVERALL COUNTS
+  ========================= */
 
   const total =
     sessions.length;
@@ -698,14 +1637,16 @@ function render(){
   const attended =
     sessions.filter(
       x =>
-        x.status === "Attended"
+        x.status ===
+        "Attended"
     ).length;
 
 
   const missed =
     sessions.filter(
       x =>
-        x.status === "Missed"
+        x.status ===
+        "Missed"
     ).length;
 
 
@@ -726,18 +1667,35 @@ function render(){
 
 
   el("rate").textContent =
+
     (
       completed
-        ? Math.round(
-            attended /
-            completed *
-            100
-          )
-        : 0
+
+        ?
+
+        Math.round(
+          attended /
+          completed *
+          100
+        )
+
+        :
+
+        0
+
     ) + "%";
 
 
-  /* SORT SESSIONS */
+  /* =========================
+     THERAPY SUMMARY
+  ========================= */
+
+  renderTherapySummary();
+
+
+  /* =========================
+     SORT
+  ========================= */
 
   const sorted =
     [...sessions].sort(
@@ -761,7 +1719,9 @@ function render(){
     );
 
 
-  /* NEXT SESSION */
+  /* =========================
+     NEXT SESSION
+  ========================= */
 
   const now =
     new Date();
@@ -772,7 +1732,8 @@ function render(){
       x => {
 
         if(
-          x.status !== "Planned" ||
+          x.status !==
+          "Planned" ||
           !x.date
         ){
 
@@ -798,19 +1759,33 @@ function render(){
   el("next").innerHTML =
     upcoming
 
-      ? card(
-          upcoming,
-          false
-        )
+      ?
 
-      : `
-        <div class="empty">
-          No upcoming sessions
-        </div>
-        `;
+`<div>
+
+${card(
+  upcoming,
+  false
+)}
+
+</div>`
+
+      :
+
+`
+
+<div class="empty">
+
+No upcoming sessions
+
+</div>
+
+`;
 
 
-  /* RECENT VISITS */
+  /* =========================
+     RECENT
+  ========================= */
 
   const recent =
     [...sorted]
@@ -835,14 +1810,20 @@ function render(){
 
       :
 
-      `
-      <div class="empty">
-        No visits yet
-      </div>
-      `;
+`
+
+<div class="empty">
+
+No visits yet
+
+</div>
+
+`;
 
 
-  /* HISTORY */
+  /* =========================
+     HISTORY
+  ========================= */
 
   const history =
     [...sorted]
@@ -866,18 +1847,251 @@ function render(){
 
       :
 
-      `
-      <div class="empty">
-        No sessions recorded
-      </div>
-      `;
+`
+
+<div class="empty">
+
+No sessions recorded
+
+</div>
+
+`;
 
 }
 
 
-/* =========================
-   ADD SESSION
-========================= */
+/* ==================================================
+   RESET FORM
+================================================== */
+
+function resetForm(){
+
+  editingId = null;
+
+
+  el("sessionForm")
+    .reset();
+
+
+  el("date").value =
+    today();
+
+
+  el("status").value =
+    "Planned";
+
+
+  el("formTitle").textContent =
+    "Add therapy session";
+
+
+  el("saveButton").textContent =
+    "Save session";
+
+
+  el("cancelEdit")
+    .classList.add(
+      "hidden"
+    );
+
+
+  el("editBanner")
+    .classList.add(
+      "hidden"
+    );
+
+
+  el("copyBanner")
+    .classList.add(
+      "hidden"
+    );
+
+}
+
+
+/* ==================================================
+   EDIT SESSION
+================================================== */
+
+function editSession(id){
+
+  const session =
+    sessions.find(
+      x =>
+        String(x.id) ===
+        String(id)
+    );
+
+
+  if(!session){
+
+    alert(
+      "Session not found."
+    );
+
+    return;
+
+  }
+
+
+  editingId =
+    session.id;
+
+
+  el("date").value =
+    session.date || "";
+
+
+  el("time").value =
+    session.time || "";
+
+
+  el("type").value =
+    session.type || "";
+
+
+  el("therapist").value =
+    session.therapist || "";
+
+
+  el("status").value =
+    session.status ||
+    "Planned";
+
+
+  el("notes").value =
+    session.notes || "";
+
+
+  el("formTitle").textContent =
+    "Edit therapy session";
+
+
+  el("saveButton").textContent =
+    "Save changes";
+
+
+  el("cancelEdit")
+    .classList.remove(
+      "hidden"
+    );
+
+
+  el("editBanner")
+    .classList.remove(
+      "hidden"
+    );
+
+
+  el("copyBanner")
+    .classList.add(
+      "hidden"
+    );
+
+
+  show("add");
+
+}
+
+
+/* ==================================================
+   COPY PREVIOUS SESSION
+================================================== */
+
+function copySession(id){
+
+  const session =
+    sessions.find(
+      x =>
+        String(x.id) ===
+        String(id)
+    );
+
+
+  if(!session){
+
+    alert(
+      "Session not found."
+    );
+
+    return;
+
+  }
+
+
+  /*
+    IMPORTANT:
+
+    Copy creates a NEW session.
+
+    Previous date + 1 day
+    Status = Planned
+  */
+
+  editingId = null;
+
+
+  el("date").value =
+    addDays(
+      session.date,
+      1
+    );
+
+
+  el("time").value =
+    session.time || "";
+
+
+  el("type").value =
+    session.type || "";
+
+
+  el("therapist").value =
+    session.therapist || "";
+
+
+  el("status").value =
+    "Planned";
+
+
+  el("notes").value =
+    session.notes || "";
+
+
+  el("formTitle").textContent =
+    "Copy previous session";
+
+
+  el("saveButton").textContent =
+    "Save new session";
+
+
+  el("cancelEdit")
+    .classList.add(
+      "hidden"
+    );
+
+
+  el("editBanner")
+    .classList.add(
+      "hidden"
+    );
+
+
+  el("copyBanner")
+    .classList.remove(
+      "hidden"
+    );
+
+
+  show("add");
+
+}
+
+
+/* ==================================================
+   FORM SUBMIT
+================================================== */
 
 el("sessionForm")
   .addEventListener(
@@ -887,47 +2101,47 @@ el("sessionForm")
       event.preventDefault();
 
 
-      const session = {
-
-        id:
-          Date.now().toString(),
-
-        date:
-          el("date").value,
-
-        time:
-          el("time").value,
-
-        type:
-          el("type")
-            .value
-            .trim(),
-
-        therapist:
-          el("therapist")
-            .value
-            .trim(),
-
-        status:
-          el("status").value,
-
-        notes:
-          el("notes")
-            .value
-            .trim()
-
-      };
+      const date =
+        el("date").value;
 
 
-      /* VALIDATION */
+      const time =
+        el("time").value;
+
+
+      const type =
+        el("type")
+          .value
+          .trim();
+
+
+      const therapist =
+        el("therapist")
+          .value
+          .trim();
+
+
+      const status =
+        el("status").value;
+
+
+      const notes =
+        el("notes")
+          .value
+          .trim();
+
+
+      /* =========================
+         VALIDATION
+      ========================= */
 
       if(
-        !session.date ||
-        !session.type
+        !date ||
+        !type
       ){
 
         alert(
-          "Please enter the date and therapy/session type."
+          "Please select the date and therapy type."
         );
 
         return;
@@ -935,38 +2149,152 @@ el("sessionForm")
       }
 
 
-      /* ADD */
+      /* =========================
+         DUPLICATE CHECK
+      ========================= */
+
+      if(
+        isDuplicate(
+          date,
+          time,
+          type,
+          editingId
+        )
+      ){
+
+        alert(
+
+          "⚠️ Duplicate session detected.\n\n" +
+
+          "A session with the same date, time and therapy type already exists.\n\n" +
+
+          "Please use Edit for the existing session or choose another date/time."
+
+        );
+
+        return;
+
+      }
+
+
+      /* =========================
+         EDIT EXISTING
+      ========================= */
+
+      if(
+        editingId !== null
+      ){
+
+        sessions =
+          sessions.map(
+            x => {
+
+              if(
+                String(x.id) !==
+                String(editingId)
+              ){
+
+                return x;
+
+              }
+
+
+              return {
+
+                ...x,
+
+                date:
+                  date,
+
+                time:
+                  time,
+
+                type:
+                  type,
+
+                therapist:
+                  therapist,
+
+                status:
+                  status,
+
+                notes:
+                  notes
+
+              };
+
+            }
+          );
+
+
+        saveSessions();
+
+
+        resetForm();
+
+
+        alert(
+          "✅ Session updated successfully."
+        );
+
+
+        show("history");
+
+
+        return;
+
+      }
+
+
+      /* =========================
+         CREATE NEW SESSION
+      ========================= */
+
+      const session = {
+
+        id:
+          Date.now()
+          .toString() +
+          Math.random()
+            .toString(36)
+            .slice(2),
+
+        date:
+          date,
+
+        time:
+          time,
+
+        type:
+          type,
+
+        therapist:
+          therapist,
+
+        status:
+          status,
+
+        notes:
+          notes
+
+      };
+
 
       sessions.push(
         session
       );
 
 
-      /* SAVE */
-
       saveSessions();
 
 
-      /* RESET FORM */
-
-      event.target.reset();
+      resetForm();
 
 
-      /* SET TODAY */
+      alert(
+        "✅ Therapy session saved successfully."
+      );
 
-      el("date").value =
-        new Date()
-          .toISOString()
-          .slice(0,10);
-
-
-      /* DEFAULT STATUS */
-
-      el("status").value =
-        "Planned";
-
-
-      /* GO HOME */
 
       show("home");
 
@@ -974,15 +2302,35 @@ el("sessionForm")
   );
 
 
-/* =========================
+/* ==================================================
+   CANCEL EDIT
+================================================== */
+
+el("cancelEdit")
+  .addEventListener(
+    "click",
+    function(){
+
+      resetForm();
+
+      show("history");
+
+    }
+  );
+
+
+/* ==================================================
    HISTORY ACTIONS
-========================= */
+================================================== */
 
 document.addEventListener(
   "click",
   function(event){
 
-    /* MARK ATTENDED */
+
+    /* =========================
+       MARK ATTENDED
+    ========================= */
 
     const attendButton =
       event.target.closest(
@@ -999,29 +2347,82 @@ document.addEventListener(
       sessions =
         sessions.map(
           x =>
+
             String(x.id) ===
             String(id)
 
-              ? {
-                  ...x,
-                  status:
-                    "Attended"
-                }
+              ?
 
-              : x
+              {
+                ...x,
+                status:
+                  "Attended"
+              }
+
+              :
+
+              x
         );
 
 
       saveSessions();
 
+
       render();
+
 
       return;
 
     }
 
 
-    /* DELETE */
+    /* =========================
+       EDIT
+    ========================= */
+
+    const editButton =
+      event.target.closest(
+        "[data-edit]"
+      );
+
+
+    if(editButton){
+
+      editSession(
+        editButton.dataset.edit
+      );
+
+
+      return;
+
+    }
+
+
+    /* =========================
+       COPY
+    ========================= */
+
+    const copyButton =
+      event.target.closest(
+        "[data-copy]"
+      );
+
+
+    if(copyButton){
+
+      copySession(
+        copyButton.dataset.copy
+      );
+
+
+      return;
+
+    }
+
+
+    /* =========================
+       DELETE
+    ========================= */
 
     const deleteButton =
       event.target.closest(
@@ -1051,6 +2452,7 @@ document.addEventListener(
 
         saveSessions();
 
+
         render();
 
       }
@@ -1061,14 +2463,12 @@ document.addEventListener(
 );
 
 
-/* =========================
+/* ==================================================
    INITIALIZE
-========================= */
+================================================== */
 
 el("date").value =
-  new Date()
-    .toISOString()
-    .slice(0,10);
+  today();
 
 
 render();
@@ -1076,4 +2476,5 @@ render();
 </script>
 
 </body>
+
 </html>
