@@ -5,15 +5,12 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta
-  name="theme-color"
-  content="#2563eb">
+<meta name="theme-color" content="#2563eb">
 
-<title>Therapy Tracker</title>
+<title>Attendance Tracker</title>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
@@ -27,14 +24,14 @@
 
 :root{
 
-  --bg:#f4f7fb;
+  --bg:#f5f7fb;
   --card:#ffffff;
   --text:#172033;
   --muted:#68758d;
 
   --primary:#2563eb;
 
-  --border:#e3e8f0;
+  --border:#e1e7f0;
 
   --green:#16a34a;
   --green-bg:#dcfce7;
@@ -51,11 +48,9 @@
   --blue:#087bea;
   --blue-bg:#dbeafe;
 
-  --shadow:
-    0 7px 25px rgba(30,50,90,.08);
+  --shadow:0 5px 20px rgba(30,50,90,.07);
 
 }
-
 
 body.dark{
 
@@ -72,14 +67,13 @@ body.dark{
   --purple-bg:#35164d;
   --blue-bg:#142f52;
 
-  --shadow:
-    0 7px 25px rgba(0,0,0,.30);
+  --shadow:0 5px 20px rgba(0,0,0,.25);
 
 }
 
 
 /* =========================================================
-   RESET
+   BASIC
 ========================================================= */
 
 *{
@@ -106,7 +100,9 @@ body{
     Arial,
     sans-serif;
 
-  padding-bottom:95px;
+  font-size:16px;
+
+  padding-bottom:82px;
 
 }
 
@@ -138,19 +134,19 @@ button{
   color:white;
 
   padding:
-    48px
+    38px
     22px
-    32px;
+    25px;
 
   border-radius:
     0
     0
-    40px
-    40px;
+    32px
+    32px;
 
   box-shadow:
-    0 8px 25px
-    rgba(37,99,235,.22);
+    0 7px 22px
+    rgba(37,99,235,.18);
 
 }
 
@@ -160,7 +156,7 @@ button{
 
   justify-content:space-between;
 
-  align-items:flex-start;
+  align-items:center;
 
   gap:15px;
 
@@ -168,19 +164,21 @@ button{
 
 .title{
 
-  font-size:38px;
+  font-size:34px;
+
+  line-height:1.1;
 
   font-weight:800;
 
-  margin:10px 0 12px;
+  margin:5px 0 10px;
 
 }
 
 .subtitle{
 
-  font-size:19px;
-
   margin:0;
+
+  font-size:18px;
 
   opacity:.92;
 
@@ -188,20 +186,23 @@ button{
 
 .theme-button{
 
-  width:70px;
+  width:64px;
 
-  height:70px;
+  height:64px;
 
-  border:0;
+  border:1px solid
+    rgba(255,255,255,.35);
 
-  border-radius:20px;
+  border-radius:18px;
 
   background:
-    rgba(255,255,255,.17);
+    rgba(255,255,255,.13);
 
   color:white;
 
-  font-size:34px;
+  font-size:27px;
+
+  flex-shrink:0;
 
 }
 
@@ -214,9 +215,9 @@ button{
 
   max-width:900px;
 
-  margin:22px auto;
+  margin:20px auto;
 
-  padding:0 16px;
+  padding:0 15px;
 
 }
 
@@ -235,50 +236,54 @@ button{
 
 
 /* =========================================================
-   PROFILE
+   TOP CONTROL
 ========================================================= */
 
-.profile-area{
+.top-controls{
 
   background:var(--card);
 
-  padding:15px;
+  border:1px solid var(--border);
 
   border-radius:20px;
 
-  border:1px solid var(--border);
+  padding:13px;
 
   box-shadow:var(--shadow);
 
-  margin-bottom:20px;
+  margin-bottom:18px;
 
 }
 
-.profile-row{
+.control-row{
 
   display:flex;
 
-  gap:12px;
+  gap:10px;
 
 }
 
-.profile-row select{
+.control-row select{
 
   flex:1;
 
-  font-size:18px;
-
-  min-height:55px;
+  min-height:50px;
 
 }
 
-.profile-add{
+.profile-button{
 
-  width:60px;
+  min-width:56px;
 
-  font-size:30px;
+  background:var(--primary);
 
-  padding:0;
+  color:white;
+
+  border:0;
+
+  border-radius:12px;
+
+  font-size:24px;
 
 }
 
@@ -286,22 +291,37 @@ button{
 
   color:var(--muted);
 
-  font-size:17px;
+  margin-top:9px;
 
-  margin-top:12px;
+  font-size:15px;
 
 }
 
 
 /* =========================================================
-   INPUTS
+   MODE SELECTOR
 ========================================================= */
 
-input,
-select,
-textarea{
+.mode-title{
+
+  color:var(--muted);
+
+  font-size:14px;
+
+  font-weight:700;
+
+  margin:
+    0
+    0
+    7px;
+
+}
+
+.mode-select{
 
   width:100%;
+
+  min-height:48px;
 
   border:
     1px solid
@@ -313,21 +333,206 @@ textarea{
 
   color:var(--text);
 
-  padding:13px;
-
-  outline:none;
+  padding:10px 12px;
 
 }
 
-label{
 
-  display:block;
+/* =========================================================
+   CARDS
+========================================================= */
 
-  font-weight:700;
+.card{
 
-  margin-bottom:7px;
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:23px;
+
+  padding:20px;
+
+  margin-bottom:18px;
+
+  box-shadow:var(--shadow);
 
 }
+
+.card h2{
+
+  font-size:25px;
+
+  margin:
+    0
+    0
+    17px;
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:13px;
+
+  margin-bottom:18px;
+
+}
+
+.stat{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:22px;
+
+  padding:21px;
+
+  box-shadow:var(--shadow);
+
+}
+
+.stat.clickable{
+
+  cursor:pointer;
+
+}
+
+.stat.clickable:active{
+
+  transform:scale(.985);
+
+}
+
+.stat-number{
+
+  font-size:40px;
+
+  font-weight:800;
+
+  line-height:1;
+
+}
+
+.stat-label{
+
+  color:var(--muted);
+
+  font-size:17px;
+
+  margin-top:9px;
+
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-card{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:19px;
+
+  padding:17px;
+
+  margin-bottom:12px;
+
+}
+
+.summary-title{
+
+  font-size:21px;
+
+  font-weight:800;
+
+  margin-bottom:13px;
+
+}
+
+.summary-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap:7px;
+
+}
+
+.summary-box{
+
+  text-align:center;
+
+  padding:11px 3px;
+
+  border-radius:13px;
+
+  cursor:pointer;
+
+}
+
+.summary-number{
+
+  font-size:24px;
+
+  font-weight:800;
+
+}
+
+.summary-label{
+
+  font-size:11px;
+
+  color:var(--muted);
+
+  margin-top:3px;
+
+}
+
+.summary-total{
+  background:#eaf0ff;
+}
+
+.summary-attended{
+  background:var(--green-bg);
+}
+
+.summary-missed{
+  background:var(--red-bg);
+}
+
+.summary-planned{
+  background:var(--orange-bg);
+}
+
+.summary-rescheduled{
+  background:var(--purple-bg);
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
 
 .form-grid{
 
@@ -336,8 +541,46 @@ label{
   grid-template-columns:
     repeat(2,1fr);
 
-  gap:16px;
+  gap:14px;
 
+}
+
+label{
+
+  display:block;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  margin-bottom:6px;
+
+}
+
+input,
+select,
+textarea{
+
+  width:100%;
+
+  background:var(--card);
+
+  color:var(--text);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:11px;
+
+  padding:11px 12px;
+
+  outline:none;
+
+}
+
+textarea{
+  resize:vertical;
 }
 
 
@@ -349,15 +592,15 @@ label{
 
   border:0;
 
-  border-radius:13px;
+  border-radius:11px;
 
-  padding:11px 16px;
-
-  font-weight:750;
+  padding:10px 15px;
 
   background:#edf1f7;
 
   color:var(--text);
+
+  font-weight:700;
 
 }
 
@@ -403,252 +646,27 @@ label{
 
 .btn.small{
 
-  padding:9px 13px;
+  padding:
+    8px
+    12px;
+
+  font-size:14px;
 
 }
 
+.actions{
 
-/* =========================================================
-   CARDS
-========================================================= */
+  display:flex;
 
-.card{
-
-  background:var(--card);
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:26px;
-
-  padding:24px;
-
-  margin-bottom:22px;
-
-  box-shadow:var(--shadow);
-
-}
-
-.card h2{
-
-  margin:
-    0
-    0
-    20px;
-
-  font-size:28px;
-
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.stats{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:16px;
-
-}
-
-.stat{
-
-  background:var(--card);
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:25px;
-
-  padding:25px;
-
-  box-shadow:var(--shadow);
-
-}
-
-.stat.clickable{
-
-  cursor:pointer;
-
-}
-
-.stat:active{
-
-  transform:scale(.98);
-
-}
-
-.stat-number{
-
-  font-size:45px;
-
-  font-weight:800;
-
-  line-height:1;
-
-}
-
-.stat-label{
-
-  font-size:18px;
-
-  color:var(--muted);
-
-  margin-top:10px;
-
-}
-
-
-/* =========================================================
-   THERAPY SUMMARY
-========================================================= */
-
-.summary-card{
-
-  background:var(--card);
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:23px;
-
-  padding:20px;
-
-  margin-bottom:15px;
-
-}
-
-.summary-title{
-
-  font-size:24px;
-
-  font-weight:800;
-
-  margin-bottom:16px;
-
-}
-
-.summary-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(5,1fr);
+  flex-wrap:wrap;
 
   gap:8px;
 
 }
 
-.summary-box{
-
-  border-radius:17px;
-
-  padding:13px 4px;
-
-  text-align:center;
-
-  cursor:pointer;
-
-  border:
-    1px solid
-    var(--border);
-
-}
-
-.summary-box:active{
-
-  transform:scale(.96);
-
-}
-
-.summary-number{
-
-  font-size:27px;
-
-  font-weight:800;
-
-}
-
-.summary-label{
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  margin-top:4px;
-
-}
-
-.summary-total{
-
-  background:#eaf0ff;
-
-}
-
-.summary-attended{
-
-  background:var(--green-bg);
-
-}
-
-.summary-missed{
-
-  background:var(--red-bg);
-
-}
-
-.summary-planned{
-
-  background:var(--orange-bg);
-
-}
-
-.summary-rescheduled{
-
-  background:var(--purple-bg);
-
-}
-
 
 /* =========================================================
-   COST
-========================================================= */
-
-.cost-row{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  padding:13px 0;
-
-  border-bottom:
-    1px solid
-    var(--border);
-
-  font-size:17px;
-
-}
-
-.cost-row:last-child{
-
-  border-bottom:0;
-
-}
-
-
-/* =========================================================
-   SESSION CARD
+   SESSION
 ========================================================= */
 
 .session{
@@ -660,45 +678,33 @@ label{
     var(--border);
 
   border-left:
-    7px solid
+    6px solid
     var(--primary);
 
-  border-radius:22px;
+  border-radius:19px;
 
-  padding:20px;
+  padding:17px;
 
-  margin:12px 0;
+  margin-bottom:12px;
 
   box-shadow:var(--shadow);
 
 }
 
 .session.attended{
-
-  border-left-color:
-    var(--green);
-
+  border-left-color:var(--green);
 }
 
 .session.missed{
-
-  border-left-color:
-    var(--red);
-
+  border-left-color:var(--red);
 }
 
 .session.planned{
-
-  border-left-color:
-    var(--orange);
-
+  border-left-color:var(--orange);
 }
 
 .session.rescheduled{
-
-  border-left-color:
-    var(--purple);
-
+  border-left-color:var(--purple);
 }
 
 .session-header{
@@ -715,17 +721,36 @@ label{
 
 .session-title{
 
-  font-size:22px;
+  font-size:20px;
 
   font-weight:800;
 
 }
 
+.session-meta{
+
+  color:var(--muted);
+
+  font-size:15px;
+
+  line-height:1.65;
+
+  margin:
+    8px
+    0
+    10px;
+
+}
+
 .badge{
+
+  padding:
+    5px
+    10px;
 
   border-radius:999px;
 
-  padding:7px 12px;
+  font-size:13px;
 
   font-weight:800;
 
@@ -765,28 +790,6 @@ label{
 
 }
 
-.session-meta{
-
-  color:var(--muted);
-
-  font-size:16px;
-
-  line-height:1.7;
-
-  margin:10px 0;
-
-}
-
-.actions{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-}
-
 
 /* =========================================================
    CALENDAR
@@ -798,9 +801,7 @@ label{
 
   align-items:center;
 
-  gap:10px;
-
-  margin-bottom:20px;
+  gap:8px;
 
 }
 
@@ -809,6 +810,8 @@ label{
   flex:1;
 
   text-align:center;
+
+  font-size:25px;
 
   margin:0;
 
@@ -821,7 +824,7 @@ label{
   grid-template-columns:
     repeat(7,1fr);
 
-  gap:7px;
+  gap:6px;
 
 }
 
@@ -831,21 +834,25 @@ label{
 
   color:var(--muted);
 
+  font-size:14px;
+
   font-weight:700;
 
-  padding:7px 0;
+  padding:
+    5px
+    0;
 
 }
 
 .calendar-day{
 
-  min-height:70px;
+  min-height:65px;
 
   border:
     1px solid
     var(--border);
 
-  border-radius:15px;
+  border-radius:12px;
 
   background:var(--card);
 
@@ -859,7 +866,7 @@ label{
 
   align-items:center;
 
-  padding:4px;
+  padding:3px;
 
   position:relative;
 
@@ -875,15 +882,7 @@ label{
 
 .calendar-day.other-month{
 
-  opacity:.27;
-
-}
-
-.calendar-day.today{
-
-  outline:
-    3px solid
-    var(--primary);
+  opacity:.28;
 
 }
 
@@ -897,7 +896,7 @@ label{
 
 .day-number{
 
-  font-size:18px;
+  font-size:17px;
 
   font-weight:700;
 
@@ -905,13 +904,13 @@ label{
 
 .markers{
 
+  height:21px;
+
   display:flex;
 
-  gap:4px;
-
-  min-height:23px;
-
   align-items:center;
+
+  gap:3px;
 
 }
 
@@ -924,27 +923,19 @@ label{
 }
 
 .marker.attended{
-
   color:var(--green);
-
 }
 
 .marker.missed{
-
   color:var(--red);
-
 }
 
 .marker.planned{
-
   color:var(--orange);
-
 }
 
 .marker.rescheduled{
-
   color:var(--purple);
-
 }
 
 .calendar-legend{
@@ -953,13 +944,13 @@ label{
 
   flex-wrap:wrap;
 
-  gap:13px;
+  gap:11px;
+
+  margin-top:14px;
 
   color:var(--muted);
 
-  font-size:14px;
-
-  margin-top:18px;
+  font-size:13px;
 
 }
 
@@ -968,81 +959,124 @@ label{
    SELECTED DATE
 ========================================================= */
 
-.selected-date-box{
+.selected-date{
+
+  border-left:
+    6px solid
+    var(--primary);
+
+  border-radius:18px;
+
+  padding:17px;
 
   background:var(--card);
 
-  border:
+  border-top:
     1px solid
     var(--border);
 
-  border-left:
-    7px solid
-    var(--primary);
+  border-right:
+    1px solid
+    var(--border);
 
-  border-radius:22px;
-
-  padding:20px;
+  border-bottom:
+    1px solid
+    var(--border);
 
 }
 
-.selected-date-title{
+.selected-date-heading{
 
-  font-size:23px;
+  font-size:20px;
 
   font-weight:800;
 
-  margin-bottom:10px;
+  margin-bottom:8px;
+
+}
+
+.add-date-button{
+
+  width:100%;
+
+  margin-top:10px;
+
+  padding:12px;
+
+  font-weight:800;
 
 }
 
 
 /* =========================================================
-   MODALS
+   COST
 ========================================================= */
 
-.modal-background{
+.cost-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:
+    11px
+    0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  font-size:15px;
+
+}
+
+.cost-row:last-child{
+  border-bottom:0;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-bg{
 
   display:none;
 
   position:fixed;
 
-  z-index:100;
-
   inset:0;
+
+  z-index:100;
 
   background:
     rgba(0,0,0,.55);
 
-  padding:18px;
+  padding:15px;
 
   overflow:auto;
 
 }
 
-.modal-background.show{
-
+.modal-bg.show{
   display:block;
-
 }
 
 .modal{
 
-  max-width:720px;
+  max-width:600px;
 
-  margin:35px auto;
+  margin:
+    30px
+    auto;
 
   background:var(--card);
 
   color:var(--text);
 
-  border-radius:25px;
+  border-radius:21px;
 
-  padding:23px;
-
-  box-shadow:
-    0 20px 70px
-    rgba(0,0,0,.30);
+  padding:20px;
 
 }
 
@@ -1054,9 +1088,7 @@ label{
 
   align-items:center;
 
-  gap:10px;
-
-  margin-bottom:18px;
+  margin-bottom:15px;
 
 }
 
@@ -1064,27 +1096,25 @@ label{
 
   margin:0;
 
+  font-size:22px;
+
 }
 
-.close-button{
+.close{
 
   border:0;
 
+  border-radius:9px;
+
   background:#edf1f7;
 
-  color:#172033;
-
-  border-radius:12px;
-
-  padding:9px 12px;
-
-  font-weight:700;
+  padding:8px 11px;
 
 }
 
 
 /* =========================================================
-   BOTTOM NAV
+   NAV
 ========================================================= */
 
 .bottom-nav{
@@ -1099,7 +1129,7 @@ label{
 
   right:0;
 
-  height:90px;
+  height:76px;
 
   background:var(--card);
 
@@ -1111,10 +1141,6 @@ label{
 
   grid-template-columns:
     repeat(4,1fr);
-
-  box-shadow:
-    0 -5px 20px
-    rgba(0,0,0,.07);
 
 }
 
@@ -1128,21 +1154,21 @@ label{
 
   font-weight:700;
 
+  font-size:14px;
+
 }
 
 .nav-button.active{
-
   color:var(--primary);
-
 }
 
 .nav-icon{
 
   display:block;
 
-  font-size:26px;
+  font-size:22px;
 
-  margin-bottom:4px;
+  line-height:25px;
 
 }
 
@@ -1153,11 +1179,11 @@ label{
 
 .empty{
 
-  text-align:center;
-
   color:var(--muted);
 
-  padding:25px;
+  text-align:center;
+
+  padding:20px 10px;
 
 }
 
@@ -1171,88 +1197,69 @@ label{
   .header{
 
     padding:
-      45px
-      20px
-      30px;
-
-    border-radius:
-      0
-      0
       35px
-      35px;
+      20px
+      24px;
 
   }
 
   .title{
 
-    font-size:35px;
+    font-size:32px;
 
   }
 
   .subtitle{
 
-    font-size:18px;
+    font-size:17px;
 
   }
 
   .theme-button{
 
-    width:62px;
+    width:58px;
 
-    height:62px;
+    height:58px;
 
-    font-size:30px;
+    font-size:25px;
 
   }
 
   .container{
 
-    padding:0 13px;
-
-  }
-
-  .stats{
-
-    gap:12px;
+    padding:
+      0
+      12px;
 
   }
 
   .stat{
 
-    padding:21px;
+    padding:18px;
 
   }
 
   .stat-number{
 
-    font-size:39px;
+    font-size:37px;
 
   }
 
   .stat-label{
 
-    font-size:16px;
+    font-size:15px;
 
   }
 
   .summary-grid{
 
-    grid-template-columns:
-      repeat(5,1fr);
-
-    gap:5px;
-
-  }
-
-  .summary-box{
-
-    padding:11px 2px;
+    gap:4px;
 
   }
 
   .summary-number{
 
-    font-size:23px;
+    font-size:22px;
 
   }
 
@@ -1270,15 +1277,19 @@ label{
 
   .calendar-day{
 
-    min-height:57px;
-
-    border-radius:11px;
+    min-height:56px;
 
   }
 
-  .weekday{
+  .day-number{
 
-    font-size:13px;
+    font-size:16px;
+
+  }
+
+  .calendar-header h2{
+
+    font-size:22px;
 
   }
 
@@ -1303,19 +1314,18 @@ label{
     <div>
 
       <div class="title">
-        Therapy Tracker
+        Attendance Tracker
       </div>
 
       <p class="subtitle">
-        Track therapy visits, attendance and expenses
+        Track sessions, attendance and expenses
       </p>
 
     </div>
 
-
     <button
-      class="theme-button"
       id="themeButton"
+      class="theme-button"
       onclick="toggleTheme()">
 
       🌙
@@ -1339,11 +1349,12 @@ label{
   class="view active">
 
 
-  <!-- PROFILE -->
+  <!-- PROFILE + MODE -->
 
-  <div class="profile-area">
+  <div class="top-controls">
 
-    <div class="profile-row">
+
+    <div class="control-row">
 
       <select
         id="profileSelect"
@@ -1352,10 +1363,19 @@ label{
 
 
       <button
-        class="btn primary profile-add"
+        class="profile-button"
         onclick="openProfileModal()">
 
         +
+
+      </button>
+
+
+      <button
+        class="btn"
+        onclick="editCurrentProfile()">
+
+        ✎
 
       </button>
 
@@ -1365,10 +1385,41 @@ label{
     <div
       class="profile-count"
       id="profileCount">
+    </div>
 
-      0 sessions in this profile
+
+    <div style="margin-top:13px">
+
+      <div class="mode-title">
+        Attendance Mode
+      </div>
+
+
+      <select
+        id="modeSelect"
+        class="mode-select"
+        onchange="changeMode(this.value)">
+
+        <option value="therapy">
+          🩺 Therapy
+        </option>
+
+        <option value="tuition">
+          📚 Tuition
+        </option>
+
+        <option value="class">
+          🏫 Class Attendance
+        </option>
+
+        <option value="office">
+          🏢 Office / RTO Attendance
+        </option>
+
+      </select>
 
     </div>
+
 
   </div>
 
@@ -1389,7 +1440,7 @@ label{
       </div>
 
       <div class="stat-label">
-        Total Sessions
+        Total
       </div>
 
     </div>
@@ -1472,7 +1523,7 @@ label{
       </div>
 
       <div class="stat-label">
-        Attendance Rate
+        Attendance
       </div>
 
     </div>
@@ -1492,42 +1543,37 @@ label{
 
     </div>
 
+
   </div>
 
 
-  <!-- =====================================================
-       THERAPY SUMMARY
-  ===================================================== -->
+  <!-- SUMMARY -->
 
   <div class="card">
 
-    <h2>
+    <h2 id="summaryHeading">
       Therapy Summary
     </h2>
 
-    <div id="therapySummary"></div>
+    <div id="summaryContainer"></div>
 
   </div>
 
 
-  <!-- =====================================================
-       THERAPY COST
-  ===================================================== -->
+  <!-- COST -->
 
   <div class="card">
 
     <h2>
-      💰 Therapy Cost
+      💰 Cost Summary
     </h2>
 
-    <div id="therapyCost"></div>
+    <div id="costContainer"></div>
 
   </div>
 
 
-  <!-- =====================================================
-       NEXT SESSION
-  ===================================================== -->
+  <!-- NEXT -->
 
   <div class="card">
 
@@ -1540,14 +1586,12 @@ label{
   </div>
 
 
-  <!-- =====================================================
-       RECENT
-  ===================================================== -->
+  <!-- RECENT -->
 
   <div class="card">
 
     <h2>
-      Recent Sessions
+      Recent Records
     </h2>
 
     <div id="recentSessions"></div>
@@ -1559,17 +1603,18 @@ label{
 
 
 <!-- =======================================================
-     ADD / EDIT
+     ADD
 ======================================================= -->
 
 <section
   id="addView"
   class="view">
 
+
   <div class="card">
 
     <h2 id="formTitle">
-      Add Therapy Session
+      Add Record
     </h2>
 
 
@@ -1602,42 +1647,45 @@ label{
         <div>
 
           <label>
-            Therapy
+            Mode
           </label>
 
           <select
-            id="therapy"
-            required>
+            id="formMode"
+            onchange="updateFormLabels()">
 
-            <option>
-              Occupational Therapy
+            <option value="therapy">
+              🩺 Therapy
             </option>
 
-            <option>
-              Physiotherapy
+            <option value="tuition">
+              📚 Tuition
             </option>
 
-            <option>
-              Speech Therapy
+            <option value="class">
+              🏫 Class Attendance
             </option>
 
-            <option>
-              Behavioral Therapy
-            </option>
-
-            <option>
-              ABA Therapy
-            </option>
-
-            <option>
-              Physical Therapy
-            </option>
-
-            <option>
-              Other
+            <option value="office">
+              🏢 Office / RTO Attendance
             </option>
 
           </select>
+
+        </div>
+
+
+        <div>
+
+          <label id="activityLabel">
+            Therapy
+          </label>
+
+          <input
+            type="text"
+            id="activity"
+            required
+            placeholder="Occupational Therapy">
 
         </div>
 
@@ -1664,22 +1712,21 @@ label{
 
           <input
             type="time"
-            id="time"
-            required>
+            id="time">
 
         </div>
 
 
         <div>
 
-          <label>
+          <label id="personLabel">
             Therapist
           </label>
 
           <input
             type="text"
-            id="therapist"
-            placeholder="Therapist name">
+            id="person"
+            placeholder="Name">
 
         </div>
 
@@ -1695,7 +1742,7 @@ label{
             id="cost"
             min="0"
             step="1"
-            placeholder="450">
+            value="0">
 
         </div>
 
@@ -1706,9 +1753,7 @@ label{
             Status
           </label>
 
-          <select
-            id="status"
-            required>
+          <select id="status">
 
             <option value="planned">
               Planned
@@ -1731,33 +1776,34 @@ label{
         </div>
 
 
-        <div>
+      </div>
 
-          <label>
-            Notes
-          </label>
 
-          <textarea
-            id="notes"
-            rows="3"
-            placeholder="Optional notes"></textarea>
+      <div style="margin-top:14px">
 
-        </div>
+        <label>
+          Notes
+        </label>
 
+        <textarea
+          id="notes"
+          rows="3"
+          placeholder="Optional notes">
+        </textarea>
 
       </div>
 
 
       <div
         class="actions"
-        style="margin-top:18px">
+        style="margin-top:15px">
 
 
         <button
           type="submit"
           class="btn primary">
 
-          Save Session
+          Save
 
         </button>
 
@@ -1810,7 +1856,7 @@ label{
         <input
           id="historySearch"
           oninput="renderHistory()"
-          placeholder="Therapy / therapist / notes">
+          placeholder="Search records">
 
       </div>
 
@@ -1855,14 +1901,14 @@ label{
 
     <div
       class="actions"
-      style="margin-top:16px">
+      style="margin-top:15px">
 
 
       <button
         class="btn success"
         onclick="exportExcel()">
 
-        ⬇ Excel
+        Excel
 
       </button>
 
@@ -1871,7 +1917,7 @@ label{
         class="btn orange"
         onclick="exportPDF()">
 
-        ⬇ PDF
+        PDF
 
       </button>
 
@@ -1885,9 +1931,7 @@ label{
       </button>
 
 
-      <label
-        class="btn"
-        style="cursor:pointer">
+      <label class="btn">
 
         Restore
 
@@ -1901,6 +1945,7 @@ label{
 
 
     </div>
+
 
   </div>
 
@@ -1935,8 +1980,7 @@ label{
       </button>
 
 
-      <h2
-        id="monthTitle">
+      <h2 id="monthTitle">
       </h2>
 
 
@@ -1960,25 +2004,15 @@ label{
 
     <div class="calendar-legend">
 
-      <span>
-        🟢 ✓ Attended
-      </span>
+      <span>🟢 ✓ Attended</span>
 
-      <span>
-        🔴 ✕ Missed
-      </span>
+      <span>🔴 ✕ Missed</span>
 
-      <span>
-        🟠 • Planned
-      </span>
+      <span>🟠 • Planned</span>
 
-      <span>
-        🟣 ↻ Rescheduled
-      </span>
+      <span>🟣 ↻ Rescheduled</span>
 
-      <span>
-        🔵 Weekend
-      </span>
+      <span>🔵 Weekend</span>
 
     </div>
 
@@ -1988,20 +2022,19 @@ label{
 
   <div class="card">
 
-    <h2
-      id="selectedDateTitle">
+    <h2 id="selectedDateHeading">
       Selected Date
     </h2>
 
 
-    <div
-      id="selectedDateRecords">
+    <div id="selectedDateRecords">
 
       <div class="empty">
         Select a date from the calendar.
       </div>
 
     </div>
+
 
   </div>
 
@@ -2024,9 +2057,7 @@ label{
     data-view="homeView"
     onclick="switchView('homeView',this)">
 
-    <span class="nav-icon">
-      🏠
-    </span>
+    <span class="nav-icon">🏠</span>
 
     Home
 
@@ -2038,9 +2069,7 @@ label{
     data-view="addView"
     onclick="switchView('addView',this)">
 
-    <span class="nav-icon">
-      ＋
-    </span>
+    <span class="nav-icon">＋</span>
 
     Add
 
@@ -2052,9 +2081,7 @@ label{
     data-view="historyView"
     onclick="switchView('historyView',this)">
 
-    <span class="nav-icon">
-      ☷
-    </span>
+    <span class="nav-icon">☷</span>
 
     History
 
@@ -2066,9 +2093,7 @@ label{
     data-view="calendarView"
     onclick="switchView('calendarView',this)">
 
-    <span class="nav-icon">
-      📅
-    </span>
+    <span class="nav-icon">📅</span>
 
     Calendar
 
@@ -2083,7 +2108,7 @@ label{
 ======================================================= -->
 
 <div
-  class="modal-background"
+  class="modal-bg"
   id="profileModal">
 
 
@@ -2092,13 +2117,12 @@ label{
 
     <div class="modal-header">
 
-      <h2>
+      <h2 id="profileModalTitle">
         Add Profile
       </h2>
 
-
       <button
-        class="close-button"
+        class="close"
         onclick="closeProfileModal()">
 
         ✕
@@ -2108,26 +2132,31 @@ label{
     </div>
 
 
+    <input
+      type="hidden"
+      id="profileEditId">
+
+
     <label>
       Profile Name
     </label>
 
 
     <input
-      id="newProfileName"
+      id="profileNameInput"
       placeholder="Example: Child 1">
 
 
     <div
       class="actions"
-      style="margin-top:18px">
+      style="margin-top:15px">
 
 
       <button
         class="btn primary"
-        onclick="addProfile()">
+        onclick="saveProfile()">
 
-        Add Profile
+        Save
 
       </button>
 
@@ -2150,11 +2179,11 @@ label{
 
 
 <!-- =======================================================
-     RECORDS MODAL
+     RECORD MODAL
 ======================================================= -->
 
 <div
-  class="modal-background"
+  class="modal-bg"
   id="recordsModal">
 
 
@@ -2163,14 +2192,13 @@ label{
 
     <div class="modal-header">
 
-      <h2
-        id="recordsTitle">
+      <h2 id="recordsTitle">
         Records
       </h2>
 
 
       <button
-        class="close-button"
+        class="close"
         onclick="closeRecordsModal()">
 
         ✕
@@ -2182,7 +2210,6 @@ label{
 
     <div id="recordsBody"></div>
 
-
   </div>
 
 </div>
@@ -2190,9 +2217,9 @@ label{
 
 <script>
 
-/* ==========================================================
-   STORAGE KEYS
-========================================================== */
+/* =========================================================
+   STORAGE
+========================================================= */
 
 const SESSION_KEY =
   "therapySessions";
@@ -2203,16 +2230,19 @@ const PROFILE_KEY =
 const CURRENT_PROFILE_KEY =
   "therapyCurrentProfile";
 
+const MODE_KEY =
+  "attendanceTrackerMode";
+
 const THEME_KEY =
   "therapyTheme";
 
-const BACKUP_KEY =
-  "therapySessions_backup_before_upgrade";
+const UPGRADE_BACKUP_KEY =
+  "attendance_tracker_upgrade_backup";
 
 
-/* ==========================================================
-   GLOBAL VARIABLES
-========================================================== */
+/* =========================================================
+   DATA
+========================================================= */
 
 let sessions=[];
 
@@ -2220,21 +2250,21 @@ let profiles=[];
 
 let currentProfileId="";
 
+let currentMode="therapy";
+
 let calendarDate=
   new Date();
 
 let selectedCalendarDate=null;
 
 
-/* ==========================================================
+/* =========================================================
    ID
-========================================================== */
+========================================================= */
 
 function createId(){
 
-  return Date.now()
-    .toString(36)
-    +
+  return Date.now().toString(36)+
     Math.random()
       .toString(36)
       .substring(2,9);
@@ -2242,11 +2272,11 @@ function createId(){
 }
 
 
-/* ==========================================================
-   SAFE JSON READ
-========================================================== */
+/* =========================================================
+   STORAGE READ
+========================================================= */
 
-function readStorage(
+function readJSON(
   key,
   fallback
 ){
@@ -2259,9 +2289,12 @@ function readStorage(
     if(!value)
       return fallback;
 
-    return JSON.parse(value);
+    const data=
+      JSON.parse(value);
 
-  }catch(error){
+    return data;
+
+  }catch(e){
 
     return fallback;
 
@@ -2270,43 +2303,120 @@ function readStorage(
 }
 
 
-/* ==========================================================
-   SAVE
-========================================================== */
+/* =========================================================
+   STATUS
+========================================================= */
 
-function saveSessions(){
+function normalizeStatus(
+  status,
+  date,
+  time
+){
 
-  /*
-     IMPORTANT:
-     No localStorage.clear().
-  */
+  const v=
+    String(status || "")
+      .toLowerCase()
+      .trim();
 
-  localStorage.setItem(
-    SESSION_KEY,
-    JSON.stringify(sessions)
-  );
+
+  if(
+    [
+      "attended",
+      "attend",
+      "present",
+      "completed",
+      "complete",
+      "done"
+    ].includes(v)
+  ){
+
+    return "attended";
+
+  }
+
+
+  if(
+    [
+      "missed",
+      "miss",
+      "absent",
+      "not attended",
+      "cancelled",
+      "cancel"
+    ].includes(v)
+  ){
+
+    return "missed";
+
+  }
+
+
+  if(
+    [
+      "planned",
+      "plan",
+      "upcoming",
+      "scheduled",
+      "pending"
+    ].includes(v)
+  ){
+
+    return "planned";
+
+  }
+
+
+  if(
+    [
+      "rescheduled",
+      "reschedule",
+      "re-scheduled"
+    ].includes(v)
+  ){
+
+    return "rescheduled";
+
+  }
+
+
+  if(date){
+
+    const d=
+      new Date(
+        date+
+        (
+          time
+            ? "T"+time
+            : "T23:59"
+        )
+      );
+
+
+    if(
+      !isNaN(d.getTime()) &&
+      d>new Date()
+    ){
+
+      return "planned";
+
+    }
+
+  }
+
+
+  return "missed";
 
 }
 
 
-function saveProfiles(){
-
-  localStorage.setItem(
-    PROFILE_KEY,
-    JSON.stringify(profiles)
-  );
-
-}
-
-
-/* ==========================================================
+/* =========================================================
    INITIALIZE
-========================================================== */
+========================================================= */
 
-function initializeData(){
+function initialize(){
 
-  const storedSessions=
-    readStorage(
+  const oldSessions=
+    readJSON(
       SESSION_KEY,
       []
     );
@@ -2314,28 +2424,28 @@ function initializeData(){
 
   sessions=
     Array.isArray(
-      storedSessions
+      oldSessions
     )
-      ? storedSessions
+      ? oldSessions
       : [];
 
 
   /*
-     FIRST UPGRADE:
-     Create a safety copy.
+     IMPORTANT:
+     Do NOT clear existing data.
 
-     This does NOT remove the original data.
+     Make a backup only once.
   */
 
   if(
     sessions.length &&
     !localStorage.getItem(
-      BACKUP_KEY
+      UPGRADE_BACKUP_KEY
     )
   ){
 
     localStorage.setItem(
-      BACKUP_KEY,
+      UPGRADE_BACKUP_KEY,
       JSON.stringify(
         sessions
       )
@@ -2344,28 +2454,19 @@ function initializeData(){
   }
 
 
-  let storedProfiles=
-    readStorage(
+  profiles=
+    readJSON(
       PROFILE_KEY,
       []
     );
 
 
-  profiles=
-    Array.isArray(
-      storedProfiles
-    )
-      ? storedProfiles
-      : [];
-
-
-  /*
-     If old application had no profiles,
-     all old sessions stay under
-     Default Profile.
-  */
-
-  if(!profiles.length){
+  if(
+    !Array.isArray(
+      profiles
+    ) ||
+    !profiles.length
+  ){
 
     profiles=[
 
@@ -2376,88 +2477,104 @@ function initializeData(){
 
     ];
 
-    saveProfiles();
-
   }
 
 
   profiles=
     profiles.map(
       (
-        profile,
+        p,
         index
       )=>({
 
-        id:String(
-          profile.id ||
-          profile.profileId ||
-          (
-            "profile_" +
-            index +
-            "_" +
-            createId()
-          )
-        ),
+        id:
+          String(
+            p.id ||
+            p.profileId ||
+            "profile_"+index
+          ),
 
-        name:String(
-          profile.name ||
-          profile.profileName ||
-          (
-            "Profile " +
-            (index+1)
+        name:
+          String(
+            p.name ||
+            p.profileName ||
+            "Profile "+(index+1)
           )
-        )
 
       })
     );
 
 
-  const defaultProfileId=
-    profiles[0].id;
+  currentProfileId=
+    localStorage.getItem(
+      CURRENT_PROFILE_KEY
+    );
+
+
+  if(
+    !profiles.some(
+      p =>
+        p.id===
+        currentProfileId
+    )
+  ){
+
+    currentProfileId=
+      profiles[0].id;
+
+  }
 
 
   /*
-     Upgrade existing records.
+     Migrate existing sessions.
 
-     Existing data is NEVER deleted.
+     Existing records become therapy mode.
   */
 
   sessions=
     sessions.map(
-      oldSession=>{
+      old=>{
 
         const s={
-          ...oldSession
+          ...old
         };
 
 
-        if(!s.id){
-
-          s.id=
-            createId();
-
-        }
+        if(!s.id)
+          s.id=createId();
 
 
-        if(!s.profileId){
-
+        if(!s.profileId)
           s.profileId=
-            defaultProfileId;
-
-        }
+            currentProfileId;
 
 
         /*
-           Support old field names.
+           Existing application records
+           are Therapy records.
         */
+
+        if(!s.mode)
+          s.mode="therapy";
+
 
         if(!s.therapy){
 
           s.therapy=
             s.therapyType ||
-            s.type ||
             s.therapyName ||
+            s.type ||
+            s.activity ||
             "Occupational Therapy";
+
+        }
+
+
+        if(!s.activity){
+
+          s.activity=
+            s.therapy ||
+            "Activity";
 
         }
 
@@ -2481,9 +2598,10 @@ function initializeData(){
         }
 
 
-        if(!s.therapist){
+        if(!s.person){
 
-          s.therapist=
+          s.person=
+            s.therapist ||
             s.doctor ||
             s.provider ||
             s.therapistName ||
@@ -2493,8 +2611,10 @@ function initializeData(){
 
 
         if(
-          s.cost===undefined ||
-          s.cost===null
+          s.cost===
+          undefined ||
+          s.cost===
+          null
         ){
 
           s.cost=
@@ -2509,12 +2629,9 @@ function initializeData(){
 
         s.cost=
           Number(
-            s.cost || 0
+            s.cost ||
+            0
           );
-
-
-        s.notes=
-          s.notes || "";
 
 
         s.status=
@@ -2525,33 +2642,46 @@ function initializeData(){
           );
 
 
+        s.notes=
+          s.notes ||
+          "";
+
+
         return s;
 
       }
     );
 
 
-  saveSessions();
+  saveAll();
+
+}
 
 
-  currentProfileId=
-    localStorage.getItem(
-      CURRENT_PROFILE_KEY
-    );
+/* =========================================================
+   SAVE
+========================================================= */
 
+function saveAll(){
 
-  if(
-    !profiles.some(
-      p =>
-        String(p.id) ===
-        String(currentProfileId)
+  /*
+     NEVER use localStorage.clear().
+  */
+
+  localStorage.setItem(
+    SESSION_KEY,
+    JSON.stringify(
+      sessions
     )
-  ){
+  );
 
-    currentProfileId=
-      profiles[0].id;
 
-  }
+  localStorage.setItem(
+    PROFILE_KEY,
+    JSON.stringify(
+      profiles
+    )
+  );
 
 
   localStorage.setItem(
@@ -2562,192 +2692,324 @@ function initializeData(){
 }
 
 
-/* ==========================================================
-   STATUS NORMALIZATION
-========================================================== */
+/* =========================================================
+   PROFILE
+========================================================= */
 
-function normalizeStatus(
-  status,
-  date,
-  time
-){
+function currentProfile(){
 
-  const value=
-    String(
-      status || ""
-    )
-      .toLowerCase()
-      .trim();
-
-
-  if(
-    [
-      "attended",
-      "attend",
-      "present",
-      "completed",
-      "complete",
-      "done"
-    ].includes(value)
-  ){
-
-    return "attended";
-
-  }
-
-
-  if(
-    [
-      "missed",
-      "miss",
-      "absent",
-      "not attended",
-      "cancelled",
-      "cancel"
-    ].includes(value)
-  ){
-
-    return "missed";
-
-  }
-
-
-  if(
-    [
-      "planned",
-      "plan",
-      "upcoming",
-      "scheduled",
-      "pending"
-    ].includes(value)
-  ){
-
-    return "planned";
-
-  }
-
-
-  if(
-    [
-      "rescheduled",
-      "reschedule",
-      "re-scheduled"
-    ].includes(value)
-  ){
-
-    return "rescheduled";
-
-  }
-
-
-  /*
-     Only records with no status
-     are automatically interpreted.
-  */
-
-  if(date){
-
-    const d=
-      new Date(
-        date+
-        (
-          time
-            ? "T"+time
-            : "T23:59"
-        )
-      );
-
-
-    if(
-      !isNaN(
-        d.getTime()
-      ) &&
-      d>new Date()
-    ){
-
-      return "planned";
-
-    }
-
-  }
-
-
-  return "missed";
-
-}
-
-
-/* ==========================================================
-   CURRENT PROFILE RECORDS
-========================================================== */
-
-function currentSessions(){
-
-  return sessions.filter(
-    s =>
-      String(s.profileId) ===
-      String(currentProfileId)
+  return profiles.find(
+    p =>
+      p.id===
+      currentProfileId
   );
 
 }
 
 
-/* ==========================================================
-   PROFILE NAME
-========================================================== */
+function changeProfile(
+  id
+){
 
-function getCurrentProfileName(){
-
-  const profile=
-    profiles.find(
+  if(
+    !profiles.some(
       p =>
-        String(p.id) ===
-        String(currentProfileId)
+        p.id===
+        id
+    )
+  )
+    return;
+
+
+  currentProfileId=
+    id;
+
+
+  saveAll();
+
+
+  selectedCalendarDate=null;
+
+
+  renderAll();
+
+}
+
+
+function openProfileModal(){
+
+  document.getElementById(
+    "profileModalTitle"
+  ).textContent=
+    "Add Profile";
+
+
+  document.getElementById(
+    "profileEditId"
+  ).value="";
+
+
+  document.getElementById(
+    "profileNameInput"
+  ).value="";
+
+
+  document.getElementById(
+    "profileModal"
+  ).classList.add(
+    "show"
+  );
+
+}
+
+
+function editCurrentProfile(){
+
+  const p=
+    currentProfile();
+
+
+  if(!p)
+    return;
+
+
+  document.getElementById(
+    "profileModalTitle"
+  ).textContent=
+    "Edit Profile";
+
+
+  document.getElementById(
+    "profileEditId"
+  ).value=
+    p.id;
+
+
+  document.getElementById(
+    "profileNameInput"
+  ).value=
+    p.name;
+
+
+  document.getElementById(
+    "profileModal"
+  ).classList.add(
+    "show"
+  );
+
+}
+
+
+function saveProfile(){
+
+  const id=
+    document.getElementById(
+      "profileEditId"
+    ).value;
+
+
+  const name=
+    document.getElementById(
+      "profileNameInput"
+    ).value.trim();
+
+
+  if(!name){
+
+    alert(
+      "Please enter a profile name."
+    );
+
+    return;
+
+  }
+
+
+  if(id){
+
+    const p=
+      profiles.find(
+        x =>
+          x.id===
+          id
+      );
+
+
+    if(p)
+      p.name=name;
+
+  }else{
+
+    const p={
+
+      id:createId(),
+
+      name:name
+
+    };
+
+
+    profiles.push(
+      p
     );
 
 
-  return profile
-    ? profile.name
-    : "Profile";
+    currentProfileId=
+      p.id;
+
+  }
+
+
+  saveAll();
+
+  closeProfileModal();
+
+  renderAll();
 
 }
 
 
-/* ==========================================================
-   MONEY
-========================================================== */
+function closeProfileModal(){
 
-function money(value){
-
-  return "₹"+
-    Number(
-      value || 0
-    )
-      .toLocaleString(
-        "en-IN"
-      );
+  document.getElementById(
+    "profileModal"
+  ).classList.remove(
+    "show"
+  );
 
 }
 
 
-/* ==========================================================
-   DATE
-========================================================== */
+/* =========================================================
+   MODE
+========================================================= */
 
-function getDateObject(
-  session
+function changeMode(
+  mode
 ){
 
-  if(!session.date)
+  currentMode=
+    mode;
+
+
+  localStorage.setItem(
+    MODE_KEY,
+    mode
+  );
+
+
+  selectedCalendarDate=null;
+
+
+  renderAll();
+
+}
+
+
+function modeName(
+  mode
+){
+
+  if(mode==="therapy")
+    return "Therapy";
+
+  if(mode==="tuition")
+    return "Tuition";
+
+  if(mode==="class")
+    return "Class Attendance";
+
+  if(mode==="office")
+    return "Office / RTO Attendance";
+
+  return "Attendance";
+
+}
+
+
+function activityLabel(
+  mode
+){
+
+  if(mode==="therapy")
+    return "Therapy";
+
+  if(mode==="tuition")
+    return "Subject / Tuition";
+
+  if(mode==="class")
+    return "Class / Activity";
+
+  if(mode==="office")
+    return "Office / RTO";
+
+  return "Activity";
+
+}
+
+
+function personLabel(
+  mode
+){
+
+  if(mode==="therapy")
+    return "Therapist";
+
+  if(mode==="tuition")
+    return "Teacher";
+
+  if(mode==="class")
+    return "Teacher / Instructor";
+
+  if(mode==="office")
+    return "Location / Contact";
+
+  return "Person";
+
+}
+
+
+/* =========================================================
+   FILTERED RECORDS
+========================================================= */
+
+function currentRecords(){
+
+  return sessions.filter(
+    s =>
+
+      s.profileId===
+      currentProfileId
+
+      &&
+
+      (
+        s.mode ||
+        "therapy"
+      )===currentMode
+  );
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function getDate(
+  s
+){
+
+  if(!s.date)
     return null;
 
 
   const d=
     new Date(
-      session.date+
+      s.date+
       (
-        session.time
-          ? "T"+session.time
+        s.time
+          ? "T"+s.time
           : "T00:00"
       )
     );
@@ -2762,18 +3024,34 @@ function getDateObject(
 }
 
 
+function dateKey(
+  d
+){
+
+  return d.getFullYear()+
+    "-"+
+    String(
+      d.getMonth()+1
+    ).padStart(2,"0")+
+    "-"+
+    String(
+      d.getDate()
+    ).padStart(2,"0");
+
+}
+
+
 function formatDate(
-  session
+  s
 ){
 
   const d=
-    getDateObject(
-      session
-    );
+    getDate(s);
 
 
   if(!d)
-    return session.date || "";
+    return s.date ||
+      "";
 
 
   return d.toLocaleDateString(
@@ -2789,60 +3067,52 @@ function formatDate(
 
 
 function formatTime(
-  session
+  s
 ){
 
-  if(!session.time)
+  if(!s.time)
     return "";
 
 
-  const parts=
-    session.time.split(":");
+  const [h,m]=
+    s.time.split(":");
 
 
-  const hour=
-    Number(parts[0]);
+  let hour=
+    Number(h);
 
 
-  const minute=
-    parts[1] || "00";
+  if(isNaN(hour))
+    return s.time;
 
 
-  if(
-    isNaN(hour)
-  ){
-
-    return session.time;
-
-  }
-
-
-  const ampm=
+  const ap=
     hour>=12
       ? "PM"
       : "AM";
 
 
-  const h=
-    hour%12 || 12;
+  hour=
+    hour%12 ||
+    12;
 
 
   return (
-    String(h)
+    String(hour)
       .padStart(2,"0")
     +
     ":"+
-    minute+
+    (m||"00")+
     " "+
-    ampm
+    ap
   );
 
 }
 
 
-/* ==========================================================
-   STATUS LABEL
-========================================================== */
+/* =========================================================
+   STATUS
+========================================================= */
 
 function statusLabel(
   status
@@ -2865,20 +3135,39 @@ function statusLabel(
 }
 
 
-/* ==========================================================
-   ESCAPE HTML
-========================================================== */
+/* =========================================================
+   MONEY
+========================================================= */
 
-function escapeHTML(
+function money(
+  value
+){
+
+  return "₹"+
+    Number(
+      value||0
+    )
+      .toLocaleString(
+        "en-IN"
+      );
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function esc(
   value
 ){
 
   return String(
-    value ?? ""
+    value??""
   )
     .replace(
       /[&<>"']/g,
-      char=>({
+      c=>({
 
         "&":"&amp;",
         "<":"&lt;",
@@ -2886,22 +3175,23 @@ function escapeHTML(
         '"':"&quot;",
         "'":"&#039;"
 
-      })[char]
+      })[c]
     );
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    THEME
-========================================================== */
+========================================================= */
 
 function loadTheme(){
 
   const theme=
     localStorage.getItem(
       THEME_KEY
-    ) || "light";
+    ) ||
+    "light";
 
 
   document.body.classList.toggle(
@@ -2952,294 +3242,77 @@ function toggleTheme(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    PROFILE UI
-========================================================== */
+========================================================= */
 
 function renderProfiles(){
 
-  const mainSelect=
+  const select=
     document.getElementById(
       "profileSelect"
     );
 
 
-  const formSelect=
-    document.getElementById(
-      "formProfile"
-    );
+  select.innerHTML="";
 
 
-  [
-    mainSelect,
-    formSelect
-  ].forEach(
-    select=>{
+  profiles.forEach(
+    p=>{
 
-      if(!select)
-        return;
-
-
-      select.innerHTML="";
+      const option=
+        document.createElement(
+          "option"
+        );
 
 
-      profiles.forEach(
-        profile=>{
-
-          const option=
-            document.createElement(
-              "option"
-            );
+      option.value=
+        p.id;
 
 
-          option.value=
-            profile.id;
+      option.textContent=
+        p.name;
 
 
-          option.textContent=
-            profile.name;
-
-
-          select.appendChild(
-            option
-          );
-
-        }
+      select.appendChild(
+        option
       );
-
-
-      select.value=
-        currentProfileId;
 
     }
   );
 
 
+  select.value=
+    currentProfileId;
+
+
+  const count=
+    currentRecords().length;
+
+
   document.getElementById(
     "profileCount"
   ).textContent=
-    currentSessions().length+
+    count+
     (
-      currentSessions().length===1
-        ? " session"
-        : " sessions"
+      count===1
+        ? " record"
+        : " records"
     )+
-    " in this profile";
+    " in this profile • "+
+    modeName(currentMode);
 
 }
 
 
-function changeProfile(
-  id
-){
-
-  if(
-    !profiles.some(
-      p =>
-        String(p.id)===
-        String(id)
-    )
-  ){
-
-    return;
-
-  }
-
-
-  currentProfileId=
-    id;
-
-
-  localStorage.setItem(
-    CURRENT_PROFILE_KEY,
-    id
-  );
-
-
-  resetForm();
-
-  renderAll();
-
-}
-
-
-function openProfileModal(){
-
-  document.getElementById(
-    "newProfileName"
-  ).value="";
-
-
-  document.getElementById(
-    "profileModal"
-  ).classList.add(
-    "show"
-  );
-
-}
-
-
-function closeProfileModal(){
-
-  document.getElementById(
-    "profileModal"
-  ).classList.remove(
-    "show"
-  );
-
-}
-
-
-function addProfile(){
-
-  const input=
-    document.getElementById(
-      "newProfileName"
-    );
-
-
-  const name=
-    input.value.trim();
-
-
-  if(!name){
-
-    alert(
-      "Please enter a profile name."
-    );
-
-    return;
-
-  }
-
-
-  const profile={
-
-    id:createId(),
-
-    name:name
-
-  };
-
-
-  profiles.push(
-    profile
-  );
-
-
-  saveProfiles();
-
-
-  currentProfileId=
-    profile.id;
-
-
-  localStorage.setItem(
-    CURRENT_PROFILE_KEY,
-    currentProfileId
-  );
-
-
-  closeProfileModal();
-
-
-  renderAll();
-
-}
-
-
-/* ==========================================================
-   NAVIGATION
-========================================================== */
-
-function switchView(
-  viewId,
-  button
-){
-
-  document.querySelectorAll(
-    ".view"
-  ).forEach(
-    view =>
-      view.classList.remove(
-        "active"
-      )
-  );
-
-
-  document.getElementById(
-    viewId
-  ).classList.add(
-    "active"
-  );
-
-
-  document.querySelectorAll(
-    ".nav-button"
-  ).forEach(
-    btn =>
-      btn.classList.remove(
-        "active"
-      )
-  );
-
-
-  if(button){
-
-    button.classList.add(
-      "active"
-    );
-
-  }else{
-
-    const nav=
-      document.querySelector(
-        `.nav-button[data-view="${viewId}"]`
-      );
-
-
-    if(nav)
-      nav.classList.add(
-        "active"
-      );
-
-  }
-
-
-  if(
-    viewId==="historyView"
-  ){
-
-    renderHistory();
-
-  }
-
-
-  if(
-    viewId==="calendarView"
-  ){
-
-    renderCalendar();
-
-  }
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* ==========================================================
+/* =========================================================
    HOME
-========================================================== */
+========================================================= */
 
 function renderHome(){
 
   const records=
-    currentSessions();
+    currentRecords();
 
 
   const total=
@@ -3249,35 +3322,34 @@ function renderHome(){
   const attended=
     records.filter(
       s =>
-        s.status==="attended"
+        s.status===
+        "attended"
     ).length;
 
 
   const missed=
     records.filter(
       s =>
-        s.status==="missed"
+        s.status===
+        "missed"
     ).length;
 
 
   const planned=
     records.filter(
       s =>
-        s.status==="planned"
+        s.status===
+        "planned"
     ).length;
 
 
   const rescheduled=
     records.filter(
       s =>
-        s.status==="rescheduled"
+        s.status===
+        "rescheduled"
     ).length;
 
-
-  /*
-     Planned and rescheduled are excluded
-     from attendance calculation.
-  */
 
   const denominator=
     attended+
@@ -3294,15 +3366,15 @@ function renderHome(){
       : 0;
 
 
-  const totalCost=
+  const cost=
     records.reduce(
       (
-        sum,
+        total,
         s
       ) =>
-        sum+
+        total+
         Number(
-          s.cost || 0
+          s.cost||0
         ),
       0
     );
@@ -3347,65 +3419,43 @@ function renderHome(){
   document.getElementById(
     "totalCost"
   ).textContent=
-    money(
-      totalCost
-    );
+    money(cost);
 
 
-  renderTherapySummary(
-    records
-  );
+  document.getElementById(
+    "summaryHeading"
+  ).textContent=
+    currentMode===
+      "therapy"
+      ? "Therapy Summary"
+      : modeName(
+          currentMode
+        )+
+        " Summary";
 
 
-  renderTherapyCost(
-    records
-  );
+  renderSummary(records);
 
+  renderCost(records);
 
-  renderNextSession(
-    records
-  );
+  renderNext(records);
 
-
-  renderRecentSessions(
-    records
-  );
-
-}
-
-
-/* ==========================================================
-   THERAPY NAMES
-========================================================== */
-
-function getTherapyNames(
-  records
-){
-
-  return [
-    ...new Set(
-      records.map(
-        s =>
-          s.therapy ||
-          "Other"
-      )
-    )
-  ];
+  renderRecent(records);
 
 }
 
 
-/* ==========================================================
-   THERAPY SUMMARY
-========================================================== */
+/* =========================================================
+   SUMMARY
+========================================================= */
 
-function renderTherapySummary(
+function renderSummary(
   records
 ){
 
   const container=
     document.getElementById(
-      "therapySummary"
+      "summaryContainer"
     );
 
 
@@ -3414,7 +3464,11 @@ function renderTherapySummary(
     container.innerHTML=
       `
       <div class="empty">
-        No therapy sessions yet.
+        No ${esc(
+          modeName(
+            currentMode
+          )
+        )} records yet.
       </div>
       `;
 
@@ -3423,29 +3477,36 @@ function renderTherapySummary(
   }
 
 
-  const therapies=
-    getTherapyNames(
-      records
-    );
+  const names=[
+    ...new Set(
+      records.map(
+        s =>
+          s.activity ||
+          s.therapy ||
+          "Activity"
+      )
+    )
+  ];
 
 
   container.innerHTML=
-    therapies.map(
-      therapy=>{
+    names.map(
+      name=>{
 
-        const therapyRecords=
+        const list=
           records.filter(
             s =>
               (
+                s.activity ||
                 s.therapy ||
-                "Other"
+                "Activity"
               )===
-              therapy
+              name
           );
 
 
         const attended=
-          therapyRecords.filter(
+          list.filter(
             s =>
               s.status===
               "attended"
@@ -3453,7 +3514,7 @@ function renderTherapySummary(
 
 
         const missed=
-          therapyRecords.filter(
+          list.filter(
             s =>
               s.status===
               "missed"
@@ -3461,7 +3522,7 @@ function renderTherapySummary(
 
 
         const planned=
-          therapyRecords.filter(
+          list.filter(
             s =>
               s.status===
               "planned"
@@ -3469,7 +3530,7 @@ function renderTherapySummary(
 
 
         const rescheduled=
-          therapyRecords.filter(
+          list.filter(
             s =>
               s.status===
               "rescheduled"
@@ -3481,11 +3542,7 @@ function renderTherapySummary(
         <div class="summary-card">
 
           <div class="summary-title">
-
-            ${escapeHTML(
-              therapy
-            )}
-
+            ${esc(name)}
           </div>
 
 
@@ -3494,13 +3551,13 @@ function renderTherapySummary(
 
             <div
               class="summary-box summary-total"
-              onclick='openTherapyRecords(
-                ${JSON.stringify(therapy)},
+              onclick='openActivityRecords(
+                ${JSON.stringify(name)},
                 "all"
               )'>
 
               <div class="summary-number">
-                ${therapyRecords.length}
+                ${list.length}
               </div>
 
               <div class="summary-label">
@@ -3512,8 +3569,8 @@ function renderTherapySummary(
 
             <div
               class="summary-box summary-attended"
-              onclick='openTherapyRecords(
-                ${JSON.stringify(therapy)},
+              onclick='openActivityRecords(
+                ${JSON.stringify(name)},
                 "attended"
               )'>
 
@@ -3530,8 +3587,8 @@ function renderTherapySummary(
 
             <div
               class="summary-box summary-missed"
-              onclick='openTherapyRecords(
-                ${JSON.stringify(therapy)},
+              onclick='openActivityRecords(
+                ${JSON.stringify(name)},
                 "missed"
               )'>
 
@@ -3548,8 +3605,8 @@ function renderTherapySummary(
 
             <div
               class="summary-box summary-planned"
-              onclick='openTherapyRecords(
-                ${JSON.stringify(therapy)},
+              onclick='openActivityRecords(
+                ${JSON.stringify(name)},
                 "planned"
               )'>
 
@@ -3566,8 +3623,8 @@ function renderTherapySummary(
 
             <div
               class="summary-box summary-rescheduled"
-              onclick='openTherapyRecords(
-                ${JSON.stringify(therapy)},
+              onclick='openActivityRecords(
+                ${JSON.stringify(name)},
                 "rescheduled"
               )'>
 
@@ -3594,17 +3651,17 @@ function renderTherapySummary(
 }
 
 
-/* ==========================================================
-   THERAPY COST
-========================================================== */
+/* =========================================================
+   COST
+========================================================= */
 
-function renderTherapyCost(
+function renderCost(
   records
 ){
 
   const container=
     document.getElementById(
-      "therapyCost"
+      "costContainer"
     );
 
 
@@ -3613,7 +3670,7 @@ function renderTherapyCost(
     container.innerHTML=
       `
       <div class="empty">
-        No cost records yet.
+        No cost records.
       </div>
       `;
 
@@ -3622,85 +3679,46 @@ function renderTherapyCost(
   }
 
 
+  const names=[
+    ...new Set(
+      records.map(
+        s =>
+          s.activity ||
+          s.therapy ||
+          "Activity"
+      )
+    )
+  ];
+
+
   container.innerHTML=
-    getTherapyNames(
-      records
-    ).map(
-      therapy=>{
+    names.map(
+      name=>{
 
         const list=
           records.filter(
             s =>
               (
+                s.activity ||
                 s.therapy ||
-                "Other"
+                "Activity"
               )===
-              therapy
+              name
           );
 
 
-        const attended=
-          list.filter(
-            s =>
-              s.status===
-              "attended"
-          );
-
-
-        const missed=
-          list.filter(
-            s =>
-              s.status===
-              "missed"
-          );
-
-
-        const planned=
-          list.filter(
-            s =>
-              s.status===
-              "planned"
-          );
-
-
-        const rescheduled=
-          list.filter(
-            s =>
-              s.status===
-              "rescheduled"
-          );
-
-
-        const rate=
-          list.length
-            ? Math.max(
-                ...list.map(
-                  s =>
-                    Number(
-                      s.cost || 0
-                    )
-                )
-              )
-            : 0;
-
-
-        function totalCost(
-          arr
-        ){
-
-          return arr.reduce(
+        const total=
+          list.reduce(
             (
               sum,
               s
             ) =>
               sum+
               Number(
-                s.cost || 0
+                s.cost||0
               ),
             0
           );
-
-        }
 
 
         return `
@@ -3708,82 +3726,29 @@ function renderTherapyCost(
         <div class="summary-card">
 
           <div class="summary-title">
-
-            ${escapeHTML(
-              therapy
-            )}
-
+            ${esc(name)}
           </div>
-
 
           <div class="cost-row">
 
             <span>
-              Rate / session
+              Records
             </span>
 
             <strong>
-              ${money(rate)}
+              ${list.length}
             </strong>
 
           </div>
 
-
           <div class="cost-row">
 
             <span>
-              Attended (${attended.length})
+              Total Cost
             </span>
 
             <strong>
-              ${money(
-                totalCost(attended)
-              )}
-            </strong>
-
-          </div>
-
-
-          <div class="cost-row">
-
-            <span>
-              Planned (${planned.length})
-            </span>
-
-            <strong>
-              ${money(
-                totalCost(planned)
-              )}
-            </strong>
-
-          </div>
-
-
-          <div class="cost-row">
-
-            <span>
-              Missed (${missed.length})
-            </span>
-
-            <strong>
-              ${money(
-                totalCost(missed)
-              )}
-            </strong>
-
-          </div>
-
-
-          <div class="cost-row">
-
-            <span>
-              Rescheduled (${rescheduled.length})
-            </span>
-
-            <strong>
-              ${money(
-                totalCost(rescheduled)
-              )}
+              ${money(total)}
             </strong>
 
           </div>
@@ -3798,11 +3763,11 @@ function renderTherapyCost(
 }
 
 
-/* ==========================================================
-   NEXT SESSION
-========================================================== */
+/* =========================================================
+   NEXT
+========================================================= */
 
-function renderNextSession(
+function renderNext(
   records
 ){
 
@@ -3813,30 +3778,31 @@ function renderNextSession(
   const upcoming=
     records
       .filter(
-        s =>
+        s=>
 
           (
             s.status===
             "planned" ||
+
             s.status===
             "rescheduled"
           )
 
           &&
 
-          getDateObject(s)
+          getDate(s)
 
           &&
 
-          getDateObject(s)>=now
+          getDate(s)>=now
       )
       .sort(
         (
           a,
           b
         ) =>
-          getDateObject(a) -
-          getDateObject(b)
+          getDate(a)-
+          getDate(b)
       );
 
 
@@ -3850,18 +3816,18 @@ function renderNextSession(
       :
         `
         <div class="empty">
-          No upcoming sessions.
+          No upcoming records.
         </div>
         `;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    RECENT
-========================================================== */
+========================================================= */
 
-function renderRecentSessions(
+function renderRecent(
   records
 ){
 
@@ -3873,14 +3839,12 @@ function renderRecentSessions(
           b
         ) =>
           (
-            getDateObject(b)
-              ?.getTime() ||
+            getDate(b)?.getTime()||
             0
           )
           -
           (
-            getDateObject(a)
-              ?.getTime() ||
+            getDate(a)?.getTime()||
             0
           )
       );
@@ -3898,41 +3862,42 @@ function renderRecentSessions(
       ||
       `
       <div class="empty">
-        No sessions recorded.
+        No records yet.
       </div>
       `;
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    SESSION HTML
-========================================================== */
+========================================================= */
 
 function sessionHTML(
   s
 ){
 
+  const activity=
+    s.activity ||
+    s.therapy ||
+    "Activity";
+
+
   return `
 
   <div class="session ${s.status}">
 
-
     <div class="session-header">
 
+      <div>
 
-      <div class="session-title">
-
-        ${escapeHTML(
-          s.therapy ||
-          "Therapy"
-        )}
+        <div class="session-title">
+          ${esc(activity)}
+        </div>
 
       </div>
 
-
-      <span
-        class="badge ${s.status}">
+      <span class="badge ${s.status}">
 
         ${statusLabel(
           s.status
@@ -3940,14 +3905,12 @@ function sessionHTML(
 
       </span>
 
-
     </div>
 
 
     <div class="session-meta">
 
-      📅
-      ${escapeHTML(
+      📅 ${esc(
         formatDate(s)
       )}
 
@@ -3955,8 +3918,7 @@ function sessionHTML(
         s.time
           ? `
             <br>
-            🕐
-            ${escapeHTML(
+            🕐 ${esc(
               formatTime(s)
             )}
           `
@@ -3965,32 +3927,34 @@ function sessionHTML(
 
 
       ${
-        s.therapist
+        s.person
           ? `
             <br>
-            👤
-            ${escapeHTML(
-              s.therapist
+            👤 ${esc(
+              s.person
             )}
           `
           : ""
       }
 
 
-      <br>
-
-      💰
-      ${money(
-        s.cost
-      )}
+      ${
+        Number(s.cost||0)>0
+          ? `
+            <br>
+            💰 ${money(
+              s.cost
+            )}
+          `
+          : ""
+      }
 
 
       ${
         s.notes
           ? `
             <br>
-            📝
-            ${escapeHTML(
+            📝 ${esc(
               s.notes
             )}
           `
@@ -4032,7 +3996,6 @@ function sessionHTML(
 
     </div>
 
-
   </div>
 
   `;
@@ -4040,16 +4003,16 @@ function sessionHTML(
 }
 
 
-/* ==========================================================
-   DASHBOARD FILTER
-========================================================== */
+/* =========================================================
+   RECORD MODAL
+========================================================= */
 
 function openStatusRecords(
   status
 ){
 
   const records=
-    currentSessions()
+    currentRecords()
       .filter(
         s =>
           status==="all" ||
@@ -4060,7 +4023,7 @@ function openStatusRecords(
   openRecordsModal(
 
     status==="all"
-      ? "All Sessions"
+      ? "All Records"
       : statusLabel(status),
 
     records
@@ -4070,25 +4033,22 @@ function openStatusRecords(
 }
 
 
-/* ==========================================================
-   THERAPY FILTER
-========================================================== */
-
-function openTherapyRecords(
-  therapy,
+function openActivityRecords(
+  activity,
   status
 ){
 
   const records=
-    currentSessions()
+    currentRecords()
       .filter(
         s =>
 
           (
+            s.activity ||
             s.therapy ||
-            "Other"
+            "Activity"
           )===
-          therapy
+          activity
 
           &&
 
@@ -4101,7 +4061,7 @@ function openTherapyRecords(
 
   openRecordsModal(
 
-    therapy+
+    activity+
     " — "+
     (
       status==="all"
@@ -4116,10 +4076,6 @@ function openTherapyRecords(
 }
 
 
-/* ==========================================================
-   RECORD MODAL
-========================================================== */
-
 function openRecordsModal(
   title,
   records
@@ -4131,32 +4087,26 @@ function openRecordsModal(
     title;
 
 
-  const sorted=
-    [...records]
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          (
-            getDateObject(b)
-              ?.getTime() ||
-            0
-          )
-          -
-          (
-            getDateObject(a)
-              ?.getTime() ||
-            0
-          )
-      );
-
-
   document.getElementById(
     "recordsBody"
   ).innerHTML=
-    sorted.length
-      ? sorted
+    records.length
+      ? [...records]
+          .sort(
+            (
+              a,
+              b
+            ) =>
+              (
+                getDate(b)?.getTime()||
+                0
+              )
+              -
+              (
+                getDate(a)?.getTime()||
+                0
+              )
+          )
           .map(
             sessionHTML
           )
@@ -4189,9 +4139,63 @@ function closeRecordsModal(){
 }
 
 
-/* ==========================================================
-   FORM RESET
-========================================================== */
+/* =========================================================
+   FORM
+========================================================= */
+
+function updateFormLabels(){
+
+  const mode=
+    document.getElementById(
+      "formMode"
+    ).value;
+
+
+  document.getElementById(
+    "activityLabel"
+  ).textContent=
+    activityLabel(mode);
+
+
+  document.getElementById(
+    "personLabel"
+  ).textContent=
+    personLabel(mode);
+
+
+  const activity=
+    document.getElementById(
+      "activity"
+    );
+
+
+  if(mode==="therapy"){
+
+    activity.placeholder=
+      "Occupational Therapy";
+
+  }
+  else if(mode==="tuition"){
+
+    activity.placeholder=
+      "Math / English";
+
+  }
+  else if(mode==="class"){
+
+    activity.placeholder=
+      "Class / Activity";
+
+  }
+  else{
+
+    activity.placeholder=
+      "Office / RTO";
+
+  }
+
+}
+
 
 function resetForm(){
 
@@ -4208,7 +4212,7 @@ function resetForm(){
   document.getElementById(
     "formTitle"
   ).textContent=
-    "Add Therapy Session";
+    "Add Record";
 
 
   document.getElementById(
@@ -4218,19 +4222,24 @@ function resetForm(){
 
 
   document.getElementById(
+    "formMode"
+  ).value=
+    currentMode;
+
+
+  document.getElementById(
     "status"
   ).value=
     "planned";
 
 
-  const today=
-    new Date();
-
-
   document.getElementById(
     "date"
   ).value=
-    dateKey(today);
+    selectedCalendarDate ||
+    dateKey(
+      new Date()
+    );
 
 
   document.getElementById(
@@ -4238,12 +4247,69 @@ function resetForm(){
   ).value=
     "19:30";
 
+
+  document.getElementById(
+    "cost"
+  ).value=
+    "0";
+
+
+  updateFormLabels();
+
 }
 
 
-/* ==========================================================
-   SAVE SESSION
-========================================================== */
+/* =========================================================
+   OPEN ADD
+========================================================= */
+
+function openAddForDate(
+  key
+){
+
+  resetForm();
+
+
+  document.getElementById(
+    "date"
+  ).value=
+    key;
+
+
+  document.getElementById(
+    "formProfile"
+  ).value=
+    currentProfileId;
+
+
+  document.getElementById(
+    "formMode"
+  ).value=
+    currentMode;
+
+
+  document.getElementById(
+    "formTitle"
+  ).textContent=
+    "Add "+
+    modeName(currentMode)+
+    " — "+
+    formatCalendarDate(key);
+
+
+  updateFormLabels();
+
+
+  switchView(
+    "addView"
+  );
+
+}
+
+
+/* =========================================================
+   SAVE
+========================================================= */
 
 function saveSession(
   event
@@ -4258,6 +4324,18 @@ function saveSession(
     ).value;
 
 
+  const mode=
+    document.getElementById(
+      "formMode"
+    ).value;
+
+
+  const activity=
+    document.getElementById(
+      "activity"
+    ).value.trim();
+
+
   const record={
 
     id:
@@ -4269,10 +4347,24 @@ function saveSession(
         "formProfile"
       ).value,
 
+    mode:mode,
+
+    activity:activity,
+
+    /*
+       Keep therapy field too,
+       for compatibility with
+       previous Therapy Tracker data.
+    */
+
     therapy:
-      document.getElementById(
-        "therapy"
-      ).value,
+      mode==="therapy"
+        ? activity
+        : (
+            mode==="therapy"
+              ? activity
+              : ""
+          ),
 
     date:
       document.getElementById(
@@ -4284,16 +4376,23 @@ function saveSession(
         "time"
       ).value,
 
-    therapist:
+    person:
       document.getElementById(
-        "therapist"
+        "person"
       ).value.trim(),
+
+    therapist:
+      mode==="therapy"
+        ? document.getElementById(
+            "person"
+          ).value.trim()
+        : "",
 
     cost:
       Number(
         document.getElementById(
           "cost"
-        ).value || 0
+        ).value||0
       ),
 
     status:
@@ -4321,11 +4420,6 @@ function saveSession(
 
     if(index>=0){
 
-      /*
-         Preserve any fields
-         from older records.
-      */
-
       sessions[index]={
         ...sessions[index],
         ...record
@@ -4333,7 +4427,8 @@ function saveSession(
 
     }
 
-  }else{
+  }
+  else{
 
     sessions.push(
       record
@@ -4342,22 +4437,31 @@ function saveSession(
   }
 
 
-  saveSessions();
-
-
   currentProfileId=
     record.profileId;
 
 
+  currentMode=
+    record.mode;
+
+
   localStorage.setItem(
-    CURRENT_PROFILE_KEY,
-    currentProfileId
+    MODE_KEY,
+    currentMode
   );
+
+
+  saveAll();
+
+
+  selectedCalendarDate=
+    record.date;
 
 
   resetForm();
 
   renderAll();
+
 
   switchView(
     "homeView"
@@ -4366,9 +4470,9 @@ function saveSession(
 }
 
 
-/* ==========================================================
+/* =========================================================
    EDIT
-========================================================== */
+========================================================= */
 
 function editSession(
   id
@@ -4400,7 +4504,7 @@ function editSession(
   document.getElementById(
     "formTitle"
   ).textContent=
-    "Edit Therapy Session";
+    "Edit Record";
 
 
   document.getElementById(
@@ -4409,71 +4513,39 @@ function editSession(
     s.profileId;
 
 
-  const therapySelect=
-    document.getElementById(
-      "therapy"
-    );
+  document.getElementById(
+    "formMode"
+  ).value=
+    s.mode ||
+    "therapy";
 
 
-  /*
-     If an old record contains
-     a custom therapy name,
-     keep it.
-  */
-
-  if(
-    s.therapy &&
-    ![
-      ...therapySelect.options
-    ].some(
-      option =>
-        option.value===
-        s.therapy
-    )
-  ){
-
-    const option=
-      document.createElement(
-        "option"
-      );
-
-
-    option.value=
-      s.therapy;
-
-
-    option.textContent=
-      s.therapy;
-
-
-    therapySelect.appendChild(
-      option
-    );
-
-  }
-
-
-  therapySelect.value=
+  document.getElementById(
+    "activity"
+  ).value=
+    s.activity ||
     s.therapy ||
-    "Occupational Therapy";
+    "";
 
 
   document.getElementById(
     "date"
   ).value=
-    s.date || "";
+    s.date ||
+    "";
 
 
   document.getElementById(
     "time"
   ).value=
     s.time ||
-    "19:30";
+    "";
 
 
   document.getElementById(
-    "therapist"
+    "person"
   ).value=
+    s.person ||
     s.therapist ||
     "";
 
@@ -4498,12 +4570,15 @@ function editSession(
     s.notes ||
     "";
 
+
+  updateFormLabels();
+
 }
 
 
-/* ==========================================================
+/* =========================================================
    COPY
-========================================================== */
+========================================================= */
 
 function copySession(
   id
@@ -4534,7 +4609,7 @@ function copySession(
   document.getElementById(
     "formTitle"
   ).textContent=
-    "Copy Therapy Session";
+    "Copy Record";
 
 
   document.getElementById(
@@ -4544,19 +4619,24 @@ function copySession(
 
 
   document.getElementById(
-    "therapy"
+    "formMode"
   ).value=
+    s.mode ||
+    "therapy";
+
+
+  document.getElementById(
+    "activity"
+  ).value=
+    s.activity ||
     s.therapy ||
-    "Occupational Therapy";
+    "";
 
 
   document.getElementById(
     "date"
   ).value=
-    s.date ||
-    dateKey(
-      new Date()
-    );
+    s.date;
 
 
   document.getElementById(
@@ -4567,8 +4647,9 @@ function copySession(
 
 
   document.getElementById(
-    "therapist"
+    "person"
   ).value=
+    s.person ||
     s.therapist ||
     "";
 
@@ -4592,44 +4673,27 @@ function copySession(
     s.notes ||
     "";
 
+
+  updateFormLabels();
+
 }
 
 
-/* ==========================================================
+/* =========================================================
    DELETE
-========================================================== */
+========================================================= */
 
 function deleteSession(
   id
 ){
 
-  const session=
-    sessions.find(
-      s =>
-        String(s.id)===
-        String(id)
-    );
-
-
-  if(!session)
-    return;
-
-
   if(
     !confirm(
-      "Delete this session? This cannot be undone."
+      "Delete this record?"
     )
-  ){
-
+  )
     return;
 
-  }
-
-
-  /*
-     Only the selected record
-     is removed.
-  */
 
   sessions=
     sessions.filter(
@@ -4639,16 +4703,16 @@ function deleteSession(
     );
 
 
-  saveSessions();
+  saveAll();
 
   renderAll();
 
 }
 
 
-/* ==========================================================
+/* =========================================================
    HISTORY
-========================================================== */
+========================================================= */
 
 function renderHistory(){
 
@@ -4671,7 +4735,7 @@ function renderHistory(){
 
 
   let records=
-    currentSessions()
+    currentRecords()
       .filter(
         s =>
           status==="all" ||
@@ -4684,8 +4748,11 @@ function renderHistory(){
     records=
       records.filter(
         s =>
+
           [
+            s.activity,
             s.therapy,
+            s.person,
             s.therapist,
             s.notes,
             s.date
@@ -4704,14 +4771,12 @@ function renderHistory(){
       b
     ) =>
       (
-        getDateObject(b)
-          ?.getTime() ||
+        getDate(b)?.getTime()||
         0
       )
       -
       (
-        getDateObject(a)
-          ?.getTime() ||
+        getDate(a)?.getTime()||
         0
       )
   );
@@ -4729,41 +4794,16 @@ function renderHistory(){
       :
         `
         <div class="card empty">
-          No matching sessions.
+          No matching records.
         </div>
         `;
 
 }
 
 
-/* ==========================================================
-   CALENDAR DATE KEY
-========================================================== */
-
-function dateKey(
-  date
-){
-
-  return date.getFullYear()
-    +
-    "-"
-    +
-    String(
-      date.getMonth()+1
-    ).padStart(2,"0")
-    +
-    "-"
-    +
-    String(
-      date.getDate()
-    ).padStart(2,"0");
-
-}
-
-
-/* ==========================================================
-   CHANGE MONTH
-========================================================== */
+/* =========================================================
+   CALENDAR
+========================================================= */
 
 function changeMonth(
   amount
@@ -4782,10 +4822,6 @@ function changeMonth(
 
 }
 
-
-/* ==========================================================
-   CALENDAR
-========================================================== */
 
 function renderCalendar(){
 
@@ -4819,31 +4855,28 @@ function renderCalendar(){
     );
 
 
-  const weekdays=[
-    "Sun",
-    "Mon",
-    "Tue",
-    "Wed",
-    "Thu",
-    "Fri",
-    "Sat"
-  ];
-
-
   grid.innerHTML=
-    weekdays
+    [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ]
       .map(
-        day =>
+        d =>
           `
           <div class="weekday">
-            ${day}
+            ${d}
           </div>
           `
       )
       .join("");
 
 
-  const firstDay=
+  const first=
     new Date(
       year,
       month,
@@ -4852,10 +4885,10 @@ function renderCalendar(){
 
 
   const start=
-    firstDay.getDay();
+    first.getDay();
 
 
-  const daysInMonth=
+  const days=
     new Date(
       year,
       month+1,
@@ -4871,12 +4904,6 @@ function renderCalendar(){
     ).getDate();
 
 
-  const today=
-    dateKey(
-      new Date()
-    );
-
-
   for(
     let i=0;
     i<42;
@@ -4887,14 +4914,14 @@ function renderCalendar(){
       i-start+1;
 
 
-    let date;
+    let d;
 
-    let otherMonth=false;
+    let other=false;
 
 
     if(number<1){
 
-      date=
+      d=
         new Date(
           year,
           month-1,
@@ -4902,28 +4929,28 @@ function renderCalendar(){
           number
         );
 
-      otherMonth=true;
+      other=true;
 
     }
     else if(
       number>
-      daysInMonth
+      days
     ){
 
-      date=
+      d=
         new Date(
           year,
           month+1,
           number-
-          daysInMonth
+          days
         );
 
-      otherMonth=true;
+      other=true;
 
     }
     else{
 
-      date=
+      d=
         new Date(
           year,
           month,
@@ -4934,18 +4961,16 @@ function renderCalendar(){
 
 
     const key=
-      dateKey(
-        date
-      );
+      dateKey(d);
 
 
     const weekend=
-      date.getDay()===0 ||
-      date.getDay()===6;
+      d.getDay()===0 ||
+      d.getDay()===6;
 
 
     const records=
-      currentSessions()
+      currentRecords()
         .filter(
           s =>
             s.date===
@@ -4953,80 +4978,53 @@ function renderCalendar(){
         );
 
 
-    /*
-       Status markers.
-
-       Attended    = GREEN CHECK
-       Missed      = RED X
-       Planned     = ORANGE DOT
-       Rescheduled = PURPLE ARROW
-
-       Weekend background = BLUE
-    */
-
     const markers=
       records
         .map(
-          session=>{
+          s=>{
 
             if(
-              session.status===
+              s.status===
               "attended"
-            ){
-
+            )
               return `
-                <span
-                  class="marker attended">
+                <span class="marker attended">
                   ✓
                 </span>
               `;
 
-            }
-
 
             if(
-              session.status===
+              s.status===
               "missed"
-            ){
-
+            )
               return `
-                <span
-                  class="marker missed">
+                <span class="marker missed">
                   ✕
                 </span>
               `;
 
-            }
-
 
             if(
-              session.status===
+              s.status===
               "planned"
-            ){
-
+            )
               return `
-                <span
-                  class="marker planned">
+                <span class="marker planned">
                   •
                 </span>
               `;
 
-            }
-
 
             if(
-              session.status===
+              s.status===
               "rescheduled"
-            ){
-
+            )
               return `
-                <span
-                  class="marker rescheduled">
+                <span class="marker rescheduled">
                   ↻
                 </span>
               `;
-
-            }
 
 
             return "";
@@ -5040,20 +5038,16 @@ function renderCalendar(){
       [
         "calendar-day",
 
-        otherMonth
-          ? "other-month"
-          : "",
-
         weekend
           ? "weekend"
           : "",
 
-        key===today
-          ? "today"
+        other
+          ? "other-month"
           : "",
 
-        key===
-        selectedCalendarDate
+        selectedCalendarDate===
+        key
           ? "selected"
           : ""
 
@@ -5070,7 +5064,7 @@ function renderCalendar(){
         onclick="selectCalendarDate('${key}')">
 
         <span class="day-number">
-          ${date.getDate()}
+          ${d.getDate()}
         </span>
 
         <span class="markers">
@@ -5084,20 +5078,15 @@ function renderCalendar(){
   }
 
 
-  if(
-    selectedCalendarDate
-  ){
-
+  if(selectedCalendarDate)
     renderSelectedDate();
-
-  }
 
 }
 
 
-/* ==========================================================
-   SELECT CALENDAR DATE
-========================================================== */
+/* =========================================================
+   CALENDAR DATE CLICK
+========================================================= */
 
 function selectCalendarDate(
   key
@@ -5107,50 +5096,135 @@ function selectCalendarDate(
     key;
 
 
-  const records=
-    currentSessions()
-      .filter(
-        s =>
-          s.date===
-          key
-      );
-
-
   renderCalendar();
 
   renderSelectedDate();
 
+}
+
+
+/* =========================================================
+   SELECTED DATE
+========================================================= */
+
+function renderSelectedDate(){
+
+  if(!selectedCalendarDate){
+
+    return;
+
+  }
+
+
+  const records=
+    currentRecords()
+      .filter(
+        s =>
+          s.date===
+          selectedCalendarDate
+      );
+
+
+  document.getElementById(
+    "selectedDateHeading"
+  ).textContent=
+    "Selected Date — "+
+    formatCalendarDate(
+      selectedCalendarDate
+    );
+
 
   /*
      IMPORTANT:
-     If no session exists,
-     ask user whether to add one.
+     The Add Session button is ALWAYS
+     visible for the selected date.
+
+     This fixes the issue where the
+     browser confirm dialog was not
+     appearing clearly on iPhone.
   */
 
-  if(!records.length){
-
-    const answer=
-      confirm(
-        "No therapy session is added for this date.\n\nDo you want to add a session for "+formatCalendarDate(key)+"?"
-      );
+  let html="";
 
 
-    if(answer){
+  if(records.length){
 
-      openAddForDate(
-        key
-      );
+    html=
+      records
+        .map(
+          sessionHTML
+        )
+        .join("");
 
-    }
+
+    html+=`
+
+      <button
+        class="btn primary add-date-button"
+        onclick="openAddForDate('${selectedCalendarDate}')">
+
+        ＋ Add Another ${esc(
+          modeName(currentMode)
+        )} for this Date
+
+      </button>
+
+    `;
 
   }
+  else{
+
+    html=`
+
+      <div class="selected-date">
+
+        <div class="selected-date-heading">
+
+          ${formatCalendarDate(
+            selectedCalendarDate
+          )}
+
+        </div>
+
+
+        <div class="empty">
+
+          No ${esc(
+            modeName(currentMode)
+          )} record exists on this date.
+
+        </div>
+
+
+        <button
+          class="btn primary add-date-button"
+          onclick="openAddForDate('${selectedCalendarDate}')">
+
+          ＋ Add ${esc(
+            modeName(currentMode)
+          )} for this Date
+
+        </button>
+
+
+      </div>
+
+    `;
+
+  }
+
+
+  document.getElementById(
+    "selectedDateRecords"
+  ).innerHTML=
+    html;
 
 }
 
 
-/* ==========================================================
-   CALENDAR DATE DISPLAY
-========================================================== */
+/* =========================================================
+   CALENDAR DATE FORMAT
+========================================================= */
 
 function formatCalendarDate(
   key
@@ -5175,157 +5249,97 @@ function formatCalendarDate(
 }
 
 
-/* ==========================================================
-   SELECTED DATE
-========================================================== */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-function renderSelectedDate(){
+function switchView(
+  viewId,
+  button
+){
 
-  if(!selectedCalendarDate){
-
-    return;
-
-  }
-
-
-  const records=
-    currentSessions()
-      .filter(
-        s =>
-          s.date===
-          selectedCalendarDate
-      );
+  document.querySelectorAll(
+    ".view"
+  ).forEach(
+    v =>
+      v.classList.remove(
+        "active"
+      )
+  );
 
 
   document.getElementById(
-    "selectedDateTitle"
-  ).textContent=
-    "Selected Date — "+
-    formatCalendarDate(
-      selectedCalendarDate
+    viewId
+  ).classList.add(
+    "active"
+  );
+
+
+  document.querySelectorAll(
+    ".nav-button"
+  ).forEach(
+    b =>
+      b.classList.remove(
+        "active"
+      )
+  );
+
+
+  if(button){
+
+    button.classList.add(
+      "active"
     );
-
-
-  if(records.length){
-
-    document.getElementById(
-      "selectedDateRecords"
-    ).innerHTML=
-      records
-        .map(
-          sessionHTML
-        )
-        .join("")
-        +
-        `
-        <div
-          class="actions"
-          style="margin-top:12px">
-
-          <button
-            class="btn primary"
-            onclick="openAddForDate('${selectedCalendarDate}')">
-
-            ＋ Add Another Session
-
-          </button>
-
-        </div>
-        `;
 
   }
   else{
 
-    document.getElementById(
-      "selectedDateRecords"
-    ).innerHTML=
-      `
-      <div class="selected-date-box">
-
-        <div class="selected-date-title">
-
-          ${formatCalendarDate(
-            selectedCalendarDate
-          )}
-
-        </div>
-
-        <div class="empty">
-
-          No therapy sessions on this date.
-
-        </div>
+    const b=
+      document.querySelector(
+        `.nav-button[data-view="${viewId}"]`
+      );
 
 
-        <div
-          class="actions"
-          style="justify-content:center">
-
-          <button
-            class="btn primary"
-            onclick="openAddForDate('${selectedCalendarDate}')">
-
-            ＋ Add Session
-
-          </button>
-
-        </div>
-
-      </div>
-      `;
+    if(b)
+      b.classList.add(
+        "active"
+      );
 
   }
 
-}
+
+  if(
+    viewId===
+    "historyView"
+  )
+    renderHistory();
 
 
-/* ==========================================================
-   OPEN ADD FOR SELECTED DATE
-========================================================== */
-
-function openAddForDate(
-  key
-){
-
-  resetForm();
+  if(
+    viewId===
+    "calendarView"
+  )
+    renderCalendar();
 
 
-  document.getElementById(
-    "date"
-  ).value=
-    key;
-
-
-  document.getElementById(
-    "formProfile"
-  ).value=
-    currentProfileId;
-
-
-  document.getElementById(
-    "formTitle"
-  ).textContent=
-    "Add Session — "+
-    formatCalendarDate(
-      key
-    );
-
-
-  switchView(
-    "addView"
+  window.scrollTo(
+    {
+      top:0,
+      behavior:"smooth"
+    }
   );
 
 }
 
 
-/* ==========================================================
-   EXCEL EXPORT
-========================================================== */
+/* =========================================================
+   EXPORT EXCEL
+========================================================= */
 
 function exportExcel(){
 
   const records=
-    currentSessions();
+    currentRecords();
 
 
   const rows=
@@ -5333,72 +5347,82 @@ function exportExcel(){
       s=>({
 
         Profile:
-          getCurrentProfileName(),
+          currentProfile()?.name ||
+          "",
 
-        Therapy:
-          s.therapy || "",
+        Mode:
+          modeName(
+            s.mode ||
+            "therapy"
+          ),
+
+        Activity:
+          s.activity ||
+          s.therapy ||
+          "",
 
         Date:
-          s.date || "",
+          s.date ||
+          "",
 
         Time:
-          s.time || "",
+          s.time ||
+          "",
 
-        Therapist:
-          s.therapist || "",
+        Person:
+          s.person ||
+          s.therapist ||
+          "",
 
         Status:
-          s.status || "",
+          s.status ||
+          "",
 
         Cost:
           Number(
-            s.cost || 0
+            s.cost||0
           ),
 
         Notes:
-          s.notes || ""
+          s.notes ||
+          ""
 
       })
     );
 
 
   if(
-    typeof XLSX !==
-    "undefined"
+    typeof XLSX!=="undefined"
   ){
 
-    const worksheet=
+    const ws=
       XLSX.utils.json_to_sheet(
         rows
       );
 
 
-    const workbook=
+    const wb=
       XLSX.utils.book_new();
 
 
     XLSX.utils.book_append_sheet(
-      workbook,
-      worksheet,
-      "Therapy Sessions"
+      wb,
+      ws,
+      "Records"
     );
 
 
     XLSX.writeFile(
-      workbook,
-      "Therapy_Tracker_"+
-      safeFileName(
-        getCurrentProfileName()
-      )+
-      ".xlsx"
+      wb,
+      "Attendance_Tracker.xlsx"
     );
 
   }
   else{
 
-    downloadFile(
+    download(
       rowsToCSV(rows),
-      "Therapy_Tracker.csv",
+      "Attendance_Tracker.csv",
       "text/csv"
     );
 
@@ -5407,9 +5431,9 @@ function exportExcel(){
 }
 
 
-/* ==========================================================
+/* =========================================================
    PDF
-========================================================== */
+========================================================= */
 
 function exportPDF(){
 
@@ -5419,7 +5443,7 @@ function exportPDF(){
   ){
 
     alert(
-      "PDF support is unavailable. Please open the app with internet once and try again."
+      "PDF library is not available. Please open the app with internet and try again."
     );
 
     return;
@@ -5438,36 +5462,16 @@ function exportPDF(){
 
 
   const records=
-    [...currentSessions()]
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          (
-            getDateObject(a)
-              ?.getTime() ||
-            0
-          )
-          -
-          (
-            getDateObject(b)
-              ?.getTime() ||
-            0
-          )
-      );
+    currentRecords();
 
 
   let y=18;
 
 
-  doc.setFontSize(
-    20
-  );
-
+  doc.setFontSize(20);
 
   doc.text(
-    "Therapy Tracker",
+    "Attendance Tracker",
     14,
     y
   );
@@ -5476,71 +5480,34 @@ function exportPDF(){
   y+=9;
 
 
-  doc.setFontSize(
-    11
-  );
+  doc.setFontSize(11);
 
 
   doc.text(
     "Profile: "+
-    getCurrentProfileName(),
+    (
+      currentProfile()?.name ||
+      ""
+    ),
     14,
     y
   );
 
 
-  y+=8;
-
-
-  const attended=
-    records.filter(
-      s =>
-        s.status===
-        "attended"
-    ).length;
-
-
-  const missed=
-    records.filter(
-      s =>
-        s.status===
-        "missed"
-    ).length;
-
-
-  const planned=
-    records.filter(
-      s =>
-        s.status===
-        "planned"
-    ).length;
-
-
-  const rescheduled=
-    records.filter(
-      s =>
-        s.status===
-        "rescheduled"
-    ).length;
+  y+=7;
 
 
   doc.text(
-    "Total: "+
-    records.length+
-    "   Attended: "+
-    attended+
-    "   Missed: "+
-    missed+
-    "   Planned: "+
-    planned+
-    "   Rescheduled: "+
-    rescheduled,
+    "Mode: "+
+    modeName(
+      currentMode
+    ),
     14,
     y
   );
 
 
-  y+=10;
+  y+=9;
 
 
   records.forEach(
@@ -5554,15 +5521,19 @@ function exportPDF(){
           index+1
         )+
         ". "+
-        s.date+
+        (
+          s.date||
+          ""
+        )+
         " "+
         (
-          s.time ||
+          s.time||
           ""
         )+
         " | "+
         (
-          s.therapy ||
+          s.activity||
+          s.therapy||
           ""
         )+
         " | "+
@@ -5571,12 +5542,12 @@ function exportPDF(){
         )+
         " | "+
         (
-          s.therapist ||
-          "-"
+          s.person||
+          ""
         )+
         " | Rs."+
         (
-          s.cost ||
+          s.cost||
           0
         );
 
@@ -5617,48 +5588,46 @@ function exportPDF(){
 
 
   doc.save(
-    "Therapy_Tracker_"+
-    safeFileName(
-      getCurrentProfileName()
-    )+
-    ".pdf"
+    "Attendance_Tracker.pdf"
   );
 
 }
 
 
-/* ==========================================================
-   JSON BACKUP
-========================================================== */
+/* =========================================================
+   BACKUP
+========================================================= */
 
 function backupJSON(){
 
-  const backup={
+  const data={
 
-    version:4,
+    version:5,
 
     exportedAt:
       new Date()
         .toISOString(),
 
     profiles:
+
       profiles,
 
     sessions:
+
       sessions
 
   };
 
 
-  downloadFile(
+  download(
 
     JSON.stringify(
-      backup,
+      data,
       null,
       2
     ),
 
-    "Therapy_Tracker_Backup.json",
+    "Attendance_Tracker_Backup.json",
 
     "application/json"
 
@@ -5667,9 +5636,9 @@ function backupJSON(){
 }
 
 
-/* ==========================================================
-   JSON RESTORE
-========================================================== */
+/* =========================================================
+   RESTORE
+========================================================= */
 
 function restoreJSON(
   event
@@ -5705,24 +5674,20 @@ function restoreJSON(
           )
         ){
 
-          throw new Error(
-            "Invalid backup"
-          );
+          throw new Error();
 
         }
 
 
-        const answer=
-          confirm(
-            "Restore this backup?\n\nExisting records will NOT be deleted. Backup records will be added."
-          );
-
-
-        if(!answer)
+        if(
+          !confirm(
+            "Restore backup records?\n\nExisting data will NOT be deleted."
+          )
+        )
           return;
 
 
-        const existingIds=
+        const ids=
           new Set(
             sessions.map(
               s =>
@@ -5733,38 +5698,49 @@ function restoreJSON(
           );
 
 
-        const imported=
-          data.sessions.map(
-            s=>{
+        data.sessions.forEach(
+          s=>{
 
-              const copy={
-                ...s
-              };
+            const copy={
+              ...s
+            };
 
 
-              if(
-                !copy.id ||
-                existingIds.has(
-                  String(
-                    copy.id
-                  )
+            if(
+              !copy.id ||
+              ids.has(
+                String(
+                  copy.id
                 )
-              ){
+              )
+            ){
 
-                copy.id=
-                  createId();
-
-              }
-
-
-              return copy;
+              copy.id=
+                createId();
 
             }
-          );
 
 
-        sessions.push(
-          ...imported
+            if(!copy.mode)
+              copy.mode="therapy";
+
+
+            if(!copy.activity)
+              copy.activity=
+                copy.therapy ||
+                "Activity";
+
+
+            if(!copy.profileId)
+              copy.profileId=
+                currentProfileId;
+
+
+            sessions.push(
+              copy
+            );
+
+          }
         );
 
 
@@ -5774,35 +5750,30 @@ function restoreJSON(
           )
         ){
 
-          const names=
-            new Set(
-              profiles.map(
-                p =>
-                  String(
-                    p.name
-                  )
-                    .toLowerCase()
-              )
-            );
-
-
           data.profiles.forEach(
             p=>{
 
+              const exists=
+                profiles.some(
+                  x =>
+                    x.name
+                      .toLowerCase()===
+                    String(
+                      p.name||
+                      ""
+                    )
+                      .toLowerCase()
+                );
+
+
               if(
                 p.name &&
-                !names.has(
-                  String(
-                    p.name
-                  )
-                    .toLowerCase()
-                )
+                !exists
               ){
 
                 profiles.push({
 
-                  id:
-                    createId(),
+                  id:createId(),
 
                   name:
                     String(
@@ -5816,27 +5787,23 @@ function restoreJSON(
             }
           );
 
-
-          saveProfiles();
-
         }
 
 
-        saveSessions();
+        saveAll();
 
         renderAll();
 
 
         alert(
-          "Backup restored successfully. Existing data was preserved."
+          "Backup restored. Existing records were preserved."
         );
 
-
       }
-      catch(error){
+      catch(e){
 
         alert(
-          "Could not restore this backup file."
+          "Invalid backup file."
         );
 
       }
@@ -5854,9 +5821,73 @@ function restoreJSON(
 }
 
 
-/* ==========================================================
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+function download(
+  content,
+  filename,
+  type
+){
+
+  const blob=
+    new Blob(
+      [
+        content
+      ],
+      {
+        type:type
+      }
+    );
+
+
+  const url=
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const a=
+    document.createElement(
+      "a"
+    );
+
+
+  a.href=
+    url;
+
+
+  a.download=
+    filename;
+
+
+  document.body.appendChild(
+    a
+  );
+
+
+  a.click();
+
+
+  a.remove();
+
+
+  setTimeout(
+    ()=>{
+      URL.revokeObjectURL(
+        url
+      );
+    },
+    1000
+  );
+
+}
+
+
+/* =========================================================
    CSV
-========================================================== */
+========================================================= */
 
 function rowsToCSV(
   rows
@@ -5872,22 +5903,17 @@ function rowsToCSV(
     );
 
 
-  function quote(
-    value
-  ){
-
-    return '"'+
+  const quote=
+    value =>
+      '"'+
       String(
-        value ??
-        ""
+        value??""
       )
         .replace(
           /"/g,
           '""'
         )+
       '"';
-
-  }
 
 
   const lines=[];
@@ -5927,94 +5953,38 @@ function rowsToCSV(
 }
 
 
-/* ==========================================================
-   DOWNLOAD
-========================================================== */
+/* =========================================================
+   FORM / MODE UI
+========================================================= */
 
-function downloadFile(
-  content,
-  filename,
-  type
-){
+function syncModeControls(){
 
-  const blob=
-    new Blob(
-      [content],
-      {
-        type:type
-      }
-    );
+  document.getElementById(
+    "modeSelect"
+  ).value=
+    currentMode;
 
 
-  const url=
-    URL.createObjectURL(
-      blob
-    );
+  document.getElementById(
+    "formMode"
+  ).value=
+    currentMode;
 
 
-  const link=
-    document.createElement(
-      "a"
-    );
-
-
-  link.href=
-    url;
-
-
-  link.download=
-    filename;
-
-
-  document.body.appendChild(
-    link
-  );
-
-
-  link.click();
-
-
-  link.remove();
-
-
-  setTimeout(
-    ()=>{
-      URL.revokeObjectURL(
-        url
-      );
-    },
-    1000
-  );
+  updateFormLabels();
 
 }
 
 
-/* ==========================================================
-   SAFE FILE NAME
-========================================================== */
-
-function safeFileName(
-  name
-){
-
-  return String(
-    name
-  )
-    .replace(
-      /[^a-z0-9_-]+/gi,
-      "_"
-    );
-
-}
-
-
-/* ==========================================================
+/* =========================================================
    RENDER ALL
-========================================================== */
+========================================================= */
 
 function renderAll(){
 
   renderProfiles();
+
+  syncModeControls();
 
   renderHome();
 
@@ -6025,21 +5995,32 @@ function renderAll(){
 }
 
 
-/* ==========================================================
-   START APPLICATION
-========================================================== */
+/* =========================================================
+   START
+========================================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
   function(){
 
-    initializeData();
+    initialize();
+
+
+    currentMode=
+      localStorage.getItem(
+        MODE_KEY
+      ) ||
+      "therapy";
+
 
     loadTheme();
 
+
     renderProfiles();
 
+
     resetForm();
+
 
     renderAll();
 
