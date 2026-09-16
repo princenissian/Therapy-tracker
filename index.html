@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="utf-8">
 
 <meta
@@ -22,11 +23,44 @@
   box-sizing:border-box;
 }
 
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --border:#d8dee9;
+  --primary:#2563eb;
+  --primary-light:#dbeafe;
+  --nav:#ffffff;
+  --input:#ffffff;
+  --danger-bg:#fee2e2;
+  --danger:#b91c1c;
+  --success-bg:#dcfce7;
+  --success:#166534;
+}
+
+body.dark{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --border:#334155;
+  --primary:#60a5fa;
+  --primary-light:#1e3a8a;
+  --nav:#111827;
+  --input:#0f172a;
+  --danger-bg:#451a1a;
+  --danger:#fca5a5;
+  --success-bg:#052e16;
+  --success:#86efac;
+}
+
 body{
   margin:0;
-  background:#f5f7fb;
-  color:#172033;
+  background:var(--bg);
+  color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  transition:background .2s,color .2s;
 }
 
 button,
@@ -44,29 +78,72 @@ button{
   max-width:700px;
   margin:auto;
   min-height:100vh;
-  background:#f5f7fb;
+  background:var(--bg);
   padding-bottom:80px;
 }
 
 .header{
   background:#2563eb;
   color:white;
-  padding:18px 16px;
+  padding:16px;
   position:sticky;
   top:0;
   z-index:20;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  box-shadow:0 2px 8px rgba(0,0,0,.18);
+}
+
+.header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
 }
 
 .header h1{
   margin:0;
-  font-size:22px;
+  font-size:21px;
 }
 
 .header p{
   margin:4px 0 0;
-  font-size:13px;
+  font-size:12px;
   opacity:.9;
+}
+
+.theme-btn{
+  border:0;
+  background:rgba(255,255,255,.18);
+  color:white;
+  border-radius:10px;
+  width:42px;
+  height:42px;
+  font-size:20px;
+}
+
+.profile-bar{
+  background:var(--card);
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+}
+
+.profile-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.profile-row select{
+  flex:1;
+}
+
+.add-profile-btn{
+  flex:0 0 44px;
+  height:42px;
+  border:0;
+  border-radius:10px;
+  background:var(--primary);
+  color:white;
+  font-size:22px;
 }
 
 .page{
@@ -79,7 +156,7 @@ button{
 }
 
 .card{
-  background:white;
+  background:var(--card);
   border-radius:14px;
   padding:15px;
   margin-bottom:12px;
@@ -99,7 +176,7 @@ button{
 }
 
 .stat{
-  background:white;
+  background:var(--card);
   border-radius:14px;
   padding:14px;
   box-shadow:0 2px 8px rgba(0,0,0,.06);
@@ -112,7 +189,7 @@ button{
 
 .stat-label{
   font-size:12px;
-  color:#667085;
+  color:var(--muted);
   margin-top:3px;
 }
 
@@ -127,19 +204,18 @@ input,
 select,
 textarea{
   width:100%;
-  border:1px solid #d8dee9;
+  border:1px solid var(--border);
   border-radius:10px;
   padding:11px 12px;
-  background:white;
-  color:#172033;
+  background:var(--input);
+  color:var(--text);
   outline:none;
 }
 
 input:focus,
 select:focus,
 textarea:focus{
-  border-color:#2563eb;
-  box-shadow:0 0 0 2px rgba(37,99,235,.1);
+  border-color:var(--primary);
 }
 
 textarea{
@@ -155,7 +231,7 @@ textarea{
 }
 
 .btn-primary{
-  background:#2563eb;
+  background:var(--primary);
   color:white;
 }
 
@@ -164,14 +240,19 @@ textarea{
   color:#172033;
 }
 
+body.dark .btn-secondary{
+  background:#334155;
+  color:#f1f5f9;
+}
+
 .btn-danger{
-  background:#fee2e2;
-  color:#b91c1c;
+  background:var(--danger-bg);
+  color:var(--danger);
 }
 
 .btn-success{
-  background:#dcfce7;
-  color:#166534;
+  background:var(--success-bg);
+  color:var(--success);
 }
 
 .btn-row{
@@ -186,9 +267,7 @@ textarea{
   min-width:110px;
 }
 
-/* =========================
-   DATE SCROLLER
-========================= */
+/* DATE SCROLL */
 
 .date-scroll-wrapper,
 .time-scroll-wrapper{
@@ -230,25 +309,26 @@ textarea{
   font-weight:700;
 }
 
-.date-scroll-arrow:active,
-.time-scroll-arrow:active{
-  transform:scale(.96);
+body.dark .date-scroll-arrow,
+body.dark .time-scroll-arrow{
+  background:#334155;
+  color:#93c5fd;
 }
 
 .date-scroll-item{
   flex:0 0 68px;
   height:58px;
-  border:1px solid #d8dee9;
+  border:1px solid var(--border);
   border-radius:11px;
-  background:white;
+  background:var(--card);
   text-align:center;
   padding:7px 4px;
-  color:#344054;
+  color:var(--text);
 }
 
 .date-scroll-item .day{
   font-size:11px;
-  color:#667085;
+  color:var(--muted);
 }
 
 .date-scroll-item .date-number{
@@ -259,12 +339,12 @@ textarea{
 
 .date-scroll-item .month{
   font-size:10px;
-  color:#667085;
+  color:var(--muted);
 }
 
 .date-scroll-item.selected{
-  background:#2563eb;
-  border-color:#2563eb;
+  background:var(--primary);
+  border-color:var(--primary);
   color:white;
 }
 
@@ -280,30 +360,27 @@ textarea{
 .date-manual-label,
 .time-manual-label{
   font-size:11px;
-  color:#667085;
-  margin-top:2px;
+  color:var(--muted);
 }
 
-/* =========================
-   TIME SCROLLER
-========================= */
+/* TIME */
 
 .time-scroll-item{
   flex:0 0 82px;
   height:52px;
-  border:1px solid #d8dee9;
+  border:1px solid var(--border);
   border-radius:11px;
-  background:white;
+  background:var(--card);
   text-align:center;
   padding:13px 4px;
   font-size:13px;
   font-weight:700;
-  color:#344054;
+  color:var(--text);
 }
 
 .time-scroll-item.selected{
-  background:#2563eb;
-  border-color:#2563eb;
+  background:var(--primary);
+  border-color:var(--primary);
   color:white;
 }
 
@@ -318,53 +395,14 @@ textarea{
   margin-top:0;
 }
 
-/* =========================
-   BOTTOM NAV
-========================= */
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(700px,100%);
-  background:white;
-  border-top:1px solid #e4e7ec;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  z-index:30;
-  padding-bottom:env(safe-area-inset-bottom);
-}
-
-.nav-btn{
-  border:0;
-  background:white;
-  padding:10px 4px 9px;
-  color:#667085;
-  font-size:11px;
-}
-
-.nav-btn .icon{
-  display:block;
-  font-size:20px;
-  margin-bottom:2px;
-}
-
-.nav-btn.active{
-  color:#2563eb;
-  font-weight:700;
-}
-
-/* =========================
-   SESSION ITEMS
-========================= */
+/* SESSION */
 
 .session{
-  background:white;
+  background:var(--card);
   border-radius:13px;
   padding:13px;
   margin-bottom:9px;
-  border-left:4px solid #2563eb;
+  border-left:4px solid var(--primary);
   box-shadow:0 2px 7px rgba(0,0,0,.06);
 }
 
@@ -380,7 +418,7 @@ textarea{
 
 .session-meta{
   font-size:12px;
-  color:#667085;
+  color:var(--muted);
   margin-top:4px;
   line-height:1.5;
 }
@@ -400,13 +438,13 @@ textarea{
 }
 
 .badge-attended{
-  background:#dcfce7;
-  color:#166534;
+  background:var(--success-bg);
+  color:var(--success);
 }
 
 .badge-missed{
-  background:#fee2e2;
-  color:#b91c1c;
+  background:var(--danger-bg);
+  color:var(--danger);
 }
 
 .badge-rescheduled{
@@ -428,9 +466,14 @@ textarea{
   font-weight:700;
 }
 
-/* =========================
-   CALENDAR
-========================= */
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:25px 10px;
+  font-size:13px;
+}
+
+/* CALENDAR */
 
 .calendar-head{
   display:flex;
@@ -448,6 +491,11 @@ textarea{
   font-size:20px;
 }
 
+body.dark .calendar-head button{
+  background:#334155;
+  color:white;
+}
+
 .calendar-title{
   font-weight:700;
 }
@@ -461,14 +509,15 @@ textarea{
 .calendar-weekday{
   text-align:center;
   font-size:10px;
-  color:#667085;
+  color:var(--muted);
   padding:5px 0;
 }
 
 .calendar-day{
   min-height:42px;
-  border:1px solid #edf0f4;
-  background:white;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
   border-radius:8px;
   position:relative;
   text-align:center;
@@ -477,11 +526,11 @@ textarea{
 }
 
 .calendar-day.today{
-  border:2px solid #2563eb;
+  border:2px solid var(--primary);
 }
 
 .calendar-day.selected{
-  background:#dbeafe;
+  background:var(--primary-light);
 }
 
 .calendar-dot{
@@ -495,18 +544,13 @@ textarea{
   transform:translateX(-50%);
 }
 
-.empty{
-  text-align:center;
-  color:#667085;
-  padding:25px 10px;
-  font-size:13px;
-}
+/* MODAL */
 
 .modal-backdrop{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.5);
   z-index:50;
   align-items:flex-end;
   justify-content:center;
@@ -518,9 +562,10 @@ textarea{
 
 .modal{
   width:min(700px,100%);
-  max-height:85vh;
+  max-height:90vh;
   overflow:auto;
-  background:white;
+  background:var(--card);
+  color:var(--text);
   border-radius:18px 18px 0 0;
   padding:18px;
 }
@@ -532,7 +577,7 @@ textarea{
 .summary-row{
   display:flex;
   justify-content:space-between;
-  border-bottom:1px solid #edf0f4;
+  border-bottom:1px solid var(--border);
   padding:9px 0;
   font-size:13px;
 }
@@ -546,14 +591,86 @@ textarea{
 .notice{
   padding:10px 12px;
   border-radius:10px;
-  background:#eff6ff;
-  color:#1d4ed8;
+  background:var(--primary-light);
+  color:var(--primary);
   font-size:12px;
   margin-bottom:10px;
 }
 
-.hidden{
-  display:none!important;
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(700px,100%);
+  background:var(--nav);
+  border-top:1px solid var(--border);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  z-index:30;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+
+.nav-btn{
+  border:0;
+  background:var(--nav);
+  color:var(--muted);
+  padding:10px 4px 9px;
+  font-size:11px;
+}
+
+.nav-btn .icon{
+  display:block;
+  font-size:20px;
+  margin-bottom:2px;
+}
+
+.nav-btn.active{
+  color:var(--primary);
+  font-weight:700;
+}
+
+/* EXPORT */
+
+.export-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.export-btn{
+  padding:13px 8px;
+  border:0;
+  border-radius:11px;
+  font-weight:700;
+}
+
+.export-excel{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.export-pdf{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+body.dark .export-excel{
+  background:#052e16;
+  color:#86efac;
+}
+
+body.dark .export-pdf{
+  background:#450a0a;
+  color:#fca5a5;
+}
+
+.profile-info{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:7px;
 }
 
 @media(max-width:420px){
@@ -575,416 +692,575 @@ textarea{
 }
 
 </style>
+
+<!-- Excel library -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
+<!-- PDF library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 
 <body>
 
 <div class="app">
 
-  <header class="header">
-    <h1>Therapy Tracker</h1>
-    <p>Track therapy visits, attendance and expenses</p>
-  </header>
+<header class="header">
 
-  <!-- ================= HOME ================= -->
+  <div class="header-row">
 
-  <section id="homePage" class="page active">
-
-    <div class="stats">
-
-      <div class="stat">
-        <div class="stat-value" id="totalSessions">0</div>
-        <div class="stat-label">Total Sessions</div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-value" id="attendedSessions">0</div>
-        <div class="stat-label">Attended</div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-value" id="attendanceRate">0%</div>
-        <div class="stat-label">Attendance Rate</div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-value" id="totalCost">₹0</div>
-        <div class="stat-label">Total Cost</div>
-      </div>
-
+    <div>
+      <h1>Therapy Tracker</h1>
+      <p>Track therapy visits, attendance and expenses</p>
     </div>
 
-    <div class="card" style="margin-top:12px">
+    <button
+      class="theme-btn"
+      id="themeBtn"
+      onclick="toggleDarkMode()">
+      🌙
+    </button>
 
-      <div class="card-title">Next Session</div>
+  </div>
 
-      <div id="nextSession"></div>
+</header>
 
-    </div>
 
-    <div class="card">
+<!-- PROFILE BAR -->
 
-      <div class="card-title">Recent Sessions</div>
+<div class="profile-bar">
 
-      <div id="recentSessions"></div>
+  <div class="profile-row">
 
-    </div>
+    <select
+      id="profileSelect"
+      onchange="switchProfile(this.value)">
+    </select>
 
-    <div class="card">
+    <button
+      class="add-profile-btn"
+      onclick="addProfile()">
+      +
+    </button>
 
-      <div class="card-title">Quick Actions</div>
+  </div>
 
-      <div class="btn-row">
-
-        <button
-          class="btn btn-primary"
-          onclick="showPage('addPage');resetForm();">
-          + Add Session
-        </button>
-
-        <button
-          class="btn btn-secondary"
-          onclick="showSummary();">
-          View Summary
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= ADD / EDIT ================= -->
-
-  <section id="addPage" class="page">
-
-    <div class="card">
-
-      <div class="card-title" id="formTitle">
-        Add Therapy Session
-      </div>
-
-      <div class="notice">
-        Select a date/time by scrolling, or use the manual inputs below.
-      </div>
-
-      <!-- DATE -->
-
-      <label>Date</label>
-
-      <div class="date-scroll-wrapper">
-
-        <button
-          type="button"
-          class="date-scroll-arrow"
-          id="dateScrollPrev">
-          ‹
-        </button>
-
-        <div
-          id="dateScroll"
-          class="date-scroll">
-        </div>
-
-        <button
-          type="button"
-          class="date-scroll-arrow"
-          id="dateScrollNext">
-          ›
-        </button>
-
-      </div>
-
-      <div class="date-manual-label">
-        Manual date selection
-      </div>
-
-      <input
-        id="date"
-        type="date"
-        required>
-
-
-      <!-- TIME -->
-
-      <label>Time</label>
-
-      <div class="time-scroll-wrapper">
-
-        <button
-          type="button"
-          class="time-scroll-arrow"
-          id="timeScrollPrev">
-          ‹
-        </button>
-
-        <div
-          id="timeScroll"
-          class="time-scroll">
-        </div>
-
-        <button
-          type="button"
-          class="time-scroll-arrow"
-          id="timeScrollNext">
-          ›
-        </button>
-
-      </div>
-
-      <div class="time-manual-label">
-        Manual time selection
-      </div>
-
-      <div class="manual-time-grid">
-
-        <div>
-          <label>Hour</label>
-
-          <select id="hour">
-
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-
-          </select>
-
-        </div>
-
-        <div>
-
-          <label>Minute</label>
-
-          <select id="minute">
-
-            <option value="00">00</option>
-            <option value="05">05</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="35">35</option>
-            <option value="40">40</option>
-            <option value="45">45</option>
-            <option value="50">50</option>
-            <option value="55">55</option>
-
-          </select>
-
-        </div>
-
-        <div>
-
-          <label>AM / PM</label>
-
-          <select id="ampm">
-
-            <option value="AM">AM</option>
-            <option value="PM">PM</option>
-
-          </select>
-
-        </div>
-
-      </div>
-
-      <input
-        id="time"
-        type="hidden">
-
-
-      <!-- THERAPY TYPE -->
-
-      <label>Therapy Type</label>
-
-      <select id="type" required>
-
-        <option value="">Select therapy</option>
-
-        <option value="Occupational Therapy">
-          Occupational Therapy
-        </option>
-
-        <option value="Physiotherapy">
-          Physiotherapy
-        </option>
-
-        <option value="Speech Therapy">
-          Speech Therapy
-        </option>
-
-        <option value="ABA Therapy">
-          ABA Therapy
-        </option>
-
-        <option value="Behavioral Therapy">
-          Behavioral Therapy
-        </option>
-
-        <option value="Physical Therapy">
-          Physical Therapy
-        </option>
-
-        <option value="Cognitive Therapy">
-          Cognitive Therapy
-        </option>
-
-        <option value="Sensory Therapy">
-          Sensory Therapy
-        </option>
-
-        <option value="Feeding Therapy">
-          Feeding Therapy
-        </option>
-
-        <option value="Other">
-          Other
-        </option>
-
-      </select>
-
-
-      <!-- THERAPIST -->
-
-      <label>Therapist</label>
-
-      <input
-        id="therapist"
-        type="text"
-        placeholder="Therapist name">
-
-
-      <!-- STATUS -->
-
-      <label>Status</label>
-
-      <select id="status">
-
-        <option value="Planned">Planned</option>
-        <option value="Attended">Attended</option>
-        <option value="Missed">Missed</option>
-        <option value="Rescheduled">Rescheduled</option>
-
-      </select>
-
-
-      <!-- NOTES -->
-
-      <label>Notes</label>
-
-      <textarea
-        id="notes"
-        placeholder="Add notes..."></textarea>
-
-
-      <div class="btn-row">
-
-        <button
-          class="btn btn-primary"
-          onclick="saveSession();">
-          Save Session
-        </button>
-
-        <button
-          class="btn btn-secondary"
-          onclick="showPage('homePage');">
-          Cancel
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= HISTORY ================= -->
-
-  <section id="historyPage" class="page">
-
-    <div class="card">
-
-      <div class="card-title">
-        Session History
-      </div>
-
-      <div id="historyList"></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= CALENDAR ================= -->
-
-  <section id="calendarPage" class="page">
-
-    <div class="card">
-
-      <div class="calendar-head">
-
-        <button onclick="changeMonth(-1)">
-          ‹
-        </button>
-
-        <div
-          class="calendar-title"
-          id="calendarTitle">
-        </div>
-
-        <button onclick="changeMonth(1)">
-          ›
-        </button>
-
-      </div>
-
-      <div class="calendar-grid">
-
-        <div class="calendar-weekday">Sun</div>
-        <div class="calendar-weekday">Mon</div>
-        <div class="calendar-weekday">Tue</div>
-        <div class="calendar-weekday">Wed</div>
-        <div class="calendar-weekday">Thu</div>
-        <div class="calendar-weekday">Fri</div>
-        <div class="calendar-weekday">Sat</div>
-
-      </div>
-
-      <div
-        id="calendarGrid"
-        class="calendar-grid">
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <div class="card-title">
-        Selected Date
-      </div>
-
-      <div id="selectedCalendarDate"></div>
-
-    </div>
-
-  </section>
+  <div
+    class="profile-info"
+    id="profileInfo">
+  </div>
 
 </div>
 
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- HOME -->
+
+<section
+  id="homePage"
+  class="page active">
+
+  <div class="stats">
+
+    <div class="stat">
+      <div
+        class="stat-value"
+        id="totalSessions">
+        0
+      </div>
+      <div class="stat-label">
+        Total Sessions
+      </div>
+    </div>
+
+    <div class="stat">
+      <div
+        class="stat-value"
+        id="attendedSessions">
+        0
+      </div>
+      <div class="stat-label">
+        Attended
+      </div>
+    </div>
+
+    <div class="stat">
+      <div
+        class="stat-value"
+        id="attendanceRate">
+        0%
+      </div>
+      <div class="stat-label">
+        Attendance Rate
+      </div>
+    </div>
+
+    <div class="stat">
+      <div
+        class="stat-value"
+        id="totalCost">
+        ₹0
+      </div>
+      <div class="stat-label">
+        Total Cost
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="card" style="margin-top:12px">
+
+    <div class="card-title">
+      Next Session
+    </div>
+
+    <div id="nextSession"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Recent Sessions
+    </div>
+
+    <div id="recentSessions"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Data Export
+    </div>
+
+    <div class="export-grid">
+
+      <button
+        class="export-btn export-excel"
+        onclick="exportExcel(false)">
+        📊 Excel
+      </button>
+
+      <button
+        class="export-btn export-pdf"
+        onclick="exportPDF(false)">
+        📄 PDF
+      </button>
+
+    </div>
+
+    <div class="btn-row">
+
+      <button
+        class="btn btn-secondary"
+        onclick="exportExcel(true)">
+        📊 All Profiles Excel
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        onclick="exportPDF(true)">
+        📄 All Profiles PDF
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Quick Actions
+    </div>
+
+    <div class="btn-row">
+
+      <button
+        class="btn btn-primary"
+        onclick="showPage('addPage');resetForm();">
+        + Add Session
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        onclick="showSummary();">
+        View Summary
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ADD -->
+
+<section
+  id="addPage"
+  class="page">
+
+  <div class="card">
+
+    <div
+      class="card-title"
+      id="formTitle">
+      Add Therapy Session
+    </div>
+
+
+    <div class="notice">
+      Select date/time by scrolling or use manual selection.
+    </div>
+
+
+    <!-- DATE -->
+
+    <label>Date</label>
+
+    <div class="date-scroll-wrapper">
+
+      <button
+        type="button"
+        class="date-scroll-arrow"
+        id="dateScrollPrev">
+        ‹
+      </button>
+
+      <div
+        id="dateScroll"
+        class="date-scroll">
+      </div>
+
+      <button
+        type="button"
+        class="date-scroll-arrow"
+        id="dateScrollNext">
+        ›
+      </button>
+
+    </div>
+
+    <div class="date-manual-label">
+      Manual date selection
+    </div>
+
+    <input
+      id="date"
+      type="date"
+      required>
+
+
+    <!-- TIME -->
+
+    <label>Time</label>
+
+    <div class="time-scroll-wrapper">
+
+      <button
+        type="button"
+        class="time-scroll-arrow"
+        id="timeScrollPrev">
+        ‹
+      </button>
+
+      <div
+        id="timeScroll"
+        class="time-scroll">
+      </div>
+
+      <button
+        type="button"
+        class="time-scroll-arrow"
+        id="timeScrollNext">
+        ›
+      </button>
+
+    </div>
+
+    <div class="time-manual-label">
+      Manual time selection
+    </div>
+
+
+    <div class="manual-time-grid">
+
+      <div>
+
+        <label>Hour</label>
+
+        <select id="hour">
+
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>Minute</label>
+
+        <select id="minute">
+
+          <option value="00">00</option>
+          <option value="05">05</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="25">25</option>
+          <option value="30">30</option>
+          <option value="35">35</option>
+          <option value="40">40</option>
+          <option value="45">45</option>
+          <option value="50">50</option>
+          <option value="55">55</option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>AM / PM</label>
+
+        <select id="ampm">
+
+          <option value="AM">AM</option>
+          <option value="PM">PM</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <input
+      id="time"
+      type="hidden">
+
+
+    <!-- TYPE -->
+
+    <label>Therapy Type</label>
+
+    <select
+      id="type"
+      required>
+
+      <option value="">
+        Select therapy
+      </option>
+
+      <option value="Occupational Therapy">
+        Occupational Therapy
+      </option>
+
+      <option value="Physiotherapy">
+        Physiotherapy
+      </option>
+
+      <option value="Speech Therapy">
+        Speech Therapy
+      </option>
+
+      <option value="ABA Therapy">
+        ABA Therapy
+      </option>
+
+      <option value="Behavioral Therapy">
+        Behavioral Therapy
+      </option>
+
+      <option value="Physical Therapy">
+        Physical Therapy
+      </option>
+
+      <option value="Cognitive Therapy">
+        Cognitive Therapy
+      </option>
+
+      <option value="Sensory Therapy">
+        Sensory Therapy
+      </option>
+
+      <option value="Feeding Therapy">
+        Feeding Therapy
+      </option>
+
+      <option value="Other">
+        Other
+      </option>
+
+    </select>
+
+
+    <!-- THERAPIST -->
+
+    <label>Therapist</label>
+
+    <input
+      id="therapist"
+      type="text"
+      placeholder="Therapist name">
+
+
+    <!-- STATUS -->
+
+    <label>Status</label>
+
+    <select id="status">
+
+      <option value="Planned">
+        Planned
+      </option>
+
+      <option value="Attended">
+        Attended
+      </option>
+
+      <option value="Missed">
+        Missed
+      </option>
+
+      <option value="Rescheduled">
+        Rescheduled
+      </option>
+
+    </select>
+
+
+    <!-- NOTES -->
+
+    <label>Notes</label>
+
+    <textarea
+      id="notes"
+      placeholder="Add notes...">
+    </textarea>
+
+
+    <div class="btn-row">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveSession()">
+        Save Session
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        onclick="showPage('homePage')">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HISTORY -->
+
+<section
+  id="historyPage"
+  class="page">
+
+  <div class="card">
+
+    <div class="card-title">
+      Session History
+    </div>
+
+    <div id="historyList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- CALENDAR -->
+
+<section
+  id="calendarPage"
+  class="page">
+
+  <div class="card">
+
+    <div class="calendar-head">
+
+      <button onclick="changeMonth(-1)">
+        ‹
+      </button>
+
+      <div
+        class="calendar-title"
+        id="calendarTitle">
+      </div>
+
+      <button onclick="changeMonth(1)">
+        ›
+      </button>
+
+    </div>
+
+
+    <div class="calendar-grid">
+
+      <div class="calendar-weekday">Sun</div>
+      <div class="calendar-weekday">Mon</div>
+      <div class="calendar-weekday">Tue</div>
+      <div class="calendar-weekday">Wed</div>
+      <div class="calendar-weekday">Thu</div>
+      <div class="calendar-weekday">Fri</div>
+      <div class="calendar-weekday">Sat</div>
+
+    </div>
+
+
+    <div
+      id="calendarGrid"
+      class="calendar-grid">
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Selected Date
+    </div>
+
+    <div id="selectedCalendarDate"></div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
@@ -998,15 +1274,17 @@ textarea{
 
   </button>
 
+
   <button
     id="navAdd"
     class="nav-btn"
-    onclick="showPage('addPage');resetForm();">
+    onclick="showPage('addPage');resetForm()">
 
     <span class="icon">＋</span>
     Add
 
   </button>
+
 
   <button
     id="navHistory"
@@ -1017,6 +1295,7 @@ textarea{
     History
 
   </button>
+
 
   <button
     id="navCalendar"
@@ -1031,7 +1310,7 @@ textarea{
 </nav>
 
 
-<!-- ================= SUMMARY MODAL ================= -->
+<!-- SUMMARY MODAL -->
 
 <div
   id="summaryModal"
@@ -1050,7 +1329,7 @@ textarea{
 
       <button
         class="btn btn-secondary"
-        onclick="closeSummary();">
+        onclick="closeSummary()">
         Close
       </button>
 
@@ -1063,7 +1342,36 @@ textarea{
 
 <script>
 
+/*
+====================================================
+IMPORTANT STORAGE
+====================================================
+
+Existing data:
+therapySessions
+
+This key is intentionally NOT changed.
+
+Additional keys:
+therapyProfiles
+therapyCurrentProfile
+therapyDarkMode
+
+Existing sessions are preserved.
+====================================================
+*/
+
+
 const STORAGE_KEY = "therapySessions";
+
+const PROFILES_KEY = "therapyProfiles";
+
+const CURRENT_PROFILE_KEY =
+  "therapyCurrentProfile";
+
+const DARK_MODE_KEY =
+  "therapyDarkMode";
+
 
 const rates = {
 
@@ -1083,6 +1391,11 @@ const rates = {
 
 let sessions = loadSessions();
 
+let profiles = loadProfiles();
+
+let currentProfileId =
+  localStorage.getItem(CURRENT_PROFILE_KEY);
+
 let editingId = null;
 
 let calendarDate = new Date();
@@ -1090,9 +1403,9 @@ let calendarDate = new Date();
 let selectedCalendarDate = null;
 
 
-/* =========================
-   BASIC HELPERS
-========================= */
+/* ==================================================
+   HELPERS
+================================================== */
 
 function el(id){
   return document.getElementById(id);
@@ -1103,30 +1416,31 @@ function today(){
 
   const d = new Date();
 
-  const y = d.getFullYear();
-
-  const m = String(d.getMonth()+1).padStart(2,"0");
-
-  const day = String(d.getDate()).padStart(2,"0");
-
-  return `${y}-${m}-${day}`;
+  return `${d.getFullYear()}-${String(
+    d.getMonth()+1
+  ).padStart(2,"0")}-${String(
+    d.getDate()
+  ).padStart(2,"0")}`;
 
 }
 
 
 function addDays(dateString,days){
 
-  const d = new Date(dateString + "T12:00:00");
+  const d =
+    new Date(
+      dateString + "T12:00:00"
+    );
 
-  d.setDate(d.getDate()+days);
+  d.setDate(
+    d.getDate()+days
+  );
 
-  const y = d.getFullYear();
-
-  const m = String(d.getMonth()+1).padStart(2,"0");
-
-  const day = String(d.getDate()).padStart(2,"0");
-
-  return `${y}-${m}-${day}`;
+  return `${d.getFullYear()}-${String(
+    d.getMonth()+1
+  ).padStart(2,"0")}-${String(
+    d.getDate()
+  ).padStart(2,"0")}`;
 
 }
 
@@ -1135,25 +1449,37 @@ function formatDate(dateString){
 
   if(!dateString)return "";
 
-  const d = new Date(dateString + "T12:00:00");
+  const d =
+    new Date(
+      dateString+"T12:00:00"
+    );
 
-  return d.toLocaleDateString("en-IN",{
-    day:"2-digit",
-    month:"short",
-    year:"numeric"
-  });
+  return d.toLocaleDateString(
+    "en-IN",
+    {
+      day:"2-digit",
+      month:"short",
+      year:"numeric"
+    }
+  );
 
 }
 
 
 function formatShortDate(dateString){
 
-  const d = new Date(dateString + "T12:00:00");
+  const d =
+    new Date(
+      dateString+"T12:00:00"
+    );
 
-  return d.toLocaleDateString("en-IN",{
-    day:"2-digit",
-    month:"short"
-  });
+  return d.toLocaleDateString(
+    "en-IN",
+    {
+      day:"2-digit",
+      month:"short"
+    }
+  );
 
 }
 
@@ -1162,44 +1488,78 @@ function formatTime(time){
 
   if(!time)return "";
 
-  const parts = time.split(":");
+  const parts =
+    time.split(":");
 
-  if(parts.length < 2)return time;
+  if(parts.length < 2){
+    return time;
+  }
 
-  let hour = parseInt(parts[0],10);
+  let hour =
+    parseInt(parts[0],10);
 
-  const minute = parts[1];
+  const minute =
+    parts[1];
 
-  const ampm = hour >= 12 ? "PM" : "AM";
+  const ampm =
+    hour >= 12
+      ? "PM"
+      : "AM";
 
-  hour = hour % 12;
+  hour =
+    hour % 12;
 
-  if(hour === 0)hour = 12;
+  if(hour === 0){
+    hour = 12;
+  }
 
   return `${String(hour).padStart(2,"0")}:${minute} ${ampm}`;
 
 }
 
 
-/* =========================
+function escapeHTML(value){
+
+  return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
    STORAGE
-========================= */
+================================================== */
 
 function loadSessions(){
 
   try{
 
-    const data = localStorage.getItem(STORAGE_KEY);
+    const data =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
 
-    if(!data)return [];
+    if(!data){
+      return [];
+    }
 
-    const parsed = JSON.parse(data);
+    const parsed =
+      JSON.parse(data);
 
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed)
+      ? parsed
+      : [];
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Could not load sessions",
+      error
+    );
 
     return [];
 
@@ -1210,6 +1570,11 @@ function loadSessions(){
 
 function saveSessions(){
 
+  /*
+    NEVER clear storage.
+    Only update therapySessions.
+  */
+
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(sessions)
@@ -1218,36 +1583,406 @@ function saveSessions(){
 }
 
 
-/* =========================
+/* ==================================================
+   PROFILES
+================================================== */
+
+function loadProfiles(){
+
+  try{
+
+    const data =
+      localStorage.getItem(
+        PROFILES_KEY
+      );
+
+    if(data){
+
+      const parsed =
+        JSON.parse(data);
+
+      if(
+        Array.isArray(parsed) &&
+        parsed.length
+      ){
+
+        return parsed;
+
+      }
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+
+  /*
+    First installation OR old app.
+
+    Existing sessions are assigned to
+    this default profile.
+  */
+
+  const defaultProfile = {
+
+    id:"profile_default",
+
+    name:"Default Profile",
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+
+  localStorage.setItem(
+    PROFILES_KEY,
+    JSON.stringify([
+      defaultProfile
+    ])
+  );
+
+
+  return [defaultProfile];
+
+}
+
+
+function saveProfiles(){
+
+  localStorage.setItem(
+    PROFILES_KEY,
+    JSON.stringify(profiles)
+  );
+
+}
+
+
+function migrateExistingSessions(){
+
+  let changed = false;
+
+
+  /*
+    Existing sessions from the old application
+    have no profileId.
+
+    Assign them to Default Profile.
+
+    No existing fields are removed.
+  */
+
+  const defaultProfile =
+    profiles[0];
+
+
+  sessions.forEach(session => {
+
+    if(!session.profileId){
+
+      session.profileId =
+        defaultProfile.id;
+
+      changed = true;
+
+    }
+
+  });
+
+
+  if(changed){
+
+    saveSessions();
+
+  }
+
+}
+
+
+function getCurrentProfile(){
+
+  return profiles.find(
+    profile =>
+      profile.id === currentProfileId
+  ) || profiles[0];
+
+}
+
+
+function getProfileSessions(
+  profileId = currentProfileId
+){
+
+  return sessions.filter(
+    session =>
+      session.profileId === profileId
+  );
+
+}
+
+
+function renderProfiles(){
+
+  const select =
+    el("profileSelect");
+
+  select.innerHTML = "";
+
+
+  profiles.forEach(profile => {
+
+    const option =
+      document.createElement("option");
+
+    option.value =
+      profile.id;
+
+    option.textContent =
+      profile.name;
+
+    select.appendChild(option);
+
+  });
+
+
+  const current =
+    getCurrentProfile();
+
+
+  currentProfileId =
+    current.id;
+
+
+  localStorage.setItem(
+    CURRENT_PROFILE_KEY,
+    currentProfileId
+  );
+
+
+  select.value =
+    currentProfileId;
+
+
+  const count =
+    getProfileSessions(
+      currentProfileId
+    ).length;
+
+
+  el("profileInfo").textContent =
+    `${count} session${count === 1 ? "" : "s"} in this profile`;
+
+}
+
+
+function addProfile(){
+
+  const name =
+    prompt(
+      "Enter profile name:"
+    );
+
+
+  if(!name){
+    return;
+  }
+
+
+  const cleanName =
+    name.trim();
+
+
+  if(!cleanName){
+    return;
+  }
+
+
+  const duplicate =
+    profiles.some(
+      profile =>
+        profile.name.toLowerCase() ===
+        cleanName.toLowerCase()
+    );
+
+
+  if(duplicate){
+
+    alert(
+      "A profile with this name already exists."
+    );
+
+    return;
+
+  }
+
+
+  const profile = {
+
+    id:
+      "profile_" +
+      Date.now().toString(),
+
+    name:cleanName,
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+
+  profiles.push(profile);
+
+  saveProfiles();
+
+
+  currentProfileId =
+    profile.id;
+
+
+  localStorage.setItem(
+    CURRENT_PROFILE_KEY,
+    currentProfileId
+  );
+
+
+  renderProfiles();
+
+  render();
+
+
+  alert(
+    `${cleanName} profile created.`
+  );
+
+}
+
+
+function switchProfile(profileId){
+
+  if(
+    !profiles.some(
+      profile =>
+        profile.id === profileId
+    )
+  ){
+
+    return;
+
+  }
+
+
+  currentProfileId =
+    profileId;
+
+
+  localStorage.setItem(
+    CURRENT_PROFILE_KEY,
+    currentProfileId
+  );
+
+
+  editingId = null;
+
+  resetForm();
+
+  render();
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+function loadDarkMode(){
+
+  const saved =
+    localStorage.getItem(
+      DARK_MODE_KEY
+    );
+
+
+  if(saved === "true"){
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    el("themeBtn").textContent =
+      "☀️";
+
+  }
+
+}
+
+
+function toggleDarkMode(){
+
+  const enabled =
+    document.body.classList.toggle(
+      "dark"
+    );
+
+
+  localStorage.setItem(
+    DARK_MODE_KEY,
+    enabled ? "true" : "false"
+  );
+
+
+  el("themeBtn").textContent =
+    enabled
+      ? "☀️"
+      : "🌙";
+
+}
+
+
+/* ==================================================
    PAGE NAVIGATION
-========================= */
+================================================== */
 
 function showPage(pageId){
 
   document.querySelectorAll(".page")
-    .forEach(page => page.classList.remove("active"));
+    .forEach(
+      page =>
+        page.classList.remove("active")
+    );
 
-  el(pageId).classList.add("active");
+
+  el(pageId)
+    .classList.add("active");
 
 
   document.querySelectorAll(".nav-btn")
-    .forEach(btn => btn.classList.remove("active"));
+    .forEach(
+      btn =>
+        btn.classList.remove("active")
+    );
 
 
   if(pageId === "homePage"){
-    el("navHome").classList.add("active");
+    el("navHome")
+      .classList.add("active");
   }
 
   if(pageId === "addPage"){
-    el("navAdd").classList.add("active");
+    el("navAdd")
+      .classList.add("active");
   }
 
   if(pageId === "historyPage"){
-    el("navHistory").classList.add("active");
+    el("navHistory")
+      .classList.add("active");
   }
 
   if(pageId === "calendarPage"){
-    el("navCalendar").classList.add("active");
+    el("navCalendar")
+      .classList.add("active");
   }
 
 
@@ -1256,15 +1991,18 @@ function showPage(pageId){
 }
 
 
-/* =========================
-   DATE SCROLL
-========================= */
+/* ==================================================
+   DATE SCROLLER
+================================================== */
 
 function renderDateScroll(centerDate){
 
-  const container = el("dateScroll");
+  const container =
+    el("dateScroll");
 
-  if(!container)return;
+  if(!container){
+    return;
+  }
 
 
   const selected =
@@ -1276,31 +2014,55 @@ function renderDateScroll(centerDate){
   container.innerHTML = "";
 
 
-  for(let i=-15;i<=15;i++){
+  for(
+    let i=-15;
+    i<=15;
+    i++
+  ){
 
-    const date = addDays(selected,i);
+    const date =
+      addDays(
+        selected,
+        i
+      );
 
-    const d = new Date(date + "T12:00:00");
+
+    const d =
+      new Date(
+        date+"T12:00:00"
+      );
 
 
-    const item = document.createElement("button");
+    const item =
+      document.createElement(
+        "button"
+      );
 
-    item.type = "button";
+
+    item.type =
+      "button";
+
 
     item.className =
       "date-scroll-item" +
-      (date === el("date").value
-        ? " selected"
-        : "");
+      (
+        date === el("date").value
+          ? " selected"
+          : ""
+      );
 
 
     if(
-      sessions.some(session =>
-        session.date === date
-      )
+      getProfileSessions()
+        .some(
+          session =>
+            session.date === date
+        )
     ){
 
-      item.classList.add("has-session");
+      item.classList.add(
+        "has-session"
+      );
 
     }
 
@@ -1308,9 +2070,10 @@ function renderDateScroll(centerDate){
     item.innerHTML = `
 
       <div class="day">
-        ${d.toLocaleDateString("en-US",{
-          weekday:"short"
-        })}
+        ${d.toLocaleDateString(
+          "en-US",
+          {weekday:"short"}
+        )}
       </div>
 
       <div class="date-number">
@@ -1318,70 +2081,100 @@ function renderDateScroll(centerDate){
       </div>
 
       <div class="month">
-        ${d.toLocaleDateString("en-US",{
-          month:"short"
-        })}
+        ${d.toLocaleDateString(
+          "en-US",
+          {month:"short"}
+        )}
       </div>
 
     `;
 
 
-    item.addEventListener("click",function(){
+    item.addEventListener(
+      "click",
+      function(){
 
-      el("date").value = date;
+        el("date").value =
+          date;
 
-      renderDateScroll(date);
+        renderDateScroll(
+          date
+        );
 
-    });
+      }
+    );
 
 
-    container.appendChild(item);
+    container.appendChild(
+      item
+    );
 
   }
 
 
-  setTimeout(function(){
+  setTimeout(
+    function(){
 
-    const selectedItem =
-      container.querySelector(".selected");
+      const selectedItem =
+        container.querySelector(
+          ".selected"
+        );
 
-    if(selectedItem){
 
-      selectedItem.scrollIntoView({
-        behavior:"smooth",
-        block:"nearest",
-        inline:"center"
-      });
+      if(selectedItem){
 
-    }
+        selectedItem.scrollIntoView({
+          behavior:"smooth",
+          block:"nearest",
+          inline:"center"
+        });
 
-  },30);
+      }
+
+    },
+    30
+  );
 
 }
 
 
-/* =========================
-   TIME SCROLL
-========================= */
+/* ==================================================
+   TIME
+================================================== */
 
 function getSelectedTime(){
 
-  const hour = el("hour").value || "09";
+  const hour =
+    el("hour").value ||
+    "09";
 
-  const minute = el("minute").value || "00";
+  const minute =
+    el("minute").value ||
+    "00";
 
-  const ampm = el("ampm").value || "AM";
+  const ampm =
+    el("ampm").value ||
+    "AM";
 
 
-  let h = parseInt(hour,10);
+  let h =
+    parseInt(
+      hour,
+      10
+    );
+
 
   if(ampm === "AM"){
 
-    if(h === 12)h = 0;
+    if(h === 12){
+      h = 0;
+    }
 
   }else{
 
-    if(h !== 12)h += 12;
+    if(h !== 12){
+      h += 12;
+    }
 
   }
 
@@ -1393,23 +2186,40 @@ function getSelectedTime(){
 
 function setManualTime(time){
 
-  if(!time)return;
+  if(!time){
+    return;
+  }
 
 
-  const parts = time.split(":");
-
-  if(parts.length < 2)return;
-
-
-  let h = parseInt(parts[0],10);
-
-  const m = parts[1];
+  const parts =
+    time.split(":");
 
 
-  const ampm = h >= 12 ? "PM" : "AM";
+  if(parts.length < 2){
+    return;
+  }
 
 
-  let displayHour = h % 12;
+  let h =
+    parseInt(
+      parts[0],
+      10
+    );
+
+
+  const m =
+    parts[1];
+
+
+  const ampm =
+    h >= 12
+      ? "PM"
+      : "AM";
+
+
+  let displayHour =
+    h % 12;
+
 
   if(displayHour === 0){
     displayHour = 12;
@@ -1417,14 +2227,17 @@ function setManualTime(time){
 
 
   el("hour").value =
-    String(displayHour).padStart(2,"0");
+    String(displayHour)
+      .padStart(2,"0");
 
 
   el("minute").value =
-    String(m).padStart(2,"0");
+    String(m)
+      .padStart(2,"0");
 
 
-  el("ampm").value = ampm;
+  el("ampm").value =
+    ampm;
 
 
   el("time").value =
@@ -1435,7 +2248,8 @@ function setManualTime(time){
 
 function updateHiddenTime(){
 
-  el("time").value = getSelectedTime();
+  el("time").value =
+    getSelectedTime();
 
   renderTimeScroll();
 
@@ -1444,9 +2258,12 @@ function updateHiddenTime(){
 
 function renderTimeScroll(){
 
-  const container = el("timeScroll");
+  const container =
+    el("timeScroll");
 
-  if(!container)return;
+  if(!container){
+    return;
+  }
 
 
   const selectedTime =
@@ -1458,125 +2275,171 @@ function renderTimeScroll(){
 
 
   /*
-    24 hours
-    Every 30 minutes
+    Every 30 minutes.
+    48 time options.
   */
 
-  for(let h=0;h<24;h++){
+  for(
+    let h=0;
+    h<24;
+    h++
+  ){
 
-    for(let m=0;m<60;m+=30){
+    for(
+      let m=0;
+      m<60;
+      m+=30
+    ){
 
       const time =
         `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`;
 
 
       const item =
-        document.createElement("button");
+        document.createElement(
+          "button"
+        );
 
 
-      item.type = "button";
+      item.type =
+        "button";
 
 
       item.className =
         "time-scroll-item" +
-        (time === selectedTime
-          ? " selected"
-          : "");
+        (
+          time === selectedTime
+            ? " selected"
+            : ""
+        );
 
 
       item.textContent =
         formatTime(time);
 
 
-      item.addEventListener("click",function(){
+      item.addEventListener(
+        "click",
+        function(){
 
-        setManualTime(time);
+          setManualTime(
+            time
+          );
 
-        renderTimeScroll();
+          renderTimeScroll();
 
-      });
+        }
+      );
 
 
-      container.appendChild(item);
+      container.appendChild(
+        item
+      );
 
     }
 
   }
 
 
-  setTimeout(function(){
+  setTimeout(
+    function(){
 
-    const selectedItem =
-      container.querySelector(".selected");
+      const selectedItem =
+        container.querySelector(
+          ".selected"
+        );
 
 
-    if(selectedItem){
+      if(selectedItem){
 
-      selectedItem.scrollIntoView({
-        behavior:"smooth",
-        block:"nearest",
-        inline:"center"
-      });
+        selectedItem.scrollIntoView({
+          behavior:"smooth",
+          block:"nearest",
+          inline:"center"
+        });
 
-    }
+      }
 
-  },30);
+    },
+    30
+  );
 
 }
 
 
-/* =========================
-   FORM RESET
-========================= */
+/* ==================================================
+   RESET FORM
+================================================== */
 
 function resetForm(){
 
   editingId = null;
 
+
   el("formTitle").textContent =
     "Add Therapy Session";
 
 
-  el("date").value = today();
+  el("date").value =
+    today();
 
 
-  el("type").value = "";
-
-  el("therapist").value = "";
-
-  el("status").value = "Planned";
-
-  el("notes").value = "";
+  el("hour").value =
+    "09";
 
 
-  el("hour").value = "09";
-
-  el("minute").value = "00";
-
-  el("ampm").value = "AM";
+  el("minute").value =
+    "00";
 
 
-  el("time").value = "09:00";
+  el("ampm").value =
+    "AM";
 
 
-  renderDateScroll(today());
+  el("time").value =
+    "09:00";
+
+
+  el("type").value =
+    "";
+
+
+  el("therapist").value =
+    "";
+
+
+  el("status").value =
+    "Planned";
+
+
+  el("notes").value =
+    "";
+
+
+  renderDateScroll(
+    today()
+  );
+
 
   renderTimeScroll();
 
 }
 
 
-/* =========================
+/* ==================================================
    SAVE SESSION
-========================= */
+================================================== */
 
 function saveSession(){
 
-  const date = el("date").value;
+  const date =
+    el("date").value;
 
-  const time = getSelectedTime();
+  const time =
+    getSelectedTime();
 
-  const type = el("type").value;
+  const type =
+    el("type").value;
 
   const therapist =
     el("therapist").value.trim();
@@ -1590,7 +2453,9 @@ function saveSession(){
 
   if(!date){
 
-    alert("Please select a date.");
+    alert(
+      "Please select a date."
+    );
 
     return;
 
@@ -1599,25 +2464,37 @@ function saveSession(){
 
   if(!type){
 
-    alert("Please select therapy type.");
+    alert(
+      "Please select therapy type."
+    );
 
     return;
 
   }
 
 
-  /*
-    Duplicate validation
-    Same date + same time + same therapy
-  */
+  const profileId =
+    currentProfileId;
+
 
   const duplicate =
-    sessions.some(session =>
+    sessions.some(
+      session =>
 
-      session.date === date &&
-      session.time === time &&
-      session.type === type &&
-      session.id !== editingId
+        session.profileId ===
+        profileId &&
+
+        session.date ===
+        date &&
+
+        session.time ===
+        time &&
+
+        session.type ===
+        type &&
+
+        session.id !==
+        editingId
 
     );
 
@@ -1625,7 +2502,7 @@ function saveSession(){
   if(duplicate){
 
     alert(
-      "A session already exists for this date, time and therapy type."
+      "A session already exists for this profile, date, time and therapy type."
     );
 
     return;
@@ -1637,25 +2514,34 @@ function saveSession(){
 
     const index =
       sessions.findIndex(
-        session => session.id === editingId
+        session =>
+          session.id ===
+          editingId
       );
 
 
     if(index !== -1){
 
       /*
-        Keep the existing object structure/data.
-        Only update the edited fields.
+        Existing fields are preserved.
+        Profile is added only if needed.
       */
 
       sessions[index] = {
+
         ...sessions[index],
+
         date,
         time,
         type,
         therapist,
         status,
-        notes
+        notes,
+
+        profileId:
+          sessions[index].profileId ||
+          profileId
+
       };
 
     }
@@ -1664,7 +2550,8 @@ function saveSession(){
 
     sessions.push({
 
-      id:Date.now().toString(),
+      id:
+        Date.now().toString(),
 
       date,
 
@@ -1676,7 +2563,9 @@ function saveSession(){
 
       status,
 
-      notes
+      notes,
+
+      profileId
 
     });
 
@@ -1684,6 +2573,7 @@ function saveSession(){
 
 
   saveSessions();
+
 
   alert(
     editingId
@@ -1696,27 +2586,33 @@ function saveSession(){
 
   resetForm();
 
-  showPage("historyPage");
+  showPage(
+    "historyPage"
+  );
 
 }
 
 
-/* =========================
-   EDIT SESSION
-========================= */
+/* ==================================================
+   EDIT
+================================================== */
 
 function editSession(id){
 
   const session =
     sessions.find(
-      item => item.id === id
+      item =>
+        item.id === id
     );
 
 
-  if(!session)return;
+  if(!session){
+    return;
+  }
 
 
-  editingId = id;
+  editingId =
+    id;
 
 
   el("formTitle").textContent =
@@ -1727,7 +2623,9 @@ function editSession(id){
     session.date;
 
 
-  setManualTime(session.time);
+  setManualTime(
+    session.time
+  );
 
 
   el("type").value =
@@ -1739,59 +2637,71 @@ function editSession(id){
 
 
   el("status").value =
-    session.status || "Planned";
+    session.status ||
+    "Planned";
 
 
   el("notes").value =
     session.notes || "";
 
 
-  showPage("addPage");
+  showPage(
+    "addPage"
+  );
 
 
-  renderDateScroll(session.date);
+  renderDateScroll(
+    session.date
+  );
+
 
   renderTimeScroll();
 
 }
 
 
-/* =========================
-   COPY SESSION
-========================= */
+/* ==================================================
+   COPY
+================================================== */
 
 function copySession(id){
 
   const session =
     sessions.find(
-      item => item.id === id
+      item =>
+        item.id === id
     );
 
 
-  if(!session)return;
+  if(!session){
+    return;
+  }
 
 
   const newDate =
-    addDays(session.date,1);
+    addDays(
+      session.date,
+      1
+    );
 
-
-  /*
-    Keep copied session data,
-    only move date to next day.
-  */
 
   const copy = {
 
     ...session,
 
-    id:Date.now().toString(),
+    id:
+      Date.now().toString(),
 
-    date:newDate
+    date:
+      newDate
 
   };
 
 
-  sessions.push(copy);
+  sessions.push(
+    copy
+  );
+
 
   saveSessions();
 
@@ -1805,33 +2715,39 @@ function copySession(id){
 }
 
 
-/* =========================
-   DELETE SESSION
-========================= */
+/* ==================================================
+   DELETE
+================================================== */
 
 function deleteSession(id){
 
   const session =
     sessions.find(
-      item => item.id === id
+      item =>
+        item.id === id
     );
 
 
-  if(!session)return;
+  if(!session){
+    return;
+  }
 
 
-  const confirmDelete =
+  const confirmed =
     confirm(
       `Delete ${session.type} on ${formatDate(session.date)} at ${formatTime(session.time)}?`
     );
 
 
-  if(!confirmDelete)return;
+  if(!confirmed){
+    return;
+  }
 
 
   sessions =
     sessions.filter(
-      item => item.id !== id
+      item =>
+        item.id !== id
     );
 
 
@@ -1842,50 +2758,55 @@ function deleteSession(id){
 }
 
 
-/* =========================
-   BADGE
-========================= */
+/* ==================================================
+   STATUS BADGE
+================================================== */
 
 function statusBadge(status){
 
-  const safeStatus =
-    status || "Planned";
+  const value =
+    status ||
+    "Planned";
 
 
   let cls =
     "badge-planned";
 
 
-  if(safeStatus === "Attended"){
-    cls = "badge-attended";
+  if(value === "Attended"){
+    cls =
+      "badge-attended";
   }
 
-  if(safeStatus === "Missed"){
-    cls = "badge-missed";
+  if(value === "Missed"){
+    cls =
+      "badge-missed";
   }
 
-  if(safeStatus === "Rescheduled"){
-    cls = "badge-rescheduled";
+  if(value === "Rescheduled"){
+    cls =
+      "badge-rescheduled";
   }
 
 
   return `
     <span class="badge ${cls}">
-      ${safeStatus}
+      ${escapeHTML(value)}
     </span>
   `;
 
 }
 
 
-/* =========================
+/* ==================================================
    SESSION HTML
-========================= */
+================================================== */
 
 function sessionHTML(session){
 
   const rate =
-    rates[session.type] || 0;
+    rates[session.type] ||
+    0;
 
 
   return `
@@ -1897,25 +2818,41 @@ function sessionHTML(session){
         <div>
 
           <div class="session-title">
-            ${escapeHTML(session.type || "Therapy")}
+            ${escapeHTML(
+              session.type ||
+              "Therapy"
+            )}
           </div>
 
           <div class="session-meta">
 
-            📅 ${formatDate(session.date)}
+            📅 ${formatDate(
+              session.date
+            )}
+
             <br>
 
-            🕐 ${formatTime(session.time)}
+            🕐 ${formatTime(
+              session.time
+            )}
 
             ${
               session.therapist
-              ? `<br>👤 ${escapeHTML(session.therapist)}`
+              ? `
+                <br>
+                👤 ${escapeHTML(
+                  session.therapist
+                )}
+              `
               : ""
             }
 
             ${
               rate > 0
-              ? `<br>💰 ₹${rate}`
+              ? `
+                <br>
+                💰 ₹${rate}
+              `
               : ""
             }
 
@@ -1923,8 +2860,13 @@ function sessionHTML(session){
 
         </div>
 
+
         <div>
-          ${statusBadge(session.status)}
+
+          ${statusBadge(
+            session.status
+          )}
+
         </div>
 
       </div>
@@ -1933,9 +2875,14 @@ function sessionHTML(session){
       ${
         session.notes
         ? `
-          <div class="session-meta"
-               style="margin-top:8px">
-            📝 ${escapeHTML(session.notes)}
+          <div
+            class="session-meta"
+            style="margin-top:8px">
+
+            📝 ${escapeHTML(
+              session.notes
+            )}
+
           </div>
         `
         : ""
@@ -1971,9 +2918,9 @@ function sessionHTML(session){
 }
 
 
-/* =========================
+/* ==================================================
    HISTORY
-========================= */
+================================================== */
 
 function renderHistory(){
 
@@ -1981,12 +2928,18 @@ function renderHistory(){
     el("historyList");
 
 
-  if(!sessions.length){
+  const profileSessions =
+    getProfileSessions();
+
+
+  if(!profileSessions.length){
 
     container.innerHTML =
-      `<div class="empty">
-        No sessions added yet.
-      </div>`;
+      `
+        <div class="empty">
+          No sessions added for this profile.
+        </div>
+      `;
 
     return;
 
@@ -1994,159 +2947,201 @@ function renderHistory(){
 
 
   const sorted =
-    [...sessions].sort(
-      (a,b) => {
+    [...profileSessions]
+      .sort(
+        (a,b) =>
 
-        const ad =
-          new Date(
-            `${a.date}T${a.time || "00:00"}`
-          );
-
-        const bd =
           new Date(
             `${b.date}T${b.time || "00:00"}`
-          );
+          ) -
 
-        return bd-ad;
+          new Date(
+            `${a.date}T${a.time || "00:00"}`
+          )
 
-      }
-    );
+      );
 
 
   container.innerHTML =
-    sorted.map(sessionHTML).join("");
+    sorted
+      .map(sessionHTML)
+      .join("");
 
 }
 
 
-/* =========================
+/* ==================================================
    HOME
-========================= */
+================================================== */
 
 function renderHome(){
 
+  const profileSessions =
+    getProfileSessions();
+
+
   const total =
-    sessions.length;
+    profileSessions.length;
 
 
   const attended =
-    sessions.filter(
-      s => s.status === "Attended"
+    profileSessions.filter(
+      s =>
+        s.status === "Attended"
     ).length;
 
 
   const attendanceRate =
     total
       ? Math.round(
-          attended / total * 100
+          attended /
+          total *
+          100
         )
       : 0;
 
 
   const totalCost =
-    sessions.reduce(
+    profileSessions.reduce(
       (sum,s) =>
-        sum + (rates[s.type] || 0),
+        sum +
+        (
+          rates[s.type] ||
+          0
+        ),
       0
     );
 
 
-  el("totalSessions").textContent =
+  el("totalSessions")
+    .textContent =
     total;
 
 
-  el("attendedSessions").textContent =
+  el("attendedSessions")
+    .textContent =
     attended;
 
 
-  el("attendanceRate").textContent =
+  el("attendanceRate")
+    .textContent =
     `${attendanceRate}%`;
 
 
-  el("totalCost").textContent =
+  el("totalCost")
+    .textContent =
     `₹${totalCost}`;
 
 
-  /* Next session */
+  /*
+    Next session
+  */
 
-  const now = new Date();
+  const now =
+    new Date();
 
 
   const future =
-    sessions
-      .filter(s => {
+    profileSessions
+      .filter(
+        s => {
 
-        const dt =
-          new Date(
-            `${s.date}T${s.time || "00:00"}`
+          const dt =
+            new Date(
+              `${s.date}T${s.time || "00:00"}`
+            );
+
+          return (
+            dt >= now &&
+            s.status !== "Attended" &&
+            s.status !== "Missed"
           );
 
-        return dt >= now &&
-               s.status !== "Attended" &&
-               s.status !== "Missed";
+        }
+      )
+      .sort(
+        (a,b) =>
 
-      })
-      .sort((a,b) =>
+          new Date(
+            `${a.date}T${a.time || "00:00"}`
+          ) -
 
-        new Date(
-          `${a.date}T${a.time || "00:00"}`
-        ) -
-
-        new Date(
-          `${b.date}T${b.time || "00:00"}`
-        )
+          new Date(
+            `${b.date}T${b.time || "00:00"}`
+          )
 
       );
 
 
   if(future.length){
 
-    el("nextSession").innerHTML =
-      sessionHTML(future[0]);
+    el("nextSession")
+      .innerHTML =
+      sessionHTML(
+        future[0]
+      );
 
   }else{
 
-    el("nextSession").innerHTML =
-      `<div class="empty">
-        No upcoming sessions.
-      </div>`;
+    el("nextSession")
+      .innerHTML =
+      `
+        <div class="empty">
+          No upcoming sessions.
+        </div>
+      `;
 
   }
 
 
   const recent =
-    [...sessions]
-      .sort((a,b) =>
-        new Date(
-          `${b.date}T${b.time || "00:00"}`
-        ) -
-        new Date(
-          `${a.date}T${a.time || "00:00"}`
-        )
+    [...profileSessions]
+      .sort(
+        (a,b) =>
+
+          new Date(
+            `${b.date}T${b.time || "00:00"}`
+          ) -
+
+          new Date(
+            `${a.date}T${a.time || "00:00"}`
+          )
       )
-      .slice(0,5);
+      .slice(
+        0,
+        5
+      );
 
 
   if(recent.length){
 
-    el("recentSessions").innerHTML =
-      recent.map(sessionHTML).join("");
+    el("recentSessions")
+      .innerHTML =
+      recent
+        .map(sessionHTML)
+        .join("");
 
   }else{
 
-    el("recentSessions").innerHTML =
-      `<div class="empty">
-        No sessions yet.
-      </div>`;
+    el("recentSessions")
+      .innerHTML =
+      `
+        <div class="empty">
+          No sessions yet.
+        </div>
+      `;
 
   }
+
+
+  renderProfiles();
 
 }
 
 
-/* =========================
+/* ==================================================
    CALENDAR
-========================= */
+================================================== */
 
 function renderCalendar(){
 
@@ -2157,7 +3152,8 @@ function renderCalendar(){
     calendarDate.getMonth();
 
 
-  el("calendarTitle").textContent =
+  el("calendarTitle")
+    .textContent =
     calendarDate.toLocaleDateString(
       "en-US",
       {
@@ -2190,68 +3186,99 @@ function renderCalendar(){
     ).getDate();
 
 
-  for(let i=0;i<firstDay;i++){
+  for(
+    let i=0;
+    i<firstDay;
+    i++
+  ){
 
     const empty =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
-    grid.appendChild(empty);
+    grid.appendChild(
+      empty
+    );
 
   }
 
 
-  for(let day=1;day<=daysInMonth;day++){
+  const profileSessions =
+    getProfileSessions();
 
-    const d =
-      new Date(
-        year,
-        month,
-        day
-      );
 
+  for(
+    let day=1;
+    day<=daysInMonth;
+    day++
+  ){
 
     const date =
-      `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+      `${year}-${String(
+        month+1
+      ).padStart(2,"0")}-${String(
+        day
+      ).padStart(2,"0")}`;
 
 
     const cell =
-      document.createElement("button");
+      document.createElement(
+        "button"
+      );
 
 
-    cell.type = "button";
+    cell.type =
+      "button";
 
-    cell.className = "calendar-day";
 
-    cell.textContent = day;
+    cell.className =
+      "calendar-day";
+
+
+    cell.textContent =
+      day;
 
 
     if(date === today()){
 
-      cell.classList.add("today");
-
-    }
-
-
-    if(date === selectedCalendarDate){
-
-      cell.classList.add("selected");
+      cell.classList.add(
+        "today"
+      );
 
     }
 
 
     if(
-      sessions.some(
-        s => s.date === date
+      date ===
+      selectedCalendarDate
+    ){
+
+      cell.classList.add(
+        "selected"
+      );
+
+    }
+
+
+    if(
+      profileSessions.some(
+        s =>
+          s.date === date
       )
     ){
 
       const dot =
-        document.createElement("span");
+        document.createElement(
+          "span"
+        );
 
       dot.className =
         "calendar-dot";
 
-      cell.appendChild(dot);
+      cell.appendChild(
+        dot
+      );
 
     }
 
@@ -2260,7 +3287,8 @@ function renderCalendar(){
       "click",
       function(){
 
-        selectedCalendarDate = date;
+        selectedCalendarDate =
+          date;
 
         renderCalendar();
 
@@ -2270,7 +3298,9 @@ function renderCalendar(){
     );
 
 
-    grid.appendChild(cell);
+    grid.appendChild(
+      cell
+    );
 
   }
 
@@ -2280,15 +3310,19 @@ function renderCalendar(){
 function renderSelectedCalendarDate(){
 
   const container =
-    el("selectedCalendarDate");
+    el(
+      "selectedCalendarDate"
+    );
 
 
   if(!selectedCalendarDate){
 
     container.innerHTML =
-      `<div class="empty">
-        Select a date from the calendar.
-      </div>`;
+      `
+        <div class="empty">
+          Select a date from the calendar.
+        </div>
+      `;
 
     return;
 
@@ -2296,36 +3330,39 @@ function renderSelectedCalendarDate(){
 
 
   const list =
-    sessions
+    getProfileSessions()
       .filter(
-        s => s.date === selectedCalendarDate
+        s =>
+          s.date ===
+          selectedCalendarDate
       )
       .sort(
         (a,b) =>
           (a.time || "")
-          .localeCompare(
-            b.time || ""
-          )
+            .localeCompare(
+              b.time || ""
+            )
       );
 
 
   if(!list.length){
 
-    container.innerHTML = `
+    container.innerHTML =
+      `
+        <div class="session">
 
-      <div class="session">
+          <div class="session-title">
+            ${formatDate(
+              selectedCalendarDate
+            )}
+          </div>
 
-        <div class="session-title">
-          ${formatDate(selectedCalendarDate)}
+          <div class="session-meta">
+            No therapy sessions on this date.
+          </div>
+
         </div>
-
-        <div class="session-meta">
-          No therapy sessions on this date.
-        </div>
-
-      </div>
-
-    `;
+      `;
 
     return;
 
@@ -2333,7 +3370,9 @@ function renderSelectedCalendarDate(){
 
 
   container.innerHTML =
-    list.map(sessionHTML).join("");
+    list
+      .map(sessionHTML)
+      .join("");
 
 }
 
@@ -2341,7 +3380,8 @@ function renderSelectedCalendarDate(){
 function changeMonth(delta){
 
   calendarDate.setMonth(
-    calendarDate.getMonth()+delta
+    calendarDate.getMonth() +
+    delta
   );
 
   renderCalendar();
@@ -2349,26 +3389,34 @@ function changeMonth(delta){
 }
 
 
-/* =========================
+/* ==================================================
    SUMMARY
-========================= */
+================================================== */
 
 function showSummary(){
+
+  const profileSessions =
+    getProfileSessions();
+
 
   const grouped = {};
 
 
-  sessions.forEach(session => {
+  profileSessions.forEach(
+    session => {
 
-    if(!grouped[session.type]){
+      if(!grouped[session.type]){
 
-      grouped[session.type] = [];
+        grouped[session.type] =
+          [];
+
+      }
+
+      grouped[session.type]
+        .push(session);
 
     }
-
-    grouped[session.type].push(session);
-
-  });
+  );
 
 
   const types =
@@ -2378,97 +3426,135 @@ function showSummary(){
 
   if(!types.length){
 
-    el("summaryContent").innerHTML =
-      `<div class="empty">
-        No session data available.
-      </div>`;
+    el("summaryContent")
+      .innerHTML =
+      `
+        <div class="empty">
+          No session data available.
+        </div>
+      `;
 
   }else{
 
     let html = "";
 
 
-    types.forEach(type => {
+    types.forEach(
+      type => {
 
-      const list =
-        grouped[type];
-
-
-      const attended =
-        list.filter(
-          s => s.status === "Attended"
-        ).length;
+        const list =
+          grouped[type];
 
 
-      const cost =
-        list.reduce(
-          (sum,s) =>
-            sum + (rates[s.type] || 0),
-          0
-        );
+        const attended =
+          list.filter(
+            s =>
+              s.status ===
+              "Attended"
+          ).length;
 
 
-      html += `
+        const cost =
+          list.reduce(
+            (sum,s) =>
+              sum +
+              (
+                rates[s.type] ||
+                0
+              ),
+            0
+          );
 
-        <div class="card"
-             style="box-shadow:none;border:1px solid #edf0f4">
 
-          <div class="summary-row">
-
-            <strong>
-              ${escapeHTML(type)}
-            </strong>
-
-            <span>
-              ${list.length} sessions
-            </span>
-
-          </div>
-
-          <div class="summary-row">
-
-            <span>Attended</span>
-
-            <span>${attended}</span>
-
-          </div>
-
-          <div class="summary-row">
-
-            <span>Total Cost</span>
-
-            <span>₹${cost}</span>
-
-          </div>
+        html += `
 
           <div
-            style="font-size:11px;color:#667085;margin-top:8px">
+            class="card"
+            style="
+              box-shadow:none;
+              border:1px solid var(--border);
+            ">
 
-            ${list
-              .sort(
-                (a,b) =>
-                  a.date.localeCompare(b.date)
-              )
-              .map(
-                s =>
-                  `${formatShortDate(s.date)}`
-              )
-              .join(" • ")
-            }
+            <div class="summary-row">
+
+              <strong>
+                ${escapeHTML(type)}
+              </strong>
+
+              <span>
+                ${list.length} sessions
+              </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>
+                Attended
+              </span>
+
+              <span>
+                ${attended}
+              </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>
+                Total Cost
+              </span>
+
+              <span>
+                ₹${cost}
+              </span>
+
+            </div>
+
+
+            <div
+              style="
+                font-size:11px;
+                color:var(--muted);
+                margin-top:8px;
+              ">
+
+              ${list
+                .sort(
+                  (a,b) =>
+                    a.date.localeCompare(
+                      b.date
+                    )
+                )
+                .map(
+                  s =>
+                    `${formatShortDate(
+                      s.date
+                    )}`
+                )
+                .join(" • ")
+              }
+
+            </div>
 
           </div>
 
-        </div>
+        `;
 
-      `;
-
-    });
+      }
+    );
 
 
     const totalCost =
-      sessions.reduce(
+      profileSessions.reduce(
         (sum,s) =>
-          sum + (rates[s.type] || 0),
+          sum +
+          (
+            rates[s.type] ||
+            0
+          ),
         0
       );
 
@@ -2482,14 +3568,17 @@ function showSummary(){
     `;
 
 
-    el("summaryContent").innerHTML =
+    el("summaryContent")
+      .innerHTML =
       html;
 
   }
 
 
   el("summaryModal")
-    .classList.add("show");
+    .classList.add(
+      "show"
+    );
 
 }
 
@@ -2498,7 +3587,8 @@ function closeSummary(event){
 
   if(
     event &&
-    event.target !== el("summaryModal")
+    event.target !==
+    el("summaryModal")
   ){
 
     return;
@@ -2507,30 +3597,498 @@ function closeSummary(event){
 
 
   el("summaryModal")
-    .classList.remove("show");
+    .classList.remove(
+      "show"
+    );
 
 }
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
+/* ==================================================
+   EXCEL EXPORT
+================================================== */
 
-function escapeHTML(value){
+function exportExcel(allProfiles){
 
-  return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  if(
+    typeof XLSX ===
+    "undefined"
+  ){
+
+    alert(
+      "Excel library could not be loaded. Please check your internet connection and try again."
+    );
+
+    return;
+
+  }
+
+
+  let data;
+
+
+  if(allProfiles){
+
+    data =
+      sessions.map(
+        session => {
+
+          const profile =
+            profiles.find(
+              p =>
+                p.id ===
+                session.profileId
+            );
+
+
+          return {
+            Profile:
+              profile
+                ? profile.name
+                : "Default Profile",
+
+            Date:
+              session.date,
+
+            Time:
+              formatTime(
+                session.time
+              ),
+
+            Therapy:
+              session.type || "",
+
+            Therapist:
+              session.therapist || "",
+
+            Status:
+              session.status || "",
+
+            Notes:
+              session.notes || "",
+
+            Cost:
+              rates[session.type] || 0
+
+          };
+
+        }
+      );
+
+  }else{
+
+    const profile =
+      getCurrentProfile();
+
+
+    data =
+      getProfileSessions()
+        .map(
+          session => ({
+
+            Profile:
+              profile.name,
+
+            Date:
+              session.date,
+
+            Time:
+              formatTime(
+                session.time
+              ),
+
+            Therapy:
+              session.type || "",
+
+            Therapist:
+              session.therapist || "",
+
+            Status:
+              session.status || "",
+
+            Notes:
+              session.notes || "",
+
+            Cost:
+              rates[session.type] || 0
+
+          })
+        );
+
+  }
+
+
+  if(!data.length){
+
+    alert(
+      "There is no data to export."
+    );
+
+    return;
+
+  }
+
+
+  const worksheet =
+    XLSX.utils.json_to_sheet(
+      data
+    );
+
+
+  worksheet["!cols"] = [
+
+    {wch:20},
+    {wch:14},
+    {wch:14},
+    {wch:25},
+    {wch:22},
+    {wch:15},
+    {wch:40},
+    {wch:12}
+
+  ];
+
+
+  const workbook =
+    XLSX.utils.book_new();
+
+
+  XLSX.utils.book_append_sheet(
+    workbook,
+    worksheet,
+    "Therapy Data"
+  );
+
+
+  const filename =
+    allProfiles
+      ? "Therapy_Tracker_All_Profiles.xlsx"
+      : `${safeFileName(
+          getCurrentProfile().name
+        )}_Therapy_Data.xlsx`;
+
+
+  XLSX.writeFile(
+    workbook,
+    filename
+  );
 
 }
 
 
-/* =========================
-   DATE INPUT
-========================= */
+/* ==================================================
+   PDF EXPORT
+================================================== */
+
+function exportPDF(allProfiles){
+
+  if(
+    !window.jspdf ||
+    !window.jspdf.jsPDF
+  ){
+
+    alert(
+      "PDF library could not be loaded. Please check your internet connection and try again."
+    );
+
+    return;
+
+  }
+
+
+  const {
+    jsPDF
+  } =
+    window.jspdf;
+
+
+  const doc =
+    new jsPDF();
+
+
+  let data;
+
+
+  let title;
+
+
+  if(allProfiles){
+
+    data =
+      sessions;
+
+    title =
+      "Therapy Tracker - All Profiles";
+
+  }else{
+
+    data =
+      getProfileSessions();
+
+    title =
+      `Therapy Tracker - ${getCurrentProfile().name}`;
+
+  }
+
+
+  if(!data.length){
+
+    alert(
+      "There is no data to export."
+    );
+
+    return;
+
+  }
+
+
+  doc.setFontSize(18);
+
+  doc.text(
+    title,
+    14,
+    18
+  );
+
+
+  doc.setFontSize(10);
+
+  doc.text(
+    `Generated: ${new Date().toLocaleString("en-IN")}`,
+    14,
+    26
+  );
+
+
+  let y = 36;
+
+
+  if(!allProfiles){
+
+    const attended =
+      data.filter(
+        s =>
+          s.status ===
+          "Attended"
+      ).length;
+
+
+    const cost =
+      data.reduce(
+        (sum,s) =>
+          sum +
+          (
+            rates[s.type] ||
+            0
+          ),
+        0
+      );
+
+
+    doc.text(
+      `Total Sessions: ${data.length}`,
+      14,
+      y
+    );
+
+    doc.text(
+      `Attended: ${attended}`,
+      80,
+      y
+    );
+
+    doc.text(
+      `Total Cost: Rs.${cost}`,
+      135,
+      y
+    );
+
+    y += 10;
+
+  }
+
+
+  doc.line(
+    14,
+    y,
+    196,
+    y
+  );
+
+
+  y += 8;
+
+
+  doc.setFontSize(8);
+
+  data =
+    [...data].sort(
+      (a,b) => {
+
+        const ad =
+          `${a.date} ${a.time || ""}`;
+
+        const bd =
+          `${b.date} ${b.time || ""}`;
+
+        return ad.localeCompare(
+          bd
+        );
+
+      }
+    );
+
+
+  data.forEach(
+    (session,index) => {
+
+      if(y > 275){
+
+        doc.addPage();
+
+        y = 18;
+
+      }
+
+
+      const profile =
+        profiles.find(
+          p =>
+            p.id ===
+            session.profileId
+        );
+
+
+      const profileName =
+        profile
+          ? profile.name
+          : "Default Profile";
+
+
+      const line1 =
+        allProfiles
+          ? `${profileName} | ${formatDate(session.date)} | ${formatTime(session.time)}`
+          : `${formatDate(session.date)} | ${formatTime(session.time)}`;
+
+
+      const line2 =
+        `${session.type || "Therapy"} | ${session.status || ""}`;
+
+
+      const line3 =
+        session.therapist
+          ? `Therapist: ${session.therapist}`
+          : "";
+
+
+      const line4 =
+        session.notes
+          ? `Notes: ${session.notes}`
+          : "";
+
+
+      doc.setFontSize(9);
+
+      doc.text(
+        line1.substring(0,110),
+        14,
+        y
+      );
+
+      y += 5;
+
+
+      doc.text(
+        line2.substring(0,110),
+        14,
+        y
+      );
+
+      y += 5;
+
+
+      if(line3){
+
+        doc.text(
+          line3.substring(0,110),
+          14,
+          y
+        );
+
+        y += 5;
+
+      }
+
+
+      if(line4){
+
+        doc.text(
+          line4.substring(0,110),
+          14,
+          y
+        );
+
+        y += 5;
+
+      }
+
+
+      y += 3;
+
+
+      doc.line(
+        14,
+        y,
+        196,
+        y
+      );
+
+
+      y += 6;
+
+    }
+  );
+
+
+  const filename =
+    allProfiles
+      ? "Therapy_Tracker_All_Profiles.pdf"
+      : `${safeFileName(
+          getCurrentProfile().name
+        )}_Therapy_Report.pdf`;
+
+
+  doc.save(
+    filename
+  );
+
+}
+
+
+/* ==================================================
+   SAFE FILE NAME
+================================================== */
+
+function safeFileName(name){
+
+  return String(
+    name || "Therapy"
+  )
+    .replace(
+      /[^a-z0-9_-]+/gi,
+      "_"
+    )
+    .replace(
+      /^_+|_+$/g,
+      ""
+    );
+
+}
+
+
+/* ==================================================
+   DATE EVENTS
+================================================== */
 
 el("date").addEventListener(
   "change",
@@ -2538,7 +4096,9 @@ el("date").addEventListener(
 
     if(this.value){
 
-      renderDateScroll(this.value);
+      renderDateScroll(
+        this.value
+      );
 
     }
 
@@ -2546,9 +4106,9 @@ el("date").addEventListener(
 );
 
 
-/* =========================
-   MANUAL TIME INPUT
-========================= */
+/* ==================================================
+   TIME EVENTS
+================================================== */
 
 el("hour").addEventListener(
   "change",
@@ -2568,19 +4128,20 @@ el("ampm").addEventListener(
 );
 
 
-/* =========================
-   DATE SCROLL ARROWS
-========================= */
+/* ==================================================
+   DATE ARROWS
+================================================== */
 
 el("dateScrollPrev")
   .addEventListener(
     "click",
     function(){
 
-      el("dateScroll").scrollBy({
-        left:-250,
-        behavior:"smooth"
-      });
+      el("dateScroll")
+        .scrollBy({
+          left:-250,
+          behavior:"smooth"
+        });
 
     }
   );
@@ -2591,28 +4152,30 @@ el("dateScrollNext")
     "click",
     function(){
 
-      el("dateScroll").scrollBy({
-        left:250,
-        behavior:"smooth"
-      });
+      el("dateScroll")
+        .scrollBy({
+          left:250,
+          behavior:"smooth"
+        });
 
     }
   );
 
 
-/* =========================
-   TIME SCROLL ARROWS
-========================= */
+/* ==================================================
+   TIME ARROWS
+================================================== */
 
 el("timeScrollPrev")
   .addEventListener(
     "click",
     function(){
 
-      el("timeScroll").scrollBy({
-        left:-250,
-        behavior:"smooth"
-      });
+      el("timeScroll")
+        .scrollBy({
+          left:-250,
+          behavior:"smooth"
+        });
 
     }
   );
@@ -2623,20 +4186,23 @@ el("timeScrollNext")
     "click",
     function(){
 
-      el("timeScroll").scrollBy({
-        left:250,
-        behavior:"smooth"
-      });
+      el("timeScroll")
+        .scrollBy({
+          left:250,
+          behavior:"smooth"
+        });
 
     }
   );
 
 
-/* =========================
-   RENDER
-========================= */
+/* ==================================================
+   MAIN RENDER
+================================================== */
 
 function render(){
+
+  renderProfiles();
 
   renderHome();
 
@@ -2649,9 +4215,26 @@ function render(){
 }
 
 
-/* =========================
-   INITIALIZE
-========================= */
+/* ==================================================
+   INITIALIZATION
+================================================== */
+
+/*
+  VERY IMPORTANT:
+
+  1. Load old therapySessions.
+  2. Load/create profiles.
+  3. Assign existing old sessions to
+     Default Profile.
+  4. Save only the updated session records.
+  5. Do not clear any existing storage.
+*/
+
+migrateExistingSessions();
+
+loadDarkMode();
+
+renderProfiles();
 
 resetForm();
 
