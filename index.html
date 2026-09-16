@@ -5,275 +5,354 @@
 
 <meta charset="utf-8">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport"
+content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta
-  name="theme-color"
-  content="#2563eb">
+<meta name="theme-color" content="#2563eb">
 
 <link rel="manifest" href="manifest.json">
 
 <title>Therapy Tracker</title>
 
-<!-- Used only for creating shareable dashboard images -->
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <style>
 
 *{
-  box-sizing:border-box
+box-sizing:border-box
 }
 
 body{
-  margin:0;
-  background:#f5f7fb;
-  color:#172033;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+margin:0;
+background:#f5f7fb;
+color:#172033;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
 }
 
 header{
-  background:#2563eb;
-  color:#fff;
-  padding:24px 18px;
-  border-radius:0 0 24px 24px
+background:#2563eb;
+color:#fff;
+padding:24px 18px;
+border-radius:0 0 24px 24px
 }
 
 h1{
-  margin:0;
-  font-size:25px
+margin:0;
+font-size:25px
 }
 
 header p{
-  margin:5px 0 0;
-  opacity:.9
+margin:5px 0 0;
+opacity:.9
 }
 
 main{
-  max-width:720px;
-  margin:auto;
-  padding:16px 16px 115px
+max-width:720px;
+margin:auto;
+padding:16px 16px 115px
 }
 
 .cards{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px
 }
 
-.card,
-.panel,
-.session{
-  background:#fff;
-  border-radius:16px;
-  padding:15px;
-  box-shadow:0 3px 14px #0000000b
+.card,.panel,.session{
+background:#fff;
+border-radius:16px;
+padding:15px;
+box-shadow:0 3px 14px #0000000b
 }
 
 .num{
-  font-size:27px;
-  font-weight:700
+font-size:27px;
+font-weight:700
 }
 
 .small{
-  font-size:13px;
-  color:#667085
+font-size:13px;
+color:#667085
 }
 
 .panel{
-  margin-top:18px
+margin-top:18px
 }
 
 .panel h2{
-  font-size:18px;
-  margin:0 0 12px
+font-size:18px;
+margin:0 0 12px
 }
 
 button{
-  border:0;
-  border-radius:11px;
-  padding:11px 14px;
-  font-size:15px;
-  font-weight:650;
-  cursor:pointer
+border:0;
+border-radius:11px;
+padding:11px 14px;
+font-size:15px;
+font-weight:650;
+cursor:pointer
 }
 
 .primary{
-  background:#2563eb;
-  color:#fff;
-  width:100%
+background:#2563eb;
+color:#fff;
+width:100%
 }
 
 .light{
-  background:#e8eefc;
-  color:#174ea6
+background:#e8eefc;
+color:#174ea6
 }
 
 .copy{
-  background:#ecfdf3;
-  color:#166534
+background:#ecfdf3;
+color:#166534
 }
 
 .edit{
-  background:#fef3c7;
-  color:#92400e
+background:#fef3c7;
+color:#92400e
 }
 
 .danger{
-  background:#fee2e2;
-  color:#991b1b
+background:#fee2e2;
+color:#991b1b
 }
 
 .cancel{
-  background:#f1f5f9;
-  color:#475569;
-  width:100%;
-  margin-top:8px
+background:#f1f5f9;
+color:#475569;
+width:100%;
+margin-top:8px
 }
 
 .share{
-  background:#2563eb;
-  color:#fff
+background:#2563eb;
+color:#fff
 }
 
 .secondary{
-  background:#f1f5f9;
-  color:#334155
+background:#f1f5f9;
+color:#334155
 }
 
 label{
-  display:block;
-  font-size:13px;
-  color:#667085;
-  margin:10px 0 5px
+display:block;
+font-size:13px;
+color:#667085;
+margin:10px 0 5px
 }
 
-input,
-select,
-textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #d7dce5;
-  border-radius:10px;
-  font-size:16px;
-  background:#fff
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #d7dce5;
+border-radius:10px;
+font-size:16px;
+background:#fff
 }
 
 textarea{
-  min-height:75px;
-  resize:vertical
+min-height:75px;
+resize:vertical
 }
 
 .session{
-  margin:9px 0;
-  display:flex;
-  justify-content:space-between;
-  gap:10px
+margin:9px 0;
+display:flex;
+justify-content:space-between;
+gap:10px
 }
 
 .session-info{
-  flex:1;
-  min-width:0
+flex:1;
+min-width:0
 }
 
 .session-type{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:4px
+font-size:16px;
+font-weight:700;
+margin-bottom:4px
 }
 
 .therapist{
-  margin-top:3px
+margin-top:3px
 }
 
 .notes{
-  margin-top:4px;
-  line-height:1.4
+margin-top:4px;
+line-height:1.4
 }
 
 .badge{
-  height:max-content;
-  padding:6px 9px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:700;
-  white-space:nowrap
+height:max-content;
+padding:6px 9px;
+border-radius:20px;
+font-size:12px;
+font-weight:700;
+white-space:nowrap
 }
 
 .attended{
-  background:#dcfce7;
-  color:#166534
+background:#dcfce7;
+color:#166534
 }
 
 .missed{
-  background:#fee2e2;
-  color:#991b1b
+background:#fee2e2;
+color:#991b1b
 }
 
 .planned{
-  background:#dbeafe;
-  color:#1d4ed8
+background:#dbeafe;
+color:#1d4ed8
 }
 
 .rescheduled{
-  background:#fef3c7;
-  color:#92400e
+background:#fef3c7;
+color:#92400e
 }
 
 .actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:10px
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+margin-top:10px
 }
 
 .actions button{
-  padding:7px 9px;
-  font-size:12px
+padding:7px 9px;
+font-size:12px
 }
 
 .edit-banner{
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  color:#9a3412;
-  border-radius:11px;
-  padding:10px 12px;
-  margin-bottom:12px;
-  font-size:13px;
-  font-weight:600
+background:#fff7ed;
+border:1px solid #fed7aa;
+color:#9a3412;
+border-radius:11px;
+padding:10px 12px;
+margin-bottom:12px;
+font-size:13px;
+font-weight:600
 }
 
 .copy-banner{
-  background:#ecfdf5;
-  border:1px solid #bbf7d0;
-  color:#166534;
-  border-radius:11px;
-  padding:10px 12px;
-  margin-bottom:12px;
-  font-size:13px;
-  font-weight:600
+background:#ecfdf5;
+border:1px solid #bbf7d0;
+color:#166534;
+border-radius:11px;
+padding:10px 12px;
+margin-bottom:12px;
+font-size:13px;
+font-weight:600
 }
 
 .type-help{
-  font-size:12px;
-  color:#667085;
-  margin-top:5px
+font-size:12px;
+color:#667085;
+margin-top:5px
+}
+
+.share-bar{
+display:flex;
+gap:8px;
+margin-top:12px
+}
+
+.share-bar button{
+flex:1
 }
 
 
 /* ==================================================
-   SHARE BAR
+   DATE SCROLL
 ================================================== */
 
-.share-bar{
-  display:flex;
-  gap:8px;
-  margin-top:12px
+.date-scroll-wrapper{
+display:flex;
+align-items:center;
+gap:6px;
+margin-bottom:7px
 }
 
-.share-bar button{
-  flex:1
+.date-scroll{
+display:flex;
+gap:7px;
+overflow-x:auto;
+overflow-y:hidden;
+scroll-behavior:smooth;
+flex:1;
+padding:4px 2px 9px;
+scrollbar-width:none;
+-webkit-overflow-scrolling:touch;
+touch-action:pan-x
+}
+
+.date-scroll::-webkit-scrollbar{
+display:none
+}
+
+.date-scroll-arrow{
+flex:0 0 36px;
+width:36px;
+height:58px;
+padding:0;
+background:#e8eefc;
+color:#174ea6;
+font-size:25px;
+display:flex;
+align-items:center;
+justify-content:center
+}
+
+.date-scroll-item{
+flex:0 0 68px;
+height:58px;
+border:1px solid #d7dce5;
+border-radius:12px;
+background:#fff;
+text-align:center;
+padding:6px 3px;
+cursor:pointer
+}
+
+.date-scroll-item .date-day{
+font-size:10px;
+color:#667085;
+font-weight:600
+}
+
+.date-scroll-item .date-number{
+font-size:17px;
+font-weight:700;
+margin-top:2px
+}
+
+.date-scroll-item .date-month{
+font-size:10px;
+color:#667085;
+margin-top:1px
+}
+
+.date-scroll-item.selected{
+background:#2563eb;
+border-color:#2563eb;
+color:#fff
+}
+
+.date-scroll-item.selected .date-day,
+.date-scroll-item.selected .date-month{
+color:#fff
+}
+
+.date-scroll-item.has-session{
+box-shadow:inset 0 -3px 0 #22c55e
+}
+
+.date-manual-label{
+font-size:11px;
+color:#667085;
+margin:2px 0 5px
 }
 
 
@@ -282,133 +361,133 @@ textarea{
 ================================================== */
 
 .summary-card{
-  background:#fff;
-  border-radius:16px;
-  padding:15px;
-  margin-top:10px;
-  box-shadow:0 3px 14px #0000000b
+background:#fff;
+border-radius:16px;
+padding:15px;
+margin-top:10px;
+box-shadow:0 3px 14px #0000000b
 }
 
 .summary-title{
-  font-weight:700;
-  font-size:16px;
-  margin-bottom:10px
+font-weight:700;
+font-size:16px;
+margin-bottom:10px
 }
 
 .summary-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:7px
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:7px
 }
 
 .summary-item{
-  background:#f8fafc;
-  border-radius:10px;
-  padding:8px 5px;
-  text-align:center;
-  cursor:pointer;
-  transition:.15s
+background:#f8fafc;
+border-radius:10px;
+padding:8px 5px;
+text-align:center;
+cursor:pointer;
+transition:.15s
 }
 
 .summary-item:active{
-  transform:scale(.97)
+transform:scale(.97)
 }
 
 .summary-number{
-  font-size:18px;
-  font-weight:700
+font-size:18px;
+font-weight:700
 }
 
 .summary-label{
-  font-size:10px;
-  color:#667085;
-  margin-top:2px
+font-size:10px;
+color:#667085;
+margin-top:2px
 }
 
 .summary-total{
-  background:#eef2ff
+background:#eef2ff
 }
 
 .summary-attended{
-  background:#ecfdf3
+background:#ecfdf3
 }
 
 .summary-missed{
-  background:#fef2f2
+background:#fef2f2
 }
 
 .summary-planned{
-  background:#eff6ff
+background:#eff6ff
 }
 
 .tap-help{
-  font-size:11px;
-  color:#667085;
-  margin-top:8px;
-  text-align:center
+font-size:11px;
+color:#667085;
+margin-top:8px;
+text-align:center
 }
 
 
 /* ==================================================
-   COST SUMMARY
+   COST
 ================================================== */
 
 .cost-card{
-  background:#fff;
-  border-radius:16px;
-  padding:15px;
-  margin-top:10px;
-  box-shadow:0 3px 14px #0000000b
+background:#fff;
+border-radius:16px;
+padding:15px;
+margin-top:10px;
+box-shadow:0 3px 14px #0000000b
 }
 
 .cost-title{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:8px
+font-size:16px;
+font-weight:700;
+margin-bottom:8px
 }
 
 .cost-row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:8px 0;
-  border-bottom:1px solid #eef0f4;
-  font-size:14px
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:8px 0;
+border-bottom:1px solid #eef0f4;
+font-size:14px
 }
 
 .cost-row:last-child{
-  border-bottom:0
+border-bottom:0
 }
 
 .cost-value{
-  font-weight:700
+font-weight:700
 }
 
 .total-cost{
-  font-size:18px;
-  font-weight:700;
-  margin-top:8px
+font-size:18px;
+font-weight:700;
+margin-top:8px
 }
 
 
 /* ==================================================
-   TIME INPUT
+   TIME
 ================================================== */
 
 .time-row{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:8px
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:8px
 }
 
 .time-field label{
-  margin-top:0
+margin-top:0
 }
 
 .time-help{
-  font-size:11px;
-  color:#667085;
-  margin-top:5px
+font-size:11px;
+color:#667085;
+margin-top:5px
 }
 
 
@@ -417,172 +496,172 @@ textarea{
 ================================================== */
 
 .calendar-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  margin-bottom:12px
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+margin-bottom:12px
 }
 
 .calendar-header h2{
-  margin:0;
-  font-size:18px;
-  text-align:center;
-  flex:1
+margin:0;
+font-size:18px;
+text-align:center;
+flex:1
 }
 
 .month-button{
-  background:#e8eefc;
-  color:#174ea6;
-  padding:8px 12px
+background:#e8eefc;
+color:#174ea6;
+padding:8px 12px
 }
 
 .calendar-weekdays,
 .calendar-grid{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:5px
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:5px
 }
 
 .calendar-weekday{
-  text-align:center;
-  font-size:11px;
-  font-weight:700;
-  color:#667085;
-  padding:5px 0
+text-align:center;
+font-size:11px;
+font-weight:700;
+color:#667085;
+padding:5px 0
 }
 
 .calendar-weekday.weekend{
-  color:#2563eb
+color:#2563eb
 }
 
 .calendar-day{
-  min-height:58px;
-  border:1px solid #eef0f4;
-  background:#fff;
-  border-radius:10px;
-  padding:5px 3px;
-  text-align:center;
-  cursor:pointer;
-  position:relative
+min-height:58px;
+border:1px solid #eef0f4;
+background:#fff;
+border-radius:10px;
+padding:5px 3px;
+text-align:center;
+cursor:pointer;
+position:relative
 }
 
 .calendar-day.empty-day{
-  background:transparent;
-  border:0;
-  cursor:default
+background:transparent;
+border:0;
+cursor:default
 }
 
 .calendar-number{
-  font-size:14px;
-  font-weight:700
+font-size:14px;
+font-weight:700
 }
 
 .calendar-day.weekend .calendar-number{
-  color:#2563eb
+color:#2563eb
 }
 
 .calendar-day.today-day{
-  border:2px solid #2563eb
+border:2px solid #2563eb
 }
 
 .calendar-day.selected-day{
-  box-shadow:0 0 0 2px #93c5fd inset
+box-shadow:0 0 0 2px #93c5fd inset
 }
 
 .calendar-markers{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:2px;
-  margin-top:5px
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:2px;
+margin-top:5px
 }
 
 .marker{
-  width:17px;
-  height:17px;
-  border-radius:50%;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:10px;
-  font-weight:800
+width:17px;
+height:17px;
+border-radius:50%;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+font-size:10px;
+font-weight:800
 }
 
 .marker.attended-marker{
-  background:#dcfce7;
-  color:#166534
+background:#dcfce7;
+color:#166534
 }
 
 .marker.missed-marker{
-  background:#fee2e2;
-  color:#991b1b
+background:#fee2e2;
+color:#991b1b
 }
 
 .marker.planned-marker{
-  background:#dbeafe;
-  color:#1d4ed8
+background:#dbeafe;
+color:#1d4ed8
 }
 
 .marker.rescheduled-marker{
-  background:#fef3c7;
-  color:#92400e
+background:#fef3c7;
+color:#92400e
 }
 
 .calendar-legend{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:12px;
-  font-size:11px;
-  color:#667085
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:12px;
+font-size:11px;
+color:#667085
 }
 
 .legend-item{
-  display:flex;
-  align-items:center;
-  gap:4px
+display:flex;
+align-items:center;
+gap:4px
 }
 
 .legend-dot{
-  width:15px;
-  height:15px;
-  border-radius:50%;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:9px;
-  font-weight:800
+width:15px;
+height:15px;
+border-radius:50%;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+font-size:9px;
+font-weight:800
 }
 
 .legend-attended{
-  background:#dcfce7;
-  color:#166534
+background:#dcfce7;
+color:#166534
 }
 
 .legend-missed{
-  background:#fee2e2;
-  color:#991b1b
+background:#fee2e2;
+color:#991b1b
 }
 
 .legend-planned{
-  background:#dbeafe;
-  color:#1d4ed8
+background:#dbeafe;
+color:#1d4ed8
 }
 
 .legend-weekend{
-  color:#2563eb;
-  font-weight:700
+color:#2563eb;
+font-weight:700
 }
 
 .selected-date-title{
-  font-weight:700;
-  font-size:16px;
-  margin-bottom:8px
+font-weight:700;
+font-size:16px;
+margin-bottom:8px
 }
 
 .calendar-add{
-  margin-top:10px
+margin-top:10px
 }
 
 
@@ -591,38 +670,38 @@ textarea{
 ================================================== */
 
 nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#fff;
-  border-top:1px solid #e5e7eb;
-  display:flex;
-  justify-content:space-around;
-  padding:8px 2px calc(8px + env(safe-area-inset-bottom));
-  z-index:4
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#fff;
+border-top:1px solid #e5e7eb;
+display:flex;
+justify-content:space-around;
+padding:8px 2px calc(8px + env(safe-area-inset-bottom));
+z-index:4
 }
 
 nav button{
-  background:none;
-  color:#667085;
-  min-width:23%;
-  padding:7px 3px;
-  font-size:12px
+background:none;
+color:#667085;
+min-width:23%;
+padding:7px 3px;
+font-size:12px
 }
 
 nav .active{
-  color:#2563eb
+color:#2563eb
 }
 
 .hidden{
-  display:none !important
+display:none!important
 }
 
 .empty{
-  text-align:center;
-  color:#667085;
-  padding:20px
+text-align:center;
+color:#667085;
+padding:20px
 }
 
 
@@ -631,132 +710,97 @@ nav .active{
 ================================================== */
 
 .modal-overlay{
-  position:fixed;
-  inset:0;
-  background:#00000066;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:20;
-  padding:0
+position:fixed;
+inset:0;
+background:#00000066;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+z-index:20;
+padding:0
 }
 
 .modal{
-  width:100%;
-  max-width:720px;
-  max-height:88vh;
-  overflow:auto;
-  background:#f5f7fb;
-  border-radius:22px 22px 0 0;
-  padding:18px 16px 30px
+width:100%;
+max-width:720px;
+max-height:88vh;
+overflow:auto;
+background:#f5f7fb;
+border-radius:22px 22px 0 0;
+padding:18px 16px 30px
 }
 
 .modal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:12px
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:12px
 }
 
 .modal-header h2{
-  margin:0;
-  font-size:19px
+margin:0;
+font-size:19px
 }
 
 .close-button{
-  width:38px;
-  height:38px;
-  padding:0;
-  border-radius:50%;
-  background:#e5e7eb;
-  color:#334155;
-  font-size:20px
+width:38px;
+height:38px;
+padding:0;
+border-radius:50%;
+background:#e5e7eb;
+color:#334155;
+font-size:20px
 }
 
 .modal-summary{
-  background:#fff;
-  border-radius:14px;
-  padding:12px;
-  margin-bottom:12px;
-  box-shadow:0 2px 10px #0000000a
+background:#fff;
+border-radius:14px;
+padding:12px;
+margin-bottom:12px;
+box-shadow:0 2px 10px #0000000a
 }
 
 .date-list-item{
-  background:#fff;
-  border-radius:14px;
-  padding:13px;
-  margin:8px 0;
-  box-shadow:0 2px 10px #00000008
+background:#fff;
+border-radius:14px;
+padding:13px;
+margin:8px 0;
+box-shadow:0 2px 10px #00000008
 }
 
 .date-list-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:10px
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:10px
 }
 
 .date-list-date{
-  font-weight:700;
-  font-size:15px
+font-weight:700;
+font-size:15px
 }
 
 .date-list-day{
-  color:#667085;
-  font-size:12px;
-  margin-top:3px
+color:#667085;
+font-size:12px;
+margin-top:3px
 }
 
 .date-list-time{
-  font-size:13px;
-  margin-top:6px;
-  color:#334155
+font-size:13px;
+margin-top:6px;
+color:#334155
 }
 
 .modal-actions{
-  display:flex;
-  gap:8px;
-  margin-top:12px
+display:flex;
+gap:8px;
+margin-top:12px
 }
 
 .modal-actions button{
-  flex:1
-}
-
-
-/* ==================================================
-   SHARE CAPTURE
-================================================== */
-
-.share-capture{
-  background:#f5f7fb;
-  padding:16px;
-  max-width:720px
-}
-
-.share-capture .panel{
-  margin-top:12px
-}
-
-@media(max-width:420px){
-
-  .summary-grid{
-    gap:5px
-  }
-
-  .summary-item{
-    padding:8px 2px
-  }
-
-  .summary-number{
-    font-size:17px
-  }
-
-  .time-row{
-    grid-template-columns:1fr 1fr 1fr
-  }
-
+flex:1
 }
 
 </style>
@@ -767,13 +811,11 @@ nav .active{
 <body>
 
 
-<header id="appHeader">
+<header>
 
 <h1>Therapy Tracker</h1>
 
-<p>
-Track your sessions & attendance
-</p>
+<p>Track your sessions & attendance</p>
 
 </header>
 
@@ -781,67 +823,31 @@ Track your sessions & attendance
 <main>
 
 
-<!-- ==================================================
-     HOME
-================================================== -->
+<!-- HOME -->
 
 <section id="home">
 
-
 <div class="cards">
 
+<div class="card">
+<div class="num" id="total">0</div>
+<div class="small">Total sessions</div>
+</div>
 
 <div class="card">
-
-<div class="num" id="total">
-0
+<div class="num" id="attended">0</div>
+<div class="small">Attended</div>
 </div>
-
-<div class="small">
-Total sessions
-</div>
-
-</div>
-
 
 <div class="card">
-
-<div class="num" id="attended">
-0
+<div class="num" id="missed">0</div>
+<div class="small">Missed</div>
 </div>
-
-<div class="small">
-Attended
-</div>
-
-</div>
-
 
 <div class="card">
-
-<div class="num" id="missed">
-0
+<div class="num" id="rate">0%</div>
+<div class="small">Attendance</div>
 </div>
-
-<div class="small">
-Missed
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="num" id="rate">
-0%
-</div>
-
-<div class="small">
-Attendance
-</div>
-
-</div>
-
 
 </div>
 
@@ -849,9 +855,9 @@ Attendance
 <div class="share-bar">
 
 <button
-  type="button"
-  class="share"
-  id="shareDashboard">
+type="button"
+class="share"
+id="shareDashboard">
 
 📤 Share Dashboard
 
@@ -860,15 +866,9 @@ Attendance
 </div>
 
 
-<!-- ==================================================
-     THERAPY SUMMARY
-================================================== -->
-
 <div class="panel">
 
-<h2>
-Therapy Summary
-</h2>
+<h2>Therapy Summary</h2>
 
 <div id="therapySummary">
 
@@ -885,15 +885,9 @@ No therapy sessions recorded
 </div>
 
 
-<!-- ==================================================
-     COST SUMMARY
-================================================== -->
-
 <div class="panel">
 
-<h2>
-💰 Therapy Cost
-</h2>
+<h2>💰 Therapy Cost</h2>
 
 <div id="costSummary">
 
@@ -906,88 +900,103 @@ No therapy cost data
 </div>
 
 
-<!-- ==================================================
-     NEXT SESSION
-================================================== -->
-
 <div class="panel">
 
-<h2>
-Next session
-</h2>
+<h2>Next session</h2>
 
 <div id="next" class="empty">
-
 No upcoming sessions
-
 </div>
 
 </div>
 
-
-<!-- ==================================================
-     RECENT VISITS
-================================================== -->
 
 <div class="panel">
 
-<h2>
-Recent visits
-</h2>
+<h2>Recent visits</h2>
 
 <div id="recent"></div>
 
 </div>
 
-
 </section>
 
 
-<!-- ==================================================
-     ADD / EDIT
-================================================== -->
+<!-- ADD -->
 
 <section id="add" class="hidden">
 
-
 <div class="panel">
-
 
 <h2 id="formTitle">
 Add therapy session
 </h2>
 
 
-<div
-  id="editBanner"
-  class="edit-banner hidden">
-
+<div id="editBanner" class="edit-banner hidden">
 ✏️ You are editing an existing session.
-
 </div>
 
 
-<div
-  id="copyBanner"
-  class="copy-banner hidden">
-
+<div id="copyBanner" class="copy-banner hidden">
 📋 Previous session copied. The date has been moved to the next day. You can change it before saving.
-
 </div>
 
 
 <form id="sessionForm">
 
 
+<!-- ==================================================
+     DATE SCROLL + MANUAL DATE
+================================================== -->
+
 <label>
 Date
 </label>
 
-<input
-  id="date"
-  type="date"
-  required>
 
+<div class="date-scroll-wrapper">
+
+<button
+type="button"
+class="date-scroll-arrow"
+id="dateScrollPrev">
+
+‹
+
+</button>
+
+
+<div
+id="dateScroll"
+class="date-scroll">
+</div>
+
+
+<button
+type="button"
+class="date-scroll-arrow"
+id="dateScrollNext">
+
+›
+
+</button>
+
+</div>
+
+
+<div class="date-manual-label">
+Manual date selection
+</div>
+
+
+<input
+id="date"
+type="date"
+required>
+
+
+<!-- TIME -->
 
 <label>
 Time
@@ -996,7 +1005,6 @@ Time
 
 <div class="time-row">
 
-
 <div class="time-field">
 
 <label>
@@ -1004,12 +1012,12 @@ Hour
 </label>
 
 <input
-  id="hour"
-  type="number"
-  min="1"
-  max="12"
-  inputmode="numeric"
-  placeholder="HH">
+id="hour"
+type="number"
+min="1"
+max="12"
+inputmode="numeric"
+placeholder="HH">
 
 </div>
 
@@ -1021,12 +1029,12 @@ Minute
 </label>
 
 <input
-  id="minute"
-  type="number"
-  min="0"
-  max="59"
-  inputmode="numeric"
-  placeholder="MM">
+id="minute"
+type="number"
+min="0"
+max="59"
+inputmode="numeric"
+placeholder="MM">
 
 </div>
 
@@ -1051,7 +1059,6 @@ PM
 
 </div>
 
-
 </div>
 
 
@@ -1060,17 +1067,16 @@ You can type the hour and minute manually. Example: 10 : 30 AM
 </div>
 
 
-<!-- Hidden field keeps compatibility with existing stored time -->
-
 <input
-  id="time"
-  type="hidden">
+id="time"
+type="hidden">
 
+
+<!-- THERAPY -->
 
 <label>
 Therapy / Session type
 </label>
-
 
 <select id="type" required>
 
@@ -1131,14 +1137,13 @@ Therapist
 </label>
 
 <input
-  id="therapist"
-  placeholder="Therapist name">
+id="therapist"
+placeholder="Therapist name">
 
 
 <label>
 Status
 </label>
-
 
 <select id="status">
 
@@ -1165,17 +1170,16 @@ Rescheduled
 Notes
 </label>
 
-
 <textarea
-  id="notes"
-  placeholder="Exercises, observations, follow-up...">
+id="notes"
+placeholder="Exercises, observations, follow-up...">
 </textarea>
 
 
 <button
-  type="submit"
-  class="primary"
-  id="saveButton">
+type="submit"
+class="primary"
+id="saveButton">
 
 Save session
 
@@ -1183,9 +1187,9 @@ Save session
 
 
 <button
-  type="button"
-  class="cancel hidden"
-  id="cancelEdit">
+type="button"
+class="cancel hidden"
+id="cancelEdit">
 
 Cancel
 
@@ -1194,19 +1198,14 @@ Cancel
 
 </form>
 
-
 </div>
-
 
 </section>
 
 
-<!-- ==================================================
-     HISTORY
-================================================== -->
+<!-- HISTORY -->
 
 <section id="history" class="hidden">
-
 
 <div class="panel">
 
@@ -1217,10 +1216,10 @@ Session history
 </h2>
 
 <button
-  type="button"
-  class="share"
-  id="shareHistory"
-  style="padding:8px 10px;font-size:12px">
+type="button"
+class="share"
+id="shareHistory"
+style="padding:8px 10px;font-size:12px">
 
 📤 Share
 
@@ -1231,44 +1230,36 @@ Session history
 
 <div id="all"></div>
 
-
 </div>
-
 
 </section>
 
 
-<!-- ==================================================
-     CALENDAR
-================================================== -->
+<!-- CALENDAR -->
 
 <section id="calendar" class="hidden">
 
-
 <div class="panel">
-
 
 <div class="calendar-header">
 
 <button
-  type="button"
-  class="month-button"
-  id="previousMonth">
+type="button"
+class="month-button"
+id="previousMonth">
 
 ‹
 
 </button>
 
-
 <h2 id="calendarMonth">
 Month
 </h2>
 
-
 <button
-  type="button"
-  class="month-button"
-  id="nextMonth">
+type="button"
+class="month-button"
+id="nextMonth">
 
 ›
 
@@ -1279,113 +1270,65 @@ Month
 
 <div class="calendar-weekdays">
 
-<div class="calendar-weekday">
-Sun
-</div>
-
-<div class="calendar-weekday">
-Mon
-</div>
-
-<div class="calendar-weekday">
-Tue
-</div>
-
-<div class="calendar-weekday">
-Wed
-</div>
-
-<div class="calendar-weekday">
-Thu
-</div>
-
-<div class="calendar-weekday">
-Fri
-</div>
-
-<div class="calendar-weekday">
-Sat
-</div>
+<div class="calendar-weekday">Sun</div>
+<div class="calendar-weekday">Mon</div>
+<div class="calendar-weekday">Tue</div>
+<div class="calendar-weekday">Wed</div>
+<div class="calendar-weekday">Thu</div>
+<div class="calendar-weekday">Fri</div>
+<div class="calendar-weekday">Sat</div>
 
 </div>
 
 
 <div
-  id="calendarGrid"
-  class="calendar-grid">
+id="calendarGrid"
+class="calendar-grid">
 </div>
 
 
 <div class="calendar-legend">
 
 <div class="legend-item">
-
-<span class="legend-dot legend-attended">
-✓
-</span>
-
+<span class="legend-dot legend-attended">✓</span>
 Attended
-
 </div>
 
-
 <div class="legend-item">
-
-<span class="legend-dot legend-missed">
-✕
-</span>
-
+<span class="legend-dot legend-missed">✕</span>
 Missed
-
 </div>
 
-
 <div class="legend-item">
-
-<span class="legend-dot legend-planned">
-•
-</span>
-
+<span class="legend-dot legend-planned">•</span>
 Planned
-
 </div>
-
 
 <div class="legend-item">
-
-<span class="legend-weekend">
-Weekend
-</span>
-
+<span class="legend-weekend">Weekend</span>
 </div>
 
 </div>
-
 
 </div>
 
 
 <div class="panel">
 
-
 <h2>
 Selected date
 </h2>
 
 
-<div
-  id="selectedDate"
-  class="empty">
-
+<div id="selectedDate" class="empty">
 Tap a calendar date to view sessions.
-
 </div>
 
 
 <button
-  type="button"
-  class="primary calendar-add"
-  id="addSelectedDate">
+type="button"
+class="primary calendar-add"
+id="addSelectedDate">
 
 ➕ Add Session for Selected Date
 
@@ -1398,9 +1341,9 @@ Tap a calendar date to view sessions.
 <div class="share-bar">
 
 <button
-  type="button"
-  class="share"
-  id="shareSelectedDate">
+type="button"
+class="share"
+id="shareSelectedDate">
 
 📤 Share Date Details
 
@@ -1408,77 +1351,64 @@ Tap a calendar date to view sessions.
 
 </div>
 
-
 </div>
 
-
 </section>
-
 
 </main>
 
 
-<!-- ==================================================
-     NAVIGATION
-================================================== -->
+<!-- NAV -->
 
 <nav>
 
-
 <button
-  type="button"
-  class="active"
-  data-page="home">
+type="button"
+class="active"
+data-page="home">
 
 🏠<br>
 Home
 
 </button>
 
-
 <button
-  type="button"
-  data-page="add">
+type="button"
+data-page="add">
 
 ➕<br>
 Add
 
 </button>
 
-
 <button
-  type="button"
-  data-page="history">
+type="button"
+data-page="history">
 
 📋<br>
 History
 
 </button>
 
-
 <button
-  type="button"
-  data-page="calendar">
+type="button"
+data-page="calendar">
 
 📅<br>
 Calendar
 
 </button>
 
-
 </nav>
 
 
-<!-- ==================================================
-     THERAPY DATE MODAL
-================================================== -->
+<!-- THERAPY DATE MODAL -->
 
 <div
-  id="therapyModal"
-  class="modal-overlay hidden">
+id="therapyModal"
+class="modal-overlay hidden">
 
 <div class="modal">
-
 
 <div class="modal-header">
 
@@ -1487,19 +1417,20 @@ Therapy Dates
 </h2>
 
 <button
-  type="button"
-  class="close-button"
-  id="closeTherapyModal">
+type="button"
+class="close-button"
+id="closeTherapyModal">
 
 ×
+
 </button>
 
 </div>
 
 
 <div
-  id="modalSummary"
-  class="modal-summary">
+id="modalSummary"
+class="modal-summary">
 </div>
 
 
@@ -1509,25 +1440,24 @@ Therapy Dates
 <div class="modal-actions">
 
 <button
-  type="button"
-  class="secondary"
-  id="modalCloseBottom">
+type="button"
+class="secondary"
+id="modalCloseBottom">
 
 Close
 
 </button>
 
 <button
-  type="button"
-  class="share"
-  id="shareTherapyDates">
+type="button"
+class="share"
+id="shareTherapyDates">
 
 📤 Share
 
 </button>
 
 </div>
-
 
 </div>
 
@@ -1541,113 +1471,79 @@ Close
 
 /* ==================================================
    STORAGE
-   IMPORTANT:
-   DO NOT CHANGE THIS KEY.
-   This preserves the existing data.
+   DO NOT CHANGE THIS KEY
 ================================================== */
 
 const STORAGE_KEY =
-  "therapySessions";
+"therapySessions";
 
 
 function loadSessions(){
 
-  try{
+try{
 
-    const data =
-      JSON.parse(
-        localStorage.getItem(
-          STORAGE_KEY
-        ) || "[]"
-      );
+const data =
+JSON.parse(
+localStorage.getItem(
+STORAGE_KEY
+)||"[]"
+);
 
+return Array.isArray(data)
+?data.filter(Boolean)
+:[];
 
-    return Array.isArray(data)
-      ? data.filter(Boolean)
-      : [];
+}
 
-  }
+catch(error){
 
-  catch(error){
+console.error(
+"Unable to load sessions:",
+error
+);
 
-    console.error(
-      "Unable to load sessions:",
-      error
-    );
+return[];
 
-    return [];
-
-  }
+}
 
 }
 
 
 let sessions =
-  loadSessions();
+loadSessions();
 
 
 /* ==================================================
-   THERAPY RATES
+   RATES
 ================================================== */
 
-const THERAPY_RATES = {
+const THERAPY_RATES={
 
-  "Occupational Therapy": 450,
-
-  "Physiotherapy": 0,
-
-  "Speech Therapy": 350,
-
-  "ABA Therapy": 0,
-
-  "Behavioral Therapy": 0,
-
-  "Physical Therapy": 0,
-
-  "Cognitive Therapy": 0,
-
-  "Sensory Therapy": 0,
-
-  "Feeding Therapy": 0,
-
-  "Other": 0
+"Occupational Therapy":450,
+"Physiotherapy":0,
+"Speech Therapy":350,
+"ABA Therapy":0,
+"Behavioral Therapy":0,
+"Physical Therapy":0,
+"Cognitive Therapy":0,
+"Sensory Therapy":0,
+"Feeding Therapy":0,
+"Other":0
 
 };
 
 
-/* ==================================================
-   EDIT MODE
-================================================== */
+let editingId=null;
 
-let editingId = null;
+let calendarDate=new Date();
 
+let selectedCalendarDate=today();
 
-/* ==================================================
-   CALENDAR STATE
-================================================== */
+let modalTherapyType="";
 
-let calendarDate =
-  new Date();
-
-let selectedCalendarDate =
-  today();
-
-
-/* ==================================================
-   CURRENT THERAPY MODAL TYPE
-================================================== */
-
-let modalTherapyType = "";
-
-
-/* ==================================================
-   HELPER
-================================================== */
 
 function el(id){
-
-  return document.getElementById(id);
-
+return document.getElementById(id);
 }
 
 
@@ -1657,27 +1553,9 @@ function el(id){
 
 function today(){
 
-  const d =
-    new Date();
+const d=new Date();
 
-
-  const year =
-    d.getFullYear();
-
-
-  const month =
-    String(
-      d.getMonth() + 1
-    ).padStart(2,"0");
-
-
-  const day =
-    String(
-      d.getDate()
-    ).padStart(2,"0");
-
-
-  return `${year}-${month}-${day}`;
+return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 
 }
 
@@ -1686,23 +1564,9 @@ function today(){
    DATE KEY
 ================================================== */
 
-function dateKey(
-  year,
-  month,
-  day
-){
+function dateKey(year,month,day){
 
-  return (
-
-    year +
-    "-" +
-    String(month + 1)
-      .padStart(2,"0") +
-    "-" +
-    String(day)
-      .padStart(2,"0")
-
-  );
+return year+"-"+String(month+1).padStart(2,"0")+"-"+String(day).padStart(2,"0");
 
 }
 
@@ -1711,59 +1575,23 @@ function dateKey(
    ADD DAYS
 ================================================== */
 
-function addDays(
-  dateString,
-  days
-){
+function addDays(dateString,days){
 
-  if(!dateString){
+if(!dateString)return today();
 
-    return today();
+const parts=dateString.split("-");
 
-  }
+if(parts.length!==3)return today();
 
+const d=new Date(
+Number(parts[0]),
+Number(parts[1])-1,
+Number(parts[2])
+);
 
-  const parts =
-    dateString.split("-");
+d.setDate(d.getDate()+days);
 
-
-  if(parts.length !== 3){
-
-    return today();
-
-  }
-
-
-  const d =
-    new Date(
-      Number(parts[0]),
-      Number(parts[1]) - 1,
-      Number(parts[2])
-    );
-
-
-  d.setDate(
-    d.getDate() + days
-  );
-
-
-  const year =
-    d.getFullYear();
-
-
-  const month =
-    String(
-      d.getMonth() + 1
-    ).padStart(2,"0");
-
-
-  const day =
-    String(
-      d.getDate()
-    ).padStart(2,"0");
-
-
-  return `${year}-${month}-${day}`;
+return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 
 }
 
@@ -1774,10 +1602,10 @@ function addDays(
 
 function saveSessions(){
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(sessions)
-  );
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(sessions)
+);
 
 }
 
@@ -1788,125 +1616,78 @@ function saveSessions(){
 
 function show(page){
 
-  [
-    "home",
-    "add",
-    "history",
-    "calendar"
-  ].forEach(id => {
-
-    el(id).classList.toggle(
-      "hidden",
-      id !== page
-    );
-
-  });
+["home","add","history","calendar"]
+.forEach(id=>{
+el(id).classList.toggle(
+"hidden",
+id!==page
+);
+});
 
 
-  document
-    .querySelectorAll(
-      "nav button"
-    )
-    .forEach(button => {
-
-      button.classList.toggle(
-        "active",
-        button.dataset.page === page
-      );
-
-    });
+document
+.querySelectorAll("nav button")
+.forEach(button=>{
+button.classList.toggle(
+"active",
+button.dataset.page===page
+);
+});
 
 
-  render();
+render();
 
 }
 
 
 document
-  .querySelectorAll(
-    "nav button"
-  )
-  .forEach(button => {
+.querySelectorAll("nav button")
+.forEach(button=>{
 
-    button.addEventListener(
-      "click",
-      function(){
+button.addEventListener(
+"click",
+function(){
 
-        if(
-          this.dataset.page ===
-          "add"
-        ){
+if(this.dataset.page==="add"){
+resetForm();
+}
 
-          resetForm();
+show(this.dataset.page);
 
-        }
+});
 
-
-        show(
-          this.dataset.page
-        );
-
-      }
-    );
-
-  });
+});
 
 
 /* ==================================================
    DATE FORMAT
 ================================================== */
 
-function formatDate(
-  date,
-  time
-){
+function formatDate(date,time){
 
-  if(!date){
+if(!date)return "";
 
-    return "";
+const value=time
+?date+"T"+time
+:date+"T00:00";
 
-  }
+const d=new Date(value);
 
+if(Number.isNaN(d.getTime())){
 
-  const value =
-    time
-      ? date + "T" + time
-      : date + "T00:00";
+return date+(time?" • "+time:"");
 
+}
 
-  const d =
-    new Date(value);
-
-
-  if(
-    Number.isNaN(
-      d.getTime()
-    )
-  ){
-
-    return date +
-      (
-        time
-          ? " • " + time
-          : ""
-      );
-
-  }
-
-
-  return d.toLocaleDateString(
-    "en-IN",
-    {
-      day:"2-digit",
-      month:"short",
-      year:"numeric"
-    }
-  ) +
-  (
-    time
-      ? " • " + formatStoredTime(time)
-      : ""
-  );
+return d.toLocaleDateString(
+"en-IN",
+{
+day:"2-digit",
+month:"short",
+year:"numeric"
+}
+)+
+(time?" • "+formatStoredTime(time):"");
 
 }
 
@@ -1917,368 +1698,204 @@ function formatDate(
 
 function getDayName(dateString){
 
-  if(!dateString){
+if(!dateString)return "";
 
-    return "";
+const p=dateString.split("-");
 
-  }
+if(p.length!==3)return "";
 
+const d=new Date(
+Number(p[0]),
+Number(p[1])-1,
+Number(p[2])
+);
 
-  const parts =
-    dateString.split("-");
-
-
-  if(parts.length !== 3){
-
-    return "";
-
-  }
-
-
-  const d =
-    new Date(
-      Number(parts[0]),
-      Number(parts[1]) - 1,
-      Number(parts[2])
-    );
-
-
-  return d.toLocaleDateString(
-    "en-IN",
-    {
-      weekday:"long"
-    }
-  );
+return d.toLocaleDateString(
+"en-IN",
+{weekday:"long"}
+);
 
 }
 
 
 /* ==================================================
-   TIME HELPERS
+   TIME
 ================================================== */
 
 function normalizeTime(time){
 
-  if(!time){
+if(!time)return "";
 
-    return "";
+const value=String(time).trim();
 
-  }
+const match24=
+value.match(/^(\d{1,2}):(\d{2})$/);
 
+if(match24){
 
-  const value =
-    String(time).trim();
+let h=Number(match24[1]);
+const m=match24[2];
 
+if(h>=0&&h<=23){
 
-  /*
-    Existing data is stored as
-    HH:MM 24-hour format.
-  */
+return String(h).padStart(2,"0")+":"+m;
 
-  const match24 =
-    value.match(
-      /^(\d{1,2}):(\d{2})$/
-    );
+}
 
-
-  if(match24){
-
-    let h =
-      Number(match24[1]);
-
-    const m =
-      match24[2];
+}
 
 
-    if(h >= 0 && h <= 23){
+const match12=
+value.match(
+/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i
+);
 
-      return (
-        String(h).padStart(2,"0") +
-        ":" +
-        m
-      );
+if(match12){
 
-    }
+let h=Number(match12[1]);
+const m=match12[2];
+const ap=match12[3].toUpperCase();
 
-  }
+if(h>=1&&h<=12){
 
+if(ap==="AM"&&h===12)h=0;
 
-  /*
-    Also support old/new 12-hour
-    values if present.
-  */
+else if(ap==="PM"&&h!==12)h+=12;
 
-  const match12 =
-    value.match(
-      /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i
-    );
+return String(h).padStart(2,"0")+":"+m;
 
+}
 
-  if(match12){
+}
 
-    let h =
-      Number(match12[1]);
-
-    const m =
-      match12[2];
-
-    const ap =
-      match12[3].toUpperCase();
-
-
-    if(h >= 1 && h <= 12){
-
-      if(ap === "AM" && h === 12){
-
-        h = 0;
-
-      }
-
-      else if(ap === "PM" && h !== 12){
-
-        h += 12;
-
-      }
-
-
-      return (
-        String(h).padStart(2,"0") +
-        ":" +
-        m
-      );
-
-    }
-
-  }
-
-
-  return value;
+return value;
 
 }
 
 
 function formatStoredTime(time){
 
-  const normalized =
-    normalizeTime(time);
+const normalized=normalizeTime(time);
 
+const match=
+normalized.match(/^(\d{1,2}):(\d{2})$/);
 
-  const match =
-    normalized.match(
-      /^(\d{1,2}):(\d{2})$/
-    );
+if(!match)return time||"";
 
+let hour=Number(match[1]);
+const minute=match[2];
 
-  if(!match){
+if(hour>23)return time;
 
-    return time || "";
+const ampm=hour>=12?"PM":"AM";
 
-  }
+hour=hour%12||12;
 
-
-  let hour =
-    Number(match[1]);
-
-  const minute =
-    match[2];
-
-
-  if(hour > 23){
-
-    return time;
-
-  }
-
-
-  const ampm =
-    hour >= 12
-      ? "PM"
-      : "AM";
-
-
-  hour =
-    hour % 12 || 12;
-
-
-  return (
-    String(hour) +
-    ":" +
-    minute +
-    " " +
-    ampm
-  );
+return String(hour)+":"+minute+" "+ampm;
 
 }
 
 
 function setTimeFields(time){
 
-  const normalized =
-    normalizeTime(time);
+const normalized=normalizeTime(time);
 
+if(!normalized){
 
-  if(!normalized){
+el("hour").value="";
+el("minute").value="";
+el("ampm").value="AM";
+el("time").value="";
 
-    el("hour").value = "";
-    el("minute").value = "";
-    el("ampm").value = "AM";
-    el("time").value = "";
+return;
 
-    return;
+}
 
-  }
+const parts=normalized.split(":");
 
+if(parts.length!==2)return;
 
-  const parts =
-    normalized.split(":");
+let hour=Number(parts[0]);
+const minute=Number(parts[1]);
 
+if(
+Number.isNaN(hour)||
+Number.isNaN(minute)
+)return;
 
-  if(parts.length !== 2){
+const ampm=hour>=12?"PM":"AM";
 
-    return;
+hour=hour%12||12;
 
-  }
+el("hour").value=hour;
 
+el("minute").value=
+String(minute).padStart(2,"0");
 
-  let hour =
-    Number(parts[0]);
+el("ampm").value=ampm;
 
-  const minute =
-    Number(parts[1]);
-
-
-  if(
-    Number.isNaN(hour) ||
-    Number.isNaN(minute)
-  ){
-
-    return;
-
-  }
-
-
-  const ampm =
-    hour >= 12
-      ? "PM"
-      : "AM";
-
-
-  hour =
-    hour % 12 || 12;
-
-
-  el("hour").value =
-    hour;
-
-  el("minute").value =
-    String(minute).padStart(2,"0");
-
-  el("ampm").value =
-    ampm;
-
-  el("time").value =
-    normalized;
+el("time").value=normalized;
 
 }
 
 
 function getTimeFromFields(){
 
-  const hourValue =
-    String(
-      el("hour").value || ""
-    ).trim();
+const hourValue=
+String(el("hour").value||"").trim();
 
+const minuteValue=
+String(el("minute").value||"").trim();
 
-  const minuteValue =
-    String(
-      el("minute").value || ""
-    ).trim();
+const ampm=el("ampm").value;
 
+if(!hourValue&&!minuteValue){
+return "";
+}
 
-  const ampm =
-    el("ampm").value;
+let hour=Number(hourValue);
 
+let minute=Number(minuteValue||0);
 
-  /*
-    Time is optional.
-    If all fields are empty,
-    store empty time exactly as before.
-  */
+if(
+!Number.isInteger(hour)||
+hour<1||
+hour>12
+){
 
-  if(
-    !hourValue &&
-    !minuteValue
-  ){
+alert(
+"Please enter a valid hour between 1 and 12."
+);
 
-    return "";
+return null;
 
-  }
+}
 
+if(
+!Number.isInteger(minute)||
+minute<0||
+minute>59
+){
 
-  let hour =
-    Number(hourValue);
+alert(
+"Please enter minutes between 0 and 59."
+);
 
-  let minute =
-    Number(minuteValue || 0);
+return null;
 
+}
 
-  if(
-    !Number.isInteger(hour) ||
-    hour < 1 ||
-    hour > 12
-  ){
+if(ampm==="AM"){
 
-    alert(
-      "Please enter a valid hour between 1 and 12."
-    );
+if(hour===12)hour=0;
 
-    return null;
+}else{
 
-  }
+if(hour!==12)hour+=12;
 
+}
 
-  if(
-    !Number.isInteger(minute) ||
-    minute < 0 ||
-    minute > 59
-  ){
-
-    alert(
-      "Please enter minutes between 0 and 59."
-    );
-
-    return null;
-
-  }
-
-
-  if(ampm === "AM"){
-
-    if(hour === 12){
-
-      hour = 0;
-
-    }
-
-  }
-
-  else{
-
-    if(hour !== 12){
-
-      hour += 12;
-
-    }
-
-  }
-
-
-  return (
-    String(hour).padStart(2,"0") +
-    ":" +
-    String(minute).padStart(2,"0")
-  );
+return String(hour).padStart(2,"0")+":"+String(minute).padStart(2,"0");
 
 }
 
@@ -2289,163 +1906,87 @@ function getTimeFromFields(){
 
 function esc(value){
 
-  return String(
-    value ?? ""
-  ).replace(
-    /[&<>"']/g,
-    function(c){
+return String(value??"")
+.replace(
+/[&<>"']/g,
+function(c){
 
-      return {
+return{
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
 
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#39;"
+}[c];
 
-      }[c];
-
-    }
-  );
+}
+);
 
 }
 
 
 /* ==================================================
-   DUPLICATE CHECK
+   DUPLICATE
 ================================================== */
 
 function isDuplicate(
-  date,
-  time,
-  type,
-  ignoreId = null
+date,
+time,
+type,
+ignoreId=null
 ){
 
-  const normalizedDate =
-    String(date || "")
-      .trim();
+return sessions.some(session=>{
 
+if(
+ignoreId!==null&&
+String(session.id)===String(ignoreId)
+){
 
-  const normalizedTime =
-    String(time || "")
-      .trim();
+return false;
 
+}
 
-  const normalizedType =
-    String(type || "")
-      .trim()
-      .toLowerCase();
+return(
+String(session.date||"").trim()===String(date||"").trim()&&
+String(session.time||"").trim()===String(time||"").trim()&&
+String(session.type||"").trim().toLowerCase()===String(type||"").trim().toLowerCase()
+);
 
-
-  return sessions.some(
-    session => {
-
-      if(
-        ignoreId !== null &&
-        String(session.id) ===
-        String(ignoreId)
-      ){
-
-        return false;
-
-      }
-
-
-      return (
-
-        String(session.date || "")
-          .trim() ===
-        normalizedDate
-
-        &&
-
-        String(session.time || "")
-          .trim() ===
-        normalizedTime
-
-        &&
-
-        String(session.type || "")
-          .trim()
-          .toLowerCase() ===
-        normalizedType
-
-      );
-
-    }
-  );
+});
 
 }
 
 
 /* ==================================================
-   GET RATE
+   RATE
 ================================================== */
 
 function getRate(type){
 
-  const normalized =
-    String(
-      type || ""
-    ).trim();
+const normalized=String(type||"").trim();
 
+if(
+Object.prototype.hasOwnProperty.call(
+THERAPY_RATES,
+normalized
+)
+){
 
-  if(
-    Object.prototype.hasOwnProperty.call(
-      THERAPY_RATES,
-      normalized
-    )
-  ){
+return THERAPY_RATES[normalized];
 
-    return THERAPY_RATES[
-      normalized
-    ];
+}
 
-  }
+if(normalized.toLowerCase()==="ot")return 450;
 
+if(normalized.toLowerCase()==="speech")return 350;
 
-  if(
-    normalized.toLowerCase() ===
-    "ot"
-  ){
+if(normalized.toLowerCase().includes("speech"))return 350;
 
-    return 450;
+if(normalized.toLowerCase().includes("occupational"))return 450;
 
-  }
-
-
-  if(
-    normalized.toLowerCase() ===
-    "speech"
-  ){
-
-    return 350;
-
-  }
-
-
-  if(
-    normalized.toLowerCase()
-      .includes("speech")
-  ){
-
-    return 350;
-
-  }
-
-
-  if(
-    normalized.toLowerCase()
-      .includes("occupational")
-  ){
-
-    return 450;
-
-  }
-
-
-  return 0;
+return 0;
 
 }
 
@@ -2454,187 +1995,118 @@ function getRate(type){
    SESSION CARD
 ================================================== */
 
-function card(
-  session,
-  showActions
-){
+function card(session,showActions){
 
-  const status =
-    String(
-      session.status ||
-      "Planned"
-    );
+const status=
+String(session.status||"Planned");
 
+const valid=[
+"Attended",
+"Missed",
+"Planned",
+"Rescheduled"
+];
 
-  const validStatuses = [
+const safeStatus=
+valid.includes(status)
+?status
+:"Planned";
 
-    "Attended",
-    "Missed",
-    "Planned",
-    "Rescheduled"
-
-  ];
-
-
-  const safeStatus =
-    validStatuses.includes(
-      status
-    )
-      ? status
-      : "Planned";
-
-
-  return `
+return`
 
 <div class="session">
 
 <div class="session-info">
 
-
 <div class="session-type">
 
-${esc(
-  session.type ||
-  "Therapy Session"
-)}
+${esc(session.type||"Therapy Session")}
 
 </div>
-
 
 <div class="small">
 
-${esc(
-  formatDate(
-    session.date,
-    session.time
-  )
-)}
+${esc(formatDate(
+session.date,
+session.time
+))}
 
 </div>
 
-
 ${
-  session.therapist
-
-    ?
-
-`<div class="small therapist">
-
-👤 ${esc(
-  session.therapist
-)}
-
-</div>`
-
-    :
-
-""
-}
-
-
-${
-  session.notes
-
-    ?
-
-`<div class="small notes">
-
-📝 ${esc(
-  session.notes
-)}
-
-</div>`
-
-    :
-
-""
-}
-
-
-${
-  showActions
-
-  ?
-
+session.therapist
+?`
+<div class="small therapist">
+👤 ${esc(session.therapist)}
+</div>
 `
+:""
+}
+
+${
+session.notes
+?`
+<div class="small notes">
+📝 ${esc(session.notes)}
+</div>
+`
+:""
+}
+
+${
+showActions
+?`
 
 <div class="actions">
 
-
 ${
-  safeStatus === "Planned" ||
-  safeStatus === "Rescheduled"
-
-  ?
-
-`<button
-  type="button"
-  class="light"
-  data-attend="${esc(session.id)}">
-
+safeStatus==="Planned"||
+safeStatus==="Rescheduled"
+?`
+<button
+type="button"
+class="light"
+data-attend="${esc(session.id)}">
 ✓ Mark Attended
-
-</button>`
-
-  :
-
-""
+</button>
+`
+:""
 }
 
-
 <button
-  type="button"
-  class="edit"
-  data-edit="${esc(session.id)}">
-
+type="button"
+class="edit"
+data-edit="${esc(session.id)}">
 ✏️ Edit
-
 </button>
 
-
 <button
-  type="button"
-  class="copy"
-  data-copy="${esc(session.id)}">
-
+type="button"
+class="copy"
+data-copy="${esc(session.id)}">
 📋 Copy
-
 </button>
-
 
 <button
-  type="button"
-  class="danger"
-  data-delete="${esc(session.id)}">
-
+type="button"
+class="danger"
+data-delete="${esc(session.id)}">
 🗑 Delete
-
 </button>
-
 
 </div>
 
 `
-
-  :
-
-  ""
-
+:""
 }
-
 
 </div>
 
+<span class="badge ${safeStatus.toLowerCase()}">
 
-<span
-  class="badge ${safeStatus.toLowerCase()}">
-
-${esc(
-  safeStatus
-)}
+${esc(safeStatus)}
 
 </span>
-
 
 </div>
 
@@ -2649,134 +2121,75 @@ ${esc(
 
 function renderTherapySummary(){
 
-  const container =
-    el("therapySummary");
+const container=el("therapySummary");
+
+if(!sessions.length){
+
+container.innerHTML=
+`<div class="empty">No therapy sessions recorded</div>`;
+
+return;
+
+}
+
+const groups={};
+
+sessions.forEach(session=>{
+
+const type=
+String(session.type||"Other").trim();
+
+if(!groups[type]){
+
+groups[type]={
+total:0,
+attended:0,
+missed:0,
+planned:0,
+rescheduled:0
+};
+
+}
+
+groups[type].total++;
+
+if(session.status==="Attended")
+groups[type].attended++;
+
+if(session.status==="Missed")
+groups[type].missed++;
+
+if(session.status==="Planned")
+groups[type].planned++;
+
+if(session.status==="Rescheduled")
+groups[type].rescheduled++;
+
+});
 
 
-  if(!sessions.length){
+container.innerHTML=
+Object.keys(groups)
+.sort()
+.map(type=>{
 
-    container.innerHTML = `
+const g=groups[type];
 
-<div class="empty">
-
-No therapy sessions recorded
-
-</div>
-
-`;
-
-    return;
-
-  }
-
-
-  const groups = {};
-
-
-  sessions.forEach(
-    session => {
-
-      const type =
-        String(
-          session.type ||
-          "Other"
-        ).trim();
-
-
-      if(!groups[type]){
-
-        groups[type] = {
-
-          total:0,
-          attended:0,
-          missed:0,
-          planned:0,
-          rescheduled:0
-
-        };
-
-      }
-
-
-      groups[type].total++;
-
-
-      if(
-        session.status ===
-        "Attended"
-      ){
-
-        groups[type].attended++;
-
-      }
-
-
-      if(
-        session.status ===
-        "Missed"
-      ){
-
-        groups[type].missed++;
-
-      }
-
-
-      if(
-        session.status ===
-        "Planned"
-      ){
-
-        groups[type].planned++;
-
-      }
-
-
-      if(
-        session.status ===
-        "Rescheduled"
-      ){
-
-        groups[type].rescheduled++;
-
-      }
-
-    }
-  );
-
-
-  const types =
-    Object.keys(groups)
-      .sort();
-
-
-  container.innerHTML =
-    types.map(
-      type => {
-
-        const g =
-          groups[type];
-
-
-        return `
+return`
 
 <div
-  class="summary-card"
-  data-therapy-summary="${esc(type)}">
-
+class="summary-card"
+data-therapy-summary="${esc(type)}">
 
 <div class="summary-title">
-
 ${esc(type)}
-
 </div>
-
 
 <div class="summary-grid">
 
-
 <div
-  class="summary-item summary-total"
-  data-summary-type="${esc(type)}">
+class="summary-item summary-total"
+data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.total}
@@ -2788,10 +2201,9 @@ Total
 
 </div>
 
-
 <div
-  class="summary-item summary-attended"
-  data-summary-type="${esc(type)}">
+class="summary-item summary-attended"
+data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.attended}
@@ -2803,10 +2215,9 @@ Attended
 
 </div>
 
-
 <div
-  class="summary-item summary-missed"
-  data-summary-type="${esc(type)}">
+class="summary-item summary-missed"
+data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.missed}
@@ -2818,10 +2229,9 @@ Missed
 
 </div>
 
-
 <div
-  class="summary-item summary-planned"
-  data-summary-type="${esc(type)}">
+class="summary-item summary-planned"
+data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.planned}
@@ -2833,318 +2243,348 @@ Planned
 
 </div>
 
-
 </div>
 
-
 ${
-  g.rescheduled > 0
-
-  ?
-
-`<div
-  class="small"
-  style="margin-top:8px">
-
+g.rescheduled>0
+?`
+<div class="small" style="margin-top:8px">
 Rescheduled: ${g.rescheduled}
-
-</div>`
-
-  :
-
-""
+</div>
+`
+:""
 }
-
 
 </div>
 
 `;
 
-      }
-    )
-    .join("");
+})
+.join("");
 
 }
 
 
 /* ==================================================
-   COST SUMMARY
+   COST
 ================================================== */
 
 function renderCostSummary(){
 
-  const container =
-    el("costSummary");
+const container=el("costSummary");
+
+if(!sessions.length){
+
+container.innerHTML=
+`<div class="empty">No therapy cost data</div>`;
+
+return;
+
+}
+
+const groups={};
+
+let attendedTotal=0;
+let plannedTotal=0;
+let missedTotal=0;
+
+sessions.forEach(session=>{
+
+const type=
+String(session.type||"Other").trim();
+
+const rate=getRate(type);
+
+if(!groups[type]){
+
+groups[type]={
+rate,
+attended:0,
+planned:0,
+missed:0,
+attendedAmount:0,
+plannedAmount:0,
+missedAmount:0
+};
+
+}
+
+if(session.status==="Attended"){
+
+groups[type].attended++;
+groups[type].attendedAmount+=rate;
+attendedTotal+=rate;
+
+}
+
+if(session.status==="Planned"){
+
+groups[type].planned++;
+groups[type].plannedAmount+=rate;
+plannedTotal+=rate;
+
+}
+
+if(session.status==="Missed"){
+
+groups[type].missed++;
+groups[type].missedAmount+=rate;
+missedTotal+=rate;
+
+}
+
+});
 
 
-  if(!sessions.length){
+container.innerHTML=
+Object.keys(groups)
+.sort()
+.map(type=>{
 
-    container.innerHTML = `
+const g=groups[type];
 
-<div class="empty">
-
-No therapy cost data
-
-</div>
-
-`;
-
-    return;
-
-  }
-
-
-  const groups = {};
-
-
-  let attendedTotal = 0;
-
-  let plannedTotal = 0;
-
-  let missedTotal = 0;
-
-
-  sessions.forEach(
-    session => {
-
-      const type =
-        String(
-          session.type ||
-          "Other"
-        ).trim();
-
-
-      const rate =
-        getRate(type);
-
-
-      if(!groups[type]){
-
-        groups[type] = {
-
-          rate:rate,
-          attended:0,
-          planned:0,
-          missed:0,
-          attendedAmount:0,
-          plannedAmount:0,
-          missedAmount:0
-
-        };
-
-      }
-
-
-      if(
-        session.status ===
-        "Attended"
-      ){
-
-        groups[type].attended++;
-
-        groups[type].attendedAmount +=
-          rate;
-
-        attendedTotal +=
-          rate;
-
-      }
-
-
-      if(
-        session.status ===
-        "Planned"
-      ){
-
-        groups[type].planned++;
-
-        groups[type].plannedAmount +=
-          rate;
-
-        plannedTotal +=
-          rate;
-
-      }
-
-
-      if(
-        session.status ===
-        "Missed"
-      ){
-
-        groups[type].missed++;
-
-        groups[type].missedAmount +=
-          rate;
-
-        missedTotal +=
-          rate;
-
-      }
-
-    }
-  );
-
-
-  const types =
-    Object.keys(groups)
-      .sort();
-
-
-  container.innerHTML =
-
-    types.map(
-      type => {
-
-        const g =
-          groups[type];
-
-
-        return `
+return`
 
 <div class="cost-card">
 
-
 <div class="cost-title">
-
 ${esc(type)}
-
 </div>
-
 
 <div class="cost-row">
-
-<span>
-Rate / session
-</span>
-
-<span class="cost-value">
-
-₹${g.rate}
-
-</span>
-
+<span>Rate / session</span>
+<span class="cost-value">₹${g.rate}</span>
 </div>
-
 
 <div class="cost-row">
-
-<span>
-Attended (${g.attended})
-</span>
-
-<span class="cost-value">
-
-₹${g.attendedAmount}
-
-</span>
-
+<span>Attended (${g.attended})</span>
+<span class="cost-value">₹${g.attendedAmount}</span>
 </div>
-
 
 <div class="cost-row">
-
-<span>
-Planned (${g.planned})
-</span>
-
-<span class="cost-value">
-
-₹${g.plannedAmount}
-
-</span>
-
+<span>Planned (${g.planned})</span>
+<span class="cost-value">₹${g.plannedAmount}</span>
 </div>
-
 
 <div class="cost-row">
-
-<span>
-Missed (${g.missed})
-</span>
-
-<span class="cost-value">
-
-₹${g.missedAmount}
-
-</span>
-
+<span>Missed (${g.missed})</span>
+<span class="cost-value">₹${g.missedAmount}</span>
 </div>
-
 
 </div>
 
 `;
 
-      }
-    ).join("")
+})
+.join("")
 
-
-    +
-
-`
++`
 
 <div class="cost-card">
 
-
 <div class="cost-title">
-
 Overall Cost
-
 </div>
-
 
 <div class="cost-row">
-
-<span>
-Attended value
-</span>
-
-<span class="cost-value">
-₹${attendedTotal}
-</span>
-
+<span>Attended value</span>
+<span class="cost-value">₹${attendedTotal}</span>
 </div>
-
 
 <div class="cost-row">
-
-<span>
-Planned value
-</span>
-
-<span class="cost-value">
-₹${plannedTotal}
-</span>
-
+<span>Planned value</span>
+<span class="cost-value">₹${plannedTotal}</span>
 </div>
-
 
 <div class="cost-row">
-
-<span>
-Missed value
-</span>
-
-<span class="cost-value">
-₹${missedTotal}
-</span>
-
+<span>Missed value</span>
+<span class="cost-value">₹${missedTotal}</span>
 </div>
-
 
 <div class="total-cost">
-
 Attended Total: ₹${attendedTotal}
-
 </div>
-
 
 </div>
 
 `;
 
 }
+
+
+/* ==================================================
+   DATE SCROLL
+================================================== */
+
+function renderDateScroll(centerDate){
+
+const container=el("dateScroll");
+
+if(!container)return;
+
+const selected=
+centerDate||
+el("date").value||
+today();
+
+container.innerHTML="";
+
+/*
+  Show 31 dates:
+  15 before selected date
+  selected date
+  15 after selected date
+*/
+
+for(let i=-15;i<=15;i++){
+
+const date=
+addDays(selected,i);
+
+const parts=date.split("-");
+
+const d=new Date(
+Number(parts[0]),
+Number(parts[1])-1,
+Number(parts[2])
+);
+
+const item=
+document.createElement("button");
+
+item.type="button";
+
+item.className=
+"date-scroll-item"+
+(
+date===el("date").value
+?" selected"
+:""
+);
+
+if(
+sessions.some(
+x=>x.date===date
+)
+){
+
+item.classList.add(
+"has-session"
+);
+
+}
+
+item.innerHTML=`
+
+<div class="date-day">
+${d.toLocaleDateString(
+"en-IN",
+{weekday:"short"}
+)}
+</div>
+
+<div class="date-number">
+${d.getDate()}
+</div>
+
+<div class="date-month">
+${d.toLocaleDateString(
+"en-IN",
+{month:"short"}
+)}
+</div>
+
+`;
+
+item.addEventListener(
+"click",
+function(){
+
+el("date").value=date;
+
+renderDateScroll(date);
+
+});
+
+container.appendChild(item);
+
+}
+
+
+/*
+  Automatically keep selected
+  date in the center.
+*/
+
+setTimeout(()=>{
+
+const selectedItem=
+container.querySelector(
+".selected"
+);
+
+if(selectedItem){
+
+selectedItem.scrollIntoView({
+behavior:"smooth",
+block:"nearest",
+inline:"center"
+});
+
+}
+
+},30);
+
+}
+
+
+/* ==================================================
+   MANUAL DATE CHANGE
+================================================== */
+
+el("date").addEventListener(
+"change",
+function(){
+
+if(this.value){
+
+renderDateScroll(
+this.value
+);
+
+}
+
+});
+
+
+/* ==================================================
+   DATE SCROLL ARROWS
+================================================== */
+
+el("dateScrollPrev")
+.addEventListener(
+"click",
+function(){
+
+el("dateScroll").scrollBy({
+left:-240,
+behavior:"smooth"
+});
+
+});
+
+
+el("dateScrollNext")
+.addEventListener(
+"click",
+function(){
+
+el("dateScroll").scrollBy({
+left:240,
+behavior:"smooth"
+});
+
+});
 
 
 /* ==================================================
@@ -3153,244 +2593,175 @@ Attended Total: ₹${attendedTotal}
 
 function renderCalendar(){
 
-  const year =
-    calendarDate.getFullYear();
+const year=calendarDate.getFullYear();
+
+const month=calendarDate.getMonth();
+
+el("calendarMonth").textContent=
+calendarDate.toLocaleDateString(
+"en-IN",
+{
+month:"long",
+year:"numeric"
+}
+);
+
+const grid=el("calendarGrid");
+
+grid.innerHTML="";
+
+const firstDay=
+new Date(
+year,
+month,
+1
+).getDay();
+
+const daysInMonth=
+new Date(
+year,
+month+1,
+0
+).getDate();
+
+for(let i=0;i<firstDay;i++){
+
+const empty=
+document.createElement("div");
+
+empty.className=
+"calendar-day empty-day";
+
+grid.appendChild(empty);
+
+}
+
+for(
+let day=1;
+day<=daysInMonth;
+day++
+){
+
+const key=
+dateKey(
+year,
+month,
+day
+);
+
+const dateObject=
+new Date(
+year,
+month,
+day
+);
+
+const isWeekend=
+dateObject.getDay()===0||
+dateObject.getDay()===6;
+
+const isToday=
+key===today();
+
+const isSelected=
+key===selectedCalendarDate;
+
+const daySessions=
+sessions.filter(
+session=>
+session.date===key
+);
+
+const dayElement=
+document.createElement("div");
+
+dayElement.className=
+"calendar-day"+
+(
+isWeekend
+?" weekend"
+:""
+)+
+(
+isToday
+?" today-day"
+:""
+)+
+(
+isSelected
+?" selected-day"
+:""
+);
+
+let markers="";
+
+daySessions.forEach(session=>{
+
+const status=
+String(
+session.status||"Planned"
+);
+
+if(status==="Attended"){
+
+markers+=
+`<span class="marker attended-marker">✓</span>`;
+
+}
+else if(status==="Missed"){
+
+markers+=
+`<span class="marker missed-marker">✕</span>`;
+
+}
+else if(status==="Rescheduled"){
+
+markers+=
+`<span class="marker rescheduled-marker">↻</span>`;
+
+}
+else{
+
+markers+=
+`<span class="marker planned-marker">•</span>`;
+
+}
+
+});
 
 
-  const month =
-    calendarDate.getMonth();
-
-
-  const monthName =
-    calendarDate.toLocaleDateString(
-      "en-IN",
-      {
-        month:"long",
-        year:"numeric"
-      }
-    );
-
-
-  el("calendarMonth")
-    .textContent =
-    monthName;
-
-
-  const grid =
-    el("calendarGrid");
-
-
-  grid.innerHTML = "";
-
-
-  const firstDay =
-    new Date(
-      year,
-      month,
-      1
-    ).getDay();
-
-
-  const daysInMonth =
-    new Date(
-      year,
-      month + 1,
-      0
-    ).getDate();
-
-
-  for(
-    let i = 0;
-    i < firstDay;
-    i++
-  ){
-
-    const empty =
-      document.createElement(
-        "div"
-      );
-
-
-    empty.className =
-      "calendar-day empty-day";
-
-
-    grid.appendChild(
-      empty
-    );
-
-  }
-
-
-  for(
-    let day = 1;
-    day <= daysInMonth;
-    day++
-  ){
-
-    const key =
-      dateKey(
-        year,
-        month,
-        day
-      );
-
-
-    const dateObject =
-      new Date(
-        year,
-        month,
-        day
-      );
-
-
-    const isWeekend =
-      dateObject.getDay() === 0 ||
-      dateObject.getDay() === 6;
-
-
-    const isToday =
-      key === today();
-
-
-    const isSelected =
-      key ===
-      selectedCalendarDate;
-
-
-    const daySessions =
-      sessions.filter(
-        session =>
-          session.date ===
-          key
-      );
-
-
-    const dayElement =
-      document.createElement(
-        "div"
-      );
-
-
-    dayElement.className =
-      "calendar-day" +
-
-      (
-        isWeekend
-          ? " weekend"
-          : ""
-      ) +
-
-      (
-        isToday
-          ? " today-day"
-          : ""
-      ) +
-
-      (
-        isSelected
-          ? " selected-day"
-          : ""
-      );
-
-
-    let markers = "";
-
-
-    daySessions.forEach(
-      session => {
-
-        const status =
-          String(
-            session.status ||
-            "Planned"
-          );
-
-
-        if(
-          status ===
-          "Attended"
-        ){
-
-          markers +=
-            `<span class="marker attended-marker">✓</span>`;
-
-        }
-
-        else if(
-          status ===
-          "Missed"
-        ){
-
-          markers +=
-            `<span class="marker missed-marker">✕</span>`;
-
-        }
-
-        else if(
-          status ===
-          "Rescheduled"
-        ){
-
-          markers +=
-            `<span class="marker rescheduled-marker">↻</span>`;
-
-        }
-
-        else{
-
-          markers +=
-            `<span class="marker planned-marker">•</span>`;
-
-        }
-
-      }
-    );
-
-
-    dayElement.innerHTML = `
+dayElement.innerHTML=`
 
 <div class="calendar-number">
-
 ${day}
-
 </div>
 
-
 <div class="calendar-markers">
-
 ${markers}
-
 </div>
 
 `;
 
 
-    dayElement.addEventListener(
-      "click",
-      function(){
+dayElement.addEventListener(
+"click",
+function(){
 
-        selectedCalendarDate =
-          key;
+selectedCalendarDate=key;
 
+renderCalendar();
 
-        renderCalendar();
+renderSelectedCalendarDate();
 
+});
 
-        renderSelectedCalendarDate();
+grid.appendChild(
+dayElement
+);
 
-      }
-    );
+}
 
-
-    grid.appendChild(
-      dayElement
-    );
-
-  }
-
-
-  renderSelectedCalendarDate();
+renderSelectedCalendarDate();
 
 }
 
@@ -3401,175 +2772,653 @@ ${markers}
 
 function renderSelectedCalendarDate(){
 
-  const date =
-    selectedCalendarDate;
+const date=selectedCalendarDate;
 
+if(!date){
 
-  if(!date){
+el("selectedDate").textContent=
+"Tap a calendar date.";
 
-    el("selectedDate")
-      .textContent =
-      "Tap a calendar date.";
+el("selectedSessions").innerHTML="";
 
-    el("selectedSessions")
-      .innerHTML = "";
+return;
 
-    return;
+}
 
-  }
-
-
-  const dayName =
-    getDayName(date);
-
-
-  const formatted =
-    formatDate(
-      date,
-      ""
-    );
-
-
-  el("selectedDate")
-    .innerHTML = `
+el("selectedDate").innerHTML=`
 
 <div class="selected-date-title">
-
-${esc(formatted)}
-
+${esc(formatDate(date,""))}
 </div>
 
 <div class="small">
-
-${esc(dayName)}
-
+${esc(getDayName(date))}
 </div>
 
 `;
 
+const selected=
+sessions
+.filter(x=>x.date===date)
+.sort((a,b)=>
+(a.time||"").localeCompare(
+b.time||""
+)
+);
 
-  const selected =
-    sessions
-      .filter(
-        x =>
-          x.date ===
-          date
-      )
-      .sort(
-        (a,b) => {
-
-          return (
-            (a.time || "")
-              .localeCompare(
-                b.time || ""
-              )
-          );
-
-        }
-      );
-
-
-  el("selectedSessions")
-    .innerHTML =
-
-    selected.length
-
-      ?
-
-      selected
-        .map(
-          x =>
-            card(
-              x,
-              true
-            )
-        )
-        .join("")
-
-      :
-
+el("selectedSessions").innerHTML=
+selected.length
+?
+selected.map(x=>card(x,true)).join("")
+:
 `
-
 <div class="empty">
-
 No sessions on this date.
-
 </div>
-
 `;
 
 }
 
 
 /* ==================================================
-   THERAPY DATE MODAL
+   ADD FROM CALENDAR
+================================================== */
+
+function addSessionForSelectedDate(){
+
+resetForm(
+selectedCalendarDate
+);
+
+show("add");
+
+}
+
+
+/* ==================================================
+   RESET FORM
+================================================== */
+
+function resetForm(
+selectedDateForForm=null
+){
+
+editingId=null;
+
+el("sessionForm").reset();
+
+el("date").value=
+selectedDateForForm||
+today();
+
+el("time").value="";
+
+el("hour").value="";
+
+el("minute").value="";
+
+el("ampm").value="AM";
+
+el("status").value="Planned";
+
+el("formTitle").textContent=
+"Add therapy session";
+
+el("saveButton").textContent=
+"Save session";
+
+el("cancelEdit")
+.classList.add("hidden");
+
+el("editBanner")
+.classList.add("hidden");
+
+el("copyBanner")
+.classList.add("hidden");
+
+
+/*
+  NEW:
+  Refresh the date scroll
+  whenever Add form opens.
+*/
+
+renderDateScroll(
+el("date").value
+);
+
+}
+
+
+/* ==================================================
+   EDIT
+================================================== */
+
+function editSession(id){
+
+const session=
+sessions.find(
+x=>String(x.id)===String(id)
+);
+
+if(!session){
+
+alert("Session not found.");
+
+return;
+
+}
+
+editingId=session.id;
+
+el("date").value=
+session.date||"";
+
+renderDateScroll(
+el("date").value
+);
+
+setTimeFields(
+session.time||""
+);
+
+el("type").value=
+session.type||"";
+
+el("therapist").value=
+session.therapist||"";
+
+el("status").value=
+session.status||"Planned";
+
+el("notes").value=
+session.notes||"";
+
+el("formTitle").textContent=
+"Edit therapy session";
+
+el("saveButton").textContent=
+"Save changes";
+
+el("cancelEdit")
+.classList.remove("hidden");
+
+el("editBanner")
+.classList.remove("hidden");
+
+el("copyBanner")
+.classList.add("hidden");
+
+show("add");
+
+}
+
+
+/* ==================================================
+   COPY
+================================================== */
+
+function copySession(id){
+
+const session=
+sessions.find(
+x=>String(x.id)===String(id)
+);
+
+if(!session){
+
+alert("Session not found.");
+
+return;
+
+}
+
+editingId=null;
+
+el("date").value=
+addDays(
+session.date,
+1
+);
+
+renderDateScroll(
+el("date").value
+);
+
+setTimeFields(
+session.time||""
+);
+
+el("type").value=
+session.type||"";
+
+el("therapist").value=
+session.therapist||"";
+
+el("status").value=
+"Planned";
+
+el("notes").value=
+session.notes||"";
+
+el("formTitle").textContent=
+"Copy previous session";
+
+el("saveButton").textContent=
+"Save new session";
+
+el("cancelEdit")
+.classList.add("hidden");
+
+el("editBanner")
+.classList.add("hidden");
+
+el("copyBanner")
+.classList.remove("hidden");
+
+show("add");
+
+}
+
+
+/* ==================================================
+   FORM SUBMIT
+================================================== */
+
+el("sessionForm")
+.addEventListener(
+"submit",
+function(event){
+
+event.preventDefault();
+
+const date=
+el("date").value;
+
+const time=
+getTimeFromFields();
+
+if(time===null)return;
+
+const type=
+el("type").value.trim();
+
+const therapist=
+el("therapist").value.trim();
+
+const status=
+el("status").value;
+
+const notes=
+el("notes").value.trim();
+
+if(!date||!type){
+
+alert(
+"Please select the date and therapy type."
+);
+
+return;
+
+}
+
+if(
+isDuplicate(
+date,
+time,
+type,
+editingId
+)
+){
+
+alert(
+"⚠️ Duplicate session detected.\n\n"+
+"A session with the same date, time and therapy type already exists.\n\n"+
+"Please use Edit for the existing session or choose another date/time."
+);
+
+return;
+
+}
+
+
+/* EDIT */
+
+if(editingId!==null){
+
+sessions=
+sessions.map(x=>{
+
+if(
+String(x.id)!==
+String(editingId)
+){
+
+return x;
+
+}
+
+return{
+
+...x,
+
+date:date,
+
+time:time,
+
+type:type,
+
+therapist:therapist,
+
+status:status,
+
+notes:notes
+
+};
+
+});
+
+saveSessions();
+
+resetForm();
+
+alert(
+"✅ Session updated successfully."
+);
+
+show("history");
+
+return;
+
+}
+
+
+/* NEW */
+
+const session={
+
+id:
+Date.now().toString()+
+Math.random().toString(36).slice(2),
+
+date:date,
+
+time:time,
+
+type:type,
+
+therapist:therapist,
+
+status:status,
+
+notes:notes
+
+};
+
+
+/*
+  IMPORTANT:
+  Existing data is NOT replaced.
+  This only adds one new record.
+*/
+
+sessions.push(session);
+
+saveSessions();
+
+resetForm();
+
+alert(
+"✅ Therapy session saved successfully."
+);
+
+show("home");
+
+});
+
+
+/* ==================================================
+   CANCEL
+================================================== */
+
+el("cancelEdit")
+.addEventListener(
+"click",
+function(){
+
+resetForm();
+
+show("history");
+
+});
+
+
+/* ==================================================
+   CALENDAR MONTH
+================================================== */
+
+el("previousMonth")
+.addEventListener(
+"click",
+function(){
+
+calendarDate.setMonth(
+calendarDate.getMonth()-1
+);
+
+renderCalendar();
+
+});
+
+
+el("nextMonth")
+.addEventListener(
+"click",
+function(){
+
+calendarDate.setMonth(
+calendarDate.getMonth()+1
+);
+
+renderCalendar();
+
+});
+
+
+/* ==================================================
+   CALENDAR ADD
+================================================== */
+
+el("addSelectedDate")
+.addEventListener(
+"click",
+function(){
+
+addSessionForSelectedDate();
+
+});
+
+
+/* ==================================================
+   CLICK ACTIONS
+================================================== */
+
+document.addEventListener(
+"click",
+function(event){
+
+/* Therapy number */
+
+const summary=
+event.target.closest(
+"[data-summary-type]"
+);
+
+if(summary){
+
+openTherapyModal(
+summary.dataset.summaryType
+);
+
+return;
+
+}
+
+
+/* Mark attended */
+
+const attendButton=
+event.target.closest(
+"[data-attend]"
+);
+
+if(attendButton){
+
+const id=
+attendButton.dataset.attend;
+
+sessions=
+sessions.map(
+x=>
+String(x.id)===String(id)
+?
+{
+...x,
+status:"Attended"
+}
+:
+x
+);
+
+saveSessions();
+
+render();
+
+return;
+
+}
+
+
+/* Edit */
+
+const editButton=
+event.target.closest(
+"[data-edit]"
+);
+
+if(editButton){
+
+editSession(
+editButton.dataset.edit
+);
+
+return;
+
+}
+
+
+/* Copy */
+
+const copyButton=
+event.target.closest(
+"[data-copy]"
+);
+
+if(copyButton){
+
+copySession(
+copyButton.dataset.copy
+);
+
+return;
+
+}
+
+
+/* Delete */
+
+const deleteButton=
+event.target.closest(
+"[data-delete]"
+);
+
+if(deleteButton){
+
+const id=
+deleteButton.dataset.delete;
+
+if(
+confirm(
+"Delete this session?"
+)
+){
+
+sessions=
+sessions.filter(
+x=>
+String(x.id)!==
+String(id)
+);
+
+saveSessions();
+
+render();
+
+}
+
+}
+
+});
+
+
+/* ==================================================
+   THERAPY MODAL
 ================================================== */
 
 function openTherapyModal(type){
 
-  modalTherapyType =
-    type;
+modalTherapyType=type;
 
+const therapySessions=
+sessions
+.filter(
+x=>
+String(
+x.type||"Other"
+).trim()===type
+)
+.sort(
+(a,b)=>{
 
-  const therapySessions =
-    sessions
-      .filter(
-        x =>
-          String(
-            x.type || "Other"
-          ).trim() ===
-          type
-      )
-      .sort(
-        (a,b) => {
+const aa=
+(a.date||"")+"T"+(a.time||"00:00");
 
-          const aa =
-            (a.date || "") +
-            "T" +
-            (a.time || "00:00");
+const bb=
+(b.date||"")+"T"+(b.time||"00:00");
 
-          const bb =
-            (b.date || "") +
-            "T" +
-            (b.time || "00:00");
+return bb.localeCompare(aa);
 
-          return bb.localeCompare(aa);
+}
+);
 
-        }
-      );
+el("modalTitle").textContent=type;
 
+const attended=
+therapySessions.filter(
+x=>x.status==="Attended"
+).length;
 
-  el("modalTitle")
-    .textContent =
-    type;
+const missed=
+therapySessions.filter(
+x=>x.status==="Missed"
+).length;
 
+const planned=
+therapySessions.filter(
+x=>x.status==="Planned"
+).length;
 
-  const attended =
-    therapySessions.filter(
-      x =>
-        x.status ===
-        "Attended"
-    ).length;
-
-
-  const missed =
-    therapySessions.filter(
-      x =>
-        x.status ===
-        "Missed"
-    ).length;
-
-
-  const planned =
-    therapySessions.filter(
-      x =>
-        x.status ===
-        "Planned"
-    ).length;
-
-
-  el("modalSummary")
-    .innerHTML = `
+el("modalSummary").innerHTML=`
 
 <strong>
 ${therapySessions.length} sessions
@@ -3589,24 +3438,16 @@ ${therapySessions.length} sessions
 
 `;
 
+el("modalDateList").innerHTML=
+therapySessions.length
+?
+therapySessions.map(
+session=>{
 
-  el("modalDateList")
-    .innerHTML =
+const status=
+session.status||"Planned";
 
-    therapySessions.length
-
-      ?
-
-      therapySessions
-        .map(
-          session => {
-
-            const status =
-              session.status ||
-              "Planned";
-
-
-            return `
+return`
 
 <div class="date-list-item">
 
@@ -3615,1053 +3456,230 @@ ${therapySessions.length} sessions
 <div>
 
 <div class="date-list-date">
-
 ${esc(
-  formatDate(
-    session.date,
-    ""
-  )
+formatDate(
+session.date,
+""
+)
 )}
-
 </div>
 
 <div class="date-list-day">
-
 ${esc(
-  getDayName(
-    session.date
-  )
+getDayName(
+session.date
+)
 )}
-
 </div>
 
 </div>
-
 
 <span class="badge ${status.toLowerCase()}">
-
 ${esc(status)}
-
 </span>
 
 </div>
 
-
 <div class="date-list-time">
 
 🕐 ${
-  session.time
-    ? esc(formatStoredTime(session.time))
-    : "Time not entered"
+session.time
+?esc(formatStoredTime(session.time))
+:"Time not entered"
 }
 
 </div>
 
-
 ${
-  session.therapist
-
-    ?
-
-`<div class="small" style="margin-top:5px">
-
+session.therapist
+?`
+<div
+class="small"
+style="margin-top:5px">
 👤 ${esc(session.therapist)}
-
-</div>`
-
-    :
-
-""
+</div>
+`
+:""
 }
-
 
 ${
-  session.notes
-
-    ?
-
-`<div class="small" style="margin-top:5px">
-
+session.notes
+?`
+<div
+class="small"
+style="margin-top:5px">
 📝 ${esc(session.notes)}
-
-</div>`
-
-    :
-
-""
+</div>
+`
+:""
 }
 
-
 </div>
 
 `;
 
-          }
-        )
-        .join("")
-
-      :
-
+}
+).join("")
+:
 `
-
 <div class="empty">
-
 No sessions found for this therapy.
-
 </div>
-
 `;
 
-
-  el("therapyModal")
-    .classList.remove(
-      "hidden"
-    );
+el("therapyModal")
+.classList.remove("hidden");
 
 }
 
 
 function closeTherapyModal(){
 
-  el("therapyModal")
-    .classList.add(
-      "hidden"
-    );
+el("therapyModal")
+.classList.add("hidden");
 
 }
 
 
 /* ==================================================
-   MAIN RENDER
+   RENDER
 ================================================== */
 
 function render(){
 
-  const total =
-    sessions.length;
+const total=sessions.length;
 
+const attended=
+sessions.filter(
+x=>x.status==="Attended"
+).length;
 
-  const attended =
-    sessions.filter(
-      x =>
-        x.status ===
-        "Attended"
-    ).length;
+const missed=
+sessions.filter(
+x=>x.status==="Missed"
+).length;
 
+el("total").textContent=total;
 
-  const missed =
-    sessions.filter(
-      x =>
-        x.status ===
-        "Missed"
-    ).length;
+el("attended").textContent=attended;
 
+el("missed").textContent=missed;
 
-  el("total").textContent =
-    total;
+const completed=
+attended+missed;
 
+el("rate").textContent=
+(
+completed
+?
+Math.round(
+attended/completed*100
+)
+:
+0
+)+"%";
 
-  el("attended").textContent =
-    attended;
 
+renderTherapySummary();
 
-  el("missed").textContent =
-    missed;
+renderCostSummary();
 
 
-  const completed =
-    attended + missed;
+const sorted=
+[...sessions].sort(
+(a,b)=>{
 
+const aa=
+(a.date||"")+"T"+(a.time||"00:00");
 
-  el("rate").textContent =
+const bb=
+(b.date||"")+"T"+(b.time||"00:00");
 
-    (
-      completed
-
-        ?
-
-        Math.round(
-          attended /
-          completed *
-          100
-        )
-
-        :
-
-        0
-
-    ) + "%";
-
-
-  renderTherapySummary();
-
-  renderCostSummary();
-
-
-  const sorted =
-    [...sessions].sort(
-      (a,b) => {
-
-        const aa =
-          (a.date || "") +
-          "T" +
-          (a.time || "00:00");
-
-
-        const bb =
-          (b.date || "") +
-          "T" +
-          (b.time || "00:00");
-
-
-        return aa.localeCompare(bb);
-
-      }
-    );
-
-
-  /* ==================================================
-     NEXT SESSION
-  ================================================== */
-
-  const now =
-    new Date();
-
-
-  const upcoming =
-    sorted.find(
-      x => {
-
-        if(
-          x.status !==
-          "Planned" ||
-          !x.date
-        ){
-
-          return false;
-
-        }
-
-
-        const d =
-          new Date(
-            x.date +
-            "T" +
-            (x.time || "23:59")
-          );
-
-
-        return d >= now;
-
-      }
-    );
-
-
-  el("next").innerHTML =
-
-    upcoming
-
-      ?
-
-`
-
-${card(
-  upcoming,
-  false
-)}
-
-`
-
-      :
-
-`
-
-<div class="empty">
-
-No upcoming sessions
-
-</div>
-
-`;
-
-
-  /* ==================================================
-     RECENT
-  ================================================== */
-
-  const recent =
-    [...sorted]
-      .reverse()
-      .slice(0,5);
-
-
-  el("recent").innerHTML =
-
-    recent.length
-
-      ?
-
-      recent
-        .map(
-          x =>
-            card(
-              x,
-              false
-            )
-        )
-        .join("")
-
-      :
-
-`
-
-<div class="empty">
-
-No visits yet
-
-</div>
-
-`;
-
-
-  /* ==================================================
-     HISTORY
-  ================================================== */
-
-  const history =
-    [...sorted]
-      .reverse();
-
-
-  el("all").innerHTML =
-
-    history.length
-
-      ?
-
-      history
-        .map(
-          x =>
-            card(
-              x,
-              true
-            )
-        )
-        .join("")
-
-      :
-
-`
-
-<div class="empty">
-
-No sessions recorded
-
-</div>
-
-`;
-
-
-  renderCalendar();
+return aa.localeCompare(bb);
 
 }
+);
 
 
-/* ==================================================
-   RESET FORM
-================================================== */
+/* NEXT */
 
-function resetForm(
-  selectedDateForForm = null
+const now=new Date();
+
+const upcoming=
+sorted.find(x=>{
+
+if(
+x.status!=="Planned"||
+!x.date
 ){
 
-  editingId = null;
-
-
-  el("sessionForm")
-    .reset();
-
-
-  el("date").value =
-    selectedDateForForm ||
-    today();
-
-
-  el("time").value = "";
-
-  el("hour").value = "";
-
-  el("minute").value = "";
-
-  el("ampm").value = "AM";
-
-
-  el("status").value =
-    "Planned";
-
-
-  el("formTitle").textContent =
-    "Add therapy session";
-
-
-  el("saveButton").textContent =
-    "Save session";
-
-
-  el("cancelEdit")
-    .classList.add(
-      "hidden"
-    );
-
-
-  el("editBanner")
-    .classList.add(
-      "hidden"
-    );
-
-
-  el("copyBanner")
-    .classList.add(
-      "hidden"
-    );
+return false;
 
 }
 
-
-/* ==================================================
-   ADD SESSION FOR CALENDAR DATE
-================================================== */
-
-function addSessionForSelectedDate(){
-
-  resetForm(
-    selectedCalendarDate
-  );
-
-
-  show("add");
-
-}
-
-
-/* ==================================================
-   EDIT SESSION
-================================================== */
-
-function editSession(id){
-
-  const session =
-    sessions.find(
-      x =>
-        String(x.id) ===
-        String(id)
-    );
-
-
-  if(!session){
-
-    alert(
-      "Session not found."
-    );
-
-    return;
-
-  }
-
-
-  editingId =
-    session.id;
-
-
-  el("date").value =
-    session.date || "";
-
-
-  setTimeFields(
-    session.time || ""
-  );
-
-
-  el("type").value =
-    session.type || "";
-
-
-  el("therapist").value =
-    session.therapist || "";
-
-
-  el("status").value =
-    session.status ||
-    "Planned";
-
-
-  el("notes").value =
-    session.notes || "";
-
-
-  el("formTitle").textContent =
-    "Edit therapy session";
-
-
-  el("saveButton").textContent =
-    "Save changes";
-
-
-  el("cancelEdit")
-    .classList.remove(
-      "hidden"
-    );
-
-
-  el("editBanner")
-    .classList.remove(
-      "hidden"
-    );
-
-
-  el("copyBanner")
-    .classList.add(
-      "hidden"
-    );
-
-
-  show("add");
-
-}
-
-
-/* ==================================================
-   COPY SESSION
-================================================== */
-
-function copySession(id){
-
-  const session =
-    sessions.find(
-      x =>
-        String(x.id) ===
-        String(id)
-    );
-
-
-  if(!session){
-
-    alert(
-      "Session not found."
-    );
-
-    return;
-
-  }
-
-
-  editingId = null;
-
-
-  el("date").value =
-    addDays(
-      session.date,
-      1
-    );
-
-
-  setTimeFields(
-    session.time || ""
-  );
-
-
-  el("type").value =
-    session.type || "";
-
-
-  el("therapist").value =
-    session.therapist || "";
-
-
-  el("status").value =
-    "Planned";
-
-
-  el("notes").value =
-    session.notes || "";
-
-
-  el("formTitle").textContent =
-    "Copy previous session";
-
-
-  el("saveButton").textContent =
-    "Save new session";
-
-
-  el("cancelEdit")
-    .classList.add(
-      "hidden"
-    );
-
-
-  el("editBanner")
-    .classList.add(
-      "hidden"
-    );
-
-
-  el("copyBanner")
-    .classList.remove(
-      "hidden"
-    );
-
-
-  show("add");
-
-}
-
-
-/* ==================================================
-   FORM SUBMIT
-================================================== */
-
-el("sessionForm")
-  .addEventListener(
-    "submit",
-    function(event){
-
-      event.preventDefault();
-
-
-      const date =
-        el("date").value;
-
-
-      const time =
-        getTimeFromFields();
-
-
-      if(time === null){
-
-        return;
-
-      }
-
-
-      const type =
-        el("type")
-          .value
-          .trim();
-
-
-      const therapist =
-        el("therapist")
-          .value
-          .trim();
-
-
-      const status =
-        el("status").value;
-
-
-      const notes =
-        el("notes")
-          .value
-          .trim();
-
-
-      if(
-        !date ||
-        !type
-      ){
-
-        alert(
-          "Please select the date and therapy type."
-        );
-
-        return;
-
-      }
-
-
-      if(
-        isDuplicate(
-          date,
-          time,
-          type,
-          editingId
-        )
-      ){
-
-        alert(
-
-          "⚠️ Duplicate session detected.\n\n" +
-
-          "A session with the same date, time and therapy type already exists.\n\n" +
-
-          "Please use Edit for the existing session or choose another date/time."
-
-        );
-
-        return;
-
-      }
-
-
-      /* ==================================================
-         EDIT EXISTING
-      ================================================== */
-
-      if(
-        editingId !== null
-      ){
-
-        sessions =
-          sessions.map(
-            x => {
-
-              if(
-                String(x.id) !==
-                String(editingId)
-              ){
-
-                return x;
-
-              }
-
-
-              return {
-
-                ...x,
-
-                date:
-                  date,
-
-                time:
-                  time,
-
-                type:
-                  type,
-
-                therapist:
-                  therapist,
-
-                status:
-                  status,
-
-                notes:
-                  notes
-
-              };
-
-            }
-          );
-
-
-        saveSessions();
-
-
-        resetForm();
-
-
-        alert(
-          "✅ Session updated successfully."
-        );
-
-
-        show("history");
-
-
-        return;
-
-      }
-
-
-      /* ==================================================
-         NEW SESSION
-      ================================================== */
-
-      const session = {
-
-        id:
-          Date.now()
-            .toString() +
-          Math.random()
-            .toString(36)
-            .slice(2),
-
-        date:
-          date,
-
-        time:
-          time,
-
-        type:
-          type,
-
-        therapist:
-          therapist,
-
-        status:
-          status,
-
-        notes:
-          notes
-
-      };
-
-
-      /*
-        IMPORTANT:
-        Existing sessions are NOT replaced.
-        New session is only appended.
-      */
-
-      sessions.push(
-        session
-      );
-
-
-      saveSessions();
-
-
-      resetForm();
-
-
-      alert(
-        "✅ Therapy session saved successfully."
-      );
-
-
-      show("home");
-
-    }
-  );
-
-
-/* ==================================================
-   CANCEL EDIT
-================================================== */
-
-el("cancelEdit")
-  .addEventListener(
-    "click",
-    function(){
-
-      resetForm();
-
-      show("history");
-
-    }
-  );
-
-
-/* ==================================================
-   CALENDAR MONTH NAVIGATION
-================================================== */
-
-el("previousMonth")
-  .addEventListener(
-    "click",
-    function(){
-
-      calendarDate.setMonth(
-        calendarDate.getMonth() - 1
-      );
-
-
-      renderCalendar();
-
-    }
-  );
-
-
-el("nextMonth")
-  .addEventListener(
-    "click",
-    function(){
-
-      calendarDate.setMonth(
-        calendarDate.getMonth() + 1
-      );
-
-
-      renderCalendar();
-
-    }
-  );
-
-
-/* ==================================================
-   ADD SELECTED CALENDAR DATE
-================================================== */
-
-el("addSelectedDate")
-  .addEventListener(
-    "click",
-    function(){
-
-      addSessionForSelectedDate();
-
-    }
-  );
-
-
-/* ==================================================
-   THERAPY SUMMARY NUMBER CLICK
-================================================== */
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    const summary =
-      event.target.closest(
-        "[data-summary-type]"
-      );
-
-
-    if(summary){
-
-      openTherapyModal(
-        summary.dataset.summaryType
-      );
-
-      return;
-
-    }
-
-
-    /* ==================================================
-       MARK ATTENDED
-    ================================================== */
-
-    const attendButton =
-      event.target.closest(
-        "[data-attend]"
-      );
-
-
-    if(attendButton){
-
-      const id =
-        attendButton.dataset.attend;
-
-
-      sessions =
-        sessions.map(
-          x =>
-
-            String(x.id) ===
-            String(id)
-
-              ?
-
-              {
-                ...x,
-                status:
-                  "Attended"
-              }
-
-              :
-
-              x
-
-        );
-
-
-      saveSessions();
-
-
-      render();
-
-
-      return;
-
-    }
-
-
-    /* ==================================================
-       EDIT
-    ================================================== */
-
-    const editButton =
-      event.target.closest(
-        "[data-edit]"
-      );
-
-
-    if(editButton){
-
-      editSession(
-        editButton.dataset.edit
-      );
-
-
-      return;
-
-    }
-
-
-    /* ==================================================
-       COPY
-    ================================================== */
-
-    const copyButton =
-      event.target.closest(
-        "[data-copy]"
-      );
-
-
-    if(copyButton){
-
-      copySession(
-        copyButton.dataset.copy
-      );
-
-
-      return;
-
-    }
-
-
-    /* ==================================================
-       DELETE
-    ================================================== */
-
-    const deleteButton =
-      event.target.closest(
-        "[data-delete]"
-      );
-
-
-    if(deleteButton){
-
-      const id =
-        deleteButton.dataset.delete;
-
-
-      if(
-        confirm(
-          "Delete this session?"
-        )
-      ){
-
-        sessions =
-          sessions.filter(
-            x =>
-              String(x.id) !==
-              String(id)
-          );
-
-
-        saveSessions();
-
-
-        render();
-
-      }
-
-    }
-
-  }
+const d=
+new Date(
+x.date+"T"+(x.time||"23:59")
 );
+
+return d>=now;
+
+});
+
+
+el("next").innerHTML=
+upcoming
+?
+card(upcoming,false)
+:
+`
+<div class="empty">
+No upcoming sessions
+</div>
+`;
+
+
+/* RECENT */
+
+const recent=
+[...sorted]
+.reverse()
+.slice(0,5);
+
+el("recent").innerHTML=
+recent.length
+?
+recent.map(x=>card(x,false)).join("")
+:
+`
+<div class="empty">
+No visits yet
+</div>
+`;
+
+
+/* HISTORY */
+
+const history=
+[...sorted].reverse();
+
+el("all").innerHTML=
+history.length
+?
+history.map(x=>card(x,true)).join("")
+:
+`
+<div class="empty">
+No sessions recorded
+</div>
+`;
+
+
+/* CALENDAR */
+
+renderCalendar();
+
+}
 
 
 /* ==================================================
@@ -4669,334 +3687,260 @@ document.addEventListener(
 ================================================== */
 
 el("closeTherapyModal")
-  .addEventListener(
-    "click",
-    closeTherapyModal
-  );
-
+.addEventListener(
+"click",
+closeTherapyModal
+);
 
 el("modalCloseBottom")
-  .addEventListener(
-    "click",
-    closeTherapyModal
-  );
-
+.addEventListener(
+"click",
+closeTherapyModal
+);
 
 el("therapyModal")
-  .addEventListener(
-    "click",
-    function(event){
+.addEventListener(
+"click",
+function(event){
 
-      if(
-        event.target ===
-        el("therapyModal")
-      ){
+if(
+event.target===
+el("therapyModal")
+){
 
-        closeTherapyModal();
+closeTherapyModal();
 
-      }
+}
 
-    }
-  );
+});
 
 
 /* ==================================================
-   SHARE IMAGE FUNCTION
+   SHARE IMAGE
 ================================================== */
 
 async function shareElementAsImage(
-  element,
-  filename
+element,
+filename
 ){
 
-  if(!element){
+if(!element){
 
-    alert(
-      "Nothing available to share."
-    );
+alert(
+"Nothing available to share."
+);
 
-    return;
+return;
 
-  }
+}
 
+if(
+typeof html2canvas===
+"undefined"
+){
 
-  if(
-    typeof html2canvas ===
-    "undefined"
-  ){
+alert(
+"Share image library is still loading. Please try again."
+);
 
-    alert(
-      "Share image library is still loading. Please try again."
-    );
+return;
 
-    return;
+}
 
-  }
+try{
 
+const canvas=
+await html2canvas(
+element,
+{
+backgroundColor:"#f5f7fb",
+scale:Math.min(
+window.devicePixelRatio||2,
+2
+),
+useCORS:true,
+logging:false,
+windowWidth:
+document.documentElement.scrollWidth,
+windowHeight:
+document.documentElement.scrollHeight
+}
+);
 
-  try{
+const blob=
+await new Promise(
+resolve=>
+canvas.toBlob(
+resolve,
+"image/png",
+1
+)
+);
 
-    /*
-      Capture the entire element,
-      including content longer than
-      the visible screen.
-    */
+if(!blob){
 
-    const canvas =
-      await html2canvas(
-        element,
-        {
-          backgroundColor:
-            "#f5f7fb",
-          scale:
-            Math.min(
-              window.devicePixelRatio || 2,
-              2
-            ),
-          useCORS:true,
-          logging:false,
-          windowWidth:
-            document.documentElement.scrollWidth,
-          windowHeight:
-            document.documentElement.scrollHeight
-        }
-      );
+throw new Error(
+"Unable to create image."
+);
 
+}
 
-    const blob =
-      await new Promise(
-        resolve =>
-          canvas.toBlob(
-            resolve,
-            "image/png",
-            1
-          )
-      );
-
-
-    if(!blob){
-
-      throw new Error(
-        "Unable to create image."
-      );
-
-    }
+const file=
+new File(
+[blob],
+filename,
+{type:"image/png"}
+);
 
 
-    const file =
-      new File(
-        [blob],
-        filename,
-        {
-          type:"image/png"
-        }
-      );
+if(
+navigator.share&&
+(
+!navigator.canShare||
+navigator.canShare({
+files:[file]
+})
+)
+){
+
+await navigator.share({
+
+title:"Therapy Tracker",
+
+text:"Therapy Tracker details",
+
+files:[file]
+
+});
+
+return;
+
+}
 
 
-    /*
-      iPhone Safari supports the
-      native Share Sheet for files
-      when available.
-    */
+const url=
+URL.createObjectURL(blob);
 
-    if(
-      navigator.share &&
-      (
-        !navigator.canShare ||
-        navigator.canShare({
-          files:[file]
-        })
-      )
-    ){
+const newWindow=
+window.open(
+url,
+"_blank"
+);
 
-      await navigator.share({
+if(!newWindow){
 
-        title:
-          "Therapy Tracker",
+alert(
+"Image created. Please allow pop-ups to view it."
+);
 
-        text:
-          "Therapy Tracker details",
+}
 
-        files:[
-          file
-        ]
+setTimeout(
+()=>URL.revokeObjectURL(url),
+60000
+);
 
-      });
+}
 
+catch(error){
 
-      return;
+if(
+error&&
+error.name==="AbortError"
+){
 
-    }
+return;
 
+}
 
-    /*
-      Fallback:
-      open image in a new tab.
-    */
+console.error(
+"Share failed:",
+error
+);
 
-    const url =
-      URL.createObjectURL(
-        blob
-      );
+alert(
+"Unable to create the share image. Please try again."
+);
 
-
-    const newWindow =
-      window.open(
-        url,
-        "_blank"
-      );
-
-
-    if(!newWindow){
-
-      alert(
-        "Image created. Please allow pop-ups to view it."
-      );
-
-    }
-
-
-    setTimeout(
-      () =>
-        URL.revokeObjectURL(url),
-      60000
-    );
-
-  }
-
-  catch(error){
-
-    /*
-      User cancelling the iPhone
-      Share Sheet is not an error
-      we need to show.
-    */
-
-    if(
-      error &&
-      error.name ===
-      "AbortError"
-    ){
-
-      return;
-
-    }
-
-
-    console.error(
-      "Share failed:",
-      error
-    );
-
-
-    alert(
-      "Unable to create the share image. Please try again."
-    );
-
-  }
+}
 
 }
 
 
 /* ==================================================
-   SHARE DASHBOARD
+   SHARE BUTTONS
 ================================================== */
 
 el("shareDashboard")
-  .addEventListener(
-    "click",
-    function(){
+.addEventListener(
+"click",
+function(){
 
-      shareElementAsImage(
-        el("home"),
-        "therapy-dashboard.png"
-      );
+shareElementAsImage(
+el("home"),
+"therapy-dashboard.png"
+);
 
-    }
-  );
+});
 
-
-/* ==================================================
-   SHARE HISTORY
-================================================== */
 
 el("shareHistory")
-  .addEventListener(
-    "click",
-    function(){
+.addEventListener(
+"click",
+function(){
 
-      shareElementAsImage(
-        el("history"),
-        "therapy-history.png"
-      );
+shareElementAsImage(
+el("history"),
+"therapy-history.png"
+);
 
-    }
-  );
+});
 
-
-/* ==================================================
-   SHARE SELECTED DATE
-================================================== */
 
 el("shareSelectedDate")
-  .addEventListener(
-    "click",
-    function(){
+.addEventListener(
+"click",
+function(){
 
-      const element =
-        document.querySelector(
-          "#calendar .panel:nth-of-type(2)"
-        );
+const element=
+document.querySelector(
+"#calendar .panel:nth-of-type(2)"
+);
 
+shareElementAsImage(
+element,
+"therapy-date-details.png"
+);
 
-      shareElementAsImage(
-        element,
-        "therapy-date-details.png"
-      );
+});
 
-    }
-  );
-
-
-/* ==================================================
-   SHARE THERAPY DATE LIST
-================================================== */
 
 el("shareTherapyDates")
-  .addEventListener(
-    "click",
-    function(){
+.addEventListener(
+"click",
+function(){
 
-      const element =
-        document.querySelector(
-          "#therapyModal .modal"
-        );
+shareElementAsImage(
+document.querySelector(
+"#therapyModal .modal"
+),
+"therapy-dates.png"
+);
 
-
-      shareElementAsImage(
-        element,
-        "therapy-dates.png"
-      );
-
-    }
-  );
+});
 
 
 /* ==================================================
    INITIALIZE
 ================================================== */
 
-el("date").value =
-  today();
+el("date").value=today();
 
+selectedCalendarDate=today();
 
-selectedCalendarDate =
-  today();
+calendarDate=new Date();
 
-
-calendarDate =
-  new Date();
-
+renderDateScroll(today());
 
 render();
 
