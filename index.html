@@ -17,6 +17,8 @@
 
 <title>Therapy Tracker</title>
 
+<!-- Used only for creating shareable dashboard images -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <style>
 
@@ -128,6 +130,16 @@ button{
   color:#475569;
   width:100%;
   margin-top:8px
+}
+
+.share{
+  background:#2563eb;
+  color:#fff
+}
+
+.secondary{
+  background:#f1f5f9;
+  color:#334155
 }
 
 label{
@@ -251,6 +263,21 @@ textarea{
 
 
 /* ==================================================
+   SHARE BAR
+================================================== */
+
+.share-bar{
+  display:flex;
+  gap:8px;
+  margin-top:12px
+}
+
+.share-bar button{
+  flex:1
+}
+
+
+/* ==================================================
    THERAPY SUMMARY
 ================================================== */
 
@@ -278,7 +305,13 @@ textarea{
   background:#f8fafc;
   border-radius:10px;
   padding:8px 5px;
-  text-align:center
+  text-align:center;
+  cursor:pointer;
+  transition:.15s
+}
+
+.summary-item:active{
+  transform:scale(.97)
 }
 
 .summary-number{
@@ -306,6 +339,13 @@ textarea{
 
 .summary-planned{
   background:#eff6ff
+}
+
+.tap-help{
+  font-size:11px;
+  color:#667085;
+  margin-top:8px;
+  text-align:center
 }
 
 
@@ -352,6 +392,27 @@ textarea{
 
 
 /* ==================================================
+   TIME INPUT
+================================================== */
+
+.time-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px
+}
+
+.time-field label{
+  margin-top:0
+}
+
+.time-help{
+  font-size:11px;
+  color:#667085;
+  margin-top:5px
+}
+
+
+/* ==================================================
    CALENDAR
 ================================================== */
 
@@ -365,7 +426,9 @@ textarea{
 
 .calendar-header h2{
   margin:0;
-  font-size:18px
+  font-size:18px;
+  text-align:center;
+  flex:1
 }
 
 .month-button{
@@ -518,6 +581,10 @@ textarea{
   margin-bottom:8px
 }
 
+.calendar-add{
+  margin-top:10px
+}
+
 
 /* ==================================================
    NAVIGATION
@@ -549,13 +616,147 @@ nav .active{
 }
 
 .hidden{
-  display:none
+  display:none !important
 }
 
 .empty{
   text-align:center;
   color:#667085;
   padding:20px
+}
+
+
+/* ==================================================
+   MODAL
+================================================== */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:#00000066;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:20;
+  padding:0
+}
+
+.modal{
+  width:100%;
+  max-width:720px;
+  max-height:88vh;
+  overflow:auto;
+  background:#f5f7fb;
+  border-radius:22px 22px 0 0;
+  padding:18px 16px 30px
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px
+}
+
+.modal-header h2{
+  margin:0;
+  font-size:19px
+}
+
+.close-button{
+  width:38px;
+  height:38px;
+  padding:0;
+  border-radius:50%;
+  background:#e5e7eb;
+  color:#334155;
+  font-size:20px
+}
+
+.modal-summary{
+  background:#fff;
+  border-radius:14px;
+  padding:12px;
+  margin-bottom:12px;
+  box-shadow:0 2px 10px #0000000a
+}
+
+.date-list-item{
+  background:#fff;
+  border-radius:14px;
+  padding:13px;
+  margin:8px 0;
+  box-shadow:0 2px 10px #00000008
+}
+
+.date-list-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px
+}
+
+.date-list-date{
+  font-weight:700;
+  font-size:15px
+}
+
+.date-list-day{
+  color:#667085;
+  font-size:12px;
+  margin-top:3px
+}
+
+.date-list-time{
+  font-size:13px;
+  margin-top:6px;
+  color:#334155
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px
+}
+
+.modal-actions button{
+  flex:1
+}
+
+
+/* ==================================================
+   SHARE CAPTURE
+================================================== */
+
+.share-capture{
+  background:#f5f7fb;
+  padding:16px;
+  max-width:720px
+}
+
+.share-capture .panel{
+  margin-top:12px
+}
+
+@media(max-width:420px){
+
+  .summary-grid{
+    gap:5px
+  }
+
+  .summary-item{
+    padding:8px 2px
+  }
+
+  .summary-number{
+    font-size:17px
+  }
+
+  .time-row{
+    grid-template-columns:1fr 1fr 1fr
+  }
+
 }
 
 </style>
@@ -566,7 +767,7 @@ nav .active{
 <body>
 
 
-<header>
+<header id="appHeader">
 
 <h1>Therapy Tracker</h1>
 
@@ -645,6 +846,20 @@ Attendance
 </div>
 
 
+<div class="share-bar">
+
+<button
+  type="button"
+  class="share"
+  id="shareDashboard">
+
+📤 Share Dashboard
+
+</button>
+
+</div>
+
+
 <!-- ==================================================
      THERAPY SUMMARY
 ================================================== -->
@@ -661,6 +876,10 @@ Therapy Summary
 No therapy sessions recorded
 </div>
 
+</div>
+
+<div class="tap-help">
+👆 Tap a number to view the dates and days
 </div>
 
 </div>
@@ -774,9 +993,78 @@ Date
 Time
 </label>
 
+
+<div class="time-row">
+
+
+<div class="time-field">
+
+<label>
+Hour
+</label>
+
+<input
+  id="hour"
+  type="number"
+  min="1"
+  max="12"
+  inputmode="numeric"
+  placeholder="HH">
+
+</div>
+
+
+<div class="time-field">
+
+<label>
+Minute
+</label>
+
+<input
+  id="minute"
+  type="number"
+  min="0"
+  max="59"
+  inputmode="numeric"
+  placeholder="MM">
+
+</div>
+
+
+<div class="time-field">
+
+<label>
+AM / PM
+</label>
+
+<select id="ampm">
+
+<option value="AM">
+AM
+</option>
+
+<option value="PM">
+PM
+</option>
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<div class="time-help">
+You can type the hour and minute manually. Example: 10 : 30 AM
+</div>
+
+
+<!-- Hidden field keeps compatibility with existing stored time -->
+
 <input
   id="time"
-  type="time">
+  type="hidden">
 
 
 <label>
@@ -922,11 +1210,27 @@ Cancel
 
 <div class="panel">
 
-<h2>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+
+<h2 style="margin:0">
 Session history
 </h2>
 
+<button
+  type="button"
+  class="share"
+  id="shareHistory"
+  style="padding:8px 10px;font-size:12px">
+
+📤 Share
+
+</button>
+
+</div>
+
+
 <div id="all"></div>
+
 
 </div>
 
@@ -995,11 +1299,11 @@ Wed
 Thu
 </div>
 
-<div class="calendar-weekday weekend">
+<div class="calendar-weekday">
 Fri
 </div>
 
-<div class="calendar-weekday weekend">
+<div class="calendar-weekday">
 Sat
 </div>
 
@@ -1078,7 +1382,31 @@ Tap a calendar date to view sessions.
 </div>
 
 
+<button
+  type="button"
+  class="primary calendar-add"
+  id="addSelectedDate">
+
+➕ Add Session for Selected Date
+
+</button>
+
+
 <div id="selectedSessions"></div>
+
+
+<div class="share-bar">
+
+<button
+  type="button"
+  class="share"
+  id="shareSelectedDate">
+
+📤 Share Date Details
+
+</button>
+
+</div>
 
 
 </div>
@@ -1141,6 +1469,71 @@ Calendar
 </nav>
 
 
+<!-- ==================================================
+     THERAPY DATE MODAL
+================================================== -->
+
+<div
+  id="therapyModal"
+  class="modal-overlay hidden">
+
+<div class="modal">
+
+
+<div class="modal-header">
+
+<h2 id="modalTitle">
+Therapy Dates
+</h2>
+
+<button
+  type="button"
+  class="close-button"
+  id="closeTherapyModal">
+
+×
+</button>
+
+</div>
+
+
+<div
+  id="modalSummary"
+  class="modal-summary">
+</div>
+
+
+<div id="modalDateList"></div>
+
+
+<div class="modal-actions">
+
+<button
+  type="button"
+  class="secondary"
+  id="modalCloseBottom">
+
+Close
+
+</button>
+
+<button
+  type="button"
+  class="share"
+  id="shareTherapyDates">
+
+📤 Share
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
 <script>
 
 "use strict";
@@ -1148,6 +1541,9 @@ Calendar
 
 /* ==================================================
    STORAGE
+   IMPORTANT:
+   DO NOT CHANGE THIS KEY.
+   This preserves the existing data.
 ================================================== */
 
 const STORAGE_KEY =
@@ -1235,6 +1631,13 @@ let calendarDate =
 
 let selectedCalendarDate =
   today();
+
+
+/* ==================================================
+   CURRENT THERAPY MODAL TYPE
+================================================== */
+
+let modalTherapyType = "";
 
 
 /* ==================================================
@@ -1429,12 +1832,6 @@ document
       "click",
       function(){
 
-        /*
-          When Add is tapped from
-          navigation, always open a
-          fresh Add form.
-        */
-
         if(
           this.dataset.page ===
           "add"
@@ -1507,8 +1904,380 @@ function formatDate(
   ) +
   (
     time
-      ? " • " + time
+      ? " • " + formatStoredTime(time)
       : ""
+  );
+
+}
+
+
+/* ==================================================
+   DAY NAME
+================================================== */
+
+function getDayName(dateString){
+
+  if(!dateString){
+
+    return "";
+
+  }
+
+
+  const parts =
+    dateString.split("-");
+
+
+  if(parts.length !== 3){
+
+    return "";
+
+  }
+
+
+  const d =
+    new Date(
+      Number(parts[0]),
+      Number(parts[1]) - 1,
+      Number(parts[2])
+    );
+
+
+  return d.toLocaleDateString(
+    "en-IN",
+    {
+      weekday:"long"
+    }
+  );
+
+}
+
+
+/* ==================================================
+   TIME HELPERS
+================================================== */
+
+function normalizeTime(time){
+
+  if(!time){
+
+    return "";
+
+  }
+
+
+  const value =
+    String(time).trim();
+
+
+  /*
+    Existing data is stored as
+    HH:MM 24-hour format.
+  */
+
+  const match24 =
+    value.match(
+      /^(\d{1,2}):(\d{2})$/
+    );
+
+
+  if(match24){
+
+    let h =
+      Number(match24[1]);
+
+    const m =
+      match24[2];
+
+
+    if(h >= 0 && h <= 23){
+
+      return (
+        String(h).padStart(2,"0") +
+        ":" +
+        m
+      );
+
+    }
+
+  }
+
+
+  /*
+    Also support old/new 12-hour
+    values if present.
+  */
+
+  const match12 =
+    value.match(
+      /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i
+    );
+
+
+  if(match12){
+
+    let h =
+      Number(match12[1]);
+
+    const m =
+      match12[2];
+
+    const ap =
+      match12[3].toUpperCase();
+
+
+    if(h >= 1 && h <= 12){
+
+      if(ap === "AM" && h === 12){
+
+        h = 0;
+
+      }
+
+      else if(ap === "PM" && h !== 12){
+
+        h += 12;
+
+      }
+
+
+      return (
+        String(h).padStart(2,"0") +
+        ":" +
+        m
+      );
+
+    }
+
+  }
+
+
+  return value;
+
+}
+
+
+function formatStoredTime(time){
+
+  const normalized =
+    normalizeTime(time);
+
+
+  const match =
+    normalized.match(
+      /^(\d{1,2}):(\d{2})$/
+    );
+
+
+  if(!match){
+
+    return time || "";
+
+  }
+
+
+  let hour =
+    Number(match[1]);
+
+  const minute =
+    match[2];
+
+
+  if(hour > 23){
+
+    return time;
+
+  }
+
+
+  const ampm =
+    hour >= 12
+      ? "PM"
+      : "AM";
+
+
+  hour =
+    hour % 12 || 12;
+
+
+  return (
+    String(hour) +
+    ":" +
+    minute +
+    " " +
+    ampm
+  );
+
+}
+
+
+function setTimeFields(time){
+
+  const normalized =
+    normalizeTime(time);
+
+
+  if(!normalized){
+
+    el("hour").value = "";
+    el("minute").value = "";
+    el("ampm").value = "AM";
+    el("time").value = "";
+
+    return;
+
+  }
+
+
+  const parts =
+    normalized.split(":");
+
+
+  if(parts.length !== 2){
+
+    return;
+
+  }
+
+
+  let hour =
+    Number(parts[0]);
+
+  const minute =
+    Number(parts[1]);
+
+
+  if(
+    Number.isNaN(hour) ||
+    Number.isNaN(minute)
+  ){
+
+    return;
+
+  }
+
+
+  const ampm =
+    hour >= 12
+      ? "PM"
+      : "AM";
+
+
+  hour =
+    hour % 12 || 12;
+
+
+  el("hour").value =
+    hour;
+
+  el("minute").value =
+    String(minute).padStart(2,"0");
+
+  el("ampm").value =
+    ampm;
+
+  el("time").value =
+    normalized;
+
+}
+
+
+function getTimeFromFields(){
+
+  const hourValue =
+    String(
+      el("hour").value || ""
+    ).trim();
+
+
+  const minuteValue =
+    String(
+      el("minute").value || ""
+    ).trim();
+
+
+  const ampm =
+    el("ampm").value;
+
+
+  /*
+    Time is optional.
+    If all fields are empty,
+    store empty time exactly as before.
+  */
+
+  if(
+    !hourValue &&
+    !minuteValue
+  ){
+
+    return "";
+
+  }
+
+
+  let hour =
+    Number(hourValue);
+
+  let minute =
+    Number(minuteValue || 0);
+
+
+  if(
+    !Number.isInteger(hour) ||
+    hour < 1 ||
+    hour > 12
+  ){
+
+    alert(
+      "Please enter a valid hour between 1 and 12."
+    );
+
+    return null;
+
+  }
+
+
+  if(
+    !Number.isInteger(minute) ||
+    minute < 0 ||
+    minute > 59
+  ){
+
+    alert(
+      "Please enter minutes between 0 and 59."
+    );
+
+    return null;
+
+  }
+
+
+  if(ampm === "AM"){
+
+    if(hour === 12){
+
+      hour = 0;
+
+    }
+
+  }
+
+  else{
+
+    if(hour !== 12){
+
+      hour += 12;
+
+    }
+
+  }
+
+
+  return (
+    String(hour).padStart(2,"0") +
+    ":" +
+    String(minute).padStart(2,"0")
   );
 
 }
@@ -1635,11 +2404,6 @@ function getRate(type){
 
   }
 
-
-  /*
-    Support old records
-    containing "OT".
-  */
 
   if(
     normalized.toLowerCase() ===
@@ -1995,7 +2759,9 @@ No therapy sessions recorded
 
         return `
 
-<div class="summary-card">
+<div
+  class="summary-card"
+  data-therapy-summary="${esc(type)}">
 
 
 <div class="summary-title">
@@ -2008,7 +2774,9 @@ ${esc(type)}
 <div class="summary-grid">
 
 
-<div class="summary-item summary-total">
+<div
+  class="summary-item summary-total"
+  data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.total}
@@ -2021,7 +2789,9 @@ Total
 </div>
 
 
-<div class="summary-item summary-attended">
+<div
+  class="summary-item summary-attended"
+  data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.attended}
@@ -2034,7 +2804,9 @@ Attended
 </div>
 
 
-<div class="summary-item summary-missed">
+<div
+  class="summary-item summary-missed"
+  data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.missed}
@@ -2047,7 +2819,9 @@ Missed
 </div>
 
 
-<div class="summary-item summary-planned">
+<div
+  class="summary-item summary-planned"
+  data-summary-type="${esc(type)}">
 
 <div class="summary-number">
 ${g.planned}
@@ -2425,11 +3199,6 @@ function renderCalendar(){
     ).getDate();
 
 
-  /*
-    Empty cells before
-    the first day.
-  */
-
   for(
     let i = 0;
     i < firstDay;
@@ -2650,12 +3419,33 @@ function renderSelectedCalendarDate(){
   }
 
 
-  el("selectedDate")
-    .textContent =
+  const dayName =
+    getDayName(date);
+
+
+  const formatted =
     formatDate(
       date,
       ""
     );
+
+
+  el("selectedDate")
+    .innerHTML = `
+
+<div class="selected-date-title">
+
+${esc(formatted)}
+
+</div>
+
+<div class="small">
+
+${esc(dayName)}
+
+</div>
+
+`;
 
 
   const selected =
@@ -2712,12 +3502,240 @@ No sessions on this date.
 
 
 /* ==================================================
+   THERAPY DATE MODAL
+================================================== */
+
+function openTherapyModal(type){
+
+  modalTherapyType =
+    type;
+
+
+  const therapySessions =
+    sessions
+      .filter(
+        x =>
+          String(
+            x.type || "Other"
+          ).trim() ===
+          type
+      )
+      .sort(
+        (a,b) => {
+
+          const aa =
+            (a.date || "") +
+            "T" +
+            (a.time || "00:00");
+
+          const bb =
+            (b.date || "") +
+            "T" +
+            (b.time || "00:00");
+
+          return bb.localeCompare(aa);
+
+        }
+      );
+
+
+  el("modalTitle")
+    .textContent =
+    type;
+
+
+  const attended =
+    therapySessions.filter(
+      x =>
+        x.status ===
+        "Attended"
+    ).length;
+
+
+  const missed =
+    therapySessions.filter(
+      x =>
+        x.status ===
+        "Missed"
+    ).length;
+
+
+  const planned =
+    therapySessions.filter(
+      x =>
+        x.status ===
+        "Planned"
+    ).length;
+
+
+  el("modalSummary")
+    .innerHTML = `
+
+<strong>
+${therapySessions.length} sessions
+</strong>
+
+&nbsp; • &nbsp;
+
+✓ ${attended} Attended
+
+&nbsp; • &nbsp;
+
+✕ ${missed} Missed
+
+&nbsp; • &nbsp;
+
+• ${planned} Planned
+
+`;
+
+
+  el("modalDateList")
+    .innerHTML =
+
+    therapySessions.length
+
+      ?
+
+      therapySessions
+        .map(
+          session => {
+
+            const status =
+              session.status ||
+              "Planned";
+
+
+            return `
+
+<div class="date-list-item">
+
+<div class="date-list-top">
+
+<div>
+
+<div class="date-list-date">
+
+${esc(
+  formatDate(
+    session.date,
+    ""
+  )
+)}
+
+</div>
+
+<div class="date-list-day">
+
+${esc(
+  getDayName(
+    session.date
+  )
+)}
+
+</div>
+
+</div>
+
+
+<span class="badge ${status.toLowerCase()}">
+
+${esc(status)}
+
+</span>
+
+</div>
+
+
+<div class="date-list-time">
+
+🕐 ${
+  session.time
+    ? esc(formatStoredTime(session.time))
+    : "Time not entered"
+}
+
+</div>
+
+
+${
+  session.therapist
+
+    ?
+
+`<div class="small" style="margin-top:5px">
+
+👤 ${esc(session.therapist)}
+
+</div>`
+
+    :
+
+""
+}
+
+
+${
+  session.notes
+
+    ?
+
+`<div class="small" style="margin-top:5px">
+
+📝 ${esc(session.notes)}
+
+</div>`
+
+    :
+
+""
+}
+
+
+</div>
+
+`;
+
+          }
+        )
+        .join("")
+
+      :
+
+`
+
+<div class="empty">
+
+No sessions found for this therapy.
+
+</div>
+
+`;
+
+
+  el("therapyModal")
+    .classList.remove(
+      "hidden"
+    );
+
+}
+
+
+function closeTherapyModal(){
+
+  el("therapyModal")
+    .classList.add(
+      "hidden"
+    );
+
+}
+
+
+/* ==================================================
    MAIN RENDER
 ================================================== */
 
 function render(){
-
-  /* Overall counts */
 
   const total =
     sessions.length;
@@ -2775,17 +3793,10 @@ function render(){
     ) + "%";
 
 
-  /* Therapy summary */
-
   renderTherapySummary();
-
-
-  /* Cost */
 
   renderCostSummary();
 
-
-  /* Sort */
 
   const sorted =
     [...sessions].sort(
@@ -2809,7 +3820,9 @@ function render(){
     );
 
 
-  /* Next */
+  /* ==================================================
+     NEXT SESSION
+  ================================================== */
 
   const now =
     new Date();
@@ -2872,7 +3885,9 @@ No upcoming sessions
 `;
 
 
-  /* Recent */
+  /* ==================================================
+     RECENT
+  ================================================== */
 
   const recent =
     [...sorted]
@@ -2909,7 +3924,9 @@ No visits yet
 `;
 
 
-  /* History */
+  /* ==================================================
+     HISTORY
+  ================================================== */
 
   const history =
     [...sorted]
@@ -2945,8 +3962,6 @@ No sessions recorded
 `;
 
 
-  /* Calendar */
-
   renderCalendar();
 
 }
@@ -2956,7 +3971,9 @@ No sessions recorded
    RESET FORM
 ================================================== */
 
-function resetForm(){
+function resetForm(
+  selectedDateForForm = null
+){
 
   editingId = null;
 
@@ -2966,7 +3983,17 @@ function resetForm(){
 
 
   el("date").value =
+    selectedDateForForm ||
     today();
+
+
+  el("time").value = "";
+
+  el("hour").value = "";
+
+  el("minute").value = "";
+
+  el("ampm").value = "AM";
 
 
   el("status").value =
@@ -2997,6 +4024,22 @@ function resetForm(){
     .classList.add(
       "hidden"
     );
+
+}
+
+
+/* ==================================================
+   ADD SESSION FOR CALENDAR DATE
+================================================== */
+
+function addSessionForSelectedDate(){
+
+  resetForm(
+    selectedCalendarDate
+  );
+
+
+  show("add");
 
 }
 
@@ -3034,8 +4077,9 @@ function editSession(id){
     session.date || "";
 
 
-  el("time").value =
-    session.time || "";
+  setTimeFields(
+    session.time || ""
+  );
 
 
   el("type").value =
@@ -3111,12 +4155,6 @@ function copySession(id){
   }
 
 
-  /*
-    New session:
-    previous date + 1 day
-    status = Planned
-  */
-
   editingId = null;
 
 
@@ -3127,8 +4165,9 @@ function copySession(id){
     );
 
 
-  el("time").value =
-    session.time || "";
+  setTimeFields(
+    session.time || ""
+  );
 
 
   el("type").value =
@@ -3195,7 +4234,14 @@ el("sessionForm")
 
 
       const time =
-        el("time").value;
+        getTimeFromFields();
+
+
+      if(time === null){
+
+        return;
+
+      }
 
 
       const type =
@@ -3234,13 +4280,6 @@ el("sessionForm")
       }
 
 
-      /*
-        Duplicate protection.
-
-        During Edit, the current
-        session is ignored.
-      */
-
       if(
         isDuplicate(
           date,
@@ -3266,7 +4305,7 @@ el("sessionForm")
 
 
       /* ==================================================
-         EDIT
+         EDIT EXISTING
       ================================================== */
 
       if(
@@ -3368,6 +4407,12 @@ el("sessionForm")
       };
 
 
+      /*
+        IMPORTANT:
+        Existing sessions are NOT replaced.
+        New session is only appended.
+      */
+
       sessions.push(
         session
       );
@@ -3444,15 +4489,48 @@ el("nextMonth")
 
 
 /* ==================================================
-   HISTORY / CALENDAR ACTIONS
+   ADD SELECTED CALENDAR DATE
+================================================== */
+
+el("addSelectedDate")
+  .addEventListener(
+    "click",
+    function(){
+
+      addSessionForSelectedDate();
+
+    }
+  );
+
+
+/* ==================================================
+   THERAPY SUMMARY NUMBER CLICK
 ================================================== */
 
 document.addEventListener(
   "click",
   function(event){
 
+    const summary =
+      event.target.closest(
+        "[data-summary-type]"
+      );
 
-    /* Mark attended */
+
+    if(summary){
+
+      openTherapyModal(
+        summary.dataset.summaryType
+      );
+
+      return;
+
+    }
+
+
+    /* ==================================================
+       MARK ATTENDED
+    ================================================== */
 
     const attendButton =
       event.target.closest(
@@ -3499,7 +4577,9 @@ document.addEventListener(
     }
 
 
-    /* Edit */
+    /* ==================================================
+       EDIT
+    ================================================== */
 
     const editButton =
       event.target.closest(
@@ -3519,7 +4599,9 @@ document.addEventListener(
     }
 
 
-    /* Copy */
+    /* ==================================================
+       COPY
+    ================================================== */
 
     const copyButton =
       event.target.closest(
@@ -3539,7 +4621,9 @@ document.addEventListener(
     }
 
 
-    /* Delete */
+    /* ==================================================
+       DELETE
+    ================================================== */
 
     const deleteButton =
       event.target.closest(
@@ -3578,6 +4662,324 @@ document.addEventListener(
 
   }
 );
+
+
+/* ==================================================
+   CLOSE MODAL
+================================================== */
+
+el("closeTherapyModal")
+  .addEventListener(
+    "click",
+    closeTherapyModal
+  );
+
+
+el("modalCloseBottom")
+  .addEventListener(
+    "click",
+    closeTherapyModal
+  );
+
+
+el("therapyModal")
+  .addEventListener(
+    "click",
+    function(event){
+
+      if(
+        event.target ===
+        el("therapyModal")
+      ){
+
+        closeTherapyModal();
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   SHARE IMAGE FUNCTION
+================================================== */
+
+async function shareElementAsImage(
+  element,
+  filename
+){
+
+  if(!element){
+
+    alert(
+      "Nothing available to share."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    typeof html2canvas ===
+    "undefined"
+  ){
+
+    alert(
+      "Share image library is still loading. Please try again."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    /*
+      Capture the entire element,
+      including content longer than
+      the visible screen.
+    */
+
+    const canvas =
+      await html2canvas(
+        element,
+        {
+          backgroundColor:
+            "#f5f7fb",
+          scale:
+            Math.min(
+              window.devicePixelRatio || 2,
+              2
+            ),
+          useCORS:true,
+          logging:false,
+          windowWidth:
+            document.documentElement.scrollWidth,
+          windowHeight:
+            document.documentElement.scrollHeight
+        }
+      );
+
+
+    const blob =
+      await new Promise(
+        resolve =>
+          canvas.toBlob(
+            resolve,
+            "image/png",
+            1
+          )
+      );
+
+
+    if(!blob){
+
+      throw new Error(
+        "Unable to create image."
+      );
+
+    }
+
+
+    const file =
+      new File(
+        [blob],
+        filename,
+        {
+          type:"image/png"
+        }
+      );
+
+
+    /*
+      iPhone Safari supports the
+      native Share Sheet for files
+      when available.
+    */
+
+    if(
+      navigator.share &&
+      (
+        !navigator.canShare ||
+        navigator.canShare({
+          files:[file]
+        })
+      )
+    ){
+
+      await navigator.share({
+
+        title:
+          "Therapy Tracker",
+
+        text:
+          "Therapy Tracker details",
+
+        files:[
+          file
+        ]
+
+      });
+
+
+      return;
+
+    }
+
+
+    /*
+      Fallback:
+      open image in a new tab.
+    */
+
+    const url =
+      URL.createObjectURL(
+        blob
+      );
+
+
+    const newWindow =
+      window.open(
+        url,
+        "_blank"
+      );
+
+
+    if(!newWindow){
+
+      alert(
+        "Image created. Please allow pop-ups to view it."
+      );
+
+    }
+
+
+    setTimeout(
+      () =>
+        URL.revokeObjectURL(url),
+      60000
+    );
+
+  }
+
+  catch(error){
+
+    /*
+      User cancelling the iPhone
+      Share Sheet is not an error
+      we need to show.
+    */
+
+    if(
+      error &&
+      error.name ===
+      "AbortError"
+    ){
+
+      return;
+
+    }
+
+
+    console.error(
+      "Share failed:",
+      error
+    );
+
+
+    alert(
+      "Unable to create the share image. Please try again."
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   SHARE DASHBOARD
+================================================== */
+
+el("shareDashboard")
+  .addEventListener(
+    "click",
+    function(){
+
+      shareElementAsImage(
+        el("home"),
+        "therapy-dashboard.png"
+      );
+
+    }
+  );
+
+
+/* ==================================================
+   SHARE HISTORY
+================================================== */
+
+el("shareHistory")
+  .addEventListener(
+    "click",
+    function(){
+
+      shareElementAsImage(
+        el("history"),
+        "therapy-history.png"
+      );
+
+    }
+  );
+
+
+/* ==================================================
+   SHARE SELECTED DATE
+================================================== */
+
+el("shareSelectedDate")
+  .addEventListener(
+    "click",
+    function(){
+
+      const element =
+        document.querySelector(
+          "#calendar .panel:nth-of-type(2)"
+        );
+
+
+      shareElementAsImage(
+        element,
+        "therapy-date-details.png"
+      );
+
+    }
+  );
+
+
+/* ==================================================
+   SHARE THERAPY DATE LIST
+================================================== */
+
+el("shareTherapyDates")
+  .addEventListener(
+    "click",
+    function(){
+
+      const element =
+        document.querySelector(
+          "#therapyModal .modal"
+        );
+
+
+      shareElementAsImage(
+        element,
+        "therapy-dates.png"
+      );
+
+    }
+  );
 
 
 /* ==================================================
