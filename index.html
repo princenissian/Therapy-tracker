@@ -1,0 +1,4484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+
+<title>Attendance Tracker</title>
+
+<style>
+:root{
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --bg:#f4f7fb;
+  --card:#fff;
+  --text:#172033;
+  --muted:#68758d;
+  --border:#dfe6f1;
+  --green:#16a34a;
+  --greenbg:#dcfce7;
+  --red:#dc2626;
+  --redbg:#fee2e2;
+  --orange:#ea580c;
+  --orangebg:#ffedd5;
+  --purple:#7c3aed;
+  --purplebg:#ede9fe;
+  --weekend:#dbeafe;
+  --shadow:0 6px 22px rgba(25,45,80,.08);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:16px;
+}
+
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* HEADER */
+
+.app-header{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+  padding:34px 22px 28px;
+  border-radius:0 0 44px 44px;
+  box-shadow:0 7px 24px rgba(37,99,235,.22);
+}
+
+.header-row{
+  max-width:1050px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+
+h1{
+  font-size:38px;
+  line-height:1.08;
+  margin:0 0 10px;
+  font-weight:800;
+}
+
+.subtitle{
+  font-size:19px;
+  line-height:1.35;
+  opacity:.92;
+}
+
+.theme-btn{
+  min-width:82px;
+  height:76px;
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:20px;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  font-size:16px;
+  font-weight:700;
+}
+
+.theme-btn span{
+  display:block;
+}
+
+.theme-btn span:first-child{
+  font-size:30px;
+  line-height:32px;
+}
+
+/* MAIN */
+
+.container{
+  max-width:1050px;
+  margin:22px auto 100px;
+  padding:0 18px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:22px;
+  margin-bottom:18px;
+}
+
+/* PROFILE */
+
+.profile-row{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:10px;
+  align-items:center;
+}
+
+.profile-select{
+  width:100%;
+  height:54px;
+  border:2px solid var(--border);
+  border-radius:15px;
+  background:var(--card);
+  color:var(--text);
+  padding:0 14px;
+}
+
+.profile-count{
+  color:var(--muted);
+  margin-top:13px;
+}
+
+.mode-wrap{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:12px;
+  align-items:center;
+  margin-top:17px;
+}
+
+.mode-label{
+  font-weight:700;
+}
+
+.mode-select{
+  height:50px;
+  border:2px solid var(--border);
+  border-radius:14px;
+  padding:0 13px;
+  background:var(--card);
+  color:var(--text);
+}
+
+/* BUTTONS */
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:12px 17px;
+  font-weight:700;
+  background:#edf2f7;
+  color:var(--text);
+}
+
+.btn-primary{
+  background:var(--blue);
+  color:#fff;
+}
+
+.btn-danger{
+  background:var(--redbg);
+  color:var(--red);
+}
+
+.btn-small{
+  padding:9px 12px;
+  font-size:14px;
+}
+
+/* DASHBOARD */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.stat{
+  min-height:126px;
+  padding:20px;
+  border-radius:22px;
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+
+.stat .value{
+  font-size:42px;
+  font-weight:800;
+  line-height:1.05;
+}
+
+.stat .label{
+  font-size:17px;
+  color:var(--muted);
+  margin-top:8px;
+}
+
+/* SUMMARY */
+
+.section-title{
+  font-size:25px;
+  margin:4px 0 16px;
+  font-weight:800;
+}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.summary-box{
+  padding:15px;
+  border-radius:17px;
+  text-align:center;
+  cursor:pointer;
+  border:1px solid var(--border);
+}
+
+.summary-box b{
+  font-size:27px;
+  display:block;
+}
+
+.summary-box span{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.summary-total{
+  background:#eef2ff;
+}
+
+.summary-att{
+  background:#ecfdf3;
+}
+
+.summary-missed{
+  background:#fff1f2;
+}
+
+.summary-planned{
+  background:#eff6ff;
+}
+
+/* COST */
+
+.cost-row{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  padding:11px 0;
+}
+
+.cost-row:last-child{
+  border-bottom:0;
+}
+
+/* NEXT SESSION */
+
+.next-box{
+  color:var(--muted);
+  text-align:center;
+  padding:22px 5px;
+}
+
+/* RECORD */
+
+.record{
+  border:1px solid var(--border);
+  border-left:6px solid var(--blue);
+  border-radius:18px;
+  padding:17px;
+  margin:10px 0;
+  background:var(--card);
+}
+
+.record-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+
+.record-title{
+  font-size:21px;
+  font-weight:800;
+}
+
+.badge{
+  padding:6px 11px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+  white-space:nowrap;
+}
+
+.attended{
+  color:#166534;
+  background:var(--greenbg);
+}
+
+.missed{
+  color:#b91c1c;
+  background:var(--redbg);
+}
+
+.planned{
+  color:#c2410c;
+  background:var(--orangebg);
+}
+
+.rescheduled{
+  color:#6d28d9;
+  background:var(--purplebg);
+}
+
+.meta{
+  color:var(--muted);
+  line-height:1.7;
+  margin-top:6px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+/* CALENDAR */
+
+.calendar-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.month-title{
+  font-size:27px;
+  font-weight:800;
+}
+
+.cal-btn{
+  width:48px;
+  height:48px;
+  border:0;
+  border-radius:14px;
+  background:#edf2f7;
+  color:var(--blue);
+  font-size:28px;
+}
+
+.weekdays,
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:7px;
+}
+
+.weekday{
+  text-align:center;
+  color:var(--muted);
+  font-weight:700;
+  padding:5px 0;
+  font-size:14px;
+}
+
+.day{
+  min-height:76px;
+  border:2px solid var(--border);
+  border-radius:15px;
+  background:var(--card);
+  padding:7px;
+  text-align:center;
+  position:relative;
+  color:var(--blue);
+}
+
+.day.empty{
+  border-color:transparent;
+  background:transparent;
+}
+
+.day.weekend{
+  background:var(--weekend);
+}
+
+.day.selected{
+  outline:4px solid var(--blue);
+  outline-offset:-4px;
+}
+
+.day-number{
+  font-weight:700;
+  font-size:18px;
+}
+
+.marker{
+  margin-top:8px;
+  font-size:21px;
+  font-weight:900;
+  line-height:1;
+}
+
+.marker.attended{
+  color:var(--green);
+  background:none;
+}
+
+.marker.missed{
+  color:var(--red);
+  background:none;
+}
+
+.marker.planned{
+  color:var(--orange);
+  background:none;
+}
+
+.marker.rescheduled{
+  color:var(--purple);
+  background:none;
+}
+
+.legend{
+  display:flex;
+  gap:13px;
+  flex-wrap:wrap;
+  margin-top:15px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.legend i{
+  font-style:normal;
+  font-weight:800;
+}
+
+/* FORM */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+label{
+  font-size:14px;
+  font-weight:700;
+  display:block;
+  margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:2px solid var(--border);
+  border-radius:12px;
+  padding:11px;
+  background:var(--card);
+  color:var(--text);
+}
+
+textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:50;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.sheet{
+  width:min(700px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:var(--card);
+  border-radius:24px 24px 0 0;
+  padding:22px;
+}
+
+.sheet h2{
+  margin:0 0 18px;
+  font-size:23px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:76px;
+  background:var(--card);
+  border-top:1px solid var(--border);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  z-index:40;
+}
+
+.nav-btn{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  font-weight:700;
+  font-size:13px;
+}
+
+.nav-btn.active{
+  color:var(--blue);
+}
+
+.nav-icon{
+  font-size:24px;
+  display:block;
+  margin-bottom:2px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:88px;
+  transform:translateX(-50%);
+  background:#111827;
+  color:#fff;
+  padding:11px 15px;
+  border-radius:12px;
+  display:none;
+  z-index:100;
+  font-size:14px;
+}
+
+.toast.show{
+  display:block;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  body{
+    font-size:15px;
+  }
+
+  .app-header{
+    padding:27px 18px 23px;
+    border-radius:0 0 36px 36px;
+  }
+
+  h1{
+    font-size:32px;
+  }
+
+  .subtitle{
+    font-size:17px;
+  }
+
+  .theme-btn{
+    min-width:70px;
+    height:66px;
+  }
+
+  .container{
+    padding:0 14px;
+    margin-top:15px;
+  }
+
+  .card{
+    padding:17px;
+    border-radius:20px;
+  }
+
+  .profile-row{
+    grid-template-columns:1fr auto;
+  }
+
+  .profile-edit{
+    grid-column:1;
+  }
+
+  .profile-add{
+    grid-column:2;
+    grid-row:1;
+  }
+
+  .mode-wrap{
+    grid-template-columns:1fr;
+  }
+
+  .mode-label{
+    margin-bottom:-5px;
+  }
+
+  .grid{
+    gap:10px;
+  }
+
+  .stat{
+    min-height:112px;
+    padding:17px;
+    border-radius:19px;
+  }
+
+  .stat .value{
+    font-size:36px;
+  }
+
+  .stat .label{
+    font-size:15px;
+  }
+
+  .summary-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .summary-box b{
+    font-size:25px;
+  }
+
+  .day{
+    min-height:68px;
+    padding:6px;
+    border-radius:13px;
+  }
+
+  .day-number{
+    font-size:17px;
+  }
+
+  .marker{
+    font-size:19px;
+  }
+
+  .weekdays{
+    gap:5px;
+  }
+
+  .calendar{
+    gap:5px;
+  }
+
+  .month-title{
+    font-size:23px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+}
+
+/* DARK MODE */
+
+body.dark{
+  --bg:#0b1220;
+  --card:#111a2b;
+  --text:#eef3ff;
+  --muted:#aab5ca;
+  --border:#293750;
+  --weekend:#172b4d;
+  --shadow:0 6px 22px rgba(0,0,0,.25);
+}
+
+body.dark .btn:not(.btn-primary):not(.btn-danger),
+body.dark .cal-btn{
+  background:#1b263a;
+  color:var(--text);
+}
+
+/* PRINT */
+
+@media print{
+
+  .app-header,
+  .bottom-nav,
+  .theme-btn,
+  .profile-add,
+  .profile-edit,
+  .actions,
+  .btn,
+  .modal,
+  .legend,
+  #calendarSection{
+    display:none!important;
+  }
+
+  body{
+    background:#fff;
+  }
+
+  .container{
+    margin:0;
+    max-width:none;
+  }
+
+  .card{
+    box-shadow:none;
+    border:1px solid #ccc;
+  }
+}
+
+@media(min-width:651px){
+
+  .modal{
+    align-items:center;
+  }
+
+  .sheet{
+    border-radius:24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="app-header">
+
+  <div class="header-row">
+
+    <div>
+
+      <h1 id="appTitle">
+        Attendance Tracker
+      </h1>
+
+      <div class="subtitle" id="appSubtitle">
+        Track your sessions, attendance and expenses
+      </div>
+
+    </div>
+
+    <button
+      class="theme-btn"
+      id="themeBtn"
+      title="Toggle dark/light mode">
+
+      <span id="themeIcon">🌙</span>
+      <span id="themeText">Dark</span>
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+<!-- =========================================================
+     PROFILE + MODE
+========================================================= -->
+
+<section class="card">
+
+  <div class="profile-row">
+
+    <select
+      id="profileSelect"
+      class="profile-select">
+    </select>
+
+    <button
+      class="btn profile-edit"
+      id="editProfileBtn">
+      ✎ Edit
+    </button>
+
+    <button
+      class="btn btn-primary profile-add"
+      id="addProfileBtn">
+      ＋ Profile
+    </button>
+
+  </div>
+
+  <div
+    class="profile-count"
+    id="profileCount">
+  </div>
+
+
+  <div class="mode-wrap">
+
+    <div class="mode-label">
+      Attendance Mode
+    </div>
+
+    <select
+      id="modeSelect"
+      class="mode-select">
+
+      <option value="therapy">
+        🩺 Therapy
+      </option>
+
+      <option value="tuition">
+        📚 Tuition
+      </option>
+
+      <option value="school">
+        🏫 School
+      </option>
+
+      <option value="class">
+        🎓 Class
+      </option>
+
+      <option value="gym">
+        🏋️ Gym
+      </option>
+
+      <option value="office">
+        🏢 Office / RTO Attendance
+      </option>
+
+      <option value="other">
+        📋 Other
+      </option>
+
+    </select>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
+<section
+  class="grid"
+  id="statsGrid">
+
+  <div
+    class="stat"
+    data-filter="all">
+
+    <div
+      class="value"
+      id="totalCount">
+      0
+    </div>
+
+    <div class="label">
+      Total Sessions
+    </div>
+
+  </div>
+
+
+  <div
+    class="stat"
+    data-filter="attended">
+
+    <div
+      class="value"
+      id="attendedCount">
+      0
+    </div>
+
+    <div class="label">
+      Attended
+    </div>
+
+  </div>
+
+
+  <div
+    class="stat"
+    data-filter="missed">
+
+    <div
+      class="value"
+      id="missedCount">
+      0
+    </div>
+
+    <div class="label">
+      Missed
+    </div>
+
+  </div>
+
+
+  <div
+    class="stat"
+    data-filter="planned">
+
+    <div
+      class="value"
+      id="plannedCount">
+      0
+    </div>
+
+    <div class="label">
+      Planned
+    </div>
+
+  </div>
+
+
+  <div
+    class="stat"
+    data-filter="rescheduled">
+
+    <div
+      class="value"
+      id="rescheduledCount">
+      0
+    </div>
+
+    <div class="label">
+      Rescheduled
+    </div>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div
+      class="value"
+      id="attendanceRate">
+      0%
+    </div>
+
+    <div class="label">
+      Attendance Rate
+    </div>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div
+      class="value"
+      id="totalCost">
+      ₹0
+    </div>
+
+    <div class="label">
+      Total Cost
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SUMMARY
+========================================================= -->
+
+<section class="card">
+
+  <div class="section-title">
+    Therapy / Attendance Summary
+  </div>
+
+  <div class="summary-grid">
+
+    <div
+      class="summary-box summary-total"
+      data-filter="all">
+
+      <b id="sumTotal">
+        0
+      </b>
+
+      <span>
+        Total
+      </span>
+
+    </div>
+
+
+    <div
+      class="summary-box summary-att"
+      data-filter="attended">
+
+      <b id="sumAttended">
+        0
+      </b>
+
+      <span>
+        Attended
+      </span>
+
+    </div>
+
+
+    <div
+      class="summary-box summary-missed"
+      data-filter="missed">
+
+      <b id="sumMissed">
+        0
+      </b>
+
+      <span>
+        Missed
+      </span>
+
+    </div>
+
+
+    <div
+      class="summary-box summary-planned"
+      data-filter="planned">
+
+      <b id="sumPlanned">
+        0
+      </b>
+
+      <span>
+        Planned
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     COST SUMMARY
+========================================================= -->
+
+<section class="card">
+
+  <div class="section-title">
+    Cost Summary
+  </div>
+
+  <div class="cost-row">
+    <span>Attended</span>
+    <b id="costAttended">₹0</b>
+  </div>
+
+  <div class="cost-row">
+    <span>Planned</span>
+    <b id="costPlanned">₹0</b>
+  </div>
+
+  <div class="cost-row">
+    <span>Total</span>
+    <b id="costTotal">₹0</b>
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     NEXT SESSION
+========================================================= -->
+
+<section class="card">
+
+  <div class="section-title">
+    Next Session
+  </div>
+
+  <div
+    class="next-box"
+    id="nextSession">
+
+    No upcoming sessions.
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     RECENT SESSIONS
+========================================================= -->
+
+<section class="card">
+
+  <div class="section-title">
+    Recent Sessions
+  </div>
+
+  <div id="recentList">
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CALENDAR
+========================================================= -->
+
+<section
+  class="card"
+  id="calendarSection">
+
+  <div class="calendar-head">
+
+    <button
+      class="cal-btn"
+      id="prevMonth">
+      ‹
+    </button>
+
+    <div
+      class="month-title"
+      id="monthTitle">
+    </div>
+
+    <button
+      class="cal-btn"
+      id="nextMonth">
+      ›
+    </button>
+
+  </div>
+
+
+  <div class="weekdays">
+
+    <div class="weekday">Sun</div>
+    <div class="weekday">Mon</div>
+    <div class="weekday">Tue</div>
+    <div class="weekday">Wed</div>
+    <div class="weekday">Thu</div>
+    <div class="weekday">Fri</div>
+    <div class="weekday">Sat</div>
+
+  </div>
+
+
+  <div
+    class="calendar"
+    id="calendar">
+  </div>
+
+
+  <div class="legend">
+
+    <span>
+      <i style="color:var(--green)">✓</i>
+      Attended
+    </span>
+
+    <span>
+      <i style="color:var(--red)">×</i>
+      Missed
+    </span>
+
+    <span>
+      <i style="color:var(--orange)">●</i>
+      Planned
+    </span>
+
+    <span>
+      <i style="color:var(--purple)">↻</i>
+      Rescheduled
+    </span>
+
+    <span>
+      <i style="color:var(--blue)">■</i>
+      Saturday/Sunday
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     EXPORT / BACKUP
+========================================================= -->
+
+<section class="card">
+
+  <div class="section-title">
+    Export / Backup
+  </div>
+
+  <div class="actions">
+
+    <button
+      class="btn btn-primary"
+      id="exportExcel">
+      Export Excel
+    </button>
+
+    <button
+      class="btn"
+      id="printPdf">
+      Print / Save PDF
+    </button>
+
+    <button
+      class="btn"
+      id="backupData">
+      Backup JSON
+    </button>
+
+    <button
+      class="btn"
+      id="restoreData">
+      Restore JSON
+    </button>
+
+    <input
+      type="file"
+      id="restoreInput"
+      accept=".json,application/json"
+      class="hidden">
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     BOTTOM NAV
+========================================================= -->
+
+<nav class="bottom-nav">
+
+  <button
+    class="nav-btn active"
+    data-nav="home">
+
+    <span class="nav-icon">
+      ⌂
+    </span>
+
+    Home
+
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-nav="add">
+
+    <span class="nav-icon">
+      ＋
+    </span>
+
+    Add
+
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-nav="history">
+
+    <span class="nav-icon">
+      ☷
+    </span>
+
+    History
+
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-nav="calendar">
+
+    <span class="nav-icon">
+      ▣
+    </span>
+
+    Calendar
+
+  </button>
+
+</nav>
+
+
+<!-- =========================================================
+     SESSION MODAL
+========================================================= -->
+
+<div
+  class="modal"
+  id="sessionModal">
+
+  <div class="sheet">
+
+    <h2 id="sessionModalTitle">
+      Add Session
+    </h2>
+
+
+    <form id="sessionForm">
+
+      <input
+        type="hidden"
+        id="editId">
+
+
+      <div class="form-grid">
+
+
+        <div>
+
+          <label>
+            Mode
+          </label>
+
+          <select id="fMode">
+
+            <option value="therapy">
+              🩺 Therapy
+            </option>
+
+            <option value="tuition">
+              📚 Tuition
+            </option>
+
+            <option value="school">
+              🏫 School
+            </option>
+
+            <option value="class">
+              🎓 Class
+            </option>
+
+            <option value="gym">
+              🏋️ Gym
+            </option>
+
+            <option value="office">
+              🏢 Office / RTO Attendance
+            </option>
+
+            <option value="other">
+              📋 Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Title
+          </label>
+
+          <input
+            id="fTitle"
+            required
+            placeholder="e.g. Occupational Therapy">
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Date
+          </label>
+
+          <input
+            type="date"
+            id="fDate"
+            required>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Time
+          </label>
+
+          <input
+            type="time"
+            id="fTime">
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Person / Trainer / Therapist
+          </label>
+
+          <input
+            id="fPerson"
+            placeholder="Name">
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Status
+          </label>
+
+          <select id="fStatus">
+
+            <option value="attended">
+              Attended
+            </option>
+
+            <option value="missed">
+              Missed
+            </option>
+
+            <option value="planned">
+              Planned
+            </option>
+
+            <option value="rescheduled">
+              Rescheduled
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Cost (₹)
+          </label>
+
+          <input
+            type="number"
+            id="fCost"
+            min="0"
+            step="0.01"
+            value="0">
+
+        </div>
+
+
+        <div>
+
+          <label>
+            Rescheduled Date
+          </label>
+
+          <input
+            type="date"
+            id="fRescheduledDate">
+
+        </div>
+
+
+        <div class="full">
+
+          <label>
+            Notes
+          </label>
+
+          <textarea
+            id="fNotes"
+            placeholder="Optional notes">
+          </textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="btn"
+          id="closeSession">
+
+          Cancel
+
+        </button>
+
+
+        <button
+          type="submit"
+          class="btn btn-primary">
+
+          Save Session
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PROFILE MODAL
+========================================================= -->
+
+<div
+  class="modal"
+  id="profileModal">
+
+  <div class="sheet">
+
+    <h2 id="profileModalTitle">
+      Add Profile
+    </h2>
+
+
+    <form id="profileForm">
+
+      <input
+        type="hidden"
+        id="profileId">
+
+
+      <label>
+        Profile Name
+      </label>
+
+      <input
+        id="profileName"
+        required
+        placeholder="e.g. My Child">
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="btn"
+          id="closeProfile">
+
+          Cancel
+
+        </button>
+
+
+        <button
+          type="submit"
+          class="btn btn-primary">
+
+          Save Profile
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script>
+
+(function(){
+
+"use strict";
+
+
+/*
+=============================================================
+DATA STORAGE
+=============================================================
+
+IMPORTANT:
+
+This application NEVER calls:
+
+localStorage.clear()
+
+Existing localStorage data is preserved.
+
+A new storage key is used for the enhanced application.
+
+Older common Therapy Tracker storage keys are checked and
+migrated when possible.
+*/
+
+const DBKEY="attendanceTrackerData_v3";
+
+
+const OLD_KEYS=[
+  "therapyTrackerData",
+  "therapyTracker",
+  "therapyData",
+  "therapy-tracker",
+  "therapy_sessions",
+  "sessions",
+  "attendanceTracker",
+  "attendanceData",
+  "trackerData"
+];
+
+
+const MODE_NAMES={
+  therapy:"Therapy",
+  tuition:"Tuition",
+  school:"School",
+  class:"Class",
+  gym:"Gym",
+  office:"Office / RTO",
+  other:"Other"
+};
+
+
+let db=loadDB();
+
+let activeProfileId=db.activeProfileId;
+
+let activeMode=db.activeMode || "therapy";
+
+let currentMonth=
+  new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    1
+  );
+
+let selectedDate=null;
+
+let currentFilter="all";
+
+
+/* =========================================================
+HELPERS
+========================================================= */
+
+function uid(){
+
+  return "id_"+
+    Date.now()+"_"+
+    Math.random()
+      .toString(36)
+      .slice(2,9);
+
+}
+
+
+function localDate(d){
+
+  return d.getFullYear()+"-"+
+    String(d.getMonth()+1).padStart(2,"0")+"-"+
+    String(d.getDate()).padStart(2,"0");
+
+}
+
+
+function todayISO(){
+
+  return localDate(new Date());
+
+}
+
+
+function money(n){
+
+  return "₹"+
+    Number(n||0)
+      .toLocaleString(
+        "en-IN",
+        {
+          maximumFractionDigits:2
+        }
+      );
+
+}
+
+
+function esc(s){
+
+  return String(s??"")
+    .replace(
+      /[&<>"']/g,
+      m=>({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+      }[m])
+    );
+
+}
+
+
+function toast(msg){
+
+  const t=document.getElementById("toast");
+
+  t.textContent=msg;
+
+  t.classList.add("show");
+
+  setTimeout(
+    ()=>t.classList.remove("show"),
+    2200
+  );
+
+}
+
+
+function saveDB(){
+
+  db.activeProfileId=activeProfileId;
+
+  db.activeMode=activeMode;
+
+  localStorage.setItem(
+    DBKEY,
+    JSON.stringify(db)
+  );
+
+}
+
+
+/* =========================================================
+DEFAULT DATABASE
+========================================================= */
+
+function emptyDB(){
+
+  return {
+
+    version:3,
+
+    profiles:[
+      {
+        id:"default",
+        name:"Default Profile"
+      }
+    ],
+
+    sessions:[],
+
+    activeProfileId:"default",
+
+    activeMode:"therapy",
+
+    theme:"light"
+
+  };
+
+}
+
+
+/* =========================================================
+STATUS MIGRATION
+========================================================= */
+
+function normaliseStatus(s){
+
+  s=String(s||"").toLowerCase();
+
+  if(s.includes("miss"))
+    return "missed";
+
+  if(
+    s.includes("plan") ||
+    s.includes("upcoming")
+  )
+    return "planned";
+
+  if(s.includes("resched"))
+    return "rescheduled";
+
+  return "attended";
+
+}
+
+
+/* =========================================================
+MODE MIGRATION
+========================================================= */
+
+function normaliseMode(s){
+
+  s=String(s||"").toLowerCase();
+
+  if(
+    s.includes("tuition") ||
+    s.includes("tution")
+  )
+    return "tuition";
+
+  if(s.includes("school"))
+    return "school";
+
+  if(s.includes("class"))
+    return "class";
+
+  if(s.includes("gym"))
+    return "gym";
+
+  if(
+    s.includes("office") ||
+    s.includes("rto")
+  )
+    return "office";
+
+  if(
+    s.includes("therapy") ||
+    s.includes("occupational") ||
+    s.includes("physio")
+  )
+    return "therapy";
+
+  return "therapy";
+
+}
+
+
+/* =========================================================
+PICK OLD PROPERTY
+========================================================= */
+
+function pick(o,...keys){
+
+  for(
+    const k of keys
+  ){
+
+    if(
+      o &&
+      o[k]!=null &&
+      o[k]!==""
+    ){
+
+      return o[k];
+
+    }
+
+  }
+
+  return "";
+
+}
+
+
+/* =========================================================
+NORMALISE SESSION
+========================================================= */
+
+function normaliseSession(o,profileId){
+
+  const date=pick(
+    o,
+    "date",
+    "sessionDate",
+    "visitDate",
+    "day",
+    "selectedDate"
+  );
+
+  if(!date)
+    return null;
+
+
+  const d=String(date).slice(0,10);
+
+
+  return {
+
+    id:String(
+      pick(o,"id","_id") ||
+      uid()
+    ),
+
+    profileId:String(
+      pick(
+        o,
+        "profileId",
+        "profile",
+        "personId"
+      ) ||
+      profileId ||
+      "default"
+    ),
+
+    mode:normaliseMode(
+      pick(
+        o,
+        "mode",
+        "category",
+        "type",
+        "attendanceMode"
+      ) || "therapy"
+    ),
+
+    title:String(
+      pick(
+        o,
+        "title",
+        "therapy",
+        "therapyName",
+        "sessionType",
+        "name"
+      ) ||
+      "Therapy Session"
+    ),
+
+    date:d,
+
+    time:String(
+      pick(
+        o,
+        "time",
+        "sessionTime",
+        "startTime"
+      ) ||
+      ""
+    ),
+
+    person:String(
+      pick(
+        o,
+        "person",
+        "therapist",
+        "trainer",
+        "teacher",
+        "doctor",
+        "provider"
+      ) ||
+      ""
+    ),
+
+    status:normaliseStatus(
+      pick(
+        o,
+        "status",
+        "attendance",
+        "result"
+      ) ||
+      "attended"
+    ),
+
+    cost:Number(
+      pick(
+        o,
+        "cost",
+        "amount",
+        "price",
+        "fee"
+      ) ||
+      0
+    ),
+
+    rescheduledDate:String(
+      pick(
+        o,
+        "rescheduledDate",
+        "newDate"
+      ) ||
+      ""
+    ),
+
+    notes:String(
+      pick(
+        o,
+        "notes",
+        "remark",
+        "remarks",
+        "comments"
+      ) ||
+      ""
+    ),
+
+    createdAt:
+      pick(o,"createdAt") ||
+      Date.now()
+
+  };
+
+}
+
+
+/* =========================================================
+LEGACY DATA COLLECTION
+========================================================= */
+
+function collectLegacy(){
+
+  let records=[];
+
+  let profiles=[];
+
+  const keys=new Set(OLD_KEYS);
+
+
+  for(
+    let i=0;
+    i<localStorage.length;
+    i++
+  ){
+
+    const k=localStorage.key(i);
+
+    if(k)
+      keys.add(k);
+
+  }
+
+
+  keys.forEach(k=>{
+
+    if(k===DBKEY)
+      return;
+
+
+    try{
+
+      const raw=localStorage.getItem(k);
+
+      if(!raw)
+        return;
+
+
+      const x=JSON.parse(raw);
+
+
+      if(Array.isArray(x)){
+
+        x.forEach(o=>{
+
+          if(
+            o &&
+            typeof o==="object" &&
+            (
+              o.date ||
+              o.sessionDate ||
+              o.visitDate
+            )
+          ){
+
+            records.push(o);
+
+          }
+
+        });
+
+      }
+
+
+      else if(
+        x &&
+        typeof x==="object"
+      ){
+
+        if(
+          Array.isArray(x.sessions)
+        )
+          records.push(...x.sessions);
+
+
+        if(
+          Array.isArray(x.records)
+        )
+          records.push(...x.records);
+
+
+        if(
+          Array.isArray(x.appointments)
+        )
+          records.push(...x.appointments);
+
+
+        if(
+          Array.isArray(x.profiles)
+        )
+          profiles.push(...x.profiles);
+
+
+        if(
+          x.data &&
+          Array.isArray(x.data)
+        )
+          records.push(...x.data);
+
+      }
+
+    }
+
+    catch(e){
+
+      console.log(
+        "Legacy storage skipped:",
+        k
+      );
+
+    }
+
+  });
+
+
+  return {
+    records,
+    profiles
+  };
+
+}
+
+
+/* =========================================================
+LOAD DATABASE
+========================================================= */
+
+function loadDB(){
+
+  let base=emptyDB();
+
+  let parsed=null;
+
+
+  try{
+
+    parsed=JSON.parse(
+      localStorage.getItem(DBKEY) ||
+      "null"
+    );
+
+  }
+
+  catch(e){
+
+    parsed=null;
+
+  }
+
+
+  if(
+    parsed &&
+    typeof parsed==="object"
+  ){
+
+    base={
+      ...base,
+      ...parsed
+    };
+
+
+    base.profiles=
+      Array.isArray(parsed.profiles) &&
+      parsed.profiles.length
+      ?
+      parsed.profiles
+      :
+      base.profiles;
+
+
+    base.sessions=
+      Array.isArray(parsed.sessions)
+      ?
+      parsed.sessions
+      :
+      [];
+
+  }
+
+
+  else{
+
+    const legacy=collectLegacy();
+
+    const pmap={};
+
+
+    (
+      legacy.profiles ||
+      []
+    ).forEach(p=>{
+
+      const name=String(
+        p.name ||
+        p.profileName ||
+        p.title ||
+        ""
+      ).trim();
+
+
+      if(name){
+
+        pmap[
+          name.toLowerCase()
+        ]={
+
+          id:String(
+            p.id ||
+            uid()
+          ),
+
+          name
+
+        };
+
+      }
+
+    });
+
+
+    base.profiles=[
+      ...base.profiles,
+      ...Object.values(pmap)
+    ];
+
+
+    const defaultId=
+      base.profiles[0].id;
+
+
+    base.sessions=
+      (
+        legacy.records ||
+        []
+      )
+      .map(
+        o=>normaliseSession(
+          o,
+          defaultId
+        )
+      )
+      .filter(Boolean);
+
+
+    const seen=new Set();
+
+
+    base.sessions=
+      base.sessions.filter(s=>{
+
+        const sig=[
+          s.profileId,
+          s.mode,
+          s.date,
+          s.time,
+          s.title,
+          s.status,
+          s.cost
+        ].join("|");
+
+
+        if(seen.has(sig))
+          return false;
+
+
+        seen.add(sig);
+
+        return true;
+
+      });
+
+
+    /*
+      Save enhanced copy.
+
+      Old storage keys are NOT removed.
+    */
+
+    localStorage.setItem(
+      DBKEY,
+      JSON.stringify(base)
+    );
+
+  }
+
+
+  if(
+    !base.profiles.length
+  ){
+
+    base.profiles=[
+      {
+        id:"default",
+        name:"Default Profile"
+      }
+    ];
+
+  }
+
+
+  if(
+    !base.profiles.some(
+      p=>p.id===base.activeProfileId
+    )
+  ){
+
+    base.activeProfileId=
+      base.profiles[0].id;
+
+  }
+
+
+  return base;
+
+}
+
+
+/* =========================================================
+CURRENT PROFILE
+========================================================= */
+
+function profile(){
+
+  return db.profiles.find(
+    p=>p.id===activeProfileId
+  ) ||
+  db.profiles[0];
+
+}
+
+
+/* =========================================================
+CURRENT MODE SESSIONS
+========================================================= */
+
+function sessions(){
+
+  return db.sessions.filter(
+    s=>
+      s.profileId===activeProfileId &&
+      s.mode===activeMode
+  );
+
+}
+
+
+/* =========================================================
+MAIN RENDER
+========================================================= */
+
+function render(){
+
+  document.getElementById(
+    "appTitle"
+  ).textContent=
+    MODE_NAMES[activeMode] +
+    " Tracker";
+
+
+  document.getElementById(
+    "appSubtitle"
+  ).textContent=
+    activeMode==="therapy"
+    ?
+    "Track therapy visits, attendance and expenses"
+    :
+    "Track "+
+    MODE_NAMES[activeMode].toLowerCase()+
+    " attendance, sessions and expenses";
+
+
+  renderProfiles();
+
+  renderStats();
+
+  renderSummary();
+
+  renderCost();
+
+  renderNext();
+
+  renderRecent();
+
+  renderCalendar();
+
+
+  document.getElementById(
+    "modeSelect"
+  ).value=activeMode;
+
+}
+
+
+/* =========================================================
+PROFILES
+========================================================= */
+
+function renderProfiles(){
+
+  const sel=
+    document.getElementById(
+      "profileSelect"
+    );
+
+
+  sel.innerHTML=
+    db.profiles
+      .map(
+        p=>
+        `<option value="${esc(p.id)}">
+          ${esc(p.name)}
+        </option>`
+      )
+      .join("");
+
+
+  sel.value=
+    activeProfileId;
+
+
+  document.getElementById(
+    "profileCount"
+  ).textContent=
+    sessions().length+
+    " records in this profile / mode";
+
+}
+
+
+/* =========================================================
+STATS
+========================================================= */
+
+function renderStats(){
+
+  const a=sessions();
+
+
+  const c=k=>
+    a.filter(
+      s=>s.status===k
+    ).length;
+
+
+  document.getElementById(
+    "totalCount"
+  ).textContent=a.length;
+
+
+  document.getElementById(
+    "attendedCount"
+  ).textContent=c("attended");
+
+
+  document.getElementById(
+    "missedCount"
+  ).textContent=c("missed");
+
+
+  document.getElementById(
+    "plannedCount"
+  ).textContent=c("planned");
+
+
+  document.getElementById(
+    "rescheduledCount"
+  ).textContent=
+    c("rescheduled");
+
+
+  const denominator=
+    c("attended")+
+    c("missed");
+
+
+  document.getElementById(
+    "attendanceRate"
+  ).textContent=
+    (
+      denominator
+      ?
+      Math.round(
+        c("attended") /
+        denominator *
+        100
+      )
+      :
+      0
+    )+
+    "%";
+
+
+  document.getElementById(
+    "totalCost"
+  ).textContent=
+    money(
+      a.reduce(
+        (x,s)=>
+          x+
+          Number(
+            s.cost||0
+          ),
+        0
+      )
+    );
+
+}
+
+
+/* =========================================================
+SUMMARY
+========================================================= */
+
+function renderSummary(){
+
+  const a=sessions();
+
+
+  const c=k=>
+    a.filter(
+      s=>s.status===k
+    ).length;
+
+
+  document.getElementById(
+    "sumTotal"
+  ).textContent=a.length;
+
+
+  document.getElementById(
+    "sumAttended"
+  ).textContent=c("attended");
+
+
+  document.getElementById(
+    "sumMissed"
+  ).textContent=c("missed");
+
+
+  document.getElementById(
+    "sumPlanned"
+  ).textContent=c("planned");
+
+}
+
+
+/* =========================================================
+COST
+========================================================= */
+
+function renderCost(){
+
+  const a=sessions();
+
+
+  const att=
+    a
+      .filter(
+        s=>s.status==="attended"
+      )
+      .reduce(
+        (x,s)=>
+          x+
+          Number(s.cost||0),
+        0
+      );
+
+
+  const pl=
+    a
+      .filter(
+        s=>s.status==="planned"
+      )
+      .reduce(
+        (x,s)=>
+          x+
+          Number(s.cost||0),
+        0
+      );
+
+
+  document.getElementById(
+    "costAttended"
+  ).textContent=money(att);
+
+
+  document.getElementById(
+    "costPlanned"
+  ).textContent=money(pl);
+
+
+  document.getElementById(
+    "costTotal"
+  ).textContent=
+    money(att+pl);
+
+}
+
+
+/* =========================================================
+SORT
+========================================================= */
+
+function sortSessions(a){
+
+  return [...a].sort(
+    (x,y)=>
+      (
+        y.date+
+        y.time
+      ).localeCompare(
+        x.date+
+        x.time
+      )
+  );
+
+}
+
+
+/* =========================================================
+RECORD HTML
+========================================================= */
+
+function recordHTML(s){
+
+  const icon={
+    attended:"✓",
+    missed:"×",
+    planned:"●",
+    rescheduled:"↻"
+  }[s.status] || "";
+
+
+  return `
+
+  <div class="record">
+
+    <div class="record-head">
+
+      <div>
+
+        <div class="record-title">
+          ${esc(s.title)}
+        </div>
+
+        <div class="meta">
+
+          📅 ${esc(formatDate(s.date))}
+
+          ${
+            s.time
+            ?
+            "<br>🕒 "+
+            esc(formatTime(s.time))
+            :
+            ""
+          }
+
+          ${
+            s.person
+            ?
+            "<br>👤 "+
+            esc(s.person)
+            :
+            ""
+          }
+
+          <br>
+
+          💰 ${money(s.cost)}
+
+        </div>
+
+      </div>
+
+
+      <span class="badge ${s.status}">
+
+        ${icon}
+
+        ${
+          s.status[0].toUpperCase()+
+          s.status.slice(1)
+        }
+
+      </span>
+
+    </div>
+
+
+    ${
+      s.rescheduledDate
+      ?
+      `
+      <div class="meta">
+        ↪ Rescheduled to
+        ${esc(
+          formatDate(
+            s.rescheduledDate
+          )
+        )}
+      </div>
+      `
+      :
+      ""
+    }
+
+
+    ${
+      s.notes
+      ?
+      `
+      <div class="meta">
+        📝 ${esc(s.notes)}
+      </div>
+      `
+      :
+      ""
+    }
+
+
+    <div class="actions">
+
+      <button
+        class="btn btn-small"
+        onclick="editSession('${esc(s.id)}')">
+
+        Edit
+
+      </button>
+
+
+      <button
+        class="btn btn-small"
+        onclick="copySession('${esc(s.id)}')">
+
+        Copy
+
+      </button>
+
+
+      <button
+        class="btn btn-small btn-danger"
+        onclick="deleteSession('${esc(s.id)}')">
+
+        Delete
+
+      </button>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+RECENT
+========================================================= */
+
+function renderRecent(){
+
+  let a=sortSessions(
+    sessions()
+  );
+
+
+  if(
+    currentFilter!=="all"
+  ){
+
+    a=a.filter(
+      s=>
+        s.status===
+        currentFilter
+    );
+
+  }
+
+
+  document.getElementById(
+    "recentList"
+  ).innerHTML=
+
+    a.length
+
+    ?
+
+    a
+      .slice(0,12)
+      .map(recordHTML)
+      .join("")
+
+    :
+
+    `
+      <div class="next-box">
+        No records for this selection.
+      </div>
+    `;
+
+}
+
+
+/* =========================================================
+NEXT SESSION
+========================================================= */
+
+function renderNext(){
+
+  const now=new Date();
+
+
+  const a=
+    sessions()
+
+      .filter(
+        s=>
+          (
+            s.status==="planned" ||
+            s.status==="rescheduled"
+          )
+      )
+
+      .filter(
+        s=>
+          new Date(
+            s.date+
+            "T"+
+            (
+              s.time ||
+              "00:00"
+            )
+          )>=now
+      )
+
+      .sort(
+        (x,y)=>
+          (
+            x.date+x.time
+          ).localeCompare(
+            y.date+y.time
+          )
+      );
+
+
+  document.getElementById(
+    "nextSession"
+  ).innerHTML=
+
+    a.length
+
+    ?
+    recordHTML(a[0])
+    :
+    "No upcoming sessions.";
+
+}
+
+
+/* =========================================================
+DATE FORMATTING
+========================================================= */
+
+function formatDate(x){
+
+  if(!x)
+    return "";
+
+
+  const d=
+    new Date(
+      x+
+      "T00:00:00"
+    );
+
+
+  return d.toLocaleDateString(
+    "en-IN",
+    {
+      day:"2-digit",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+function formatTime(x){
+
+  if(!x)
+    return "";
+
+
+  const [
+    h,
+    m
+  ]=x.split(":");
+
+
+  const d=new Date();
+
+  d.setHours(
+    +h,
+    +m
+  );
+
+
+  return d.toLocaleTimeString(
+    "en-IN",
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+}
+
+
+/* =========================================================
+CALENDAR
+========================================================= */
+
+function renderCalendar(){
+
+  const y=
+    currentMonth.getFullYear();
+
+
+  const m=
+    currentMonth.getMonth();
+
+
+  document.getElementById(
+    "monthTitle"
+  ).textContent=
+    currentMonth.toLocaleDateString(
+      "en-IN",
+      {
+        month:"long",
+        year:"numeric"
+      }
+    );
+
+
+  const first=
+    new Date(
+      y,
+      m,
+      1
+    );
+
+
+  const days=
+    new Date(
+      y,
+      m+1,
+      0
+    ).getDate();
+
+
+  const start=
+    first.getDay();
+
+
+  let out="";
+
+
+  for(
+    let i=0;
+    i<start;
+    i++
+  ){
+
+    out+=
+      '<div class="day empty"></div>';
+
+  }
+
+
+  for(
+    let d=1;
+    d<=days;
+    d++
+  ){
+
+    const date=
+      y+
+      "-"+
+      String(m+1).padStart(2,"0")+
+      "-"+
+      String(d).padStart(2,"0");
+
+
+    const dow=
+      new Date(
+        y,
+        m,
+        d
+      ).getDay();
+
+
+    const daySessions=
+      sessions().filter(
+        s=>s.date===date
+      );
+
+
+    let marker="";
+
+
+    /*
+      Significance:
+
+      Attended     = Green tick
+      Missed       = Red cross
+      Planned      = Orange dot
+      Rescheduled  = Purple reschedule
+    */
+
+    if(
+      daySessions.some(
+        s=>s.status==="missed"
+      )
+    ){
+
+      marker=
+        '<div class="marker missed">×</div>';
+
+    }
+
+    else if(
+      daySessions.some(
+        s=>s.status==="rescheduled"
+      )
+    ){
+
+      marker=
+        '<div class="marker rescheduled">↻</div>';
+
+    }
+
+    else if(
+      daySessions.some(
+        s=>s.status==="planned"
+      )
+    ){
+
+      marker=
+        '<div class="marker planned">●</div>';
+
+    }
+
+    else if(
+      daySessions.some(
+        s=>s.status==="attended"
+      )
+    ){
+
+      marker=
+        '<div class="marker attended">✓</div>';
+
+    }
+
+
+    const cls=
+      "day "+
+      (
+        dow===0 ||
+        dow===6
+        ?
+        "weekend "
+        :
+        ""
+      )+
+      (
+        selectedDate===date
+        ?
+        "selected "
+        :
+        ""
+      );
+
+
+    out+=`
+
+      <button
+        class="${cls}"
+        onclick="selectCalendarDate('${date}')">
+
+        <div class="day-number">
+          ${d}
+        </div>
+
+        ${marker}
+
+      </button>
+
+    `;
+
+  }
+
+
+  document.getElementById(
+    "calendar"
+  ).innerHTML=out;
+
+}
+
+
+/* =========================================================
+CALENDAR DATE SELECTION
+========================================================= */
+
+window.selectCalendarDate=function(date){
+
+  selectedDate=date;
+
+  renderCalendar();
+
+
+  const a=
+    sessions().filter(
+      s=>s.date===date
+    );
+
+
+  /*
+    IMPORTANT:
+
+    If there is already a session:
+    show it.
+
+    If there is no session:
+    prompt user to add it.
+  */
+
+  if(a.length){
+
+    currentFilter="all";
+
+
+    document.getElementById(
+      "recentList"
+    ).innerHTML=
+
+      a
+        .map(recordHTML)
+        .join("")
+
+      +
+
+      `
+
+      <div class="actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="openSessionModal('${date}')">
+
+          ＋ Add another session on
+          ${formatDate(date)}
+
+        </button>
+
+      </div>
+
+      `;
+
+
+    document.getElementById(
+      "recentList"
+    ).scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  }
+
+  else{
+
+    if(
+      confirm(
+        "No session is recorded on "+
+        formatDate(date)+
+        ". Do you want to add a session?"
+      )
+    ){
+
+      openSessionModal(date);
+
+    }
+
+  }
+
+};
+
+
+/* =========================================================
+SESSION MODAL
+========================================================= */
+
+function openSessionModal(
+  date="",
+  existing=null
+){
+
+  document.getElementById(
+    "sessionModal"
+  ).classList.add("show");
+
+
+  document.getElementById(
+    "sessionModalTitle"
+  ).textContent=
+    existing
+    ?
+    "Edit Session"
+    :
+    "Add Session";
+
+
+  document.getElementById(
+    "editId"
+  ).value=
+    existing
+    ?
+    existing.id
+    :
+    "";
+
+
+  document.getElementById(
+    "fMode"
+  ).value=
+    existing?.mode ||
+    activeMode;
+
+
+  document.getElementById(
+    "fTitle"
+  ).value=
+    existing?.title ||
+    defaultTitle(activeMode);
+
+
+  document.getElementById(
+    "fDate"
+  ).value=
+    existing?.date ||
+    date ||
+    todayISO();
+
+
+  document.getElementById(
+    "fTime"
+  ).value=
+    existing?.time ||
+    "";
+
+
+  document.getElementById(
+    "fPerson"
+  ).value=
+    existing?.person ||
+    "";
+
+
+  document.getElementById(
+    "fStatus"
+  ).value=
+    existing?.status ||
+    "planned";
+
+
+  document.getElementById(
+    "fCost"
+  ).value=
+    existing?.cost ??
+    0;
+
+
+  document.getElementById(
+    "fRescheduledDate"
+  ).value=
+    existing?.rescheduledDate ||
+    "";
+
+
+  document.getElementById(
+    "fNotes"
+  ).value=
+    existing?.notes ||
+    "";
+
+}
+
+
+/* =========================================================
+CLOSE SESSION
+========================================================= */
+
+function closeSession(){
+
+  document.getElementById(
+    "sessionModal"
+  ).classList.remove("show");
+
+}
+
+
+/* =========================================================
+DEFAULT TITLE
+========================================================= */
+
+function defaultTitle(mode){
+
+  return MODE_NAMES[mode]+
+    " Session";
+
+}
+
+
+/* =========================================================
+EDIT
+========================================================= */
+
+window.editSession=function(id){
+
+  const s=
+    db.sessions.find(
+      x=>x.id===id
+    );
+
+
+  if(s){
+
+    activeMode=s.mode;
+
+    saveDB();
+
+    render();
+
+    openSessionModal(
+      "",
+      s
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+COPY
+========================================================= */
+
+window.copySession=function(id){
+
+  const s=
+    db.sessions.find(
+      x=>x.id===id
+    );
+
+
+  if(s){
+
+    openSessionModal(
+      s.date,
+      {
+        ...s,
+        id:"",
+        status:"planned"
+      }
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+DELETE
+========================================================= */
+
+window.deleteSession=function(id){
+
+  if(
+    !confirm(
+      "Delete this record? Your other records will not be changed."
+    )
+  )
+    return;
+
+
+  db.sessions=
+    db.sessions.filter(
+      s=>s.id!==id
+    );
+
+
+  saveDB();
+
+  render();
+
+  toast(
+    "Record deleted"
+  );
+
+};
+
+
+/* =========================================================
+SAVE SESSION
+========================================================= */
+
+document
+  .getElementById("sessionForm")
+  .addEventListener(
+    "submit",
+    e=>{
+
+      e.preventDefault();
+
+
+      const id=
+        document.getElementById(
+          "editId"
+        ).value;
+
+
+      const data={
+
+        id:
+          id ||
+          uid(),
+
+
+        profileId:
+          activeProfileId,
+
+
+        mode:
+          document.getElementById(
+            "fMode"
+          ).value,
+
+
+        title:
+          document.getElementById(
+            "fTitle"
+          ).value.trim(),
+
+
+        date:
+          document.getElementById(
+            "fDate"
+          ).value,
+
+
+        time:
+          document.getElementById(
+            "fTime"
+          ).value,
+
+
+        person:
+          document.getElementById(
+            "fPerson"
+          ).value.trim(),
+
+
+        status:
+          document.getElementById(
+            "fStatus"
+          ).value,
+
+
+        cost:
+          Number(
+            document.getElementById(
+              "fCost"
+            ).value ||
+            0
+          ),
+
+
+        rescheduledDate:
+          document.getElementById(
+            "fRescheduledDate"
+          ).value,
+
+
+        notes:
+          document.getElementById(
+            "fNotes"
+          ).value.trim(),
+
+
+        createdAt:
+          Date.now()
+
+      };
+
+
+      if(
+        !data.date ||
+        !data.title
+      )
+        return;
+
+
+      if(id){
+
+        const i=
+          db.sessions.findIndex(
+            s=>s.id===id
+          );
+
+
+        if(i>=0){
+
+          db.sessions[i]={
+            ...db.sessions[i],
+            ...data
+          };
+
+        }
+
+      }
+
+      else{
+
+        db.sessions.push(
+          data
+        );
+
+      }
+
+
+      activeMode=data.mode;
+
+      saveDB();
+
+      closeSession();
+
+      render();
+
+
+      toast(
+        id
+        ?
+        "Session updated"
+        :
+        "Session added"
+      );
+
+    }
+  );
+
+
+document.getElementById(
+  "closeSession"
+).onclick=
+  closeSession;
+
+
+/* =========================================================
+PROFILE CHANGE
+========================================================= */
+
+document.getElementById(
+  "profileSelect"
+).onchange=e=>{
+
+  activeProfileId=
+    e.target.value;
+
+  saveDB();
+
+  currentFilter="all";
+
+  render();
+
+};
+
+
+/* =========================================================
+MODE CHANGE
+========================================================= */
+
+document.getElementById(
+  "modeSelect"
+).onchange=e=>{
+
+  activeMode=
+    e.target.value;
+
+  saveDB();
+
+  currentFilter="all";
+
+  render();
+
+};
+
+
+/* =========================================================
+ADD PROFILE
+========================================================= */
+
+document.getElementById(
+  "addProfileBtn"
+).onclick=()=>{
+
+  openProfileModal();
+
+};
+
+
+/* =========================================================
+EDIT PROFILE
+========================================================= */
+
+document.getElementById(
+  "editProfileBtn"
+).onclick=()=>{
+
+  openProfileModal(
+    profile()
+  );
+
+};
+
+
+/* =========================================================
+PROFILE MODAL
+========================================================= */
+
+function openProfileModal(
+  p=null
+){
+
+  document.getElementById(
+    "profileModal"
+  ).classList.add("show");
+
+
+  document.getElementById(
+    "profileModalTitle"
+  ).textContent=
+    p
+    ?
+    "Edit Profile"
+    :
+    "Add Profile";
+
+
+  document.getElementById(
+    "profileId"
+  ).value=
+    p?.id ||
+    "";
+
+
+  document.getElementById(
+    "profileName"
+  ).value=
+    p?.name ||
+    "";
+
+
+  setTimeout(
+    ()=>
+      document
+        .getElementById(
+          "profileName"
+        )
+        .focus(),
+    100
+  );
+
+}
+
+
+document.getElementById(
+  "closeProfile"
+).onclick=()=>{
+
+  document.getElementById(
+    "profileModal"
+  ).classList.remove("show");
+
+};
+
+
+/* =========================================================
+SAVE PROFILE
+========================================================= */
+
+document
+  .getElementById("profileForm")
+  .addEventListener(
+    "submit",
+    e=>{
+
+      e.preventDefault();
+
+
+      const id=
+        document.getElementById(
+          "profileId"
+        ).value;
+
+
+      const name=
+        document.getElementById(
+          "profileName"
+        ).value.trim();
+
+
+      if(!name)
+        return;
+
+
+      if(id){
+
+        const p=
+          db.profiles.find(
+            x=>x.id===id
+          );
+
+
+        if(p)
+          p.name=name;
+
+      }
+
+      else{
+
+        const p={
+
+          id:uid(),
+
+          name
+
+        };
+
+
+        db.profiles.push(
+          p
+        );
+
+
+        activeProfileId=
+          p.id;
+
+      }
+
+
+      saveDB();
+
+
+      document.getElementById(
+        "profileModal"
+      ).classList.remove(
+        "show"
+      );
+
+
+      render();
+
+
+      toast(
+        "Profile saved"
+      );
+
+    }
+  );
+
+
+/* =========================================================
+SUMMARY / DASHBOARD FILTER
+========================================================= */
+
+document
+  .querySelectorAll(
+    "[data-filter]"
+  )
+  .forEach(
+    el=>
+
+      el.addEventListener(
+        "click",
+        ()=>{
+
+          currentFilter=
+            el.dataset.filter;
+
+
+          renderRecent();
+
+
+          document
+            .getElementById(
+              "recentList"
+            )
+            .scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+        }
+      )
+
+  );
+
+
+/* =========================================================
+CALENDAR MONTH
+========================================================= */
+
+document.getElementById(
+  "prevMonth"
+).onclick=()=>{
+
+  currentMonth=
+    new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth()-1,
+      1
+    );
+
+  renderCalendar();
+
+};
+
+
+document.getElementById(
+  "nextMonth"
+).onclick=()=>{
+
+  currentMonth=
+    new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth()+1,
+      1
+    );
+
+  renderCalendar();
+
+};
+
+
+/* =========================================================
+DARK / LIGHT MODE
+========================================================= */
+
+document.getElementById(
+  "themeBtn"
+).onclick=()=>{
+
+  db.theme=
+    document.body.classList.toggle(
+      "dark"
+    )
+    ?
+    "dark"
+    :
+    "light";
+
+
+  saveDB();
+
+  applyTheme();
+
+};
+
+
+function applyTheme(){
+
+  const dark=
+    db.theme==="dark";
+
+
+  document.body.classList.toggle(
+    "dark",
+    dark
+  );
+
+
+  document.getElementById(
+    "themeIcon"
+  ).textContent=
+    dark
+    ?
+    "☀️"
+    :
+    "🌙";
+
+
+  document.getElementById(
+    "themeText"
+  ).textContent=
+    dark
+    ?
+    "Light"
+    :
+    "Dark";
+
+}
+
+
+/* =========================================================
+BOTTOM NAVIGATION
+========================================================= */
+
+document
+  .querySelectorAll(
+    ".nav-btn"
+  )
+  .forEach(
+    b=>{
+
+      b.onclick=()=>{
+
+        document
+          .querySelectorAll(
+            ".nav-btn"
+          )
+          .forEach(
+            x=>
+              x.classList.remove(
+                "active"
+              )
+          );
+
+
+        b.classList.add(
+          "active"
+        );
+
+
+        const n=
+          b.dataset.nav;
+
+
+        if(n==="add"){
+
+          openSessionModal();
+
+        }
+
+
+        if(n==="history"){
+
+          document
+            .getElementById(
+              "recentList"
+            )
+            .scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+        }
+
+
+        if(n==="calendar"){
+
+          document
+            .getElementById(
+              "calendarSection"
+            )
+            .scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+
+        }
+
+
+        if(n==="home"){
+
+          window.scrollTo({
+            top:0,
+            behavior:"smooth"
+          });
+
+        }
+
+      };
+
+    }
+  );
+
+
+/* =========================================================
+EXPORT EXCEL-COMPATIBLE CSV
+========================================================= */
+
+document.getElementById(
+  "exportExcel"
+).onclick=()=>{
+
+  const a=sessions();
+
+
+  let rows=[
+
+    [
+      "Profile",
+      "Mode",
+      "Title",
+      "Date",
+      "Time",
+      "Person",
+      "Status",
+      "Cost",
+      "Rescheduled Date",
+      "Notes"
+    ]
+
+  ];
+
+
+  a.forEach(
+    s=>
+
+      rows.push([
+
+        profile().name,
+
+        MODE_NAMES[s.mode],
+
+        s.title,
+
+        s.date,
+
+        s.time,
+
+        s.person,
+
+        s.status,
+
+        s.cost,
+
+        s.rescheduledDate,
+
+        s.notes
+
+      ])
+
+  );
+
+
+  const escCSV=
+    v=>
+      `"${String(
+        v??""
+      ).replace(
+        /"/g,
+        '""'
+      )}"`;
+
+
+  const csv=
+    rows
+      .map(
+        r=>
+          r
+            .map(
+              escCSV
+            )
+            .join(",")
+      )
+      .join("\r\n");
+
+
+  const blob=
+    new Blob(
+      [
+        "\ufeff"+
+        csv
+      ],
+      {
+        type:
+          "text/csv;charset=utf-8"
+      }
+    );
+
+
+  downloadBlob(
+    blob,
+    "attendance-tracker-"+
+    todayISO()+
+    ".csv"
+  );
+
+
+  toast(
+    "Excel-compatible CSV exported"
+  );
+
+};
+
+
+/* =========================================================
+PDF
+========================================================= */
+
+document.getElementById(
+  "printPdf"
+).onclick=()=>{
+
+  window.print();
+
+};
+
+
+/* =========================================================
+BACKUP JSON
+========================================================= */
+
+document.getElementById(
+  "backupData"
+).onclick=()=>{
+
+  const backup={
+
+    ...db,
+
+    exportedAt:
+      new Date().toISOString()
+
+  };
+
+
+  downloadBlob(
+
+    new Blob(
+      [
+        JSON.stringify(
+          backup,
+          null,
+          2
+        )
+      ],
+      {
+        type:
+          "application/json"
+      }
+    ),
+
+    "attendance-tracker-backup.json"
+
+  );
+
+
+  toast(
+    "Backup created"
+  );
+
+};
+
+
+/* =========================================================
+RESTORE JSON
+========================================================= */
+
+document.getElementById(
+  "restoreData"
+).onclick=()=>{
+
+  document
+    .getElementById(
+      "restoreInput"
+    )
+    .click();
+
+};
+
+
+document.getElementById(
+  "restoreInput"
+).onchange=e=>{
+
+  const f=
+    e.target.files[0];
+
+
+  if(!f)
+    return;
+
+
+  const r=
+    new FileReader();
+
+
+  r.onload=()=>{
+
+    try{
+
+      const x=
+        JSON.parse(
+          r.result
+        );
+
+
+      if(
+        !Array.isArray(
+          x.sessions
+        ) ||
+        !Array.isArray(
+          x.profiles
+        )
+      ){
+
+        throw 0;
+
+      }
+
+
+      const old=
+        db.sessions.length;
+
+
+      const ids=
+        new Set(
+          db.sessions.map(
+            s=>
+              [
+                s.profileId,
+                s.mode,
+                s.date,
+                s.time,
+                s.title,
+                s.status
+              ].join("|")
+          )
+        );
+
+
+      x.sessions.forEach(
+        s=>{
+
+          const n=
+            normaliseSession(
+              s,
+              s.profileId ||
+              "default"
+            );
+
+
+          if(n){
+
+            const sig=[
+              n.profileId,
+              n.mode,
+              n.date,
+              n.time,
+              n.title,
+              n.status
+            ].join("|");
+
+
+            if(
+              !ids.has(sig)
+            ){
+
+              db.sessions.push(
+                n
+              );
+
+              ids.add(sig);
+
+            }
+
+          }
+
+        }
+      );
+
+
+      x.profiles.forEach(
+        p=>{
+
+          if(
+            p.name &&
+            !db.profiles.some(
+              q=>
+                q.id===p.id ||
+                q.name.toLowerCase()===
+                String(
+                  p.name
+                ).toLowerCase()
+            )
+          ){
+
+            db.profiles.push({
+
+              id:
+                String(
+                  p.id ||
+                  uid()
+                ),
+
+              name:
+                String(
+                  p.name
+                )
+
+            });
+
+          }
+
+        }
+      );
+
+
+      saveDB();
+
+      render();
+
+
+      toast(
+        (
+          db.sessions.length-
+          old
+        )+
+        " records restored"
+      );
+
+    }
+
+    catch(err){
+
+      alert(
+        "Invalid backup file."
+      );
+
+    }
+
+  };
+
+
+  r.readAsText(f);
+
+  e.target.value="";
+
+};
+
+
+/* =========================================================
+DOWNLOAD HELPER
+========================================================= */
+
+function downloadBlob(
+  blob,
+  name
+){
+
+  const a=
+    document.createElement(
+      "a"
+    );
+
+
+  a.href=
+    URL.createObjectURL(
+      blob
+    );
+
+
+  a.download=name;
+
+
+  document
+    .body
+    .appendChild(a);
+
+
+  a.click();
+
+
+  a.remove();
+
+
+  setTimeout(
+    ()=>
+      URL.revokeObjectURL(
+        a.href
+      ),
+    1000
+  );
+
+}
+
+
+/* =========================================================
+INITIALISE
+========================================================= */
+
+applyTheme();
+
+render();
+
+})();
+
+</script>
+
+</body>
+</html>
