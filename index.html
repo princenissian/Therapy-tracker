@@ -5,1259 +5,673 @@
 
 <meta charset="utf-8">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="viewport"
+content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
 
 <meta name="theme-color" content="#2563eb">
 
-<meta
-  name="apple-mobile-web-app-capable"
-  content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
-<meta
-  name="apple-mobile-web-app-status-bar-style"
-  content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
 <title>Attendance Tracker</title>
 
-
 <style>
-
-/* =====================================================
-   THEME
-===================================================== */
 
 :root{
   --blue:#2563eb;
   --blue2:#1d4ed8;
-
   --bg:#f4f7fb;
-  --card:#ffffff;
-
+  --card:#fff;
   --text:#172033;
   --muted:#68758d;
-
   --border:#dfe6f1;
-
   --green:#16a34a;
   --greenbg:#dcfce7;
-
   --red:#dc2626;
   --redbg:#fee2e2;
-
   --orange:#ea580c;
   --orangebg:#ffedd5;
-
   --purple:#7c3aed;
   --purplebg:#ede9fe;
-
   --weekend:#dbeafe;
-
-  --shadow:
-    0 4px 16px rgba(25,45,80,.07);
+  --shadow:0 4px 16px rgba(25,45,80,.07);
 }
-
-
-/* =====================================================
-   GLOBAL
-===================================================== */
 
 *{
   box-sizing:border-box;
-
   -webkit-tap-highlight-color:transparent;
 }
 
-
 html{
   scroll-behavior:smooth;
-
   touch-action:pan-y;
-
   -webkit-text-size-adjust:100%;
 }
-
 
 body{
   margin:0;
-
   background:var(--bg);
-
   color:var(--text);
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   font-size:16px;
-
   touch-action:pan-y;
-
   overscroll-behavior-x:none;
 }
 
-
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
-
   -webkit-text-size-adjust:100%;
 }
 
-
 button{
   cursor:pointer;
-
   touch-action:manipulation;
 }
 
-
-input,
-select,
-textarea{
-  font-size:16px !important;
+input,select,textarea{
+  font-size:16px!important;
 }
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 .app-header{
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue),
-      var(--blue2)
-    );
-
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:#fff;
-
-  padding:
-    23px
-    16px
-    21px;
-
-  border-radius:
-    0 0 28px 28px;
-
-  box-shadow:
-    0 5px 18px
-    rgba(37,99,235,.18);
+  padding:23px 16px 21px;
+  border-radius:0 0 28px 28px;
+  box-shadow:0 5px 18px rgba(37,99,235,.18);
 }
 
-
 .header-row{
-
   max-width:1050px;
-
   margin:auto;
-
   display:flex;
-
   justify-content:space-between;
-
   gap:15px;
-
   align-items:center;
 }
 
-
 h1{
-
   font-size:27px;
-
   line-height:1.1;
-
   margin:0 0 7px;
-
   font-weight:800;
 }
 
-
 .subtitle{
-
   font-size:14px;
-
   line-height:1.4;
-
   opacity:.92;
 }
 
-
 .theme-btn{
-
   min-width:62px;
-
   min-height:55px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.4);
-
+  border:1px solid rgba(255,255,255,.4);
   border-radius:15px;
-
-  background:
-    rgba(255,255,255,.14);
-
+  background:rgba(255,255,255,.14);
   color:#fff;
-
   font-size:12px;
-
   font-weight:700;
 }
-
 
 .theme-btn span{
   display:block;
 }
 
-
 .theme-btn span:first-child{
-
   font-size:22px;
-
   line-height:24px;
 }
 
-
-/* =====================================================
-   MAIN
-===================================================== */
-
 .container{
-
   max-width:1050px;
-
-  margin:
-    15px
-    auto
-    92px;
-
-  padding:
-    0 13px;
+  margin:15px auto 92px;
+  padding:0 13px;
 }
 
-
 .card{
-
   background:var(--card);
-
-  border:
-    1px solid
-    var(--border);
-
+  border:1px solid var(--border);
   border-radius:18px;
-
   box-shadow:var(--shadow);
-
   padding:15px;
-
   margin-bottom:13px;
 }
 
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
 .profile-row{
-
   display:grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    auto
-    auto;
-
+  grid-template-columns:minmax(0,1fr) auto auto;
   gap:8px;
-
   align-items:center;
 }
 
-
 .profile-select{
-
   width:100%;
-
   height:45px;
-
-  border:
-    2px solid
-    var(--border);
-
+  border:2px solid var(--border);
   border-radius:12px;
-
   background:var(--card);
-
   color:var(--text);
-
-  padding:
-    0 10px;
+  padding:0 10px;
 }
 
-
 .btn{
-
   min-height:41px;
-
   border:0;
-
   border-radius:11px;
-
-  padding:
-    9px 13px;
-
+  padding:9px 13px;
   font-weight:700;
-
   font-size:14px;
-
   background:#edf2f7;
-
   color:var(--text);
-
   touch-action:manipulation;
 }
 
-
 .btn-primary{
-
   background:var(--blue);
-
   color:#fff;
 }
 
-
 .btn-danger{
-
   background:var(--redbg);
-
   color:var(--red);
 }
 
-
 .btn-small{
-
   min-height:38px;
-
-  padding:
-    8px 11px;
-
+  padding:8px 11px;
   font-size:13px;
 }
 
-
 .profile-count{
-
   color:var(--muted);
-
   font-size:13px;
-
   margin-top:9px;
 }
 
-
-/* =====================================================
-   MODE
-===================================================== */
-
 .mode-wrap{
-
   display:grid;
-
-  grid-template-columns:
-    150px
-    minmax(0,1fr);
-
+  grid-template-columns:150px minmax(0,1fr);
   gap:9px;
-
   align-items:center;
-
   margin-top:13px;
 }
 
-
 .mode-label{
-
   font-size:14px;
-
   font-weight:700;
 }
 
-
 .mode-select{
-
   width:100%;
-
   height:45px;
-
-  border:
-    2px solid
-    var(--border);
-
+  border:2px solid var(--border);
   border-radius:12px;
-
-  padding:
-    0 10px;
-
+  padding:0 10px;
   background:var(--card);
-
   color:var(--text);
 }
 
-
-/* =====================================================
-   DASHBOARD STATS
-===================================================== */
-
 .grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:9px;
 }
 
-
 .stat{
-
   min-height:92px;
-
   padding:14px;
-
   border-radius:15px;
-
   background:var(--card);
-
-  border:
-    1px solid
-    var(--border);
-
+  border:1px solid var(--border);
   box-shadow:var(--shadow);
-
   cursor:pointer;
-
   touch-action:manipulation;
 }
 
-
 .stat .value{
-
   font-size:28px;
-
   font-weight:800;
-
   line-height:1.05;
 }
 
-
 .stat .label{
-
   font-size:12px;
-
   color:var(--muted);
-
   margin-top:7px;
 }
 
-
-/* =====================================================
-   SECTION
-===================================================== */
-
 .section-title{
-
   font-size:20px;
-
-  margin:
-    2px
-    0
-    12px;
-
+  margin:2px 0 12px;
   font-weight:800;
 }
 
-
-/* =====================================================
-   SUMMARY
-===================================================== */
-
 .summary-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:7px;
 }
 
-
 .summary-box{
-
-  padding:
-    11px 5px;
-
+  padding:11px 5px;
   border-radius:13px;
-
   text-align:center;
-
   cursor:pointer;
-
-  border:
-    1px solid
-    var(--border);
-
+  border:1px solid var(--border);
   touch-action:manipulation;
 }
 
-
 .summary-box b{
-
   font-size:22px;
-
   display:block;
 }
 
-
 .summary-box span{
-
   color:var(--muted);
-
   font-size:11px;
 }
 
-
-.summary-total{
-  background:#eef2ff;
-}
-
-
-.summary-att{
-  background:#ecfdf3;
-}
-
-
-.summary-missed{
-  background:#fff1f2;
-}
-
-
-.summary-planned{
-  background:#eff6ff;
-}
-
-
-/* =====================================================
-   COST
-===================================================== */
+.summary-total{background:#eef2ff}
+.summary-att{background:#ecfdf3}
+.summary-missed{background:#fff1f2}
+.summary-planned{background:#eff6ff}
 
 .cost-row{
-
   display:flex;
-
   justify-content:space-between;
-
-  border-bottom:
-    1px solid
-    var(--border);
-
-  padding:
-    9px 0;
-
+  border-bottom:1px solid var(--border);
+  padding:9px 0;
   font-size:14px;
 }
-
 
 .cost-row:last-child{
   border-bottom:0;
 }
 
-
-/* =====================================================
-   NEXT SESSION
-===================================================== */
-
 .next-box{
-
   color:var(--muted);
-
   text-align:center;
-
-  padding:
-    17px 5px;
-
+  padding:17px 5px;
   font-size:14px;
 }
 
-
-/* =====================================================
-   RECORD
-===================================================== */
-
 .record{
-
-  border:
-    1px solid
-    var(--border);
-
-  border-left:
-    5px solid
-    var(--blue);
-
+  border:1px solid var(--border);
+  border-left:5px solid var(--blue);
   border-radius:15px;
-
   padding:14px;
-
-  margin:
-    9px 0;
-
+  margin:9px 0;
   background:var(--card);
 }
 
-
 .record-head{
-
   display:flex;
-
   justify-content:space-between;
-
   gap:9px;
-
   align-items:flex-start;
 }
 
-
 .record-title{
-
   font-size:17px;
-
   font-weight:800;
 }
 
-
 .badge{
-
-  padding:
-    5px 9px;
-
+  padding:5px 9px;
   border-radius:999px;
-
   font-weight:700;
-
   font-size:12px;
-
   white-space:nowrap;
 }
 
-
-.attended{
-
-  color:#166534;
-
-  background:var(--greenbg);
-}
-
-
-.missed{
-
-  color:#b91c1c;
-
-  background:var(--redbg);
-}
-
-
-.planned{
-
-  color:#c2410c;
-
-  background:var(--orangebg);
-}
-
-
-.rescheduled{
-
-  color:#6d28d9;
-
-  background:var(--purplebg);
-}
-
+.attended{color:#166534;background:var(--greenbg)}
+.missed{color:#b91c1c;background:var(--redbg)}
+.planned{color:#c2410c;background:var(--orangebg)}
+.rescheduled{color:#6d28d9;background:var(--purplebg)}
 
 .meta{
-
   color:var(--muted);
-
   line-height:1.6;
-
   margin-top:5px;
-
   font-size:13px;
 }
 
-
 .actions{
-
   display:flex;
-
   gap:7px;
-
   margin-top:10px;
-
   flex-wrap:wrap;
 }
 
-
-/* =====================================================
-   CALENDAR
-===================================================== */
-
 .calendar-head{
-
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
   margin-bottom:13px;
 }
 
-
 .month-title{
-
   font-size:19px;
-
   font-weight:800;
 }
 
-
 .cal-btn{
-
   width:43px;
-
   height:43px;
-
   border:0;
-
   border-radius:11px;
-
   background:#edf2f7;
-
   color:var(--blue);
-
   font-size:25px;
-
   touch-action:manipulation;
 }
 
-
-.weekdays,
-.calendar{
-
+.weekdays,.calendar{
   display:grid;
-
-  grid-template-columns:
-    repeat(7,minmax(0,1fr));
-
+  grid-template-columns:repeat(7,minmax(0,1fr));
   gap:4px;
 }
 
-
 .weekday{
-
   text-align:center;
-
   color:var(--muted);
-
   font-weight:700;
-
-  padding:
-    3px 0;
-
+  padding:3px 0;
   font-size:10px;
 }
 
-
 .day{
-
   min-height:59px;
-
-  border:
-    1.5px solid
-    var(--border);
-
+  border:1.5px solid var(--border);
   border-radius:10px;
-
   background:var(--card);
-
   padding:5px;
-
   text-align:center;
-
   position:relative;
-
   color:var(--blue);
-
   width:100%;
-
   appearance:none;
-
   -webkit-appearance:none;
-
   touch-action:manipulation;
 }
 
-
 .day.empty{
-
   border-color:transparent;
-
   background:transparent;
 }
 
-
 .day.weekend{
-
   background:var(--weekend);
 }
 
-
 .day.selected{
-
-  outline:
-    3px solid
-    var(--blue);
-
+  outline:3px solid var(--blue);
   outline-offset:-3px;
 }
 
-
 .day-number{
-
   font-weight:700;
-
   font-size:14px;
 }
 
-
 .marker{
-
   margin-top:5px;
-
   font-size:17px;
-
   font-weight:900;
-
   line-height:1;
 }
 
-
 .marker.attended{
-
   color:var(--green);
-
   background:none;
 }
-
 
 .marker.missed{
-
   color:var(--red);
-
   background:none;
 }
-
 
 .marker.planned{
-
   color:var(--orange);
-
   background:none;
 }
-
 
 .marker.rescheduled{
-
   color:var(--purple);
-
   background:none;
 }
 
-
 .legend{
-
   display:flex;
-
   gap:9px;
-
   flex-wrap:wrap;
-
   margin-top:10px;
-
   color:var(--muted);
-
   font-size:11px;
 }
 
-
 .legend i{
-
   font-style:normal;
-
   font-weight:800;
 }
 
-
-/* =====================================================
-   FORM
-===================================================== */
-
 .form-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:11px;
 }
 
-
 label{
-
   font-size:13px;
-
   font-weight:700;
-
   display:block;
-
   margin-bottom:5px;
 }
 
-
-input,
-select,
-textarea{
-
+input,select,textarea{
   width:100%;
-
   min-height:44px;
-
-  border:
-    2px solid
-    var(--border);
-
+  border:2px solid var(--border);
   border-radius:11px;
-
-  padding:
-    10px;
-
+  padding:10px;
   background:var(--card);
-
   color:var(--text);
-
-  font-size:16px !important;
+  font-size:16px!important;
 }
 
-
-input[type="date"],
-input[type="time"]{
-
+input[type="date"],input[type="time"]{
   min-height:48px;
-
   appearance:auto;
-
   -webkit-appearance:auto;
 }
 
-
 textarea{
-
   min-height:80px;
-
   resize:vertical;
 }
 
-
 .full{
-
   grid-column:1/-1;
 }
 
-
 /* =====================================================
-   MODAL
+   THERAPY CATEGORY PAYMENT SUMMARY
 ===================================================== */
 
+.therapy-payment-summary{
+  margin-top:14px;
+}
+
+.therapy-payment-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:11px 0;
+  border-bottom:1px solid var(--border);
+  font-size:14px;
+}
+
+.therapy-payment-row:last-child{
+  border-bottom:0;
+}
+
+.therapy-payment-name{
+  font-weight:700;
+}
+
+.therapy-payment-amount{
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.therapy-payment-total{
+  margin-top:10px;
+  padding:12px;
+  border-radius:12px;
+  background:#eef2ff;
+  display:flex;
+  justify-content:space-between;
+  font-weight:800;
+}
+
 .modal{
-
   position:fixed;
-
   inset:0;
-
-  background:
-    rgba(0,0,0,.50);
-
+  background:rgba(0,0,0,.50);
   display:none;
-
   align-items:flex-end;
-
   justify-content:center;
-
   z-index:50;
-
   padding:0;
 }
 
-
 .modal.show{
-
   display:flex;
 }
 
-
 .sheet{
-
-  width:min(
-    700px,
-    100%
-  );
-
+  width:min(700px,100%);
   max-height:92vh;
-
   overflow-y:auto;
-
   overflow-x:hidden;
-
   -webkit-overflow-scrolling:touch;
-
   background:var(--card);
-
   color:var(--text);
-
-  border-radius:
-    21px
-    21px
-    0
-    0;
-
-  padding:
-    17px;
+  border-radius:21px 21px 0 0;
+  padding:17px;
 }
 
-
 .sheet h2{
-
-  margin:
-    0
-    0
-    15px;
-
+  margin:0 0 15px;
   font-size:21px;
 }
 
-
 .modal-actions{
-
   display:flex;
-
   gap:9px;
-
   margin-top:16px;
 }
 
-
 .modal-actions .btn{
-
   flex:1;
 }
 
-
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
-
 .bottom-nav{
-
   position:fixed;
-
   left:0;
-
   right:0;
-
   bottom:0;
-
   height:70px;
-
   background:var(--card);
-
-  border-top:
-    1px solid
-    var(--border);
-
+  border-top:1px solid var(--border);
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   z-index:40;
-
-  padding-bottom:
-    env(safe-area-inset-bottom);
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
-
 .nav-btn{
-
   border:0;
-
   background:transparent;
-
   color:var(--muted);
-
   font-weight:700;
-
   font-size:12px;
-
   touch-action:manipulation;
 }
 
-
 .nav-btn.active{
-
   color:var(--blue);
 }
 
-
 .nav-icon{
-
   font-size:21px;
-
   display:block;
-
   margin-bottom:1px;
 }
 
-
-/* =====================================================
-   TOAST
-===================================================== */
-
 .toast{
-
   position:fixed;
-
   left:50%;
-
   bottom:80px;
-
-  transform:
-    translateX(-50%);
-
+  transform:translateX(-50%);
   background:#111827;
-
   color:#fff;
-
-  padding:
-    10px
-    14px;
-
+  padding:10px 14px;
   border-radius:11px;
-
   display:none;
-
   z-index:100;
-
   font-size:13px;
-
   max-width:90%;
-
   text-align:center;
 }
 
-
 .toast.show{
-
   display:block;
 }
 
-
 .hidden{
-
-  display:none !important;
+  display:none!important;
 }
-
-
-/* =====================================================
-   DARK MODE
-===================================================== */
 
 body.dark{
-
   --bg:#0b1220;
-
   --card:#111a2b;
-
   --text:#eef3ff;
-
   --muted:#aab5ca;
-
   --border:#293750;
-
   --weekend:#172b4d;
-
-  --shadow:
-    0 4px 16px
-    rgba(0,0,0,.25);
+  --shadow:0 4px 16px rgba(0,0,0,.25);
 }
 
-
-body.dark
-.btn:not(.btn-primary):not(.btn-danger),
+body.dark .btn:not(.btn-primary):not(.btn-danger),
 body.dark .cal-btn{
-
   background:#1b263a;
-
   color:var(--text);
 }
 
-
-/* =====================================================
-   DESKTOP
-===================================================== */
-
 @media(min-width:651px){
-
   .modal{
-
     align-items:center;
   }
 
-
   .sheet{
-
     border-radius:21px;
   }
-
 }
 
+@media(max-width:650px){
+  .form-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 
-/* =====================================================
-   PRINT
-===================================================== */
+  .mode-wrap{
+    grid-template-columns:120px minmax(0,1fr);
+  }
+}
 
 @media print{
-
   .app-header,
   .bottom-nav,
   .theme-btn,
@@ -1267,82 +681,53 @@ body.dark .cal-btn{
   .modal,
   .legend,
   #calendarSection{
-
-    display:none !important;
+    display:none!important;
   }
 
-
   body{
-
     background:#fff;
   }
 
-
   .container{
-
     margin:0;
-
     max-width:none;
   }
 
-
   .card{
-
     box-shadow:none;
-
-    border:
-      1px solid
-      #ccc;
+    border:1px solid #ccc;
   }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
-
-
-<!-- ===================================================
-     HEADER
-=================================================== -->
 
 <header class="app-header">
 
-  <div class="header-row">
+<div class="header-row">
 
-    <div>
+<div>
 
-      <h1 id="appTitle">
-        Attendance Tracker
-      </h1>
+<h1 id="appTitle">Attendance Tracker</h1>
 
-      <div
-        class="subtitle"
-        id="appSubtitle">
+<div class="subtitle" id="appSubtitle">
+Track your sessions, attendance and expenses
+</div>
 
-        Track your sessions,
-        attendance and expenses
+</div>
 
-      </div>
+<button class="theme-btn" id="themeBtn" type="button">
 
-    </div>
+<span id="themeIcon">🌙</span>
 
+<span id="themeText">Dark</span>
 
-    <button
-      class="theme-btn"
-      id="themeBtn"
-      type="button">
+</button>
 
-      <span id="themeIcon">🌙</span>
-
-      <span id="themeText">Dark</span>
-
-    </button>
-
-  </div>
+</div>
 
 </header>
 
@@ -1350,1158 +735,578 @@ body.dark .cal-btn{
 <main class="container">
 
 
-<!-- ===================================================
-     PROFILE
-=================================================== -->
+<!-- PROFILE -->
 
 <section class="card">
 
-  <div class="profile-row">
+<div class="profile-row">
 
-    <select
-      id="profileSelect"
-      class="profile-select">
-    </select>
+<select id="profileSelect" class="profile-select"></select>
 
+<button class="btn profile-edit" id="editProfileBtn" type="button">
+✎ Edit
+</button>
 
-    <button
-      class="btn profile-edit"
-      id="editProfileBtn"
-      type="button">
+<button class="btn btn-primary profile-add" id="addProfileBtn" type="button">
+＋ Profile
+</button>
 
-      ✎ Edit
+</div>
 
-    </button>
+<div class="profile-count" id="profileCount"></div>
 
+<div class="mode-wrap">
 
-    <button
-      class="btn btn-primary profile-add"
-      id="addProfileBtn"
-      type="button">
+<div class="mode-label">
+Attendance Mode
+</div>
 
-      ＋ Profile
+<select id="modeSelect" class="mode-select">
 
-    </button>
+<option value="therapy">🩺 Therapy</option>
+<option value="tuition">📚 Tuition</option>
+<option value="school">🏫 School</option>
+<option value="class">🎓 Class</option>
+<option value="gym">🏋️ Gym</option>
+<option value="office">🏢 Office / RTO Attendance</option>
+<option value="other">📋 Other</option>
 
-  </div>
+</select>
 
-
-  <div
-    class="profile-count"
-    id="profileCount">
-  </div>
-
-
-  <div class="mode-wrap">
-
-    <div class="mode-label">
-      Attendance Mode
-    </div>
-
-
-    <select
-      id="modeSelect"
-      class="mode-select">
-
-      <option value="therapy">
-        🩺 Therapy
-      </option>
-
-      <option value="tuition">
-        📚 Tuition
-      </option>
-
-      <option value="school">
-        🏫 School
-      </option>
-
-      <option value="class">
-        🎓 Class
-      </option>
-
-      <option value="gym">
-        🏋️ Gym
-      </option>
-
-      <option value="office">
-        🏢 Office / RTO Attendance
-      </option>
-
-      <option value="other">
-        📋 Other
-      </option>
-
-    </select>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ===================================================
-     DASHBOARD
-=================================================== -->
+<!-- DASHBOARD -->
 
 <section class="grid">
 
-  <div
-    class="stat"
-    data-filter="all">
+<div class="stat" data-filter="all">
 
-    <div
-      class="value"
-      id="totalCount">
-      0
-    </div>
+<div class="value" id="totalCount">0</div>
 
-    <div class="label">
-      Total Sessions
-    </div>
+<div class="label">Total Sessions</div>
 
-  </div>
+</div>
 
+<div class="stat" data-filter="attended">
 
-  <div
-    class="stat"
-    data-filter="attended">
+<div class="value" id="attendedCount">0</div>
 
-    <div
-      class="value"
-      id="attendedCount">
-      0
-    </div>
+<div class="label">Attended</div>
 
-    <div class="label">
-      Attended
-    </div>
+</div>
 
-  </div>
+<div class="stat" data-filter="missed">
 
+<div class="value" id="missedCount">0</div>
 
-  <div
-    class="stat"
-    data-filter="missed">
+<div class="label">Missed</div>
 
-    <div
-      class="value"
-      id="missedCount">
-      0
-    </div>
+</div>
 
-    <div class="label">
-      Missed
-    </div>
+<div class="stat" data-filter="planned">
 
-  </div>
+<div class="value" id="plannedCount">0</div>
 
+<div class="label">Planned</div>
 
-  <div
-    class="stat"
-    data-filter="planned">
+</div>
 
-    <div
-      class="value"
-      id="plannedCount">
-      0
-    </div>
+<div class="stat" data-filter="rescheduled">
 
-    <div class="label">
-      Planned
-    </div>
+<div class="value" id="rescheduledCount">0</div>
 
-  </div>
+<div class="label">Rescheduled</div>
 
+</div>
 
-  <div
-    class="stat"
-    data-filter="rescheduled">
+<div class="stat">
 
-    <div
-      class="value"
-      id="rescheduledCount">
-      0
-    </div>
+<div class="value" id="attendanceRate">0%</div>
 
-    <div class="label">
-      Rescheduled
-    </div>
+<div class="label">Attendance Rate</div>
 
-  </div>
+</div>
 
+<div class="stat">
 
-  <div class="stat">
+<div class="value" id="totalCost">₹0</div>
 
-    <div
-      class="value"
-      id="attendanceRate">
-      0%
-    </div>
+<div class="label">Total Cost</div>
 
-    <div class="label">
-      Attendance Rate
-    </div>
-
-  </div>
-
-
-  <div class="stat">
-
-    <div
-      class="value"
-      id="totalCost">
-      ₹0
-    </div>
-
-    <div class="label">
-      Total Cost
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ===================================================
-     SUMMARY
-=================================================== -->
+<!-- SUMMARY -->
 
 <section class="card">
 
-  <div class="section-title">
-    Therapy / Attendance Summary
-  </div>
+<div class="section-title">
+Therapy / Attendance Summary
+</div>
 
+<div class="summary-grid">
 
-  <div class="summary-grid">
+<div class="summary-box summary-total" data-filter="all">
+<b id="sumTotal">0</b>
+<span>Total</span>
+</div>
 
-    <div
-      class="summary-box summary-total"
-      data-filter="all">
+<div class="summary-box summary-att" data-filter="attended">
+<b id="sumAttended">0</b>
+<span>Attended</span>
+</div>
 
-      <b id="sumTotal">
-        0
-      </b>
+<div class="summary-box summary-missed" data-filter="missed">
+<b id="sumMissed">0</b>
+<span>Missed</span>
+</div>
 
-      <span>
-        Total
-      </span>
+<div class="summary-box summary-planned" data-filter="planned">
+<b id="sumPlanned">0</b>
+<span>Planned</span>
+</div>
 
-    </div>
-
-
-    <div
-      class="summary-box summary-att"
-      data-filter="attended">
-
-      <b id="sumAttended">
-        0
-      </b>
-
-      <span>
-        Attended
-      </span>
-
-    </div>
-
-
-    <div
-      class="summary-box summary-missed"
-      data-filter="missed">
-
-      <b id="sumMissed">
-        0
-      </b>
-
-      <span>
-        Missed
-      </span>
-
-    </div>
-
-
-    <div
-      class="summary-box summary-planned"
-      data-filter="planned">
-
-      <b id="sumPlanned">
-        0
-      </b>
-
-      <span>
-        Planned
-      </span>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ===================================================
-     COST
-=================================================== -->
+<!-- COST -->
 
 <section class="card">
 
-  <div class="section-title">
-    Cost Summary
-  </div>
+<div class="section-title">
+Cost Summary
+</div>
 
+<div class="cost-row">
+<span>Attended</span>
+<b id="costAttended">₹0</b>
+</div>
 
-  <div class="cost-row">
+<div class="cost-row">
+<span>Planned</span>
+<b id="costPlanned">₹0</b>
+</div>
 
-    <span>
-      Attended
-    </span>
-
-    <b id="costAttended">
-      ₹0
-    </b>
-
-  </div>
-
-
-  <div class="cost-row">
-
-    <span>
-      Planned
-    </span>
-
-    <b id="costPlanned">
-      ₹0
-    </b>
-
-  </div>
-
-
-  <div class="cost-row">
-
-    <span>
-      Total
-    </span>
-
-    <b id="costTotal">
-      ₹0
-    </b>
-
-  </div>
+<div class="cost-row">
+<span>Total</span>
+<b id="costTotal">₹0</b>
+</div>
 
 </section>
 
 
-<!-- ===================================================
-     NEXT SESSION
-=================================================== -->
+<!-- THERAPY CATEGORY PAYMENT -->
+
+<section class="card" id="therapyPaymentCard">
+
+<div class="section-title">
+Therapy Category Payment Summary
+</div>
+
+<div id="therapyPaymentSummary"
+class="therapy-payment-summary">
+
+<div class="next-box">
+No therapy payments recorded.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NEXT SESSION -->
 
 <section class="card">
 
-  <div class="section-title">
-    Next Session
-  </div>
+<div class="section-title">
+Next Session
+</div>
 
-
-  <div
-    class="next-box"
-    id="nextSession">
-
-    No upcoming sessions.
-
-  </div>
+<div class="next-box" id="nextSession">
+No upcoming sessions.
+</div>
 
 </section>
 
 
-<!-- ===================================================
-     HISTORY
-=================================================== -->
+<!-- HISTORY -->
 
 <section class="card">
 
-  <div class="section-title">
-    Recent Sessions
-  </div>
+<div class="section-title">
+Recent Sessions
+</div>
 
-
-  <div id="recentList">
-  </div>
+<div id="recentList"></div>
 
 </section>
 
 
-<!-- ===================================================
-     CALENDAR
-=================================================== -->
+<!-- CALENDAR -->
 
-<section
-  class="card"
-  id="calendarSection">
+<section class="card" id="calendarSection">
 
-  <div class="calendar-head">
+<div class="calendar-head">
 
-    <button
-      class="cal-btn"
-      id="prevMonth"
-      type="button">
+<button class="cal-btn" id="prevMonth" type="button">
+‹
+</button>
 
-      ‹
+<div class="month-title" id="monthTitle"></div>
 
-    </button>
+<button class="cal-btn" id="nextMonth" type="button">
+›
+</button>
 
+</div>
 
-    <div
-      class="month-title"
-      id="monthTitle">
-    </div>
+<div class="weekdays">
 
+<div class="weekday">Sun</div>
+<div class="weekday">Mon</div>
+<div class="weekday">Tue</div>
+<div class="weekday">Wed</div>
+<div class="weekday">Thu</div>
+<div class="weekday">Fri</div>
+<div class="weekday">Sat</div>
 
-    <button
-      class="cal-btn"
-      id="nextMonth"
-      type="button">
+</div>
 
-      ›
+<div class="calendar" id="calendar"></div>
 
-    </button>
+<div class="legend">
 
-  </div>
+<span><i style="color:var(--green)">✓</i> Attended</span>
+<span><i style="color:var(--red)">×</i> Missed</span>
+<span><i style="color:var(--orange)">●</i> Planned</span>
+<span><i style="color:var(--purple)">↻</i> Rescheduled</span>
+<span><i style="color:var(--blue)">■</i> Weekend</span>
 
-
-  <div class="weekdays">
-
-    <div class="weekday">Sun</div>
-    <div class="weekday">Mon</div>
-    <div class="weekday">Tue</div>
-    <div class="weekday">Wed</div>
-    <div class="weekday">Thu</div>
-    <div class="weekday">Fri</div>
-    <div class="weekday">Sat</div>
-
-  </div>
-
-
-  <div
-    class="calendar"
-    id="calendar">
-  </div>
-
-
-  <div class="legend">
-
-    <span>
-      <i style="color:var(--green)">
-        ✓
-      </i>
-      Attended
-    </span>
-
-    <span>
-      <i style="color:var(--red)">
-        ×
-      </i>
-      Missed
-    </span>
-
-    <span>
-      <i style="color:var(--orange)">
-        ●
-      </i>
-      Planned
-    </span>
-
-    <span>
-      <i style="color:var(--purple)">
-        ↻
-      </i>
-      Rescheduled
-    </span>
-
-    <span>
-      <i style="color:var(--blue)">
-        ■
-      </i>
-      Weekend
-    </span>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- ===================================================
-     EXPORT
-=================================================== -->
+<!-- EXPORT -->
 
 <section class="card">
 
-  <div class="section-title">
-    Export / Backup
-  </div>
+<div class="section-title">
+Export / Backup
+</div>
 
+<div class="actions">
 
-  <div class="actions">
+<button class="btn btn-primary" id="exportExcel" type="button">
+Export Excel
+</button>
 
-    <button
-      class="btn btn-primary"
-      id="exportExcel"
-      type="button">
+<button class="btn" id="printPdf" type="button">
+Print / Save PDF
+</button>
 
-      Export Excel
+<button class="btn" id="backupData" type="button">
+Backup JSON
+</button>
 
-    </button>
+<button class="btn" id="restoreData" type="button">
+Restore JSON
+</button>
 
+<input
+type="file"
+id="restoreInput"
+accept=".json,application/json"
+class="hidden">
 
-    <button
-      class="btn"
-      id="printPdf"
-      type="button">
-
-      Print / Save PDF
-
-    </button>
-
-
-    <button
-      class="btn"
-      id="backupData"
-      type="button">
-
-      Backup JSON
-
-    </button>
-
-
-    <button
-      class="btn"
-      id="restoreData"
-      type="button">
-
-      Restore JSON
-
-    </button>
-
-
-    <input
-      type="file"
-      id="restoreInput"
-      accept=".json,application/json"
-      class="hidden">
-
-  </div>
+</div>
 
 </section>
 
 </main>
 
 
-<!-- ===================================================
-     BOTTOM NAV
-=================================================== -->
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-  <button
-    class="nav-btn active"
-    data-nav="home"
-    type="button">
+<button class="nav-btn active" data-nav="home" type="button">
+<span class="nav-icon">⌂</span>
+Home
+</button>
 
-    <span class="nav-icon">
-      ⌂
-    </span>
+<button class="nav-btn" data-nav="add" type="button">
+<span class="nav-icon">＋</span>
+Add
+</button>
 
-    Home
+<button class="nav-btn" data-nav="history" type="button">
+<span class="nav-icon">☷</span>
+History
+</button>
 
-  </button>
-
-
-  <button
-    class="nav-btn"
-    data-nav="add"
-    type="button">
-
-    <span class="nav-icon">
-      ＋
-    </span>
-
-    Add
-
-  </button>
-
-
-  <button
-    class="nav-btn"
-    data-nav="history"
-    type="button">
-
-    <span class="nav-icon">
-      ☷
-    </span>
-
-    History
-
-  </button>
-
-
-  <button
-    class="nav-btn"
-    data-nav="calendar"
-    type="button">
-
-    <span class="nav-icon">
-      ▣
-    </span>
-
-    Calendar
-
-  </button>
+<button class="nav-btn" data-nav="calendar" type="button">
+<span class="nav-icon">▣</span>
+Calendar
+</button>
 
 </nav>
 
 
-<!-- ===================================================
-     SESSION MODAL
-=================================================== -->
+<!-- SESSION MODAL -->
 
-<div
-  class="modal"
-  id="sessionModal">
+<div class="modal" id="sessionModal">
 
-  <div class="sheet">
+<div class="sheet">
 
-    <h2 id="sessionModalTitle">
-      Add Session
-    </h2>
+<h2 id="sessionModalTitle">
+Add Session
+</h2>
 
+<form id="sessionForm">
 
-    <form id="sessionForm">
+<input type="hidden" id="editId">
 
-      <input
-        type="hidden"
-        id="editId">
+<div class="form-grid">
 
 
-      <div class="form-grid">
+<!-- MODE -->
 
+<div>
 
-        <div>
+<label>Mode</label>
 
-          <label>
-            Mode
-          </label>
+<select id="fMode">
 
-          <select id="fMode">
+<option value="therapy">🩺 Therapy</option>
+<option value="tuition">📚 Tuition</option>
+<option value="school">🏫 School</option>
+<option value="class">🎓 Class</option>
+<option value="gym">🏋️ Gym</option>
+<option value="office">🏢 Office / RTO Attendance</option>
+<option value="other">📋 Other</option>
 
-            <option value="therapy">
-              🩺 Therapy
-            </option>
-
-            <option value="tuition">
-              📚 Tuition
-            </option>
-
-            <option value="school">
-              🏫 School
-            </option>
-
-            <option value="class">
-              🎓 Class
-            </option>
-
-            <option value="gym">
-              🏋️ Gym
-            </option>
-
-            <option value="office">
-              🏢 Office / RTO Attendance
-            </option>
-
-            <option value="other">
-              📋 Other
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <!-- =================================================
-             THERAPY / TITLE FIELD
-
-             Therapy mode:
-             Dropdown
-
-             Other modes:
-             Existing textbox
-
-             This keeps existing functionality for
-             non-therapy modes.
-        ================================================== -->
-
-        <div>
-
-          <label id="therapyLabel">
-            Therapy
-          </label>
-
-
-          <!-- Therapy dropdown -->
-
-          <select
-            id="fTitleTherapy"
-            class="hidden"
-            required>
-
-            <option value="">
-              Select Therapy
-            </option>
-
-            <option value="Occupational Therapy">
-              Occupational Therapy
-            </option>
-
-            <option value="Physiotherapy">
-              Physiotherapy
-            </option>
-
-            <option value="Physical Therapy">
-              Physical Therapy
-            </option>
-
-            <option value="Speech Therapy">
-              Speech Therapy
-            </option>
-
-            <option value="Language Therapy">
-              Language Therapy
-            </option>
-
-            <option value="Speech & Language Therapy">
-              Speech & Language Therapy
-            </option>
-
-            <option value="ABA Therapy">
-              ABA Therapy
-            </option>
-
-            <option value="Behavioral Therapy">
-              Behavioral Therapy
-            </option>
-
-            <option value="Developmental Therapy">
-              Developmental Therapy
-            </option>
-
-            <option value="Sensory Integration Therapy">
-              Sensory Integration Therapy
-            </option>
-
-            <option value="Cognitive Therapy">
-              Cognitive Therapy
-            </option>
-
-            <option value="Cognitive Behavioral Therapy">
-              Cognitive Behavioral Therapy
-            </option>
-
-            <option value="Psychological Therapy">
-              Psychological Therapy
-            </option>
-
-            <option value="Counselling Therapy">
-              Counselling Therapy
-            </option>
-
-            <option value="Feeding Therapy">
-              Feeding Therapy
-            </option>
-
-            <option value="Swallowing Therapy">
-              Swallowing Therapy
-            </option>
-
-            <option value="Feeding & Swallowing Therapy">
-              Feeding & Swallowing Therapy
-            </option>
-
-            <option value="Handwriting Therapy">
-              Handwriting Therapy
-            </option>
-
-            <option value="Fine Motor Therapy">
-              Fine Motor Therapy
-            </option>
-
-            <option value="Gross Motor Therapy">
-              Gross Motor Therapy
-            </option>
-
-            <option value="Play Therapy">
-              Play Therapy
-            </option>
-
-            <option value="Music Therapy">
-              Music Therapy
-            </option>
-
-            <option value="Art Therapy">
-              Art Therapy
-            </option>
-
-            <option value="Vision Therapy">
-              Vision Therapy
-            </option>
-
-            <option value="Visual Perception Therapy">
-              Visual Perception Therapy
-            </option>
-
-            <option value="Auditory Verbal Therapy">
-              Auditory Verbal Therapy
-            </option>
-
-            <option value="Hearing Therapy">
-              Hearing Therapy
-            </option>
-
-            <option value="Social Skills Therapy">
-              Social Skills Therapy
-            </option>
-
-            <option value="Communication Therapy">
-              Communication Therapy
-            </option>
-
-            <option value="Special Education Therapy">
-              Special Education Therapy
-            </option>
-
-            <option value="Learning Therapy">
-              Learning Therapy
-            </option>
-
-            <option value="Educational Therapy">
-              Educational Therapy
-            </option>
-
-            <option value="Remedial Therapy">
-              Remedial Therapy
-            </option>
-
-            <option value="Early Intervention Therapy">
-              Early Intervention Therapy
-            </option>
-
-            <option value="Neurodevelopmental Therapy">
-              Neurodevelopmental Therapy
-            </option>
-
-            <option value="Neuro Physiotherapy">
-              Neuro Physiotherapy
-            </option>
-
-            <option value="Pediatric Physiotherapy">
-              Pediatric Physiotherapy
-            </option>
-
-            <option value="Pediatric Occupational Therapy">
-              Pediatric Occupational Therapy
-            </option>
-
-            <option value="Pediatric Speech Therapy">
-              Pediatric Speech Therapy
-            </option>
-
-            <option value="Physical Medicine & Rehabilitation">
-              Physical Medicine & Rehabilitation
-            </option>
-
-            <option value="Respiratory Therapy">
-              Respiratory Therapy
-            </option>
-
-            <option value="Cardiac Rehabilitation">
-              Cardiac Rehabilitation
-            </option>
-
-            <option value="Hydrotherapy">
-              Hydrotherapy
-            </option>
-
-            <option value="Aquatic Therapy">
-              Aquatic Therapy
-            </option>
-
-            <option value="Massage Therapy">
-              Massage Therapy
-            </option>
-
-            <option value="Vocational Therapy">
-              Vocational Therapy
-            </option>
-
-            <option value="Life Skills Therapy">
-              Life Skills Therapy
-            </option>
-
-            <option value="Rehabilitation Therapy">
-              Rehabilitation Therapy
-            </option>
-
-            <option value="Other Therapy">
-              Other Therapy
-            </option>
-
-          </select>
-
-
-          <!-- Existing textbox for all other modes -->
-
-          <input
-            id="fTitle"
-            required
-            placeholder="e.g. Tuition / Class / Session">
-
-        </div>
-
-
-        <!-- =================================================
-             DATE
-        ================================================== -->
-
-        <div>
-
-          <label>
-            Date
-          </label>
-
-          <input
-            type="date"
-            id="fDate"
-            required>
-
-        </div>
-
-
-        <!-- =================================================
-             TIME
-        ================================================== -->
-
-        <div>
-
-          <label>
-            Time
-          </label>
-
-          <input
-            type="time"
-            id="fTime">
-
-        </div>
-
-
-        <!-- =================================================
-             PERSON
-        ================================================== -->
-
-        <div>
-
-          <label>
-            Person / Trainer / Therapist
-          </label>
-
-          <input
-            id="fPerson"
-            placeholder="Name">
-
-        </div>
-
-
-        <!-- =================================================
-             STATUS
-        ================================================== -->
-
-        <div>
-
-          <label>
-            Status
-          </label>
-
-          <select id="fStatus">
-
-            <option value="attended">
-              Attended
-            </option>
-
-            <option value="missed">
-              Missed
-            </option>
-
-            <option value="planned">
-              Planned
-            </option>
-
-            <option value="rescheduled">
-              Rescheduled
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <!-- =================================================
-             COST
-        ================================================== -->
-
-        <div>
-
-          <label>
-            Cost (₹)
-          </label>
-
-          <input
-            type="number"
-            id="fCost"
-            min="0"
-            step="0.01"
-            value="0"
-            inputmode="decimal">
-
-        </div>
-
-
-        <!-- =================================================
-             RESCHEDULED DATE
-        ================================================== -->
-
-        <div>
-
-          <label>
-            Rescheduled Date
-          </label>
-
-          <input
-            type="date"
-            id="fRescheduledDate">
-
-        </div>
-
-
-        <!-- =================================================
-             NOTES
-        ================================================== -->
-
-        <div class="full">
-
-          <label>
-            Notes
-          </label>
-
-          <textarea
-            id="fNotes"
-            placeholder="Optional notes">
-          </textarea>
-
-        </div>
-
-      </div>
-
-
-      <div class="modal-actions">
-
-        <button
-          type="button"
-          class="btn"
-          id="closeSession">
-
-          Cancel
-
-        </button>
-
-
-        <button
-          type="submit"
-          class="btn btn-primary">
-
-          Save Session
-
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
+</select>
 
 </div>
 
 
-<!-- ===================================================
-     PROFILE MODAL
-=================================================== -->
+<!-- =================================================
+     TITLE / THERAPY CATEGORY
 
-<div
-  class="modal"
-  id="profileModal">
+     Therapy:
+       dropdown
 
-  <div class="sheet">
+     Other modes:
+       textbox
 
-    <h2 id="profileModalTitle">
-      Add Profile
-    </h2>
+     Existing therapy titles are dynamically added
+     to the dropdown so existing values are retained.
+================================================= -->
 
+<div>
 
-    <form id="profileForm">
+<label id="titleLabel">
+Title
+</label>
 
-      <input
-        type="hidden"
-        id="profileId">
+<input
+id="fTitle"
+required
+placeholder="e.g. Session">
 
+<select
+id="fTherapyCategory"
+class="hidden">
 
-      <label>
-        Profile Name
-      </label>
-
-
-      <input
-        id="profileName"
-        required
-        placeholder="e.g. My Child">
-
-
-      <div class="modal-actions">
-
-        <button
-          type="button"
-          class="btn"
-          id="closeProfile">
-
-          Cancel
-
-        </button>
-
-
-        <button
-          type="submit"
-          class="btn btn-primary">
-
-          Save Profile
-
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
+</select>
 
 </div>
 
 
-<div
-  class="toast"
-  id="toast">
+<!-- DATE -->
+
+<div>
+
+<label>Date</label>
+
+<input
+type="date"
+id="fDate"
+required>
+
 </div>
+
+
+<!-- TIME -->
+
+<div>
+
+<label>Time</label>
+
+<input
+type="time"
+id="fTime">
+
+</div>
+
+
+<!-- PERSON -->
+
+<div>
+
+<label>
+Person / Trainer / Therapist
+</label>
+
+<input
+id="fPerson"
+placeholder="Name">
+
+</div>
+
+
+<!-- STATUS -->
+
+<div>
+
+<label>Status</label>
+
+<select id="fStatus">
+
+<option value="attended">Attended</option>
+<option value="missed">Missed</option>
+<option value="planned">Planned</option>
+<option value="rescheduled">Rescheduled</option>
+
+</select>
+
+</div>
+
+
+<!-- COST -->
+
+<div>
+
+<label>Cost (₹)</label>
+
+<input
+type="number"
+id="fCost"
+min="0"
+step="0.01"
+value="0"
+inputmode="decimal">
+
+</div>
+
+
+<!-- RESCHEDULED -->
+
+<div>
+
+<label>Rescheduled Date</label>
+
+<input
+type="date"
+id="fRescheduledDate">
+
+</div>
+
+
+<!-- NOTES -->
+
+<div class="full">
+
+<label>Notes</label>
+
+<textarea
+id="fNotes"
+placeholder="Optional notes"></textarea>
+
+</div>
+
+</div>
+
+
+<div class="modal-actions">
+
+<button
+type="button"
+class="btn"
+id="closeSession">
+Cancel
+</button>
+
+<button
+type="submit"
+class="btn btn-primary">
+Save Session
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- PROFILE MODAL -->
+
+<div class="modal" id="profileModal">
+
+<div class="sheet">
+
+<h2 id="profileModalTitle">
+Add Profile
+</h2>
+
+<form id="profileForm">
+
+<input type="hidden" id="profileId">
+
+<label>Profile Name</label>
+
+<input
+id="profileName"
+required
+placeholder="e.g. My Child">
+
+<div class="modal-actions">
+
+<button
+type="button"
+class="btn"
+id="closeProfile">
+Cancel
+</button>
+
+<button
+type="submit"
+class="btn btn-primary">
+Save Profile
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
 
 
 <script>
@@ -2515,54 +1320,86 @@ body.dark .cal-btn{
    STORAGE
 ===================================================== */
 
-const DBKEY =
-  "attendanceTrackerData_v3";
+const DBKEY="attendanceTrackerData_v3";
 
+const SAFETYKEY="attendanceTrackerData_before_cleanup";
 
-const SAFETYKEY =
-  "attendanceTrackerData_before_cleanup";
-
-
-const OLD_KEYS = [
-
+const OLD_KEYS=[
   "therapyTrackerData",
-
   "therapyTracker",
-
   "therapyData",
-
   "therapy-tracker",
-
   "therapy_sessions",
-
   "sessions",
-
   "attendanceTracker",
-
   "attendanceData",
-
   "trackerData"
-
 ];
 
 
-const MODE_NAMES = {
+/* =====================================================
+   MODE NAMES
+===================================================== */
+
+const MODE_NAMES={
 
   therapy:"Therapy",
-
   tuition:"Tuition",
-
   school:"School",
-
   class:"Class",
-
   gym:"Gym",
-
   office:"Office / RTO",
-
   other:"Other"
 
 };
+
+
+/* =====================================================
+   THERAPY CATEGORIES
+===================================================== */
+
+/*
+  These are the standard therapy categories.
+
+  Existing therapy names from your saved records
+  are ALSO added automatically.
+
+  Therefore existing values are never lost.
+*/
+
+const DEFAULT_THERAPY_CATEGORIES=[
+
+  "Occupational Therapy",
+
+  "Speech Therapy",
+
+  "Physiotherapy",
+
+  "Physical Therapy",
+
+  "ABA Therapy",
+
+  "Behavioral Therapy",
+
+  "Feeding Therapy",
+
+  "Sensory Therapy",
+
+  "Cognitive Therapy",
+
+  "Developmental Therapy",
+
+  "Psychological Therapy",
+
+  "Special Education Therapy",
+
+  "Music Therapy",
+
+  "Art Therapy",
+
+  "Other Therapy"
+
+];
 
 
 let db;
@@ -2571,16 +1408,16 @@ let activeProfileId;
 
 let activeMode;
 
-let currentMonth =
+let currentMonth=
   new Date(
     new Date().getFullYear(),
     new Date().getMonth(),
     1
   );
 
-let selectedDate = null;
+let selectedDate=null;
 
-let currentFilter = "all";
+let currentFilter="all";
 
 
 /* =====================================================
@@ -2589,10 +1426,10 @@ let currentFilter = "all";
 
 function uid(){
 
-  return (
-    "id_" +
-    Date.now() +
-    "_" +
+  return(
+    "id_"+
+    Date.now()+
+    "_"+
     Math.random()
       .toString(36)
       .slice(2,9)
@@ -2603,23 +1440,17 @@ function uid(){
 
 function esc(value){
 
-  return String(value ?? "")
+  return String(value??"")
     .replace(
       /[&<>"']/g,
       function(m){
 
-        return {
-
+        return{
           "&":"&amp;",
-
           "<":"&lt;",
-
           ">":"&gt;",
-
           '"':"&quot;",
-
           "'":"&#39;"
-
         }[m];
 
       }
@@ -2630,18 +1461,14 @@ function esc(value){
 
 function localDate(d){
 
-  return (
+  return(
 
-    d.getFullYear() +
-
-    "-" +
-
+    d.getFullYear()+
+    "-"+
     String(
       d.getMonth()+1
-    ).padStart(2,"0") +
-
-    "-" +
-
+    ).padStart(2,"0")+
+    "-"+
     String(
       d.getDate()
     ).padStart(2,"0")
@@ -2668,43 +1495,33 @@ function addOneDay(dateString){
 
   }
 
-
-  const parts =
+  const parts=
     String(dateString)
       .slice(0,10)
       .split("-");
 
-
-  if(parts.length !== 3){
+  if(parts.length!==3){
 
     return todayISO();
 
   }
 
-
-  const d =
+  const d=
     new Date(
       Number(parts[0]),
       Number(parts[1])-1,
       Number(parts[2])
     );
 
-
-  if(
-    Number.isNaN(
-      d.getTime()
-    )
-  ){
+  if(Number.isNaN(d.getTime())){
 
     return todayISO();
 
   }
 
-
   d.setDate(
     d.getDate()+1
   );
-
 
   return localDate(d);
 
@@ -2713,18 +1530,15 @@ function addOneDay(dateString){
 
 function money(n){
 
-  return (
-
-    "₹" +
-
-    Number(n || 0)
+  return(
+    "₹"+
+    Number(n||0)
       .toLocaleString(
         "en-IN",
         {
           maximumFractionDigits:2
         }
       )
-
   );
 
 }
@@ -2732,27 +1546,17 @@ function money(n){
 
 function toast(message){
 
-  const t =
-    document.getElementById(
-      "toast"
-    );
+  const t=
+    document.getElementById("toast");
 
+  t.textContent=message;
 
-  t.textContent =
-    message;
-
-
-  t.classList.add(
-    "show"
-  );
-
+  t.classList.add("show");
 
   setTimeout(
     function(){
 
-      t.classList.remove(
-        "show"
-      );
+      t.classList.remove("show");
 
     },
     2200
@@ -2767,31 +1571,24 @@ function toast(message){
 
 function emptyDB(){
 
-  return {
+  return{
 
     version:4,
 
     profiles:[
-
       {
         id:"default",
-
         name:"Default Profile"
-
       }
-
     ],
 
     sessions:[],
 
-    activeProfileId:
-      "default",
+    activeProfileId:"default",
 
-    activeMode:
-      "therapy",
+    activeMode:"therapy",
 
-    theme:
-      "light"
+    theme:"light"
 
   };
 
@@ -2799,152 +1596,117 @@ function emptyDB(){
 
 
 /* =====================================================
-   NORMALIZE STATUS
+   NORMALISE STATUS
 ===================================================== */
 
 function normaliseStatus(value){
 
-  const s =
-    String(value || "")
+  const s=
+    String(value||"")
       .toLowerCase()
       .trim();
 
-
   if(
-    s.includes("miss") ||
-    s === "absent"
+    s.includes("miss")||
+    s==="absent"
   ){
 
-    return "missed";
+    return"missed";
 
   }
 
-
   if(
-    s.includes("plan") ||
+    s.includes("plan")||
     s.includes("upcoming")
   ){
 
-    return "planned";
+    return"planned";
 
   }
-
 
   if(
     s.includes("resched")
   ){
 
-    return "rescheduled";
+    return"rescheduled";
 
   }
 
-
-  return "attended";
+  return"attended";
 
 }
 
 
 /* =====================================================
-   NORMALIZE MODE
+   NORMALISE MODE
 ===================================================== */
 
 function normaliseMode(value){
 
-  const s =
-    String(value || "")
+  const s=
+    String(value||"")
       .toLowerCase()
       .trim();
 
-
   if(
-    s.includes("tuition") ||
+    s.includes("tuition")||
     s.includes("tution")
   ){
 
-    return "tuition";
+    return"tuition";
 
   }
 
+  if(s.includes("school")){
 
-  if(
-    s.includes("school")
-  ){
-
-    return "school";
+    return"school";
 
   }
 
+  if(s.includes("class")){
 
-  if(
-    s.includes("class")
-  ){
-
-    return "class";
+    return"class";
 
   }
 
+  if(s.includes("gym")){
 
-  if(
-    s.includes("gym")
-  ){
-
-    return "gym";
+    return"gym";
 
   }
 
-
   if(
-    s.includes("office") ||
+    s.includes("office")||
     s.includes("rto")
   ){
 
-    return "office";
+    return"office";
 
   }
 
+  if(s.includes("other")){
 
-  if(
-    s.includes("other")
-  ){
-
-    return "other";
+    return"other";
 
   }
 
-
-  if(
-    s.includes("therapy") ||
-    s.includes("occupational") ||
-    s.includes("physio")
-  ){
-
-    return "therapy";
-
-  }
-
-
-  return "therapy";
+  return"therapy";
 
 }
 
 
 /* =====================================================
-   PICK FIRST AVAILABLE VALUE
+   PICK
 ===================================================== */
 
-function pick(
-  object,
-  ...keys
-){
+function pick(object,...keys){
 
-  for(
-    const key of keys
-  ){
+  for(const key of keys){
 
     if(
       object &&
-      object[key] != null &&
-      object[key] !== ""
+      object[key]!=null &&
+      object[key]!==""
     ){
 
       return object[key];
@@ -2953,14 +1715,13 @@ function pick(
 
   }
 
-
-  return "";
+  return"";
 
 }
 
 
 /* =====================================================
-   NORMALIZE SESSION
+   NORMALISE SESSION
 ===================================================== */
 
 function normaliseSession(
@@ -2969,16 +1730,15 @@ function normaliseSession(
 ){
 
   if(
-    !object ||
-    typeof object !== "object"
+    !object||
+    typeof object!=="object"
   ){
 
     return null;
 
   }
 
-
-  const rawDate =
+  const rawDate=
     pick(
       object,
       "date",
@@ -2988,40 +1748,32 @@ function normaliseSession(
       "selectedDate"
     );
 
-
   if(!rawDate){
 
     return null;
 
   }
 
-
-  const date =
-    String(rawDate)
-      .slice(0,10);
-
+  const date=
+    String(rawDate).slice(0,10);
 
   if(
-    !/^\d{4}-\d{2}-\d{2}$/
-      .test(date)
+    !/^\d{4}-\d{2}-\d{2}$/.test(date)
   ){
 
     return null;
 
   }
 
-
-  return {
+  return{
 
     id:String(
       pick(
         object,
         "id",
         "_id"
-      ) ||
-      uid()
+      )||uid()
     ),
-
 
     profileId:String(
 
@@ -3030,14 +1782,11 @@ function normaliseSession(
         "profileId",
         "profile",
         "personId"
-      ) ||
-
-      fallbackProfileId ||
-
+      )||
+      fallbackProfileId||
       "default"
 
     ),
-
 
     mode:
       normaliseMode(
@@ -3047,10 +1796,15 @@ function normaliseSession(
           "category",
           "type",
           "attendanceMode"
-        ) ||
+        )||
         "therapy"
       ),
 
+    /*
+      Existing title is preserved exactly.
+      For Therapy mode this becomes the category
+      displayed by the new dropdown.
+    */
 
     title:String(
 
@@ -3061,15 +1815,12 @@ function normaliseSession(
         "therapyName",
         "sessionType",
         "name"
-      ) ||
-
+      )||
       "Therapy Session"
 
     ),
 
-
     date,
-
 
     time:String(
 
@@ -3078,12 +1829,10 @@ function normaliseSession(
         "time",
         "sessionTime",
         "startTime"
-      ) ||
-
+      )||
       ""
 
     ),
-
 
     person:String(
 
@@ -3095,12 +1844,10 @@ function normaliseSession(
         "teacher",
         "doctor",
         "provider"
-      ) ||
-
+      )||
       ""
 
     ),
-
 
     status:
       normaliseStatus(
@@ -3109,10 +1856,9 @@ function normaliseSession(
           "status",
           "attendance",
           "result"
-        ) ||
+        )||
         "attended"
       ),
-
 
     cost:Number(
 
@@ -3122,12 +1868,10 @@ function normaliseSession(
         "amount",
         "price",
         "fee"
-      ) ||
-
+      )||
       0
 
     ),
-
 
     rescheduledDate:String(
 
@@ -3135,12 +1879,10 @@ function normaliseSession(
         object,
         "rescheduledDate",
         "newDate"
-      ) ||
-
+      )||
       ""
 
     ),
-
 
     notes:String(
 
@@ -3150,20 +1892,13 @@ function normaliseSession(
         "remark",
         "remarks",
         "comments"
-      ) ||
-
+      )||
       ""
 
     ),
 
-
     createdAt:
-
-      pick(
-        object,
-        "createdAt"
-      ) ||
-
+      pick(object,"createdAt")||
       Date.now()
 
   };
@@ -3172,37 +1907,37 @@ function normaliseSession(
 
 
 /* =====================================================
-   DUPLICATE FINGERPRINT
+   DUPLICATE KEY
 ===================================================== */
 
 function duplicateKey(s){
 
-  return [
+  return[
 
-    String(s.profileId || ""),
+    String(s.profileId||""),
 
-    String(s.mode || ""),
+    String(s.mode||""),
 
-    String(s.date || ""),
+    String(s.date||""),
 
-    String(s.time || ""),
+    String(s.time||""),
 
-    String(s.person || "")
+    String(s.person||"")
       .trim()
       .toLowerCase(),
 
-    String(s.status || ""),
+    String(s.status||""),
 
     String(
-      Number(s.cost || 0)
+      Number(s.cost||0)
     ),
 
     String(
-      s.rescheduledDate || ""
+      s.rescheduledDate||""
     ),
 
     String(
-      s.notes || ""
+      s.notes||""
     )
       .trim()
       .toLowerCase()
@@ -3213,80 +1948,43 @@ function duplicateKey(s){
 
 
 /* =====================================================
-   CHOOSE BETTER TITLE
+   CHOOSE TITLE
 ===================================================== */
 
-function chooseTitle(
-  first,
-  second
-){
+function chooseTitle(first,second){
 
-  const a =
-    String(
-      first.title || ""
-    ).trim();
+  const a=
+    String(first.title||"").trim();
 
+  const b=
+    String(second.title||"").trim();
 
-  const b =
-    String(
-      second.title || ""
-    ).trim();
+  if(!a)return b;
 
+  if(!b)return a;
 
-  if(!a){
-    return b;
-  }
-
-
-  if(!b){
-    return a;
-  }
-
-
-  const generic = [
+  const generic=[
 
     "therapy session",
-
     "session",
-
     "appointment",
-
     "attendance"
 
   ];
 
-
-  const ag =
+  const ag=
     generic.includes(
       a.toLowerCase()
     );
 
-
-  const bg =
+  const bg=
     generic.includes(
       b.toLowerCase()
     );
 
+  if(ag&&!bg)return b;
 
-  if(
-    ag &&
-    !bg
-  ){
-
-    return b;
-
-  }
-
-
-  if(
-    bg &&
-    !ag
-  ){
-
-    return a;
-
-  }
-
+  if(bg&&!ag)return a;
 
   return a;
 
@@ -3294,7 +1992,7 @@ function chooseTitle(
 
 
 /* =====================================================
-   MERGE TWO DUPLICATES
+   MERGE DUPLICATE
 ===================================================== */
 
 function mergeDuplicate(
@@ -3302,101 +2000,85 @@ function mergeDuplicate(
   incoming
 ){
 
-  const merged = {
-
+  const merged={
     ...existing
-
   };
 
-
-  merged.title =
+  merged.title=
     chooseTitle(
       existing,
       incoming
     );
 
-
-  const n1 =
+  const n1=
     String(
-      existing.notes || ""
+      existing.notes||""
     ).trim();
 
-
-  const n2 =
+  const n2=
     String(
-      incoming.notes || ""
+      incoming.notes||""
     ).trim();
-
 
   if(
-    n1 &&
-    n2 &&
-    n1 !== n2
+    n1&&
+    n2&&
+    n1!==n2
   ){
 
-    merged.notes =
-      n1 +
-      " | " +
+    merged.notes=
+      n1+
+      " | "+
       n2;
 
   }
+  else if(!n1&&n2){
 
-  else if(!n1 && n2){
-
-    merged.notes =
-      n2;
+    merged.notes=n2;
 
   }
-
 
   if(
-    !merged.person &&
+    !merged.person&&
     incoming.person
   ){
 
-    merged.person =
+    merged.person=
       incoming.person;
 
   }
 
-
   if(
-    !merged.time &&
+    !merged.time&&
     incoming.time
   ){
 
-    merged.time =
+    merged.time=
       incoming.time;
 
   }
 
-
   if(
-    !merged.rescheduledDate &&
+    !merged.rescheduledDate&&
     incoming.rescheduledDate
   ){
 
-    merged.rescheduledDate =
+    merged.rescheduledDate=
       incoming.rescheduledDate;
 
   }
 
-
-  merged.createdAt =
+  merged.createdAt=
     Math.min(
-
       Number(
-        existing.createdAt ||
+        existing.createdAt||
         Date.now()
       ),
-
       Number(
-        incoming.createdAt ||
+        incoming.createdAt||
         Date.now()
       )
-
     );
-
 
   return merged;
 
@@ -3404,31 +2086,19 @@ function mergeDuplicate(
 
 
 /* =====================================================
-   DEDUPLICATE SESSIONS
+   DEDUPLICATE
 ===================================================== */
 
-function deduplicateSessions(
-  input
-){
+function deduplicateSessions(input){
 
-  const map =
-    new Map();
+  const map=new Map();
 
+  for(const session of input){
 
-  for(
-    const session of input
-  ){
+    if(!session)continue;
 
-    if(!session){
-      continue;
-    }
-
-
-    const key =
-      duplicateKey(
-        session
-      );
-
+    const key=
+      duplicateKey(session);
 
     if(!map.has(key)){
 
@@ -3438,30 +2108,21 @@ function deduplicateSessions(
       );
 
     }
-
     else{
 
-      const old =
-        map.get(key);
-
-
       map.set(
-
         key,
-
         mergeDuplicate(
-          old,
+          map.get(key),
           session
         )
-
       );
 
     }
 
   }
 
-
-  return [
+  return[
     ...map.values()
   ];
 
@@ -3469,70 +2130,44 @@ function deduplicateSessions(
 
 
 /* =====================================================
-   LEGACY DATA COLLECTION
+   LEGACY DATA
 ===================================================== */
 
 function collectLegacy(){
 
-  const records = [];
+  const records=[];
+  const profiles=[];
 
-  const profiles = [];
+  for(const key of OLD_KEYS){
 
-
-  for(
-    const key of OLD_KEYS
-  ){
-
-    if(
-      key === DBKEY
-    ){
-
-      continue;
-
-    }
-
+    if(key===DBKEY)continue;
 
     try{
 
-      const raw =
-        localStorage.getItem(
-          key
-        );
+      const raw=
+        localStorage.getItem(key);
 
+      if(!raw)continue;
 
-      if(!raw){
-
-        continue;
-
-      }
-
-
-      const parsed =
+      const parsed=
         JSON.parse(raw);
 
-
-      if(
-        Array.isArray(
-          parsed
-        )
-      ){
+      if(Array.isArray(parsed)){
 
         parsed.forEach(
-          item => {
+          item=>{
 
             if(
-              item &&
-              typeof item === "object" &&
+              item&&
+              typeof item==="object"&&
               (
-                item.date ||
-                item.sessionDate ||
+                item.date||
+                item.sessionDate||
                 item.visitDate
               )
             ){
 
-              records.push(
-                item
-              );
+              records.push(item);
 
             }
 
@@ -3540,17 +2175,13 @@ function collectLegacy(){
         );
 
       }
-
-
       else if(
-        parsed &&
-        typeof parsed === "object"
+        parsed&&
+        typeof parsed==="object"
       ){
 
         if(
-          Array.isArray(
-            parsed.sessions
-          )
+          Array.isArray(parsed.sessions)
         ){
 
           records.push(
@@ -3559,11 +2190,8 @@ function collectLegacy(){
 
         }
 
-
         if(
-          Array.isArray(
-            parsed.records
-          )
+          Array.isArray(parsed.records)
         ){
 
           records.push(
@@ -3572,11 +2200,8 @@ function collectLegacy(){
 
         }
 
-
         if(
-          Array.isArray(
-            parsed.appointments
-          )
+          Array.isArray(parsed.appointments)
         ){
 
           records.push(
@@ -3585,11 +2210,8 @@ function collectLegacy(){
 
         }
 
-
         if(
-          Array.isArray(
-            parsed.data
-          )
+          Array.isArray(parsed.data)
         ){
 
           records.push(
@@ -3598,11 +2220,8 @@ function collectLegacy(){
 
         }
 
-
         if(
-          Array.isArray(
-            parsed.profiles
-          )
+          Array.isArray(parsed.profiles)
         ){
 
           profiles.push(
@@ -3614,15 +2233,11 @@ function collectLegacy(){
       }
 
     }
-
-    catch(error){
-
-    }
+    catch(error){}
 
   }
 
-
-  return {
+  return{
     records,
     profiles
   };
@@ -3636,142 +2251,117 @@ function collectLegacy(){
 
 function loadDB(){
 
-  const blank =
+  const blank=
     emptyDB();
 
-
-  let current =
-    null;
-
+  let current=null;
 
   try{
 
-    current =
+    current=
       JSON.parse(
-        localStorage.getItem(
-          DBKEY
-        ) ||
+        localStorage.getItem(DBKEY)||
         "null"
       );
 
   }
-
   catch(error){
 
-    current = null;
+    current=null;
 
   }
 
 
   if(
-    current &&
-    typeof current === "object"
+    current&&
+    typeof current==="object"
   ){
+
+    /*
+      Safety backup.
+
+      Existing database is NEVER deleted.
+    */
 
     try{
 
       localStorage.setItem(
-
         SAFETYKEY,
-
-        JSON.stringify(
-          current
-        )
-
+        JSON.stringify(current)
       );
 
     }
-
     catch(error){}
 
 
-    const base = {
-
+    const base={
       ...blank,
-
       ...current
-
     };
 
-
     if(
-      !Array.isArray(
-        base.profiles
-      ) ||
+      !Array.isArray(base.profiles)||
       !base.profiles.length
     ){
 
-      base.profiles =
+      base.profiles=
         blank.profiles;
 
     }
 
-
     if(
-      !Array.isArray(
-        base.sessions
-      )
+      !Array.isArray(base.sessions)
     ){
 
-      base.sessions = [];
+      base.sessions=[];
 
     }
 
-
-    const normalized = [];
-
+    const normalized=[];
 
     base.sessions.forEach(
-      session => {
+      session=>{
 
-        const n =
+        const n=
           normaliseSession(
             session,
             base.profiles[0].id
           );
 
-
         if(n){
 
           if(
             !base.profiles.some(
-              p =>
-                String(p.id) ===
+              p=>
+                String(p.id)===
                 String(n.profileId)
             )
           ){
 
-            n.profileId =
+            n.profileId=
               base.profiles[0].id;
 
           }
 
-
-          normalized.push(
-            n
-          );
+          normalized.push(n);
 
         }
 
       }
     );
 
-
-    base.sessions =
+    base.sessions=
       deduplicateSessions(
         normalized
       );
 
-
     if(
       !base.profiles.some(
-        p =>
-          p &&
-          p.id
+        p=>p&&p.id
       )
     ){
 
-      base.profiles = [
+      base.profiles=[
         {
           id:"default",
           name:"Default Profile"
@@ -3780,132 +2370,101 @@ function loadDB(){
 
     }
 
-
     if(
       !base.profiles.some(
-        p =>
-          String(p.id) ===
-          String(
-            base.activeProfileId
-          )
+        p=>
+          String(p.id)===
+          String(base.activeProfileId)
       )
     ){
 
-      base.activeProfileId =
+      base.activeProfileId=
         base.profiles[0].id;
 
     }
 
-
     if(
-      !MODE_NAMES[
-        base.activeMode
-      ]
+      !MODE_NAMES[base.activeMode]
     ){
 
-      base.activeMode =
-        "therapy";
+      base.activeMode="therapy";
 
     }
 
-
     if(
-      base.theme !== "dark" &&
-      base.theme !== "light"
+      base.theme!=="dark"&&
+      base.theme!=="light"
     ){
 
-      base.theme =
-        "light";
+      base.theme="light";
 
     }
 
-
-    base.version =
-      4;
-
+    base.version=4;
 
     localStorage.setItem(
-
       DBKEY,
-
-      JSON.stringify(
-        base
-      )
-
+      JSON.stringify(base)
     );
-
 
     return base;
 
   }
 
 
-  const legacy =
+  /*
+    Legacy recovery.
+  */
+
+  const legacy=
     collectLegacy();
 
-
-  const profileMap =
+  const profileMap=
     new Map();
 
-
   profileMap.set(
-
     "default",
-
     {
       id:"default",
       name:"Default Profile"
     }
-
   );
 
-
   legacy.profiles.forEach(
-    p => {
+    p=>{
 
-      const name =
+      const name=
         String(
-          p?.name ||
-          p?.profileName ||
-          p?.title ||
+          p?.name||
+          p?.profileName||
+          p?.title||
           ""
         ).trim();
 
+      if(!name)return;
 
-      if(!name){
-        return;
-      }
-
-
-      const existing =
+      const existing=
         [...profileMap.values()]
           .find(
-            x =>
-              x.name
-                .toLowerCase() ===
+            x=>
+              x.name.toLowerCase()===
               name.toLowerCase()
           );
 
-
       if(!existing){
 
-        const profileId =
+        const pid=
           String(
-            p.id ||
+            p.id||
             uid()
           );
 
-
         profileMap.set(
-
-          profileId,
-
+          pid,
           {
-            id:profileId,
+            id:pid,
             name
-
           }
-
         );
 
       }
@@ -3913,43 +2472,36 @@ function loadDB(){
     }
   );
 
+  const profiles=[
+    ...profileMap.values()
+  ];
 
-  const profiles =
-    [
-      ...profileMap.values()
-    ];
-
-
-  const defaultProfileId =
+  const defaultProfileId=
     profiles[0].id;
 
-
-  const recovered =
+  const recovered=
     legacy.records
-
       .map(
-        x =>
+        x=>
           normaliseSession(
             x,
             defaultProfileId
           )
       )
-
       .filter(Boolean);
 
-
   recovered.forEach(
-    s => {
+    s=>{
 
       if(
         !profiles.some(
-          p =>
-            String(p.id) ===
+          p=>
+            String(p.id)===
             String(s.profileId)
         )
       ){
 
-        s.profileId =
+        s.profileId=
           defaultProfileId;
 
       }
@@ -3957,8 +2509,7 @@ function loadDB(){
     }
   );
 
-
-  const base = {
+  const base={
 
     version:4,
 
@@ -3972,25 +2523,16 @@ function loadDB(){
     activeProfileId:
       defaultProfileId,
 
-    activeMode:
-      "therapy",
+    activeMode:"therapy",
 
-    theme:
-      "light"
+    theme:"light"
 
   };
 
-
   localStorage.setItem(
-
     DBKEY,
-
-    JSON.stringify(
-      base
-    )
-
+    JSON.stringify(base)
   );
-
 
   return base;
 
@@ -4003,34 +2545,25 @@ function loadDB(){
 
 function saveDB(){
 
-  db.activeProfileId =
+  db.activeProfileId=
     activeProfileId;
 
-
-  db.activeMode =
+  db.activeMode=
     activeMode;
 
-
-  db.sessions =
+  db.sessions=
     deduplicateSessions(
       db.sessions
     );
 
-
   try{
 
     localStorage.setItem(
-
       DBKEY,
-
-      JSON.stringify(
-        db
-      )
-
+      JSON.stringify(db)
     );
 
   }
-
   catch(error){
 
     alert(
@@ -4043,19 +2576,17 @@ function saveDB(){
 
 
 /* =====================================================
-   PROFILE
+   CURRENT PROFILE
 ===================================================== */
 
 function currentProfile(){
 
-  return (
+  return(
 
     db.profiles.find(
-
-      p =>
-        String(p.id) ===
+      p=>
+        String(p.id)===
         String(activeProfileId)
-
     )
 
     ||
@@ -4075,17 +2606,242 @@ function sessions(){
 
   return db.sessions.filter(
 
-    s =>
+    s=>
 
-      String(s.profileId) ===
+      String(s.profileId)===
       String(activeProfileId)
 
       &&
 
-      s.mode ===
+      s.mode===
       activeMode
 
   );
+
+}
+
+
+/* =====================================================
+   GET ALL THERAPY CATEGORIES
+===================================================== */
+
+/*
+  IMPORTANT:
+
+  Existing titles from your database are added
+  to the dropdown.
+
+  Example existing records:
+
+    Occupational Therapy
+    Speech Therapy
+    OT
+    Speech
+
+  They will remain available.
+*/
+
+function getTherapyCategories(){
+
+  const categories=[
+    ...DEFAULT_THERAPY_CATEGORIES
+  ];
+
+  db.sessions.forEach(
+    s=>{
+
+      if(
+        s.mode!=="therapy"
+      ){
+
+        return;
+
+      }
+
+      const title=
+        String(
+          s.title||""
+        ).trim();
+
+      if(
+        title&&
+        !categories.some(
+          x=>
+            x.toLowerCase()===
+            title.toLowerCase()
+        )
+      ){
+
+        categories.push(title);
+
+      }
+
+    }
+  );
+
+  return categories;
+
+}
+
+
+/* =====================================================
+   RENDER THERAPY DROPDOWN
+===================================================== */
+
+function renderTherapyCategories(
+  selectedValue=""
+){
+
+  const select=
+    document.getElementById(
+      "fTherapyCategory"
+    );
+
+  const categories=
+    getTherapyCategories();
+
+  select.innerHTML=
+    categories
+      .map(
+        category=>
+          `<option value="${esc(category)}">${esc(category)}</option>`
+      )
+      .join("");
+
+  /*
+    Existing saved value not found in standard list?
+    Add it instead of losing it.
+  */
+
+  if(
+    selectedValue&&
+    !categories.some(
+      x=>
+        x.toLowerCase()===
+        String(selectedValue)
+          .toLowerCase()
+    )
+  ){
+
+    const option=
+      document.createElement(
+        "option"
+      );
+
+    option.value=
+      selectedValue;
+
+    option.textContent=
+      selectedValue;
+
+    select.appendChild(
+      option
+    );
+
+  }
+
+  if(selectedValue){
+
+    select.value=
+      selectedValue;
+
+  }
+
+}
+
+
+/* =====================================================
+   SWITCH TITLE / CATEGORY FIELD
+===================================================== */
+
+function updateTitleField(){
+
+  const mode=
+    document.getElementById(
+      "fMode"
+    ).value;
+
+  const titleInput=
+    document.getElementById(
+      "fTitle"
+    );
+
+  const categorySelect=
+    document.getElementById(
+      "fTherapyCategory"
+    );
+
+  const label=
+    document.getElementById(
+      "titleLabel"
+    );
+
+
+  if(mode==="therapy"){
+
+    /*
+      Therapy mode:
+      Title textbox hidden.
+      Therapy Category dropdown shown.
+    */
+
+    label.textContent=
+      "Therapy Category";
+
+    titleInput.classList.add(
+      "hidden"
+    );
+
+    titleInput.required=false;
+
+    categorySelect.classList.remove(
+      "hidden"
+    );
+
+    categorySelect.required=true;
+
+    /*
+      Preserve current value.
+    */
+
+    const currentValue=
+      titleInput.value.trim();
+
+    renderTherapyCategories(
+      currentValue
+    );
+
+  }
+  else{
+
+    /*
+      All other modes:
+      Existing Title textbox restored.
+    */
+
+    label.textContent=
+      "Title";
+
+    categorySelect.classList.add(
+      "hidden"
+    );
+
+    categorySelect.required=false;
+
+    titleInput.classList.remove(
+      "hidden"
+    );
+
+    titleInput.required=true;
+
+    if(!titleInput.value){
+
+      titleInput.value=
+        defaultTitle(mode);
+
+    }
+
+  }
 
 }
 
@@ -4098,16 +2854,15 @@ function render(){
 
   document.getElementById(
     "appTitle"
-  ).textContent =
-    MODE_NAMES[activeMode] +
+  ).textContent=
+    MODE_NAMES[activeMode]+
     " Tracker";
-
 
   document.getElementById(
     "appSubtitle"
-  ).textContent =
+  ).textContent=
 
-    activeMode === "therapy"
+    activeMode==="therapy"
 
       ?
 
@@ -4115,11 +2870,10 @@ function render(){
 
       :
 
-      "Track " +
+      "Track "+
       MODE_NAMES[activeMode]
-        .toLowerCase() +
+        .toLowerCase()+
       " attendance, sessions and expenses";
-
 
   renderProfiles();
 
@@ -4129,60 +2883,55 @@ function render(){
 
   renderCost();
 
+  renderTherapyPayment();
+
   renderNext();
 
   renderRecent();
 
   renderCalendar();
 
-
   document.getElementById(
     "modeSelect"
-  ).value =
+  ).value=
     activeMode;
+
+  document.getElementById(
+    "therapyPaymentCard"
+  ).style.display=
+    activeMode==="therapy"
+      ? ""
+      : "none";
 
 }
 
 
 /* =====================================================
-   PROFILES RENDER
+   PROFILE RENDER
 ===================================================== */
 
 function renderProfiles(){
 
-  const select =
+  const select=
     document.getElementById(
       "profileSelect"
     );
 
-
-  select.innerHTML =
-
+  select.innerHTML=
     db.profiles
-
       .map(
-
-        p =>
-
-          `<option value="${esc(p.id)}">
-            ${esc(p.name)}
-          </option>`
-
+        p=>
+          `<option value="${esc(p.id)}">${esc(p.name)}</option>`
       )
-
       .join("");
 
-
-  select.value =
+  select.value=
     activeProfileId;
-
 
   document.getElementById(
     "profileCount"
-  ).textContent =
-
-    sessions().length +
-
+  ).textContent=
+    sessions().length+
     " records in this profile / mode";
 
 }
@@ -4194,90 +2943,73 @@ function renderProfiles(){
 
 function renderStats(){
 
-  const list =
+  const list=
     sessions();
 
-
-  const count =
-    status =>
+  const count=
+    status=>
       list.filter(
-        s =>
-          s.status ===
+        s=>
+          s.status===
           status
       ).length;
 
-
   document.getElementById(
     "totalCount"
-  ).textContent =
+  ).textContent=
     list.length;
-
 
   document.getElementById(
     "attendedCount"
-  ).textContent =
+  ).textContent=
     count("attended");
-
 
   document.getElementById(
     "missedCount"
-  ).textContent =
+  ).textContent=
     count("missed");
-
 
   document.getElementById(
     "plannedCount"
-  ).textContent =
+  ).textContent=
     count("planned");
-
 
   document.getElementById(
     "rescheduledCount"
-  ).textContent =
+  ).textContent=
     count("rescheduled");
 
-
-  const denominator =
-    count("attended") +
+  const denominator=
+    count("attended")+
     count("missed");
-
 
   document.getElementById(
     "attendanceRate"
-  ).textContent =
+  ).textContent=
 
     (
       denominator
-        ? Math.round(
-            count("attended") /
-            denominator *
-            100
-          )
-        : 0
-    ) +
-
+        ?
+        Math.round(
+          count("attended")/
+          denominator*
+          100
+        )
+        :
+        0
+    )+
     "%";
-
 
   document.getElementById(
     "totalCost"
-  ).textContent =
-
+  ).textContent=
     money(
-
       list.reduce(
-
-        (total,s) =>
-
-          total +
-          Number(
-            s.cost || 0
-          ),
-
+        (total,s)=>
+          total+
+          Number(s.cost||0),
         0
-
       )
-
     );
 
 }
@@ -4289,40 +3021,35 @@ function renderStats(){
 
 function renderSummary(){
 
-  const list =
+  const list=
     sessions();
 
-
-  const count =
-    status =>
+  const count=
+    status=>
       list.filter(
-        s =>
-          s.status ===
+        s=>
+          s.status===
           status
       ).length;
 
-
   document.getElementById(
     "sumTotal"
-  ).textContent =
+  ).textContent=
     list.length;
-
 
   document.getElementById(
     "sumAttended"
-  ).textContent =
+  ).textContent=
     count("attended");
-
 
   document.getElementById(
     "sumMissed"
-  ).textContent =
+  ).textContent=
     count("missed");
-
 
   document.getElementById(
     "sumPlanned"
-  ).textContent =
+  ).textContent=
     count("planned");
 
 }
@@ -4334,67 +3061,201 @@ function renderSummary(){
 
 function renderCost(){
 
-  const list =
+  const list=
     sessions();
 
-
-  const attended =
+  const attended=
     list
-
       .filter(
-        s =>
-          s.status ===
+        s=>
+          s.status===
           "attended"
       )
-
       .reduce(
-        (total,s) =>
-          total +
-          Number(
-            s.cost || 0
-          ),
+        (total,s)=>
+          total+
+          Number(s.cost||0),
         0
       );
 
-
-  const planned =
+  const planned=
     list
-
       .filter(
-        s =>
-          s.status ===
+        s=>
+          s.status===
           "planned"
       )
-
       .reduce(
-        (total,s) =>
-          total +
-          Number(
-            s.cost || 0
-          ),
+        (total,s)=>
+          total+
+          Number(s.cost||0),
         0
       );
-
 
   document.getElementById(
     "costAttended"
-  ).textContent =
+  ).textContent=
     money(attended);
-
 
   document.getElementById(
     "costPlanned"
-  ).textContent =
+  ).textContent=
     money(planned);
-
 
   document.getElementById(
     "costTotal"
-  ).textContent =
+  ).textContent=
     money(
-      attended +
+      attended+
       planned
     );
+
+}
+
+
+/* =====================================================
+   THERAPY CATEGORY PAYMENT CALCULATION
+===================================================== */
+
+/*
+  This calculates the actual total cost for every
+  therapy category in the current profile.
+
+  Example:
+
+    Occupational Therapy
+       9000
+
+    Speech Therapy
+       122
+
+  The values come directly from the saved session
+  costs.
+*/
+
+function renderTherapyPayment(){
+
+  const container=
+    document.getElementById(
+      "therapyPaymentSummary"
+    );
+
+  if(activeMode!=="therapy"){
+
+    container.innerHTML="";
+
+    return;
+
+  }
+
+  const list=
+    sessions();
+
+  if(!list.length){
+
+    container.innerHTML=
+      `<div class="next-box">
+        No therapy payments recorded.
+      </div>`;
+
+    return;
+
+  }
+
+  const totals={};
+
+  list.forEach(
+    s=>{
+
+      /*
+        Existing title is treated as the therapy
+        category. This preserves existing records.
+      */
+
+      const category=
+        String(
+          s.title||
+          "Other Therapy"
+        ).trim()||
+        "Other Therapy";
+
+      if(
+        !Object.prototype.hasOwnProperty.call(
+          totals,
+          category
+        )
+      ){
+
+        totals[category]=0;
+
+      }
+
+      totals[category]+=
+        Number(s.cost||0);
+
+    }
+  );
+
+
+  const sorted=
+    Object.entries(totals)
+      .sort(
+        (a,b)=>
+          b[1]-a[1]
+      );
+
+
+  container.innerHTML=
+
+    sorted
+      .map(
+        ([category,total])=>
+          `
+
+          <div class="therapy-payment-row">
+
+            <span class="therapy-payment-name">
+
+              ${esc(category)}
+
+            </span>
+
+            <span class="therapy-payment-amount">
+
+              ${money(total)}
+
+            </span>
+
+          </div>
+
+          `
+      )
+      .join("")
+
+      +
+
+      `
+
+      <div class="therapy-payment-total">
+
+        <span>Total Therapy Payment</span>
+
+        <span>
+
+          ${money(
+            list.reduce(
+              (sum,s)=>
+                sum+
+                Number(s.cost||0),
+              0
+            )
+          )}
+
+        </span>
+
+      </div>
+
+      `;
 
 }
 
@@ -4405,19 +3266,18 @@ function renderCost(){
 
 function sortSessions(list){
 
-  return [...list].sort(
+  return[...list].sort(
 
-    (a,b) =>
+    (a,b)=>
 
       (
-        String(b.date) +
-        String(b.time || "")
+        String(b.date)+
+        String(b.time||"")
       )
-
       .localeCompare(
 
-        String(a.date) +
-        String(a.time || "")
+        String(a.date)+
+        String(a.time||"")
 
       )
 
@@ -4432,40 +3292,27 @@ function sortSessions(list){
 
 function formatDate(value){
 
-  if(!value){
-    return "";
-  }
+  if(!value)return"";
 
-
-  const d =
+  const d=
     new Date(
-      String(value)
-        .slice(0,10) +
+      String(value).slice(0,10)+
       "T00:00:00"
     );
 
-
-  if(
-    Number.isNaN(
-      d.getTime()
-    )
-  ){
+  if(Number.isNaN(d.getTime())){
 
     return value;
 
   }
 
-
   return d.toLocaleDateString(
-
     "en-IN",
-
     {
       day:"2-digit",
       month:"short",
       year:"numeric"
     }
-
   );
 
 }
@@ -4477,50 +3324,35 @@ function formatDate(value){
 
 function formatTime(value){
 
-  if(!value){
-    return "";
-  }
+  if(!value)return"";
 
+  const parts=
+    String(value).split(":");
 
-  const parts =
-    String(value)
-      .split(":");
-
-
-  if(parts.length < 2){
+  if(parts.length<2){
 
     return value;
 
   }
 
-
-  let hour =
+  let hour=
     Number(parts[0]);
 
-
-  const minute =
+  const minute=
     parts[1];
 
+  const suffix=
+    hour>=12?"PM":"AM";
 
-  const suffix =
-    hour >= 12
-      ? "PM"
-      : "AM";
+  hour=
+    hour%12||12;
 
-
-  hour =
-    hour % 12 ||
-    12;
-
-
-  return (
-
-    hour +
-    ":" +
-    minute +
-    " " +
+  return(
+    hour+
+    ":"+
+    minute+
+    " "+
     suffix
-
   );
 
 }
@@ -4532,33 +3364,21 @@ function formatTime(value){
 
 function recordHTML(s){
 
-  const icons = {
-
+  const icons={
     attended:"✓",
-
     missed:"×",
-
     planned:"●",
-
     rescheduled:"↻"
-
   };
 
-
-  const labels = {
-
+  const labels={
     attended:"Attended",
-
     missed:"Missed",
-
     planned:"Planned",
-
     rescheduled:"Rescheduled"
-
   };
 
-
-  return `
+  return`
 
   <div class="record">
 
@@ -4572,128 +3392,76 @@ function recordHTML(s){
 
         </div>
 
-
         <div class="meta">
 
-          📅 ${esc(
-            formatDate(
-              s.date
-            )
-          )}
-
+          📅 ${esc(formatDate(s.date))}
 
           ${
             s.time
-
-            ?
-
-            "<br>🕒 " +
-            esc(
-              formatTime(
-                s.time
-              )
-            )
-
-            :
-
-            ""
-
+              ?
+              "<br>🕒 "+
+              esc(formatTime(s.time))
+              :
+              ""
           }
-
 
           ${
             s.person
-
-            ?
-
-            "<br>👤 " +
-            esc(
-              s.person
-            )
-
-            :
-
-            ""
-
+              ?
+              "<br>👤 "+
+              esc(s.person)
+              :
+              ""
           }
-
 
           <br>
 
-          💰 ${money(
-            s.cost
-          )}
+          💰 ${money(s.cost)}
 
         </div>
 
       </div>
 
+      <span class="badge ${s.status}">
 
-      <span
-        class="badge ${s.status}">
+        ${icons[s.status]||""}
 
-        ${icons[s.status] || ""}
-
-        ${labels[s.status] || s.status}
+        ${labels[s.status]||s.status}
 
       </span>
 
     </div>
 
-
     ${
       s.rescheduledDate
+        ?
+        `
+        <div class="meta">
 
-      ?
+          ↪ Rescheduled to
+          ${esc(formatDate(s.rescheduledDate))}
 
-      `
-
-      <div class="meta">
-
-        ↪ Rescheduled to
-        ${esc(
-          formatDate(
-            s.rescheduledDate
-          )
-        )}
-
-      </div>
-
-      `
-
-      :
-
-      ""
-
+        </div>
+        `
+        :
+        ""
     }
-
 
     ${
       s.notes
+        ?
+        `
+        <div class="meta">
 
-      ?
+          📝 ${esc(s.notes)}
 
-      `
-
-      <div class="meta">
-
-        📝 ${esc(
-          s.notes
-        )}
-
-      </div>
-
-      `
-
-      :
-
-      ""
-
+        </div>
+        `
+        :
+        ""
     }
 
-
     <div class="actions">
-
 
       <button
         class="btn btn-small"
@@ -4704,7 +3472,6 @@ function recordHTML(s){
 
       </button>
 
-
       <button
         class="btn btn-small"
         type="button"
@@ -4714,7 +3481,6 @@ function recordHTML(s){
 
       </button>
 
-
       <button
         class="btn btn-small btn-danger"
         type="button"
@@ -4723,7 +3489,6 @@ function recordHTML(s){
         Delete
 
       </button>
-
 
     </div>
 
@@ -4740,32 +3505,27 @@ function recordHTML(s){
 
 function renderRecent(){
 
-  let list =
+  let list=
     sortSessions(
       sessions()
     );
 
-
   if(
-    currentFilter !==
-    "all"
+    currentFilter!=="all"
   ){
 
-    list =
+    list=
       list.filter(
-
-        s =>
-          s.status ===
+        s=>
+          s.status===
           currentFilter
-
       );
 
   }
 
-
   document.getElementById(
     "recentList"
-  ).innerHTML =
+  ).innerHTML=
 
     list.length
 
@@ -4797,83 +3557,58 @@ function renderRecent(){
 
 function renderNext(){
 
-  const now =
+  const now=
     new Date();
 
-
-  const list =
+  const list=
 
     sessions()
 
       .filter(
-
-        s =>
-
-          s.status ===
-          "planned"
-
-          ||
-
-          s.status ===
-          "rescheduled"
-
+        s=>
+          s.status==="planned"||
+          s.status==="rescheduled"
       )
 
       .filter(
+        s=>{
 
-        s => {
-
-          const dt =
+          const dt=
             new Date(
-
-              s.date +
-
-              "T" +
-
+              s.date+
+              "T"+
               (
-                s.time ||
+                s.time||
                 "00:00"
               )
-
             );
 
-
-          return dt >= now;
+          return dt>=now;
 
         }
-
       )
 
       .sort(
-
-        (a,b) =>
-
+        (a,b)=>
           (
-            a.date +
+            a.date+
             a.time
           )
-
           .localeCompare(
-
-            b.date +
+            b.date+
             b.time
-
           )
-
       );
-
 
   document.getElementById(
     "nextSession"
-  ).innerHTML =
+  ).innerHTML=
 
     list.length
 
       ?
 
-      recordHTML(
-        list[0]
-      )
+      recordHTML(list[0])
 
       :
 
@@ -4888,55 +3623,42 @@ function renderNext(){
 
 function renderCalendar(){
 
-  const year =
-    currentMonth
-      .getFullYear();
+  const year=
+    currentMonth.getFullYear();
 
-
-  const month =
-    currentMonth
-      .getMonth();
-
+  const month=
+    currentMonth.getMonth();
 
   document.getElementById(
     "monthTitle"
-  ).textContent =
+  ).textContent=
 
-    currentMonth
-      .toLocaleDateString(
+    currentMonth.toLocaleDateString(
+      "en-IN",
+      {
+        month:"long",
+        year:"numeric"
+      }
+    );
 
-        "en-IN",
-
-        {
-          month:"long",
-          year:"numeric"
-        }
-
-      );
-
-
-  const first =
+  const first=
     new Date(
       year,
       month,
       1
     );
 
-
-  const days =
+  const days=
     new Date(
       year,
-      month + 1,
+      month+1,
       0
     ).getDate();
 
-
-  const start =
+  const start=
     first.getDay();
 
-
-  let output = "";
-
+  let output="";
 
   for(
     let i=0;
@@ -4944,11 +3666,10 @@ function renderCalendar(){
     i++
   ){
 
-    output +=
+    output+=
       `<div class="day empty"></div>`;
 
   }
-
 
   for(
     let day=1;
@@ -4956,148 +3677,93 @@ function renderCalendar(){
     day++
   ){
 
-    const date =
+    const date=
 
-      year +
+      year+
+      "-"+
+      String(month+1).padStart(2,"0")+
+      "-"+
+      String(day).padStart(2,"0");
 
-      "-" +
-
-      String(
-        month+1
-      ).padStart(2,"0") +
-
-      "-" +
-
-      String(
-        day
-      ).padStart(2,"0");
-
-
-    const weekday =
+    const weekday=
       new Date(
         year,
         month,
         day
       ).getDay();
 
-
-    const daySessions =
+    const daySessions=
       sessions().filter(
-
-        s =>
-          s.date ===
-          date
-
+        s=>
+          s.date===date
       );
 
-
-    let marker = "";
-
+    let marker="";
 
     if(
-
       daySessions.some(
-
-        s =>
-          s.status ===
-          "missed"
-
+        s=>
+          s.status==="missed"
       )
-
     ){
 
-      marker =
+      marker=
         `<div class="marker missed">×</div>`;
 
     }
-
     else if(
-
       daySessions.some(
-
-        s =>
-          s.status ===
-          "rescheduled"
-
+        s=>
+          s.status==="rescheduled"
       )
-
     ){
 
-      marker =
+      marker=
         `<div class="marker rescheduled">↻</div>`;
 
     }
-
     else if(
-
       daySessions.some(
-
-        s =>
-          s.status ===
-          "planned"
-
+        s=>
+          s.status==="planned"
       )
-
     ){
 
-      marker =
+      marker=
         `<div class="marker planned">●</div>`;
 
     }
-
     else if(
-
       daySessions.some(
-
-        s =>
-          s.status ===
-          "attended"
-
+        s=>
+          s.status==="attended"
       )
-
     ){
 
-      marker =
+      marker=
         `<div class="marker attended">✓</div>`;
 
     }
 
-
-    const classes =
-
-      "day " +
-
+    const classes=
+      "day "+
       (
-
-        weekday === 0 ||
-        weekday === 6
-
-        ?
-
-        "weekend "
-
-        :
-
-        ""
-
-      ) +
-
+        weekday===0||
+        weekday===6
+          ?
+          "weekend "
+          :
+          ""
+      )+
       (
-
-        selectedDate === date
-
-        ?
-
-        "selected "
-
-        :
-
-        ""
-
+        selectedDate===date
+          ?
+          "selected "
+          :
+          ""
       );
 
-
-    output += `
+    output+=`
 
       <button
         class="${classes}"
@@ -5105,9 +3771,7 @@ function renderCalendar(){
         onclick="selectCalendarDate('${date}')">
 
         <div class="day-number">
-
           ${day}
-
         </div>
 
         ${marker}
@@ -5118,48 +3782,38 @@ function renderCalendar(){
 
   }
 
-
   document.getElementById(
     "calendar"
-  ).innerHTML =
+  ).innerHTML=
     output;
 
 }
 
 
 /* =====================================================
-   CALENDAR DATE CLICK
+   CALENDAR CLICK
 ===================================================== */
 
-window.selectCalendarDate =
+window.selectCalendarDate=
 function(date){
 
-  selectedDate =
-    date;
-
+  selectedDate=date;
 
   renderCalendar();
 
-
-  const list =
+  const list=
     sessions().filter(
-
-      s =>
-        s.date ===
-        date
-
+      s=>
+        s.date===date
     );
-
 
   if(list.length){
 
-    currentFilter =
-      "all";
-
+    currentFilter="all";
 
     document.getElementById(
       "recentList"
-    ).innerHTML =
+    ).innerHTML=
 
       list
         .map(recordHTML)
@@ -5185,38 +3839,25 @@ function(date){
 
       `;
 
-
     document.getElementById(
       "recentList"
     ).scrollIntoView({
-
       behavior:"smooth",
-
       block:"start"
-
     });
 
   }
-
   else{
 
     if(
-
       confirm(
-
-        "No session is recorded on " +
-
-        formatDate(date) +
-
+        "No session is recorded on "+
+        formatDate(date)+
         ". Do you want to add a session?"
-
       )
-
     ){
 
-      openSessionModal(
-        date
-      );
+      openSessionModal(date);
 
     }
 
@@ -5226,390 +3867,151 @@ function(date){
 
 
 /* =====================================================
-   THERAPY TITLE FIELD
-===================================================== */
-
-/*
-  IMPORTANT:
-
-  Therapy mode:
-    fTitleTherapy = dropdown
-
-  All other modes:
-    fTitle = textbox
-
-  Existing values are retained.
-
-  If an old therapy title is not present
-  in the standard dropdown list, it is added
-  temporarily so the existing value is never lost.
-*/
-
-function ensureTherapyOption(value){
-
-  const select =
-    document.getElementById(
-      "fTitleTherapy"
-    );
-
-
-  const cleanValue =
-    String(
-      value || ""
-    ).trim();
-
-
-  if(!cleanValue){
-
-    select.value = "";
-
-    return;
-
-  }
-
-
-  const exists =
-    Array.from(
-      select.options
-    ).some(
-      option =>
-        option.value ===
-        cleanValue
-    );
-
-
-  if(!exists){
-
-    const option =
-      document.createElement(
-        "option"
-      );
-
-
-    option.value =
-      cleanValue;
-
-
-    option.textContent =
-      cleanValue;
-
-
-    select.appendChild(
-      option
-    );
-
-  }
-
-
-  select.value =
-    cleanValue;
-
-}
-
-
-/* =====================================================
-   UPDATE TITLE / THERAPY FIELD
-===================================================== */
-
-function updateTitleField(
-  mode,
-  value=""
-){
-
-  const therapySelect =
-    document.getElementById(
-      "fTitleTherapy"
-    );
-
-
-  const titleInput =
-    document.getElementById(
-      "fTitle"
-    );
-
-
-  const label =
-    document.getElementById(
-      "therapyLabel"
-    );
-
-
-  if(
-    mode ===
-    "therapy"
-  ){
-
-    /*
-      Therapy mode:
-      show dropdown
-    */
-
-    label.textContent =
-      "Therapy";
-
-
-    titleInput.classList.add(
-      "hidden"
-    );
-
-
-    titleInput.required =
-      false;
-
-
-    therapySelect.classList.remove(
-      "hidden"
-    );
-
-
-    therapySelect.required =
-      true;
-
-
-    ensureTherapyOption(
-      value
-    );
-
-  }
-
-  else{
-
-    /*
-      Non-therapy modes:
-      preserve existing textbox
-    */
-
-    label.textContent =
-      "Title";
-
-
-    therapySelect.classList.add(
-      "hidden"
-    );
-
-
-    therapySelect.required =
-      false;
-
-
-    titleInput.classList.remove(
-      "hidden"
-    );
-
-
-    titleInput.required =
-      true;
-
-
-    titleInput.value =
-      value || "";
-
-  }
-
-}
-
-
-/* =====================================================
-   GET SELECTED TITLE
-===================================================== */
-
-function getSelectedTitle(){
-
-  if(
-    document.getElementById(
-      "fMode"
-    ).value ===
-    "therapy"
-  ){
-
-    return document.getElementById(
-      "fTitleTherapy"
-    ).value.trim();
-
-  }
-
-
-  return document.getElementById(
-    "fTitle"
-  ).value.trim();
-
-}
-
-
-/* =====================================================
-   OPEN SESSION
+   OPEN SESSION MODAL
 ===================================================== */
 
 function openSessionModal(
-
   date="",
-
   existing=null,
-
   copyMode=false
-
 ){
 
   document.getElementById(
     "sessionModal"
-  ).classList.add(
-    "show"
-  );
-
+  ).classList.add("show");
 
   document.getElementById(
     "sessionModalTitle"
-  ).textContent =
+  ).textContent=
 
     copyMode
-
       ?
-
       "Copy Session"
-
       :
-
       existing
-
         ?
-
         "Edit Session"
-
         :
-
         "Add Session";
-
 
   document.getElementById(
     "editId"
-  ).value =
+  ).value=
 
     copyMode
-
       ?
-
       ""
-
       :
-
       existing
-        ? existing.id
-        : "";
-
-
-  const modalMode =
-    existing?.mode ||
-    activeMode;
-
+        ?
+        existing.id
+        :
+        "";
 
   document.getElementById(
     "fMode"
-  ).value =
-    modalMode;
+  ).value=
 
+    existing?.mode||
+    activeMode;
 
   /*
-    Set the correct Therapy dropdown
-    or normal Title textbox.
+    Set the old title first.
+
+    If Therapy mode is selected, it will be
+    transferred into the category dropdown.
   */
 
-  updateTitleField(
+  document.getElementById(
+    "fTitle"
+  ).value=
 
-    modalMode,
-
-    existing?.title ||
+    existing?.title||
     (
-      modalMode === "therapy"
-        ? ""
-        : defaultTitle(modalMode)
-    )
-
-  );
+      activeMode==="therapy"
+        ?
+        "Occupational Therapy"
+        :
+        defaultTitle(activeMode)
+    );
 
 
   document.getElementById(
     "fDate"
-  ).value =
+  ).value=
 
-    existing?.date ||
-    date ||
+    existing?.date||
+    date||
     todayISO();
-
 
   document.getElementById(
     "fTime"
-  ).value =
+  ).value=
 
-    existing?.time ||
+    existing?.time||
     "";
-
 
   document.getElementById(
     "fPerson"
-  ).value =
+  ).value=
 
-    existing?.person ||
+    existing?.person||
     "";
-
 
   document.getElementById(
     "fStatus"
-  ).value =
+  ).value=
 
-    existing?.status ||
+    existing?.status||
     "planned";
-
 
   document.getElementById(
     "fCost"
-  ).value =
+  ).value=
 
-    existing?.cost ??
+    existing?.cost??
     0;
-
 
   document.getElementById(
     "fRescheduledDate"
-  ).value =
+  ).value=
 
     copyMode
-
       ?
-
       ""
-
       :
-
-      existing?.rescheduledDate ||
+      existing?.rescheduledDate||
       "";
-
 
   document.getElementById(
     "fNotes"
-  ).value =
+  ).value=
 
-    existing?.notes ||
+    existing?.notes||
     "";
+
+
+  /*
+    IMPORTANT:
+
+    Therapy = category dropdown
+    Others = title textbox
+  */
+
+  updateTitleField();
 
 
   if(copyMode){
 
     setTimeout(
-
       function(){
 
-        const dateInput =
-          document.getElementById(
-            "fDate"
-          );
-
-
-        dateInput.focus();
+        document.getElementById(
+          "fDate"
+        ).focus();
 
       },
-
       120
-
     );
 
   }
@@ -5623,35 +4025,134 @@ function openSessionModal(
 
 function defaultTitle(mode){
 
-  return (
+  return(
 
-    MODE_NAMES[mode] ||
-
+    MODE_NAMES[mode]||
     "Session"
 
-  ) +
-
+  )+
   " Session";
 
 }
 
 
 /* =====================================================
+   F MODE CHANGE
+===================================================== */
+
+document.getElementById(
+  "fMode"
+).addEventListener(
+  "change",
+  function(){
+
+    /*
+      Before changing the field, preserve the
+      currently selected value.
+    */
+
+    const titleInput=
+      document.getElementById(
+        "fTitle"
+      );
+
+    const categorySelect=
+      document.getElementById(
+        "fTherapyCategory"
+      );
+
+    if(
+      this.value==="therapy"
+    ){
+
+      /*
+        If switching to Therapy, use the current
+        textbox value as a possible existing category.
+      */
+
+      if(
+        titleInput.value.trim()
+      ){
+
+        renderTherapyCategories(
+          titleInput.value.trim()
+        );
+
+      }
+      else{
+
+        renderTherapyCategories(
+          "Occupational Therapy"
+        );
+
+      }
+
+    }
+    else{
+
+      /*
+        If switching away from Therapy, preserve
+        the selected category in the textbox.
+      */
+
+      if(
+        categorySelect.value
+      ){
+
+        titleInput.value=
+          categorySelect.value;
+
+      }
+
+    }
+
+    updateTitleField();
+
+  }
+);
+
+
+/* =====================================================
+   THERAPY CATEGORY CHANGE
+===================================================== */
+
+document.getElementById(
+  "fTherapyCategory"
+).addEventListener(
+  "change",
+  function(){
+
+    /*
+      Keep the hidden title field synchronized.
+
+      This is important because the existing database
+      continues using the existing "title" property.
+
+      Therefore no old data structure needs to change.
+    */
+
+    document.getElementById(
+      "fTitle"
+    ).value=
+      this.value;
+
+  }
+);
+
+
+/* =====================================================
    EDIT SESSION
 ===================================================== */
 
-window.editSession =
+window.editSession=
 function(id){
 
-  const session =
+  const session=
     db.sessions.find(
-
-      s =>
-        String(s.id) ===
+      s=>
+        String(s.id)===
         String(id)
-
     );
-
 
   if(!session){
 
@@ -5663,28 +4164,20 @@ function(id){
 
   }
 
-
-  activeProfileId =
+  activeProfileId=
     session.profileId;
 
-
-  activeMode =
+  activeMode=
     session.mode;
-
 
   saveDB();
 
   render();
 
-
   openSessionModal(
-
     "",
-
     session,
-
     false
-
   );
 
 };
@@ -5694,18 +4187,15 @@ function(id){
    COPY SESSION
 ===================================================== */
 
-window.copySession =
+window.copySession=
 function(id){
 
-  const original =
+  const original=
     db.sessions.find(
-
-      s =>
-        String(s.id) ===
+      s=>
+        String(s.id)===
         String(id)
-
     );
-
 
   if(!original){
 
@@ -5717,73 +4207,55 @@ function(id){
 
   }
 
-
-  const copied = {
+  const copied={
 
     ...original,
 
     id:"",
-
 
     date:
       addOneDay(
         original.date
       ),
 
-
     time:
-      original.time ||
+      original.time||
       "",
-
 
     person:
-      original.person ||
+      original.person||
       "",
-
 
     status:
-      original.status ||
+      original.status||
       "planned",
 
-
     cost:
-      original.cost ||
+      original.cost||
       0,
 
-
-    rescheduledDate:
-      "",
-
+    rescheduledDate:"",
 
     notes:
-      original.notes ||
+      original.notes||
       ""
 
   };
 
-
-  activeProfileId =
+  activeProfileId=
     original.profileId;
 
-
-  activeMode =
+  activeMode=
     original.mode;
-
 
   saveDB();
 
-
   render();
 
-
   openSessionModal(
-
     copied.date,
-
     copied,
-
     true
-
   );
 
 };
@@ -5793,40 +4265,30 @@ function(id){
    DELETE
 ===================================================== */
 
-window.deleteSession =
+window.deleteSession=
 function(id){
 
   if(
-
     !confirm(
-
-      "Delete this record?\n\n" +
-
+      "Delete this record?\n\n"+
       "Your other records will not be changed."
-
     )
-
   ){
 
     return;
 
   }
 
-
-  db.sessions =
+  db.sessions=
     db.sessions.filter(
-
-      s =>
-        String(s.id) !==
+      s=>
+        String(s.id)!==
         String(id)
-
     );
-
 
   saveDB();
 
   render();
-
 
   toast(
     "Record deleted"
@@ -5836,261 +4298,209 @@ function(id){
 
 
 /* =====================================================
-   MODE CHANGE INSIDE ADD SESSION
-===================================================== */
-
-document.getElementById(
-  "fMode"
-).addEventListener(
-
-  "change",
-
-  function(event){
-
-    const mode =
-      event.target.value;
-
-
-    /*
-      If switching from Therapy to another mode,
-      preserve the selected therapy as the textbox
-      value instead of losing it.
-    */
-
-    const currentTitle =
-      mode === "therapy"
-
-        ?
-
-        document.getElementById(
-          "fTitleTherapy"
-        ).value
-
-        :
-
-        document.getElementById(
-          "fTitle"
-        ).value;
-
-
-    updateTitleField(
-
-      mode,
-
-      currentTitle
-
-    );
-
-  }
-
-);
-
-
-/* =====================================================
    SAVE SESSION
 ===================================================== */
 
-document
-  .getElementById(
-    "sessionForm"
-  )
-  .addEventListener(
+document.getElementById(
+  "sessionForm"
+).addEventListener(
+  "submit",
+  function(event){
 
-    "submit",
+    event.preventDefault();
 
-    function(event){
+    const id=
+      document.getElementById(
+        "editId"
+      ).value;
 
-      event.preventDefault();
+    const date=
+      document.getElementById(
+        "fDate"
+      ).value;
 
 
-      const id =
+    /*
+      Get title/category.
+
+      Therapy:
+        category dropdown
+
+      Other:
+        textbox
+    */
+
+    const mode=
+      document.getElementById(
+        "fMode"
+      ).value;
+
+    let title="";
+
+    if(mode==="therapy"){
+
+      title=
         document.getElementById(
-          "editId"
-        ).value;
+          "fTherapyCategory"
+        ).value.trim();
 
+    }
+    else{
 
-      const date =
+      title=
         document.getElementById(
-          "fDate"
-        ).value;
+          "fTitle"
+        ).value.trim();
 
+    }
 
-      const title =
-        getSelectedTitle();
 
+    if(
+      !date||
+      !title
+    ){
 
-      if(
-        !date ||
-        !title
-      ){
-
-        alert(
-          document.getElementById(
-            "fMode"
-          ).value === "therapy"
-
-            ?
-
-            "Please select a therapy and enter the date."
-
-            :
-
-            "Please enter the date and title."
-
-        );
-
-        return;
-
-      }
-
-
-      const data = {
-
-        id:
-          id ||
-          uid(),
-
-
-        profileId:
-          activeProfileId,
-
-
-        mode:
-          document.getElementById(
-            "fMode"
-          ).value,
-
-
-        title,
-
-
-        date,
-
-
-        time:
-          document.getElementById(
-            "fTime"
-          ).value,
-
-
-        person:
-          document.getElementById(
-            "fPerson"
-          ).value
-          .trim(),
-
-
-        status:
-          document.getElementById(
-            "fStatus"
-          ).value,
-
-
-        cost:
-          Number(
-            document.getElementById(
-              "fCost"
-            ).value ||
-            0
-          ),
-
-
-        rescheduledDate:
-          document.getElementById(
-            "fRescheduledDate"
-          ).value,
-
-
-        notes:
-          document.getElementById(
-            "fNotes"
-          ).value
-          .trim(),
-
-
-        createdAt:
-          Date.now()
-
-      };
-
-
-      if(id){
-
-        const index =
-          db.sessions.findIndex(
-
-            s =>
-              String(s.id) ===
-              String(id)
-
-          );
-
-
-        if(index >= 0){
-
-          data.createdAt =
-            db.sessions[index]
-              .createdAt ||
-            data.createdAt;
-
-
-          db.sessions[index] =
-            {
-
-              ...db.sessions[index],
-
-              ...data
-
-            };
-
-        }
-
-      }
-
-
-      else{
-
-        db.sessions.push(
-          data
-        );
-
-      }
-
-
-      activeMode =
-        data.mode;
-
-
-      db.sessions =
-        deduplicateSessions(
-          db.sessions
-        );
-
-
-      saveDB();
-
-      closeSession();
-
-      render();
-
-
-      toast(
-
-        id
-
+      alert(
+        mode==="therapy"
           ?
-
-          "Session updated"
-
+          "Please select the therapy category and date."
           :
+          "Please enter the date and title."
+      );
 
-          "New session added"
+      return;
 
+    }
+
+
+    const data={
+
+      id:
+        id||
+        uid(),
+
+      profileId:
+        activeProfileId,
+
+      mode,
+
+      /*
+        Existing database continues to use title.
+
+        For therapy it contains the selected
+        therapy category.
+      */
+
+      title,
+
+      date,
+
+      time:
+        document.getElementById(
+          "fTime"
+        ).value,
+
+      person:
+        document.getElementById(
+          "fPerson"
+        ).value.trim(),
+
+      status:
+        document.getElementById(
+          "fStatus"
+        ).value,
+
+      cost:
+        Number(
+          document.getElementById(
+            "fCost"
+          ).value||
+          0
+        ),
+
+      rescheduledDate:
+        document.getElementById(
+          "fRescheduledDate"
+        ).value,
+
+      notes:
+        document.getElementById(
+          "fNotes"
+        ).value.trim(),
+
+      createdAt:
+        Date.now()
+
+    };
+
+
+    /*
+      EDIT
+    */
+
+    if(id){
+
+      const index=
+        db.sessions.findIndex(
+          s=>
+            String(s.id)===
+            String(id)
+        );
+
+      if(index>=0){
+
+        data.createdAt=
+          db.sessions[index]
+            .createdAt||
+          data.createdAt;
+
+        db.sessions[index]={
+          ...db.sessions[index],
+          ...data
+        };
+
+      }
+
+    }
+
+
+    /*
+      ADD / COPY
+    */
+
+    else{
+
+      db.sessions.push(
+        data
       );
 
     }
 
-  );
+
+    activeMode=
+      data.mode;
+
+    db.sessions=
+      deduplicateSessions(
+        db.sessions
+      );
+
+    saveDB();
+
+    closeSession();
+
+    render();
+
+    toast(
+      id
+        ?
+        "Session updated"
+        :
+        "New session added"
+    );
+
+  }
+);
 
 
 /* =====================================================
@@ -6107,10 +4517,9 @@ function closeSession(){
 
 }
 
-
 document.getElementById(
   "closeSession"
-).onclick =
+).onclick=
   closeSession;
 
 
@@ -6120,23 +4529,19 @@ document.getElementById(
 
 document.getElementById(
   "profileSelect"
-).onchange =
+).onchange=
+function(event){
 
-  function(event){
+  activeProfileId=
+    event.target.value;
 
-    activeProfileId =
-      event.target.value;
+  currentFilter="all";
 
+  saveDB();
 
-    currentFilter =
-      "all";
+  render();
 
-
-    saveDB();
-
-    render();
-
-  };
+};
 
 
 /* =====================================================
@@ -6145,23 +4550,19 @@ document.getElementById(
 
 document.getElementById(
   "modeSelect"
-).onchange =
+).onchange=
+function(event){
 
-  function(event){
+  activeMode=
+    event.target.value;
 
-    activeMode =
-      event.target.value;
+  currentFilter="all";
 
+  saveDB();
 
-    currentFilter =
-      "all";
+  render();
 
-
-    saveDB();
-
-    render();
-
-  };
+};
 
 
 /* =====================================================
@@ -6170,26 +4571,23 @@ document.getElementById(
 
 document.getElementById(
   "addProfileBtn"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  openProfileModal();
 
-    openProfileModal();
-
-  };
-
+};
 
 document.getElementById(
   "editProfileBtn"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  openProfileModal(
+    currentProfile()
+  );
 
-    openProfileModal(
-      currentProfile()
-    );
-
-  };
+};
 
 
 /* =====================================================
@@ -6206,40 +4604,29 @@ function openProfileModal(
     "show"
   );
 
-
   document.getElementById(
     "profileModalTitle"
-  ).textContent =
+  ).textContent=
 
     profile
-
       ?
-
       "Edit Profile"
-
       :
-
       "Add Profile";
-
 
   document.getElementById(
     "profileId"
-  ).value =
-
-    profile?.id ||
+  ).value=
+    profile?.id||
     "";
-
 
   document.getElementById(
     "profileName"
-  ).value =
-
-    profile?.name ||
+  ).value=
+    profile?.name||
     "";
 
-
   setTimeout(
-
     function(){
 
       document.getElementById(
@@ -6247,9 +4634,7 @@ function openProfileModal(
       ).focus();
 
     },
-
     100
-
   );
 
 }
@@ -6261,17 +4646,16 @@ function openProfileModal(
 
 document.getElementById(
   "closeProfile"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  document.getElementById(
+    "profileModal"
+  ).classList.remove(
+    "show"
+  );
 
-    document.getElementById(
-      "profileModal"
-    ).classList.remove(
-      "show"
-    );
-
-  };
+};
 
 
 /* =====================================================
@@ -6281,80 +4665,57 @@ document.getElementById(
 document.getElementById(
   "profileForm"
 ).addEventListener(
-
   "submit",
-
   function(event){
 
     event.preventDefault();
 
-
-    const id =
+    const id=
       document.getElementById(
         "profileId"
       ).value;
 
-
-    const name =
+    const name=
       document.getElementById(
         "profileName"
-      ).value
-      .trim();
+      ).value.trim();
 
-
-    if(!name){
-
-      return;
-
-    }
-
+    if(!name)return;
 
     if(id){
 
-      const p =
+      const p=
         db.profiles.find(
-
-          x =>
-            String(x.id) ===
+          x=>
+            String(x.id)===
             String(id)
-
         );
-
 
       if(p){
 
-        p.name =
-          name;
+        p.name=name;
 
       }
 
     }
-
     else{
 
-      const p = {
+      const p={
 
-        id:
-          uid(),
+        id:uid(),
 
         name
 
       };
 
+      db.profiles.push(p);
 
-      db.profiles.push(
-        p
-      );
-
-
-      activeProfileId =
+      activeProfileId=
         p.id;
 
     }
 
-
     saveDB();
-
 
     document.getElementById(
       "profileModal"
@@ -6362,16 +4723,13 @@ document.getElementById(
       "show"
     );
 
-
     render();
-
 
     toast(
       "Profile saved"
     );
 
   }
-
 );
 
 
@@ -6384,38 +4742,28 @@ document
     "[data-filter]"
   )
   .forEach(
-
     function(element){
 
       element.addEventListener(
-
         "click",
-
         function(){
 
-          currentFilter =
+          currentFilter=
             element.dataset.filter;
 
-
           renderRecent();
-
 
           document.getElementById(
             "recentList"
           ).scrollIntoView({
-
             behavior:"smooth",
-
             block:"start"
-
           });
 
         }
-
       );
 
     }
-
   );
 
 
@@ -6425,54 +4773,35 @@ document
 
 document.getElementById(
   "prevMonth"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  currentMonth=
+    new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth()-1,
+      1
+    );
 
-    currentMonth =
+  renderCalendar();
 
-      new Date(
-
-        currentMonth
-          .getFullYear(),
-
-        currentMonth
-          .getMonth() - 1,
-
-        1
-
-      );
-
-
-    renderCalendar();
-
-  };
-
+};
 
 document.getElementById(
   "nextMonth"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  currentMonth=
+    new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth()+1,
+      1
+    );
 
-    currentMonth =
+  renderCalendar();
 
-      new Date(
-
-        currentMonth
-          .getFullYear(),
-
-        currentMonth
-          .getMonth() + 1,
-
-        1
-
-      );
-
-
-    renderCalendar();
-
-  };
+};
 
 
 /* =====================================================
@@ -6481,17 +4810,14 @@ document.getElementById(
 
 document.getElementById(
   "themeBtn"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  db.theme=
 
-    db.theme =
-
-      document.body
-        .classList
-        .toggle(
-          "dark"
-        )
+    document.body
+      .classList
+      .toggle("dark")
 
       ?
 
@@ -6501,20 +4827,17 @@ document.getElementById(
 
       "light";
 
+  saveDB();
 
-    saveDB();
+  applyTheme();
 
-    applyTheme();
-
-  };
+};
 
 
 function applyTheme(){
 
-  const dark =
-    db.theme ===
-    "dark";
-
+  const dark=
+    db.theme==="dark";
 
   document.body
     .classList
@@ -6523,34 +4846,24 @@ function applyTheme(){
       dark
     );
 
-
   document.getElementById(
     "themeIcon"
-  ).textContent =
+  ).textContent=
 
     dark
-
       ?
-
       "☀️"
-
       :
-
       "🌙";
-
 
   document.getElementById(
     "themeText"
-  ).textContent =
+  ).textContent=
 
     dark
-
       ?
-
       "Light"
-
       :
-
       "Dark";
 
 }
@@ -6565,101 +4878,77 @@ document
     ".nav-btn"
   )
   .forEach(
-
     function(button){
 
-      button.onclick =
+      button.onclick=
+      function(){
 
-        function(){
-
-          document
-            .querySelectorAll(
-              ".nav-btn"
-            )
-            .forEach(
-
-              x =>
-                x.classList.remove(
-                  "active"
-                )
-
-            );
-
-
-          button.classList.add(
-            "active"
+        document
+          .querySelectorAll(
+            ".nav-btn"
+          )
+          .forEach(
+            x=>
+              x.classList.remove(
+                "active"
+              )
           );
 
+        button.classList.add(
+          "active"
+        );
 
-          const navigation =
-            button.dataset.nav;
+        const navigation=
+          button.dataset.nav;
 
+        if(
+          navigation==="add"
+        ){
 
-          if(
-            navigation ===
-            "add"
-          ){
+          openSessionModal();
 
-            openSessionModal();
+        }
 
-          }
+        if(
+          navigation==="history"
+        ){
 
+          document.getElementById(
+            "recentList"
+          ).scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
 
-          if(
-            navigation ===
-            "history"
-          ){
+        }
 
-            document.getElementById(
-              "recentList"
-            ).scrollIntoView({
+        if(
+          navigation==="calendar"
+        ){
 
-              behavior:"smooth",
+          document.getElementById(
+            "calendarSection"
+          ).scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
 
-              block:"start"
+        }
 
-            });
+        if(
+          navigation==="home"
+        ){
 
-          }
+          window.scrollTo({
+            top:0,
+            behavior:"smooth"
+          });
 
+        }
 
-          if(
-            navigation ===
-            "calendar"
-          ){
-
-            document.getElementById(
-              "calendarSection"
-            ).scrollIntoView({
-
-              behavior:"smooth",
-
-              block:"start"
-
-            });
-
-          }
-
-
-          if(
-            navigation ===
-            "home"
-          ){
-
-            window.scrollTo({
-
-              top:0,
-
-              behavior:"smooth"
-
-            });
-
-          }
-
-        };
+      };
 
     }
-
   );
 
 
@@ -6669,144 +4958,99 @@ document
 
 document.getElementById(
   "exportExcel"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  const list=
+    sessions();
 
-    const list =
-      sessions();
+  const rows=[
 
+    [
+      "Profile",
+      "Mode",
+      "Title / Therapy Category",
+      "Date",
+      "Time",
+      "Person",
+      "Status",
+      "Cost",
+      "Rescheduled Date",
+      "Notes"
+    ]
 
-    const rows = [
+  ];
 
+  list.forEach(
+    s=>
+
+      rows.push([
+
+        currentProfile().name,
+
+        MODE_NAMES[s.mode],
+
+        s.title,
+
+        s.date,
+
+        s.time,
+
+        s.person,
+
+        s.status,
+
+        s.cost,
+
+        s.rescheduledDate,
+
+        s.notes
+
+      ])
+
+  );
+
+  const csvEscape=
+    value=>
+      '"'+
+      String(value??"")
+        .replace(/"/g,'""')+
+      '"';
+
+  const csv=
+    rows
+      .map(
+        row=>
+          row
+            .map(csvEscape)
+            .join(",")
+      )
+      .join("\r\n");
+
+  const blob=
+    new Blob(
       [
-
-        "Profile",
-
-        "Mode",
-
-        "Title",
-
-        "Date",
-
-        "Time",
-
-        "Person",
-
-        "Status",
-
-        "Cost",
-
-        "Rescheduled Date",
-
-        "Notes"
-
-      ]
-
-    ];
-
-
-    list.forEach(
-
-      s =>
-
-        rows.push([
-
-          currentProfile()
-            .name,
-
-          MODE_NAMES[
-            s.mode
-          ],
-
-          s.title,
-
-          s.date,
-
-          s.time,
-
-          s.person,
-
-          s.status,
-
-          s.cost,
-
-          s.rescheduledDate,
-
-          s.notes
-
-        ])
-
+        "\ufeff"+
+        csv
+      ],
+      {
+        type:
+          "text/csv;charset=utf-8"
+      }
     );
 
+  downloadBlob(
+    blob,
+    "attendance-tracker-"+
+    todayISO()+
+    ".csv"
+  );
 
-    const csvEscape =
-      value =>
+  toast(
+    "Excel-compatible CSV exported"
+  );
 
-        '"' +
-
-        String(
-          value ?? ""
-        )
-        .replace(
-          /"/g,
-          '""'
-        ) +
-
-        '"';
-
-
-    const csv =
-
-      rows
-
-        .map(
-
-          row =>
-
-            row
-              .map(
-                csvEscape
-              )
-              .join(",")
-
-        )
-
-        .join("\r\n");
-
-
-    const blob =
-      new Blob(
-
-        [
-          "\ufeff" +
-          csv
-        ],
-
-        {
-          type:
-            "text/csv;charset=utf-8"
-        }
-
-      );
-
-
-    downloadBlob(
-
-      blob,
-
-      "attendance-tracker-" +
-      todayISO() +
-      ".csv"
-
-    );
-
-
-    toast(
-      "Excel-compatible CSV exported"
-    );
-
-  };
+};
 
 
 /* =====================================================
@@ -6815,288 +5059,247 @@ document.getElementById(
 
 document.getElementById(
   "printPdf"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  window.print();
 
-    window.print();
-
-  };
+};
 
 
 /* =====================================================
-   BACKUP JSON
+   BACKUP
 ===================================================== */
 
 document.getElementById(
   "backupData"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  const backup={
 
-    const backup = {
+    ...db,
 
-      ...db,
-
-      exportedAt:
-        new Date()
-          .toISOString()
-
-    };
-
-
-    const blob =
-      new Blob(
-
-        [
-          JSON.stringify(
-            backup,
-            null,
-            2
-          )
-        ],
-
-        {
-          type:
-            "application/json"
-        }
-
-      );
-
-
-    downloadBlob(
-
-      blob,
-
-      "attendance-tracker-backup.json"
-
-    );
-
-
-    toast(
-      "Backup created"
-    );
+    exportedAt:
+      new Date().toISOString()
 
   };
 
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          backup,
+          null,
+          2
+        )
+      ],
+      {
+        type:
+          "application/json"
+      }
+    );
+
+  downloadBlob(
+    blob,
+    "attendance-tracker-backup.json"
+  );
+
+  toast(
+    "Backup created"
+  );
+
+};
+
 
 /* =====================================================
-   RESTORE JSON
+   RESTORE
 ===================================================== */
 
 document.getElementById(
   "restoreData"
-).onclick =
+).onclick=
+function(){
 
-  function(){
+  document.getElementById(
+    "restoreInput"
+  ).click();
 
-    document.getElementById(
-      "restoreInput"
-    ).click();
-
-  };
+};
 
 
 document.getElementById(
   "restoreInput"
-).onchange =
+).onchange=
+function(event){
 
-  function(event){
+  const file=
+    event.target.files[0];
 
-    const file =
-      event.target.files[0];
+  if(!file)return;
+
+  const reader=
+    new FileReader();
+
+  reader.onload=
+  function(){
+
+    try{
+
+      const imported=
+        JSON.parse(
+          reader.result
+        );
+
+      if(
+        !Array.isArray(
+          imported.sessions
+        )
+      ){
+
+        throw new Error(
+          "Invalid backup"
+        );
+
+      }
 
 
-    if(!file){
+      /*
+        Safety backup before restore.
+      */
 
-      return;
+      try{
+
+        localStorage.setItem(
+          SAFETYKEY,
+          JSON.stringify(db)
+        );
+
+      }
+      catch(error){}
+
+
+      /*
+        Merge profiles.
+      */
+
+      if(
+        Array.isArray(
+          imported.profiles
+        )
+      ){
+
+        imported.profiles
+          .forEach(
+            p=>{
+
+              if(
+                !p||
+                !p.name
+              ){
+
+                return;
+
+              }
+
+              const exists=
+                db.profiles.some(
+                  existing=>
+
+                    String(
+                      existing.id
+                    )===
+                    String(
+                      p.id
+                    )
+
+                    ||
+
+                    existing.name
+                      .toLowerCase()===
+                    String(
+                      p.name
+                    )
+                      .toLowerCase()
+
+                );
+
+              if(!exists){
+
+                db.profiles.push({
+
+                  id:String(
+                    p.id||
+                    uid()
+                  ),
+
+                  name:String(
+                    p.name
+                  )
+
+                });
+
+              }
+
+            }
+          );
+
+      }
+
+
+      /*
+        Normalize imported sessions.
+      */
+
+      const importedSessions=
+        imported.sessions
+          .map(
+            s=>
+              normaliseSession(
+                s,
+                s.profileId||
+                db.profiles[0].id
+              )
+          )
+          .filter(Boolean);
+
+
+      /*
+        Add without deleting existing sessions.
+      */
+
+      db.sessions=
+        deduplicateSessions(
+          [
+            ...db.sessions,
+            ...importedSessions
+          ]
+        );
+
+      saveDB();
+
+      render();
+
+      toast(
+        "Backup restored safely"
+      );
+
+    }
+    catch(error){
+
+      alert(
+        "Invalid backup file."
+      );
 
     }
 
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-
-      function(){
-
-        try{
-
-          const imported =
-            JSON.parse(
-              reader.result
-            );
-
-
-          if(
-            !Array.isArray(
-              imported.sessions
-            )
-          ){
-
-            throw new Error(
-              "Invalid backup"
-            );
-
-          }
-
-
-          try{
-
-            localStorage.setItem(
-
-              SAFETYKEY,
-
-              JSON.stringify(
-                db
-              )
-
-            );
-
-          }
-
-          catch(error){}
-
-
-          if(
-            Array.isArray(
-              imported.profiles
-            )
-          ){
-
-            imported.profiles
-              .forEach(
-
-                p => {
-
-                  if(
-                    !p ||
-                    !p.name
-                  ){
-
-                    return;
-
-                  }
-
-
-                  const exists =
-                    db.profiles.some(
-
-                      existing =>
-
-                        String(
-                          existing.id
-                        ) ===
-                        String(
-                          p.id
-                        )
-
-                        ||
-
-                        existing.name
-                          .toLowerCase() ===
-                        String(
-                          p.name
-                        )
-                          .toLowerCase()
-
-                    );
-
-
-                  if(!exists){
-
-                    db.profiles.push({
-
-                      id:String(
-                        p.id ||
-                        uid()
-                      ),
-
-                      name:String(
-                        p.name
-                      )
-
-                    });
-
-                  }
-
-                }
-
-              );
-
-          }
-
-
-          const importedSessions =
-
-            imported.sessions
-
-              .map(
-
-                s =>
-
-                  normaliseSession(
-
-                    s,
-
-                    s.profileId ||
-                    db.profiles[0].id
-
-                  )
-
-              )
-
-              .filter(Boolean);
-
-
-          db.sessions =
-
-            deduplicateSessions(
-
-              [
-
-                ...db.sessions,
-
-                ...importedSessions
-
-              ]
-
-            );
-
-
-          saveDB();
-
-          render();
-
-
-          toast(
-            "Backup restored safely"
-          );
-
-        }
-
-        catch(error){
-
-          alert(
-            "Invalid backup file."
-          );
-
-        }
-
-      };
-
-
-    reader.readAsText(
-      file
-    );
-
-
-    event.target.value =
-      "";
-
   };
+
+  reader.readAsText(file);
+
+  event.target.value="";
+
+};
 
 
 /* =====================================================
@@ -7108,49 +5311,35 @@ function downloadBlob(
   filename
 ){
 
-  const link =
+  const link=
     document.createElement(
       "a"
     );
 
-
-  const url =
+  const url=
     URL.createObjectURL(
       blob
     );
 
+  link.href=url;
 
-  link.href =
-    url;
-
-
-  link.download =
-    filename;
-
+  link.download=filename;
 
   document.body.appendChild(
     link
   );
 
-
   link.click();
-
 
   link.remove();
 
-
   setTimeout(
-
     function(){
 
-      URL.revokeObjectURL(
-        url
-      );
+      URL.revokeObjectURL(url);
 
     },
-
     1000
-
   );
 
 }
@@ -7160,7 +5349,7 @@ function downloadBlob(
    GLOBAL
 ===================================================== */
 
-window.openSessionModal =
+window.openSessionModal=
   openSessionModal;
 
 
@@ -7168,18 +5357,28 @@ window.openSessionModal =
    START
 ===================================================== */
 
-db =
+db=
   loadDB();
 
-
-activeProfileId =
+activeProfileId=
   db.activeProfileId;
 
-
-activeMode =
-  db.activeMode ||
+activeMode=
+  db.activeMode||
   "therapy";
 
+/*
+  Therapy is selected by default only if the saved
+  active mode is invalid/missing.
+
+  Existing saved active mode is retained.
+*/
+
+if(!MODE_NAMES[activeMode]){
+
+  activeMode="therapy";
+
+}
 
 applyTheme();
 
