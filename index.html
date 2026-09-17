@@ -21,43 +21,71 @@
 
 <title>Attendance Tracker</title>
 
+
 <style>
+
+/* =====================================================
+   THEME
+===================================================== */
 
 :root{
   --blue:#2563eb;
   --blue2:#1d4ed8;
+
   --bg:#f4f7fb;
   --card:#ffffff;
+
   --text:#172033;
   --muted:#68758d;
+
   --border:#dfe6f1;
+
   --green:#16a34a;
   --greenbg:#dcfce7;
+
   --red:#dc2626;
   --redbg:#fee2e2;
+
   --orange:#ea580c;
   --orangebg:#ffedd5;
+
   --purple:#7c3aed;
   --purplebg:#ede9fe;
+
   --weekend:#dbeafe;
-  --shadow:0 4px 16px rgba(25,45,80,.07);
+
+  --shadow:
+    0 4px 16px rgba(25,45,80,.07);
 }
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 *{
   box-sizing:border-box;
+
   -webkit-tap-highlight-color:transparent;
 }
 
+
 html{
   scroll-behavior:smooth;
+
   touch-action:pan-y;
+
   -webkit-text-size-adjust:100%;
 }
 
+
 body{
   margin:0;
+
   background:var(--bg);
+
   color:var(--text);
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -65,23 +93,31 @@ body{
     Roboto,
     Arial,
     sans-serif;
+
   font-size:16px;
+
   touch-action:pan-y;
+
   overscroll-behavior-x:none;
 }
+
 
 button,
 input,
 select,
 textarea{
   font:inherit;
+
   -webkit-text-size-adjust:100%;
 }
 
+
 button{
   cursor:pointer;
+
   touch-action:manipulation;
 }
+
 
 input,
 select,
@@ -89,590 +125,1136 @@ textarea{
   font-size:16px !important;
 }
 
+
+/* =====================================================
+   HEADER
+===================================================== */
+
 .app-header{
+
   background:
     linear-gradient(
       135deg,
       var(--blue),
       var(--blue2)
     );
+
   color:#fff;
-  padding:23px 16px 21px;
-  border-radius:0 0 28px 28px;
-  box-shadow:0 5px 18px rgba(37,99,235,.18);
+
+  padding:
+    23px
+    16px
+    21px;
+
+  border-radius:
+    0 0 28px 28px;
+
+  box-shadow:
+    0 5px 18px
+    rgba(37,99,235,.18);
 }
 
+
 .header-row{
+
   max-width:1050px;
+
   margin:auto;
+
   display:flex;
+
   justify-content:space-between;
+
   gap:15px;
+
   align-items:center;
 }
 
+
 h1{
+
   font-size:27px;
+
   line-height:1.1;
+
   margin:0 0 7px;
+
   font-weight:800;
 }
 
+
 .subtitle{
+
   font-size:14px;
+
   line-height:1.4;
+
   opacity:.92;
 }
 
+
 .theme-btn{
+
   min-width:62px;
+
   min-height:55px;
-  border:1px solid rgba(255,255,255,.4);
+
+  border:
+    1px solid
+    rgba(255,255,255,.4);
+
   border-radius:15px;
-  background:rgba(255,255,255,.14);
+
+  background:
+    rgba(255,255,255,.14);
+
   color:#fff;
+
   font-size:12px;
+
   font-weight:700;
 }
+
 
 .theme-btn span{
   display:block;
 }
 
+
 .theme-btn span:first-child{
+
   font-size:22px;
+
   line-height:24px;
 }
 
+
+/* =====================================================
+   MAIN
+===================================================== */
+
 .container{
+
   max-width:1050px;
-  margin:15px auto 92px;
-  padding:0 13px;
+
+  margin:
+    15px
+    auto
+    92px;
+
+  padding:
+    0 13px;
 }
 
+
 .card{
+
   background:var(--card);
-  border:1px solid var(--border);
+
+  border:
+    1px solid
+    var(--border);
+
   border-radius:18px;
+
   box-shadow:var(--shadow);
+
   padding:15px;
+
   margin-bottom:13px;
 }
 
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
 .profile-row{
+
   display:grid;
-  grid-template-columns:minmax(0,1fr) auto auto;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    auto
+    auto;
+
   gap:8px;
+
   align-items:center;
 }
 
+
 .profile-select{
+
   width:100%;
+
   height:45px;
-  border:2px solid var(--border);
+
+  border:
+    2px solid
+    var(--border);
+
   border-radius:12px;
+
   background:var(--card);
+
   color:var(--text);
-  padding:0 10px;
+
+  padding:
+    0 10px;
 }
 
+
 .btn{
+
   min-height:41px;
+
   border:0;
+
   border-radius:11px;
-  padding:9px 13px;
+
+  padding:
+    9px 13px;
+
   font-weight:700;
+
   font-size:14px;
+
   background:#edf2f7;
+
   color:var(--text);
+
   touch-action:manipulation;
 }
 
+
 .btn-primary{
+
   background:var(--blue);
+
   color:#fff;
 }
 
+
 .btn-danger{
+
   background:var(--redbg);
+
   color:var(--red);
 }
 
+
 .btn-small{
+
   min-height:38px;
-  padding:8px 11px;
+
+  padding:
+    8px 11px;
+
   font-size:13px;
 }
 
+
 .profile-count{
+
   color:var(--muted);
+
   font-size:13px;
+
   margin-top:9px;
 }
 
+
+/* =====================================================
+   MODE
+===================================================== */
+
 .mode-wrap{
+
   display:grid;
-  grid-template-columns:150px minmax(0,1fr);
+
+  grid-template-columns:
+    150px
+    minmax(0,1fr);
+
   gap:9px;
+
   align-items:center;
+
   margin-top:13px;
 }
 
+
 .mode-label{
+
   font-size:14px;
+
   font-weight:700;
 }
 
+
 .mode-select{
+
   width:100%;
+
   height:45px;
-  border:2px solid var(--border);
+
+  border:
+    2px solid
+    var(--border);
+
   border-radius:12px;
-  padding:0 10px;
+
+  padding:
+    0 10px;
+
   background:var(--card);
+
   color:var(--text);
 }
 
+
+/* =====================================================
+   DASHBOARD STATS
+===================================================== */
+
 .grid{
+
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
   gap:9px;
 }
 
+
 .stat{
+
   min-height:92px;
+
   padding:14px;
+
   border-radius:15px;
+
   background:var(--card);
-  border:1px solid var(--border);
+
+  border:
+    1px solid
+    var(--border);
+
   box-shadow:var(--shadow);
+
   cursor:pointer;
+
   touch-action:manipulation;
 }
 
+
 .stat .value{
+
   font-size:28px;
+
   font-weight:800;
+
   line-height:1.05;
 }
 
+
 .stat .label{
+
   font-size:12px;
+
   color:var(--muted);
+
   margin-top:7px;
 }
 
+
+/* =====================================================
+   SECTION
+===================================================== */
+
 .section-title{
+
   font-size:20px;
-  margin:2px 0 12px;
+
+  margin:
+    2px
+    0
+    12px;
+
   font-weight:800;
 }
 
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
 .summary-grid{
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   gap:7px;
 }
 
+
 .summary-box{
-  padding:11px 5px;
+
+  padding:
+    11px 5px;
+
   border-radius:13px;
+
   text-align:center;
+
   cursor:pointer;
-  border:1px solid var(--border);
+
+  border:
+    1px solid
+    var(--border);
+
   touch-action:manipulation;
 }
 
+
 .summary-box b{
+
   font-size:22px;
+
   display:block;
 }
 
+
 .summary-box span{
+
   color:var(--muted);
+
   font-size:11px;
 }
+
 
 .summary-total{
   background:#eef2ff;
 }
 
+
 .summary-att{
   background:#ecfdf3;
 }
+
 
 .summary-missed{
   background:#fff1f2;
 }
 
+
 .summary-planned{
   background:#eff6ff;
 }
 
+
+/* =====================================================
+   COST
+===================================================== */
+
 .cost-row{
+
   display:flex;
+
   justify-content:space-between;
-  border-bottom:1px solid var(--border);
-  padding:9px 0;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  padding:
+    9px 0;
+
   font-size:14px;
 }
+
 
 .cost-row:last-child{
   border-bottom:0;
 }
 
+
+/* =====================================================
+   NEXT SESSION
+===================================================== */
+
 .next-box{
+
   color:var(--muted);
+
   text-align:center;
-  padding:17px 5px;
+
+  padding:
+    17px 5px;
+
   font-size:14px;
 }
 
+
+/* =====================================================
+   RECORD
+===================================================== */
+
 .record{
-  border:1px solid var(--border);
-  border-left:5px solid var(--blue);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-left:
+    5px solid
+    var(--blue);
+
   border-radius:15px;
+
   padding:14px;
-  margin:9px 0;
+
+  margin:
+    9px 0;
+
   background:var(--card);
 }
 
+
 .record-head{
+
   display:flex;
+
   justify-content:space-between;
+
   gap:9px;
+
   align-items:flex-start;
 }
 
+
 .record-title{
+
   font-size:17px;
+
   font-weight:800;
 }
 
+
 .badge{
-  padding:5px 9px;
+
+  padding:
+    5px 9px;
+
   border-radius:999px;
+
   font-weight:700;
+
   font-size:12px;
+
   white-space:nowrap;
 }
 
+
 .attended{
+
   color:#166534;
+
   background:var(--greenbg);
 }
 
+
 .missed{
+
   color:#b91c1c;
+
   background:var(--redbg);
 }
 
+
 .planned{
+
   color:#c2410c;
+
   background:var(--orangebg);
 }
 
+
 .rescheduled{
+
   color:#6d28d9;
+
   background:var(--purplebg);
 }
 
+
 .meta{
+
   color:var(--muted);
+
   line-height:1.6;
+
   margin-top:5px;
+
   font-size:13px;
 }
 
+
 .actions{
+
   display:flex;
+
   gap:7px;
+
   margin-top:10px;
+
   flex-wrap:wrap;
 }
 
+
+/* =====================================================
+   CALENDAR
+===================================================== */
+
 .calendar-head{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   margin-bottom:13px;
 }
 
+
 .month-title{
+
   font-size:19px;
+
   font-weight:800;
 }
 
+
 .cal-btn{
+
   width:43px;
+
   height:43px;
+
   border:0;
+
   border-radius:11px;
+
   background:#edf2f7;
+
   color:var(--blue);
+
   font-size:25px;
+
   touch-action:manipulation;
 }
+
 
 .weekdays,
 .calendar{
+
   display:grid;
-  grid-template-columns:repeat(7,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(7,minmax(0,1fr));
+
   gap:4px;
 }
 
+
 .weekday{
+
   text-align:center;
+
   color:var(--muted);
+
   font-weight:700;
-  padding:3px 0;
+
+  padding:
+    3px 0;
+
   font-size:10px;
 }
 
+
 .day{
+
   min-height:59px;
-  border:1.5px solid var(--border);
+
+  border:
+    1.5px solid
+    var(--border);
+
   border-radius:10px;
+
   background:var(--card);
+
   padding:5px;
+
   text-align:center;
+
   position:relative;
+
   color:var(--blue);
+
   width:100%;
+
   appearance:none;
+
   -webkit-appearance:none;
+
   touch-action:manipulation;
 }
 
+
 .day.empty{
+
   border-color:transparent;
+
   background:transparent;
 }
 
+
 .day.weekend{
+
   background:var(--weekend);
 }
 
+
 .day.selected{
-  outline:3px solid var(--blue);
+
+  outline:
+    3px solid
+    var(--blue);
+
   outline-offset:-3px;
 }
 
+
 .day-number{
+
   font-weight:700;
+
   font-size:14px;
 }
 
+
 .marker{
+
   margin-top:5px;
+
   font-size:17px;
+
   font-weight:900;
+
   line-height:1;
 }
 
+
 .marker.attended{
+
   color:var(--green);
+
   background:none;
 }
+
 
 .marker.missed{
+
   color:var(--red);
+
   background:none;
 }
+
 
 .marker.planned{
+
   color:var(--orange);
+
   background:none;
 }
+
 
 .marker.rescheduled{
+
   color:var(--purple);
+
   background:none;
 }
 
+
 .legend{
+
   display:flex;
+
   gap:9px;
+
   flex-wrap:wrap;
+
   margin-top:10px;
+
   color:var(--muted);
+
   font-size:11px;
 }
 
+
 .legend i{
+
   font-style:normal;
+
   font-weight:800;
 }
 
+
+/* =====================================================
+   FORM
+===================================================== */
+
 .form-grid{
+
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
   gap:11px;
 }
 
+
 label{
+
   font-size:13px;
+
   font-weight:700;
+
   display:block;
+
   margin-bottom:5px;
 }
+
 
 input,
 select,
 textarea{
+
   width:100%;
+
   min-height:44px;
-  border:2px solid var(--border);
+
+  border:
+    2px solid
+    var(--border);
+
   border-radius:11px;
-  padding:10px;
+
+  padding:
+    10px;
+
   background:var(--card);
+
   color:var(--text);
+
   font-size:16px !important;
 }
 
+
 input[type="date"],
 input[type="time"]{
+
   min-height:48px;
+
   appearance:auto;
+
   -webkit-appearance:auto;
 }
 
+
 textarea{
+
   min-height:80px;
+
   resize:vertical;
 }
 
+
 .full{
+
   grid-column:1/-1;
 }
 
+
+/* =====================================================
+   MODAL
+===================================================== */
+
 .modal{
+
   position:fixed;
+
   inset:0;
-  background:rgba(0,0,0,.50);
+
+  background:
+    rgba(0,0,0,.50);
+
   display:none;
+
   align-items:flex-end;
+
   justify-content:center;
+
   z-index:50;
+
   padding:0;
 }
 
+
 .modal.show{
+
   display:flex;
 }
 
+
 .sheet{
-  width:min(700px,100%);
+
+  width:min(
+    700px,
+    100%
+  );
+
   max-height:92vh;
+
   overflow-y:auto;
+
   overflow-x:hidden;
+
   -webkit-overflow-scrolling:touch;
+
   background:var(--card);
+
   color:var(--text);
-  border-radius:21px 21px 0 0;
-  padding:17px;
+
+  border-radius:
+    21px
+    21px
+    0
+    0;
+
+  padding:
+    17px;
 }
 
+
 .sheet h2{
-  margin:0 0 15px;
+
+  margin:
+    0
+    0
+    15px;
+
   font-size:21px;
 }
 
+
 .modal-actions{
+
   display:flex;
+
   gap:9px;
+
   margin-top:16px;
 }
 
+
 .modal-actions .btn{
+
   flex:1;
 }
 
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
 .bottom-nav{
+
   position:fixed;
+
   left:0;
+
   right:0;
+
   bottom:0;
+
   height:70px;
+
   background:var(--card);
-  border-top:1px solid var(--border);
+
+  border-top:
+    1px solid
+    var(--border);
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   z-index:40;
-  padding-bottom:env(safe-area-inset-bottom);
+
+  padding-bottom:
+    env(safe-area-inset-bottom);
 }
 
+
 .nav-btn{
+
   border:0;
+
   background:transparent;
+
   color:var(--muted);
+
   font-weight:700;
+
   font-size:12px;
+
   touch-action:manipulation;
 }
 
+
 .nav-btn.active{
+
   color:var(--blue);
 }
 
+
 .nav-icon{
+
   font-size:21px;
+
   display:block;
+
   margin-bottom:1px;
 }
 
+
+/* =====================================================
+   TOAST
+===================================================== */
+
 .toast{
+
   position:fixed;
+
   left:50%;
+
   bottom:80px;
-  transform:translateX(-50%);
+
+  transform:
+    translateX(-50%);
+
   background:#111827;
+
   color:#fff;
-  padding:10px 14px;
+
+  padding:
+    10px
+    14px;
+
   border-radius:11px;
+
   display:none;
+
   z-index:100;
+
   font-size:13px;
+
   max-width:90%;
+
   text-align:center;
 }
 
+
 .toast.show{
+
   display:block;
 }
 
+
 .hidden{
+
   display:none !important;
 }
 
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
 body.dark{
+
   --bg:#0b1220;
+
   --card:#111a2b;
+
   --text:#eef3ff;
+
   --muted:#aab5ca;
+
   --border:#293750;
+
   --weekend:#172b4d;
-  --shadow:0 4px 16px rgba(0,0,0,.25);
+
+  --shadow:
+    0 4px 16px
+    rgba(0,0,0,.25);
 }
+
 
 body.dark
 .btn:not(.btn-primary):not(.btn-danger),
 body.dark .cal-btn{
+
   background:#1b263a;
+
   color:var(--text);
 }
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
 
 @media(min-width:651px){
 
   .modal{
+
     align-items:center;
   }
 
+
   .sheet{
+
     border-radius:21px;
   }
 
 }
+
+
+/* =====================================================
+   PRINT
+===================================================== */
 
 @media print{
 
@@ -685,21 +1267,32 @@ body.dark .cal-btn{
   .modal,
   .legend,
   #calendarSection{
+
     display:none !important;
   }
 
+
   body{
+
     background:#fff;
   }
 
+
   .container{
+
     margin:0;
+
     max-width:none;
   }
 
+
   .card{
+
     box-shadow:none;
-    border:1px solid #ccc;
+
+    border:
+      1px solid
+      #ccc;
   }
 
 }
@@ -708,7 +1301,13 @@ body.dark .cal-btn{
 
 </head>
 
+
 <body>
+
+
+<!-- ===================================================
+     HEADER
+=================================================== -->
 
 <header class="app-header">
 
@@ -731,6 +1330,7 @@ body.dark .cal-btn{
 
     </div>
 
+
     <button
       class="theme-btn"
       id="themeBtn"
@@ -746,7 +1346,13 @@ body.dark .cal-btn{
 
 </header>
 
+
 <main class="container">
+
+
+<!-- ===================================================
+     PROFILE
+=================================================== -->
 
 <section class="card">
 
@@ -757,6 +1363,7 @@ body.dark .cal-btn{
       class="profile-select">
     </select>
 
+
     <button
       class="btn profile-edit"
       id="editProfileBtn"
@@ -765,6 +1372,7 @@ body.dark .cal-btn{
       ✎ Edit
 
     </button>
+
 
     <button
       class="btn btn-primary profile-add"
@@ -777,16 +1385,19 @@ body.dark .cal-btn{
 
   </div>
 
+
   <div
     class="profile-count"
     id="profileCount">
   </div>
+
 
   <div class="mode-wrap">
 
     <div class="mode-label">
       Attendance Mode
     </div>
+
 
     <select
       id="modeSelect"
@@ -826,11 +1437,22 @@ body.dark .cal-btn{
 
 </section>
 
+
+<!-- ===================================================
+     DASHBOARD
+=================================================== -->
+
 <section class="grid">
 
-  <div class="stat" data-filter="all">
+  <div
+    class="stat"
+    data-filter="all">
 
-    <div class="value" id="totalCount">0</div>
+    <div
+      class="value"
+      id="totalCount">
+      0
+    </div>
 
     <div class="label">
       Total Sessions
@@ -838,9 +1460,16 @@ body.dark .cal-btn{
 
   </div>
 
-  <div class="stat" data-filter="attended">
 
-    <div class="value" id="attendedCount">0</div>
+  <div
+    class="stat"
+    data-filter="attended">
+
+    <div
+      class="value"
+      id="attendedCount">
+      0
+    </div>
 
     <div class="label">
       Attended
@@ -848,9 +1477,16 @@ body.dark .cal-btn{
 
   </div>
 
-  <div class="stat" data-filter="missed">
 
-    <div class="value" id="missedCount">0</div>
+  <div
+    class="stat"
+    data-filter="missed">
+
+    <div
+      class="value"
+      id="missedCount">
+      0
+    </div>
 
     <div class="label">
       Missed
@@ -858,9 +1494,16 @@ body.dark .cal-btn{
 
   </div>
 
-  <div class="stat" data-filter="planned">
 
-    <div class="value" id="plannedCount">0</div>
+  <div
+    class="stat"
+    data-filter="planned">
+
+    <div
+      class="value"
+      id="plannedCount">
+      0
+    </div>
 
     <div class="label">
       Planned
@@ -868,9 +1511,16 @@ body.dark .cal-btn{
 
   </div>
 
-  <div class="stat" data-filter="rescheduled">
 
-    <div class="value" id="rescheduledCount">0</div>
+  <div
+    class="stat"
+    data-filter="rescheduled">
+
+    <div
+      class="value"
+      id="rescheduledCount">
+      0
+    </div>
 
     <div class="label">
       Rescheduled
@@ -878,9 +1528,12 @@ body.dark .cal-btn{
 
   </div>
 
+
   <div class="stat">
 
-    <div class="value" id="attendanceRate">
+    <div
+      class="value"
+      id="attendanceRate">
       0%
     </div>
 
@@ -890,9 +1543,12 @@ body.dark .cal-btn{
 
   </div>
 
+
   <div class="stat">
 
-    <div class="value" id="totalCost">
+    <div
+      class="value"
+      id="totalCost">
       ₹0
     </div>
 
@@ -904,11 +1560,17 @@ body.dark .cal-btn{
 
 </section>
 
+
+<!-- ===================================================
+     SUMMARY
+=================================================== -->
+
 <section class="card">
 
   <div class="section-title">
     Therapy / Attendance Summary
   </div>
+
 
   <div class="summary-grid">
 
@@ -916,45 +1578,69 @@ body.dark .cal-btn{
       class="summary-box summary-total"
       data-filter="all">
 
-      <b id="sumTotal">0</b>
+      <b id="sumTotal">
+        0
+      </b>
 
-      <span>Total</span>
+      <span>
+        Total
+      </span>
 
     </div>
+
 
     <div
       class="summary-box summary-att"
       data-filter="attended">
 
-      <b id="sumAttended">0</b>
+      <b id="sumAttended">
+        0
+      </b>
 
-      <span>Attended</span>
+      <span>
+        Attended
+      </span>
 
     </div>
+
 
     <div
       class="summary-box summary-missed"
       data-filter="missed">
 
-      <b id="sumMissed">0</b>
+      <b id="sumMissed">
+        0
+      </b>
 
-      <span>Missed</span>
+      <span>
+        Missed
+      </span>
 
     </div>
+
 
     <div
       class="summary-box summary-planned"
       data-filter="planned">
 
-      <b id="sumPlanned">0</b>
+      <b id="sumPlanned">
+        0
+      </b>
 
-      <span>Planned</span>
+      <span>
+        Planned
+      </span>
 
     </div>
 
   </div>
 
 </section>
+
+
+<!-- ===================================================
+     COST
+=================================================== -->
 
 <section class="card">
 
@@ -962,37 +1648,58 @@ body.dark .cal-btn{
     Cost Summary
   </div>
 
+
   <div class="cost-row">
 
-    <span>Attended</span>
+    <span>
+      Attended
+    </span>
 
-    <b id="costAttended">₹0</b>
+    <b id="costAttended">
+      ₹0
+    </b>
 
   </div>
 
+
   <div class="cost-row">
 
-    <span>Planned</span>
+    <span>
+      Planned
+    </span>
 
-    <b id="costPlanned">₹0</b>
+    <b id="costPlanned">
+      ₹0
+    </b>
 
   </div>
 
+
   <div class="cost-row">
 
-    <span>Total</span>
+    <span>
+      Total
+    </span>
 
-    <b id="costTotal">₹0</b>
+    <b id="costTotal">
+      ₹0
+    </b>
 
   </div>
 
 </section>
+
+
+<!-- ===================================================
+     NEXT SESSION
+=================================================== -->
 
 <section class="card">
 
   <div class="section-title">
     Next Session
   </div>
+
 
   <div
     class="next-box"
@@ -1004,15 +1711,27 @@ body.dark .cal-btn{
 
 </section>
 
+
+<!-- ===================================================
+     HISTORY
+=================================================== -->
+
 <section class="card">
 
   <div class="section-title">
     Recent Sessions
   </div>
 
-  <div id="recentList"></div>
+
+  <div id="recentList">
+  </div>
 
 </section>
+
+
+<!-- ===================================================
+     CALENDAR
+=================================================== -->
 
 <section
   class="card"
@@ -1024,22 +1743,29 @@ body.dark .cal-btn{
       class="cal-btn"
       id="prevMonth"
       type="button">
+
       ‹
+
     </button>
+
 
     <div
       class="month-title"
       id="monthTitle">
     </div>
 
+
     <button
       class="cal-btn"
       id="nextMonth"
       type="button">
+
       ›
+
     </button>
 
   </div>
+
 
   <div class="weekdays">
 
@@ -1053,35 +1779,47 @@ body.dark .cal-btn{
 
   </div>
 
+
   <div
     class="calendar"
     id="calendar">
   </div>
 
+
   <div class="legend">
 
     <span>
-      <i style="color:var(--green)">✓</i>
+      <i style="color:var(--green)">
+        ✓
+      </i>
       Attended
     </span>
 
     <span>
-      <i style="color:var(--red)">×</i>
+      <i style="color:var(--red)">
+        ×
+      </i>
       Missed
     </span>
 
     <span>
-      <i style="color:var(--orange)">●</i>
+      <i style="color:var(--orange)">
+        ●
+      </i>
       Planned
     </span>
 
     <span>
-      <i style="color:var(--purple)">↻</i>
+      <i style="color:var(--purple)">
+        ↻
+      </i>
       Rescheduled
     </span>
 
     <span>
-      <i style="color:var(--blue)">■</i>
+      <i style="color:var(--blue)">
+        ■
+      </i>
       Weekend
     </span>
 
@@ -1089,11 +1827,17 @@ body.dark .cal-btn{
 
 </section>
 
+
+<!-- ===================================================
+     EXPORT
+=================================================== -->
+
 <section class="card">
 
   <div class="section-title">
     Export / Backup
   </div>
+
 
   <div class="actions">
 
@@ -1106,6 +1850,7 @@ body.dark .cal-btn{
 
     </button>
 
+
     <button
       class="btn"
       id="printPdf"
@@ -1114,6 +1859,7 @@ body.dark .cal-btn{
       Print / Save PDF
 
     </button>
+
 
     <button
       class="btn"
@@ -1124,6 +1870,7 @@ body.dark .cal-btn{
 
     </button>
 
+
     <button
       class="btn"
       id="restoreData"
@@ -1132,6 +1879,7 @@ body.dark .cal-btn{
       Restore JSON
 
     </button>
+
 
     <input
       type="file"
@@ -1145,6 +1893,11 @@ body.dark .cal-btn{
 
 </main>
 
+
+<!-- ===================================================
+     BOTTOM NAV
+=================================================== -->
+
 <nav class="bottom-nav">
 
   <button
@@ -1152,42 +1905,58 @@ body.dark .cal-btn{
     data-nav="home"
     type="button">
 
-    <span class="nav-icon">⌂</span>
+    <span class="nav-icon">
+      ⌂
+    </span>
+
     Home
 
   </button>
+
 
   <button
     class="nav-btn"
     data-nav="add"
     type="button">
 
-    <span class="nav-icon">＋</span>
+    <span class="nav-icon">
+      ＋
+    </span>
+
     Add
 
   </button>
+
 
   <button
     class="nav-btn"
     data-nav="history"
     type="button">
 
-    <span class="nav-icon">☷</span>
+    <span class="nav-icon">
+      ☷
+    </span>
+
     History
 
   </button>
+
 
   <button
     class="nav-btn"
     data-nav="calendar"
     type="button">
 
-    <span class="nav-icon">▣</span>
+    <span class="nav-icon">
+      ▣
+    </span>
+
     Calendar
 
   </button>
 
 </nav>
+
 
 <!-- ===================================================
      SESSION MODAL
@@ -1203,15 +1972,16 @@ body.dark .cal-btn{
       Add Session
     </h2>
 
+
     <form id="sessionForm">
 
       <input
         type="hidden"
         id="editId">
 
+
       <div class="form-grid">
 
-        <!-- MODE -->
 
         <div>
 
@@ -1254,7 +2024,18 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- THERAPY -->
+        <!-- =================================================
+             THERAPY / TITLE FIELD
+
+             Therapy mode:
+             Dropdown
+
+             Other modes:
+             Existing textbox
+
+             This keeps existing functionality for
+             non-therapy modes.
+        ================================================== -->
 
         <div>
 
@@ -1262,8 +2043,12 @@ body.dark .cal-btn{
             Therapy
           </label>
 
+
+          <!-- Therapy dropdown -->
+
           <select
-            id="fTitle"
+            id="fTitleTherapy"
+            class="hidden"
             required>
 
             <option value="">
@@ -1308,14 +2093,6 @@ body.dark .cal-btn{
 
             <option value="Sensory Integration Therapy">
               Sensory Integration Therapy
-            </option>
-
-            <option value="Physical Rehabilitation">
-              Physical Rehabilitation
-            </option>
-
-            <option value="Occupational Rehabilitation">
-              Occupational Rehabilitation
             </option>
 
             <option value="Cognitive Therapy">
@@ -1368,10 +2145,6 @@ body.dark .cal-btn{
 
             <option value="Art Therapy">
               Art Therapy
-            </option>
-
-            <option value="Dance/Movement Therapy">
-              Dance/Movement Therapy
             </option>
 
             <option value="Vision Therapy">
@@ -1458,10 +2231,6 @@ body.dark .cal-btn{
               Aquatic Therapy
             </option>
 
-            <option value="Equine Therapy">
-              Equine Therapy
-            </option>
-
             <option value="Massage Therapy">
               Massage Therapy
             </option>
@@ -1484,89 +2253,20 @@ body.dark .cal-btn{
 
           </select>
 
-        </div>
 
+          <!-- Existing textbox for all other modes -->
 
-        <!-- THERAPY CATEGORY -->
-
-        <div id="therapyCategoryWrap">
-
-          <label>
-            Therapy Category
-          </label>
-
-          <select id="fTherapyCategory">
-
-            <option value="">
-              Select Therapy Category
-            </option>
-
-            <option value="Pediatric">
-              Pediatric
-            </option>
-
-            <option value="Adult">
-              Adult
-            </option>
-
-            <option value="Child Development">
-              Child Development
-            </option>
-
-            <option value="Rehabilitation">
-              Rehabilitation
-            </option>
-
-            <option value="Developmental">
-              Developmental
-            </option>
-
-            <option value="Behavioral">
-              Behavioral
-            </option>
-
-            <option value="Communication">
-              Communication
-            </option>
-
-            <option value="Motor Skills">
-              Motor Skills
-            </option>
-
-            <option value="Sensory">
-              Sensory
-            </option>
-
-            <option value="Cognitive">
-              Cognitive
-            </option>
-
-            <option value="Feeding">
-              Feeding
-            </option>
-
-            <option value="Speech & Language">
-              Speech & Language
-            </option>
-
-            <option value="Physical Rehabilitation">
-              Physical Rehabilitation
-            </option>
-
-            <option value="Occupational Rehabilitation">
-              Occupational Rehabilitation
-            </option>
-
-            <option value="Other">
-              Other
-            </option>
-
-          </select>
+          <input
+            id="fTitle"
+            required
+            placeholder="e.g. Tuition / Class / Session">
 
         </div>
 
 
-        <!-- DATE -->
+        <!-- =================================================
+             DATE
+        ================================================== -->
 
         <div>
 
@@ -1582,7 +2282,9 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- TIME -->
+        <!-- =================================================
+             TIME
+        ================================================== -->
 
         <div>
 
@@ -1597,7 +2299,9 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- PERSON -->
+        <!-- =================================================
+             PERSON
+        ================================================== -->
 
         <div>
 
@@ -1612,7 +2316,9 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- STATUS -->
+        <!-- =================================================
+             STATUS
+        ================================================== -->
 
         <div>
 
@@ -1643,7 +2349,9 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- COST -->
+        <!-- =================================================
+             COST
+        ================================================== -->
 
         <div>
 
@@ -1662,7 +2370,9 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- RESCHEDULED DATE -->
+        <!-- =================================================
+             RESCHEDULED DATE
+        ================================================== -->
 
         <div>
 
@@ -1677,7 +2387,9 @@ body.dark .cal-btn{
         </div>
 
 
-        <!-- NOTES -->
+        <!-- =================================================
+             NOTES
+        ================================================== -->
 
         <div class="full">
 
@@ -1687,7 +2399,8 @@ body.dark .cal-btn{
 
           <textarea
             id="fNotes"
-            placeholder="Optional notes"></textarea>
+            placeholder="Optional notes">
+          </textarea>
 
         </div>
 
@@ -1704,6 +2417,7 @@ body.dark .cal-btn{
           Cancel
 
         </button>
+
 
         <button
           type="submit"
@@ -1736,20 +2450,24 @@ body.dark .cal-btn{
       Add Profile
     </h2>
 
+
     <form id="profileForm">
 
       <input
         type="hidden"
         id="profileId">
 
+
       <label>
         Profile Name
       </label>
+
 
       <input
         id="profileName"
         required
         placeholder="e.g. My Child">
+
 
       <div class="modal-actions">
 
@@ -1761,6 +2479,7 @@ body.dark .cal-btn{
           Cancel
 
         </button>
+
 
         <button
           type="submit"
@@ -1778,10 +2497,12 @@ body.dark .cal-btn{
 
 </div>
 
+
 <div
   class="toast"
   id="toast">
 </div>
+
 
 <script>
 
@@ -1797,19 +2518,29 @@ body.dark .cal-btn{
 const DBKEY =
   "attendanceTrackerData_v3";
 
+
 const SAFETYKEY =
   "attendanceTrackerData_before_cleanup";
+
 
 const OLD_KEYS = [
 
   "therapyTrackerData",
+
   "therapyTracker",
+
   "therapyData",
+
   "therapy-tracker",
+
   "therapy_sessions",
+
   "sessions",
+
   "attendanceTracker",
+
   "attendanceData",
+
   "trackerData"
 
 ];
@@ -1818,62 +2549,20 @@ const OLD_KEYS = [
 const MODE_NAMES = {
 
   therapy:"Therapy",
+
   tuition:"Tuition",
+
   school:"School",
+
   class:"Class",
+
   gym:"Gym",
+
   office:"Office / RTO",
+
   other:"Other"
 
 };
-
-
-/* =====================================================
-   THERAPY CATEGORY
-===================================================== */
-
-/*
-  This is ONE level only.
-
-  There is no sub-category.
-
-  Existing category values from older records
-  are also retained when editing.
-*/
-
-const THERAPY_CATEGORIES = [
-
-  "Pediatric",
-
-  "Adult",
-
-  "Child Development",
-
-  "Rehabilitation",
-
-  "Developmental",
-
-  "Behavioral",
-
-  "Communication",
-
-  "Motor Skills",
-
-  "Sensory",
-
-  "Cognitive",
-
-  "Feeding",
-
-  "Speech & Language",
-
-  "Physical Rehabilitation",
-
-  "Occupational Rehabilitation",
-
-  "Other"
-
-];
 
 
 let db;
@@ -1922,9 +2611,13 @@ function esc(value){
         return {
 
           "&":"&amp;",
+
           "<":"&lt;",
+
           ">":"&gt;",
+
           '"':"&quot;",
+
           "'":"&#39;"
 
         }[m];
@@ -1940,10 +2633,18 @@ function localDate(d){
   return (
 
     d.getFullYear() +
+
     "-" +
-    String(d.getMonth()+1).padStart(2,"0") +
+
+    String(
+      d.getMonth()+1
+    ).padStart(2,"0") +
+
     "-" +
-    String(d.getDate()).padStart(2,"0")
+
+    String(
+      d.getDate()
+    ).padStart(2,"0")
 
   );
 
@@ -1967,10 +2668,12 @@ function addOneDay(dateString){
 
   }
 
+
   const parts =
     String(dateString)
       .slice(0,10)
       .split("-");
+
 
   if(parts.length !== 3){
 
@@ -1978,12 +2681,14 @@ function addOneDay(dateString){
 
   }
 
+
   const d =
     new Date(
       Number(parts[0]),
       Number(parts[1])-1,
       Number(parts[2])
     );
+
 
   if(
     Number.isNaN(
@@ -1995,9 +2700,11 @@ function addOneDay(dateString){
 
   }
 
+
   d.setDate(
     d.getDate()+1
   );
+
 
   return localDate(d);
 
@@ -2009,6 +2716,7 @@ function money(n){
   return (
 
     "₹" +
+
     Number(n || 0)
       .toLocaleString(
         "en-IN",
@@ -2029,12 +2737,15 @@ function toast(message){
       "toast"
     );
 
+
   t.textContent =
     message;
+
 
   t.classList.add(
     "show"
   );
+
 
   setTimeout(
     function(){
@@ -2064,7 +2775,9 @@ function emptyDB(){
 
       {
         id:"default",
+
         name:"Default Profile"
+
       }
 
     ],
@@ -2096,6 +2809,7 @@ function normaliseStatus(value){
       .toLowerCase()
       .trim();
 
+
   if(
     s.includes("miss") ||
     s === "absent"
@@ -2104,6 +2818,7 @@ function normaliseStatus(value){
     return "missed";
 
   }
+
 
   if(
     s.includes("plan") ||
@@ -2114,6 +2829,7 @@ function normaliseStatus(value){
 
   }
 
+
   if(
     s.includes("resched")
   ){
@@ -2121,6 +2837,7 @@ function normaliseStatus(value){
     return "rescheduled";
 
   }
+
 
   return "attended";
 
@@ -2138,6 +2855,7 @@ function normaliseMode(value){
       .toLowerCase()
       .trim();
 
+
   if(
     s.includes("tuition") ||
     s.includes("tution")
@@ -2147,6 +2865,7 @@ function normaliseMode(value){
 
   }
 
+
   if(
     s.includes("school")
   ){
@@ -2154,6 +2873,7 @@ function normaliseMode(value){
     return "school";
 
   }
+
 
   if(
     s.includes("class")
@@ -2163,6 +2883,7 @@ function normaliseMode(value){
 
   }
 
+
   if(
     s.includes("gym")
   ){
@@ -2170,6 +2891,7 @@ function normaliseMode(value){
     return "gym";
 
   }
+
 
   if(
     s.includes("office") ||
@@ -2180,6 +2902,7 @@ function normaliseMode(value){
 
   }
 
+
   if(
     s.includes("other")
   ){
@@ -2187,6 +2910,7 @@ function normaliseMode(value){
     return "other";
 
   }
+
 
   if(
     s.includes("therapy") ||
@@ -2197,6 +2921,7 @@ function normaliseMode(value){
     return "therapy";
 
   }
+
 
   return "therapy";
 
@@ -2228,6 +2953,7 @@ function pick(
 
   }
 
+
   return "";
 
 }
@@ -2251,6 +2977,7 @@ function normaliseSession(
 
   }
 
+
   const rawDate =
     pick(
       object,
@@ -2261,15 +2988,18 @@ function normaliseSession(
       "selectedDate"
     );
 
+
   if(!rawDate){
 
     return null;
 
   }
 
+
   const date =
     String(rawDate)
       .slice(0,10);
+
 
   if(
     !/^\d{4}-\d{2}-\d{2}$/
@@ -2279,6 +3009,7 @@ function normaliseSession(
     return null;
 
   }
+
 
   return {
 
@@ -2290,6 +3021,7 @@ function normaliseSession(
       ) ||
       uid()
     ),
+
 
     profileId:String(
 
@@ -2306,15 +3038,19 @@ function normaliseSession(
 
     ),
 
+
     mode:
       normaliseMode(
         pick(
           object,
           "mode",
+          "category",
+          "type",
           "attendanceMode"
         ) ||
         "therapy"
       ),
+
 
     title:String(
 
@@ -2331,26 +3067,9 @@ function normaliseSession(
 
     ),
 
-    /*
-      NEW FIELD.
-
-      Existing records without this field
-      will simply contain an empty value.
-    */
-
-    therapyCategory:String(
-
-      pick(
-        object,
-        "therapyCategory",
-        "categoryOfTherapy"
-      ) ||
-
-      ""
-
-    ),
 
     date,
+
 
     time:String(
 
@@ -2364,6 +3083,7 @@ function normaliseSession(
       ""
 
     ),
+
 
     person:String(
 
@@ -2381,6 +3101,7 @@ function normaliseSession(
 
     ),
 
+
     status:
       normaliseStatus(
         pick(
@@ -2391,6 +3112,7 @@ function normaliseSession(
         ) ||
         "attended"
       ),
+
 
     cost:Number(
 
@@ -2406,6 +3128,7 @@ function normaliseSession(
 
     ),
 
+
     rescheduledDate:String(
 
       pick(
@@ -2417,6 +3140,7 @@ function normaliseSession(
       ""
 
     ),
+
 
     notes:String(
 
@@ -2431,6 +3155,7 @@ function normaliseSession(
       ""
 
     ),
+
 
     createdAt:
 
@@ -2501,37 +3226,47 @@ function chooseTitle(
       first.title || ""
     ).trim();
 
+
   const b =
     String(
       second.title || ""
     ).trim();
 
+
   if(!a){
     return b;
   }
+
 
   if(!b){
     return a;
   }
 
+
   const generic = [
 
     "therapy session",
+
     "session",
+
     "appointment",
+
     "attendance"
 
   ];
+
 
   const ag =
     generic.includes(
       a.toLowerCase()
     );
 
+
   const bg =
     generic.includes(
       b.toLowerCase()
     );
+
 
   if(
     ag &&
@@ -2542,6 +3277,7 @@ function chooseTitle(
 
   }
 
+
   if(
     bg &&
     !ag
@@ -2550,6 +3286,7 @@ function chooseTitle(
     return a;
 
   }
+
 
   return a;
 
@@ -2571,6 +3308,7 @@ function mergeDuplicate(
 
   };
 
+
   merged.title =
     chooseTitle(
       existing,
@@ -2578,31 +3316,17 @@ function mergeDuplicate(
     );
 
 
-  /*
-    IMPORTANT:
-    Preserve therapy category.
-  */
-
-  if(
-    !merged.therapyCategory &&
-    incoming.therapyCategory
-  ){
-
-    merged.therapyCategory =
-      incoming.therapyCategory;
-
-  }
-
-
   const n1 =
     String(
       existing.notes || ""
     ).trim();
 
+
   const n2 =
     String(
       incoming.notes || ""
     ).trim();
+
 
   if(
     n1 &&
@@ -2624,6 +3348,7 @@ function mergeDuplicate(
 
   }
 
+
   if(
     !merged.person &&
     incoming.person
@@ -2633,6 +3358,7 @@ function mergeDuplicate(
       incoming.person;
 
   }
+
 
   if(
     !merged.time &&
@@ -2644,6 +3370,7 @@ function mergeDuplicate(
 
   }
 
+
   if(
     !merged.rescheduledDate &&
     incoming.rescheduledDate
@@ -2653,6 +3380,7 @@ function mergeDuplicate(
       incoming.rescheduledDate;
 
   }
+
 
   merged.createdAt =
     Math.min(
@@ -2669,13 +3397,14 @@ function mergeDuplicate(
 
     );
 
+
   return merged;
 
 }
 
 
 /* =====================================================
-   DEDUPLICATE
+   DEDUPLICATE SESSIONS
 ===================================================== */
 
 function deduplicateSessions(
@@ -2685,6 +3414,7 @@ function deduplicateSessions(
   const map =
     new Map();
 
+
   for(
     const session of input
   ){
@@ -2693,10 +3423,12 @@ function deduplicateSessions(
       continue;
     }
 
+
     const key =
       duplicateKey(
         session
       );
+
 
     if(!map.has(key)){
 
@@ -2712,6 +3444,7 @@ function deduplicateSessions(
       const old =
         map.get(key);
 
+
       map.set(
 
         key,
@@ -2726,6 +3459,7 @@ function deduplicateSessions(
     }
 
   }
+
 
   return [
     ...map.values()
@@ -2744,6 +3478,7 @@ function collectLegacy(){
 
   const profiles = [];
 
+
   for(
     const key of OLD_KEYS
   ){
@@ -2756,6 +3491,7 @@ function collectLegacy(){
 
     }
 
+
     try{
 
       const raw =
@@ -2763,16 +3499,17 @@ function collectLegacy(){
           key
         );
 
+
       if(!raw){
 
         continue;
 
       }
 
+
       const parsed =
-        JSON.parse(
-          raw
-        );
+        JSON.parse(raw);
+
 
       if(
         Array.isArray(
@@ -2804,6 +3541,7 @@ function collectLegacy(){
 
       }
 
+
       else if(
         parsed &&
         typeof parsed === "object"
@@ -2821,6 +3559,7 @@ function collectLegacy(){
 
         }
 
+
         if(
           Array.isArray(
             parsed.records
@@ -2832,6 +3571,7 @@ function collectLegacy(){
           );
 
         }
+
 
         if(
           Array.isArray(
@@ -2845,6 +3585,7 @@ function collectLegacy(){
 
         }
 
+
         if(
           Array.isArray(
             parsed.data
@@ -2856,6 +3597,7 @@ function collectLegacy(){
           );
 
         }
+
 
         if(
           Array.isArray(
@@ -2873,9 +3615,12 @@ function collectLegacy(){
 
     }
 
-    catch(error){}
+    catch(error){
+
+    }
 
   }
+
 
   return {
     records,
@@ -2894,8 +3639,10 @@ function loadDB(){
   const blank =
     emptyDB();
 
+
   let current =
     null;
+
 
   try{
 
@@ -2921,11 +3668,6 @@ function loadDB(){
     typeof current === "object"
   ){
 
-    /*
-      Safety copy only.
-      Existing database is NOT deleted.
-    */
-
     try{
 
       localStorage.setItem(
@@ -2946,6 +3688,7 @@ function loadDB(){
     const base = {
 
       ...blank,
+
       ...current
 
     };
@@ -2987,6 +3730,7 @@ function loadDB(){
             base.profiles[0].id
           );
 
+
         if(n){
 
           if(
@@ -3002,6 +3746,7 @@ function loadDB(){
 
           }
 
+
           normalized.push(
             n
           );
@@ -3011,11 +3756,6 @@ function loadDB(){
       }
     );
 
-
-    /*
-      Existing records retained.
-      Duplicate protection remains.
-    */
 
     base.sessions =
       deduplicateSessions(
@@ -3032,12 +3772,10 @@ function loadDB(){
     ){
 
       base.profiles = [
-
         {
           id:"default",
           name:"Default Profile"
         }
-
       ];
 
     }
@@ -3102,10 +3840,6 @@ function loadDB(){
   }
 
 
-  /*
-    Legacy recovery.
-  */
-
   const legacy =
     collectLegacy();
 
@@ -3137,9 +3871,11 @@ function loadDB(){
           ""
         ).trim();
 
+
       if(!name){
         return;
       }
+
 
       const existing =
         [...profileMap.values()]
@@ -3150,6 +3886,7 @@ function loadDB(){
               name.toLowerCase()
           );
 
+
       if(!existing){
 
         const profileId =
@@ -3158,6 +3895,7 @@ function loadDB(){
             uid()
           );
 
+
         profileMap.set(
 
           profileId,
@@ -3165,6 +3903,7 @@ function loadDB(){
           {
             id:profileId,
             name
+
           }
 
         );
@@ -3267,13 +4006,16 @@ function saveDB(){
   db.activeProfileId =
     activeProfileId;
 
+
   db.activeMode =
     activeMode;
+
 
   db.sessions =
     deduplicateSessions(
       db.sessions
     );
+
 
   try{
 
@@ -3301,7 +4043,7 @@ function saveDB(){
 
 
 /* =====================================================
-   CURRENT PROFILE
+   PROFILE
 ===================================================== */
 
 function currentProfile(){
@@ -3403,7 +4145,7 @@ function render(){
 
 
 /* =====================================================
-   PROFILES
+   PROFILES RENDER
 ===================================================== */
 
 function renderProfiles(){
@@ -3793,8 +4535,11 @@ function recordHTML(s){
   const icons = {
 
     attended:"✓",
+
     missed:"×",
+
     planned:"●",
+
     rescheduled:"↻"
 
   };
@@ -3803,8 +4548,11 @@ function recordHTML(s){
   const labels = {
 
     attended:"Attended",
+
     missed:"Missed",
+
     planned:"Planned",
+
     rescheduled:"Rescheduled"
 
   };
@@ -3823,30 +4571,6 @@ function recordHTML(s){
           ${esc(s.title)}
 
         </div>
-
-
-        ${
-          s.mode === "therapy" &&
-          s.therapyCategory
-
-          ?
-
-          `
-
-          <div class="meta">
-
-            🧩 Therapy Category:
-            ${esc(s.therapyCategory)}
-
-          </div>
-
-          `
-
-          :
-
-          ""
-
-        }
 
 
         <div class="meta">
@@ -3970,6 +4694,7 @@ function recordHTML(s){
 
     <div class="actions">
 
+
       <button
         class="btn btn-small"
         type="button"
@@ -3998,6 +4723,7 @@ function recordHTML(s){
         Delete
 
       </button>
+
 
     </div>
 
@@ -4101,7 +4827,9 @@ function renderNext(){
             new Date(
 
               s.date +
+
               "T" +
+
               (
                 s.time ||
                 "00:00"
@@ -4377,7 +5105,9 @@ function renderCalendar(){
         onclick="selectCalendarDate('${date}')">
 
         <div class="day-number">
+
           ${day}
+
         </div>
 
         ${marker}
@@ -4496,30 +5226,42 @@ function(date){
 
 
 /* =====================================================
-   THERAPY DROPDOWN
+   THERAPY TITLE FIELD
 ===================================================== */
 
 /*
-  This function makes sure that an existing
-  therapy value is NEVER lost.
+  IMPORTANT:
 
-  If an old record contains a therapy name
-  not included in the standard dropdown,
-  that value is temporarily added as
-  "(Existing)".
+  Therapy mode:
+    fTitleTherapy = dropdown
+
+  All other modes:
+    fTitle = textbox
+
+  Existing values are retained.
+
+  If an old therapy title is not present
+  in the standard dropdown list, it is added
+  temporarily so the existing value is never lost.
 */
 
-function retainExistingTherapyValue(
-  value
-){
+function ensureTherapyOption(value){
 
   const select =
     document.getElementById(
-      "fTitle"
+      "fTitleTherapy"
     );
 
 
-  if(!value){
+  const cleanValue =
+    String(
+      value || ""
+    ).trim();
+
+
+  if(!cleanValue){
+
+    select.value = "";
 
     return;
 
@@ -4532,7 +5274,7 @@ function retainExistingTherapyValue(
     ).some(
       option =>
         option.value ===
-        value
+        cleanValue
     );
 
 
@@ -4545,12 +5287,11 @@ function retainExistingTherapyValue(
 
 
     option.value =
-      value;
+      cleanValue;
 
 
     option.textContent =
-      value +
-      " (Existing)";
+      cleanValue;
 
 
     select.appendChild(
@@ -4559,188 +5300,138 @@ function retainExistingTherapyValue(
 
   }
 
-}
-
-
-/* =====================================================
-   THERAPY CATEGORY
-===================================================== */
-
-function updateTherapyCategory(
-  selectedValue=""
-){
-
-  const select =
-    document.getElementById(
-      "fTherapyCategory"
-    );
-
-
-  const currentValue =
-    selectedValue ||
-    select.value ||
-    "";
-
-
-  select.innerHTML =
-
-    `<option value="">
-      Select Therapy Category
-    </option>`;
-
-
-  THERAPY_CATEGORIES.forEach(
-
-    function(category){
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-
-      option.value =
-        category;
-
-
-      option.textContent =
-        category;
-
-
-      select.appendChild(
-        option
-      );
-
-    }
-
-  );
-
-
-  /*
-    Preserve old category values
-    if the existing record has one
-    that isn't in the current list.
-  */
-
-  if(
-    currentValue &&
-    !THERAPY_CATEGORIES.includes(
-      currentValue
-    )
-  ){
-
-    const oldOption =
-      document.createElement(
-        "option"
-      );
-
-
-    oldOption.value =
-      currentValue;
-
-
-    oldOption.textContent =
-      currentValue +
-      " (Existing)";
-
-
-    select.appendChild(
-      oldOption
-    );
-
-  }
-
 
   select.value =
-    currentValue;
+    cleanValue;
 
 }
 
 
 /* =====================================================
-   UPDATE THERAPY UI
+   UPDATE TITLE / THERAPY FIELD
 ===================================================== */
 
-function updateTherapyUI(){
+function updateTitleField(
+  mode,
+  value=""
+){
 
-  const mode =
+  const therapySelect =
     document.getElementById(
-      "fMode"
-    ).value;
-
-
-  const therapyWrap =
-    document.getElementById(
-      "therapyCategoryWrap"
+      "fTitleTherapy"
     );
 
 
-  const therapySelect =
+  const titleInput =
     document.getElementById(
       "fTitle"
     );
 
 
-  const therapyLabel =
+  const label =
     document.getElementById(
       "therapyLabel"
     );
 
 
   if(
-    mode === "therapy"
+    mode ===
+    "therapy"
   ){
 
-    therapyWrap
-      .classList
-      .remove(
-        "hidden"
-      );
+    /*
+      Therapy mode:
+      show dropdown
+    */
 
-
-    therapyLabel.textContent =
+    label.textContent =
       "Therapy";
 
 
-    therapySelect
-      .setAttribute(
-        "required",
-        "required"
-      );
+    titleInput.classList.add(
+      "hidden"
+    );
 
 
-    updateTherapyCategory();
+    titleInput.required =
+      false;
+
+
+    therapySelect.classList.remove(
+      "hidden"
+    );
+
+
+    therapySelect.required =
+      true;
+
+
+    ensureTherapyOption(
+      value
+    );
 
   }
 
   else{
 
     /*
-      For non-therapy modes,
-      keep the existing field behavior.
-
-      Since fTitle is now a dropdown,
-      existing values are retained dynamically.
+      Non-therapy modes:
+      preserve existing textbox
     */
 
-    therapyWrap
-      .classList
-      .add(
-        "hidden"
-      );
-
-
-    therapyLabel.textContent =
+    label.textContent =
       "Title";
 
 
-    therapySelect
-      .setAttribute(
-        "required",
-        "required"
-      );
+    therapySelect.classList.add(
+      "hidden"
+    );
+
+
+    therapySelect.required =
+      false;
+
+
+    titleInput.classList.remove(
+      "hidden"
+    );
+
+
+    titleInput.required =
+      true;
+
+
+    titleInput.value =
+      value || "";
 
   }
+
+}
+
+
+/* =====================================================
+   GET SELECTED TITLE
+===================================================== */
+
+function getSelectedTitle(){
+
+  if(
+    document.getElementById(
+      "fMode"
+    ).value ===
+    "therapy"
+  ){
+
+    return document.getElementById(
+      "fTitleTherapy"
+    ).value.trim();
+
+  }
+
+
+  return document.getElementById(
+    "fTitle"
+  ).value.trim();
 
 }
 
@@ -4806,82 +5497,34 @@ function openSessionModal(
         : "";
 
 
-  document.getElementById(
-    "fMode"
-  ).value =
-
+  const modalMode =
     existing?.mode ||
     activeMode;
 
 
+  document.getElementById(
+    "fMode"
+  ).value =
+    modalMode;
+
+
   /*
-    IMPORTANT:
-    Existing therapy value is retained.
+    Set the correct Therapy dropdown
+    or normal Title textbox.
   */
 
-  const existingTitle =
+  updateTitleField(
+
+    modalMode,
+
     existing?.title ||
-    "";
+    (
+      modalMode === "therapy"
+        ? ""
+        : defaultTitle(modalMode)
+    )
 
-
-  retainExistingTherapyValue(
-    existingTitle
   );
-
-
-  const therapySelect =
-    document.getElementById(
-      "fTitle"
-    );
-
-
-  /*
-    For a new Therapy session,
-    no therapy is automatically selected.
-    User must choose it.
-
-    This prevents accidentally selecting
-    the wrong therapy.
-  */
-
-  if(
-    existingTitle
-  ){
-
-    therapySelect.value =
-      existingTitle;
-
-  }
-
-  else if(
-    activeMode === "therapy"
-  ){
-
-    therapySelect.value =
-      "";
-
-  }
-
-  else{
-
-    /*
-      Existing default behavior for
-      other modes.
-    */
-
-    retainExistingTherapyValue(
-      defaultTitle(
-        activeMode
-      )
-    );
-
-
-    therapySelect.value =
-      defaultTitle(
-        activeMode
-      );
-
-  }
 
 
   document.getElementById(
@@ -4947,21 +5590,6 @@ function openSessionModal(
 
     existing?.notes ||
     "";
-
-
-  /*
-    Restore existing therapy category.
-  */
-
-  updateTherapyCategory(
-
-    existing?.therapyCategory ||
-    ""
-
-  );
-
-
-  updateTherapyUI();
 
 
   if(copyMode){
@@ -5096,40 +5724,39 @@ function(id){
 
     id:"",
 
+
     date:
       addOneDay(
         original.date
       ),
 
+
     time:
       original.time ||
       "",
+
 
     person:
       original.person ||
       "",
 
+
     status:
       original.status ||
       "planned",
+
 
     cost:
       original.cost ||
       0,
 
+
     rescheduledDate:
       "",
 
+
     notes:
       original.notes ||
-      "",
-
-    /*
-      Therapy category is copied too.
-    */
-
-    therapyCategory:
-      original.therapyCategory ||
       ""
 
   };
@@ -5144,6 +5771,7 @@ function(id){
 
 
   saveDB();
+
 
   render();
 
@@ -5208,6 +5836,57 @@ function(id){
 
 
 /* =====================================================
+   MODE CHANGE INSIDE ADD SESSION
+===================================================== */
+
+document.getElementById(
+  "fMode"
+).addEventListener(
+
+  "change",
+
+  function(event){
+
+    const mode =
+      event.target.value;
+
+
+    /*
+      If switching from Therapy to another mode,
+      preserve the selected therapy as the textbox
+      value instead of losing it.
+    */
+
+    const currentTitle =
+      mode === "therapy"
+
+        ?
+
+        document.getElementById(
+          "fTitleTherapy"
+        ).value
+
+        :
+
+        document.getElementById(
+          "fTitle"
+        ).value;
+
+
+    updateTitleField(
+
+      mode,
+
+      currentTitle
+
+    );
+
+  }
+
+);
+
+
+/* =====================================================
    SAVE SESSION
 ===================================================== */
 
@@ -5237,31 +5916,7 @@ document
 
 
       const title =
-        document.getElementById(
-          "fTitle"
-        ).value
-        .trim();
-
-
-      const mode =
-        document.getElementById(
-          "fMode"
-        ).value;
-
-
-      const therapyCategory =
-
-        mode === "therapy"
-
-          ?
-
-          document.getElementById(
-            "fTherapyCategory"
-          ).value
-
-          :
-
-          "";
+        getSelectedTitle();
 
 
       if(
@@ -5270,7 +5925,9 @@ document
       ){
 
         alert(
-          mode === "therapy"
+          document.getElementById(
+            "fMode"
+          ).value === "therapy"
 
             ?
 
@@ -5278,7 +5935,7 @@ document
 
             :
 
-            "Please enter the title and date."
+            "Please enter the date and title."
 
         );
 
@@ -5287,35 +5944,34 @@ document
       }
 
 
-      /*
-        Therapy Category is optional.
-
-        Existing records without a category
-        remain valid.
-      */
-
-
       const data = {
 
         id:
           id ||
           uid(),
 
+
         profileId:
           activeProfileId,
 
-        mode,
+
+        mode:
+          document.getElementById(
+            "fMode"
+          ).value,
+
 
         title,
 
-        therapyCategory,
 
         date,
+
 
         time:
           document.getElementById(
             "fTime"
           ).value,
+
 
         person:
           document.getElementById(
@@ -5323,10 +5979,12 @@ document
           ).value
           .trim(),
 
+
         status:
           document.getElementById(
             "fStatus"
           ).value,
+
 
         cost:
           Number(
@@ -5336,10 +5994,12 @@ document
             0
           ),
 
+
         rescheduledDate:
           document.getElementById(
             "fRescheduledDate"
           ).value,
+
 
         notes:
           document.getElementById(
@@ -5347,15 +6007,12 @@ document
           ).value
           .trim(),
 
+
         createdAt:
           Date.now()
 
       };
 
-
-      /*
-        EDIT
-      */
 
       if(id){
 
@@ -5390,10 +6047,6 @@ document
 
       }
 
-
-      /*
-        ADD / COPY
-      */
 
       else{
 
@@ -5434,63 +6087,6 @@ document
           "New session added"
 
       );
-
-    }
-
-  );
-
-
-/* =====================================================
-   THERAPY MODE CHANGE
-===================================================== */
-
-document
-  .getElementById(
-    "fMode"
-  )
-  .addEventListener(
-
-    "change",
-
-    function(){
-
-      updateTherapyUI();
-
-    }
-
-  );
-
-
-/* =====================================================
-   THERAPY SELECTION CHANGE
-===================================================== */
-
-document
-  .getElementById(
-    "fTitle"
-  )
-  .addEventListener(
-
-    "change",
-
-    function(){
-
-      if(
-        document.getElementById(
-          "fMode"
-        ).value === "therapy"
-      ){
-
-        /*
-          Category is independent.
-
-          Selecting a therapy does not
-          create sub-categories.
-        */
-
-        updateTherapyCategory();
-
-      }
 
     }
 
@@ -6089,9 +6685,7 @@ document.getElementById(
 
         "Mode",
 
-        "Therapy",
-
-        "Therapy Category",
+        "Title",
 
         "Date",
 
@@ -6126,8 +6720,6 @@ document.getElementById(
           ],
 
           s.title,
-
-          s.therapyCategory || "",
 
           s.date,
 
